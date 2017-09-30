@@ -15,8 +15,19 @@ var config = {
     module: {
         loaders: [
             {test: /\.(js|jsx)$/, exclude: /node_modules/, loaders: ['babel-loader']},
-            {test: /(\.css)$/, loaders: ['style-loader', 'css-loader']}
-        ]
+            {test: /(\.css)$/, loaders: ['style-loader', 'css-loader']},
+            {
+                test: /\.scss$/,
+                use: [{
+                    loader: "style-loader" // creates style nodes from JS strings
+                }, {
+                    loader: "css-loader" // translates CSS into CommonJS
+                }, {
+                    loader: "sass-loader" // compiles Sass to CSS
+                }]
+            }
+        ],
+
     }
 }
 
