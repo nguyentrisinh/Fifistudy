@@ -1,0 +1,32 @@
+.container {
+  //width: 1170px;
+  margin: auto;
+}
+
+.slider-banner {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,000000+45,000000+55,ffffff+100 */
+  background: rgb(255,255,255); /* Old browsers */
+  background: -moz-linear-gradient(left,  rgba(255,255,255,1) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,1) 55%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  rgba(255,255,255,1) 0%,rgba(0,0,0,1) 45%,rgba(0,0,0,1) 55%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  rgba(255,255,255,1) 0%,rgba(0,0,0,1) 45%,rgba(0,0,0,1) 55%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
+
+  position: relative;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,000000+45,000000+55,ffffff+100 */
+  &__container {
+    position: absolute;
+    width: 1170px;
+    margin: auto;
+    left: 0;
+    right:0;
+  }
+  &__img {
+    width: 100%;
+    z-index: -1;
+  }
+  &__slide{
+    &.swiper-slide-prev{
+
+    }
+  }
+}

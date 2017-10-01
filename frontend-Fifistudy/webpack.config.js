@@ -3,14 +3,16 @@ var path = require('path')
 var BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 var APP_DIR = path.resolve(__dirname, 'src/client/app');
 var config = {
-    entry: APP_DIR + '/index.jsx',
+    entry: [APP_DIR + '/index.jsx'],
     output: {
         path: BUILD_DIR,
         publicPath: '/',
         filename: 'bundle.js'
     },
     devServer: {
-        contentBase: path.resolve(__dirname, 'src/client')
+        contentBase: path.resolve(__dirname, 'src/client'),
+        hot:true,
+        inline:true,
     },
     module: {
         loaders: [
@@ -25,8 +27,18 @@ var config = {
                 }, {
                     loader: "sass-loader" // compiles Sass to CSS
                 }]
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {}
+                    }
+                ]
             }
         ],
+
 
     }
 }

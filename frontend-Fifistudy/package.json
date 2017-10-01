@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack -d --watch",
-    "start": "start http://localhost:8000/ & webpack-dev-server --host 0.0.0.0 --port 8000"
+    "start": "start http://localhost:8000/ & webpack-dev-server --progress --hot --inline --host 0.0.0.0 --port 8000"
   },
   "author": "Goodnight Team",
   "license": "ISC",
@@ -21,6 +21,7 @@
   "devDependencies": {
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.7",
+    "file-loader": "^1.1.4",
     "node-sass": "^4.5.3",
     "path": "^0.12.7",
     "sass-loader": "^6.0.6",
