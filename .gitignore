@@ -98,6 +98,11 @@ ENV/
 # mypy
 .mypy_cache/
 
+# django migrations
+Fifistudy/fifistudy_api/migrations/
+
 # idea
 \.idea/
+
+# reactjs node_modules
 frontend-Fifistudy/node_modules/
