@@ -6,7 +6,7 @@ import film2 from '../static/images/film2.jpeg';
 
 import film3 from '../static/images/film3.jpg';
 
-class SliderBanner extends React.Component {
+class Header extends React.Component {
     render() {
         let configSwiper = {
             loopAdditionalSlides: 5,
@@ -21,16 +21,12 @@ class SliderBanner extends React.Component {
                     <div className="slider-banner__slide">
                         <img className="slider-banner__img" src={film1} alt=""/>
                     </div>
-                    <div className="slider-banner__slide">
-                        <img className="slider-banner__img" src={film2} alt=""/>
-                    </div>
-                    <div className="slider-banner__slide">
-                        <img className="slider-banner__img" src={film3} alt=""/>
-                    </div>
+                    <div className="slider-banner__slide"><img className="slider-banner__img" src={film2} alt=""/></div>
+                    <div className="slider-banner__slide"><img className="slider-banner__img" src={film3} alt=""/></div>
                 </Swiper>
             </div>
         )
     }
 }
 
-export default SliderBanner;
+export default Header;

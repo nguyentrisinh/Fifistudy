@@ -1,17 +1,32 @@
 import React from 'react';
-import {render} from 'react-dom';
 
 import SliderBanner from './SliderBanner.jsx';
-import '../static/css/index.scss'
+import '../static/css/index.scss';
 
-class App extends React.Component {
-    render () {
-        return (
-            <div>
-                <SliderBanner />
-            </div>
-        );
-    }
-}
+import {Provider} from "react-redux";
 
-render(<App/>, document.getElementById('app'));
+import reducer from "./reducers/app";
+import {applyMiddleware, createStore} from "redux";
+import {render} from 'react-dom';
+import {browserHistory,Router,IndexRoute, Route} from 'react-router';
+import App from './App'
+
+import reduxThunk from "redux-thunk";
+
+const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const store = createStoreWithMiddleware(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+render(
+    <Provider store={store}>
+        <Router history={browserHistory}>
+            <Route path="/" component={App}>
+                {/*<Route component={FooterContainer}>*/}
+                <IndexRoute component={SliderBanner}/>
+
+            </Route>
+        </Router>
+    </Provider>
+
+
+    , document.getElementById('app'));
+// registerServiceWorker();
