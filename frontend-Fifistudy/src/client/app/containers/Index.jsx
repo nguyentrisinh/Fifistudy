@@ -1,6 +1,7 @@
 import React from 'react';
+import SliderBanner from './SliderBanner';
 
-class App extends React.Component {
+class Index extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -8,11 +9,9 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
-                {this.props.children}
+            <div className="index-page">
+                <SliderBanner/>
             </div>
         )
     }
 }
-
-export default App

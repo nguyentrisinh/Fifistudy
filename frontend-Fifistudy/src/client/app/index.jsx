@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SliderBanner from './SliderBanner.jsx';
+import SliderBanner from './containers/SliderBanner.jsx';
 import '../static/css/index.scss';
 
 import {Provider} from "react-redux";
@@ -8,7 +8,7 @@ import {Provider} from "react-redux";
 import reducer from "./reducers/app";
 import {applyMiddleware, createStore} from "redux";
 import {render} from 'react-dom';
-import {browserHistory,Router,IndexRoute, Route} from 'react-router';
+import {browserHistory, Router, IndexRoute, Route} from 'react-router';
 import App from './App'
 
 import reduxThunk from "redux-thunk";
@@ -22,7 +22,6 @@ render(
             <Route path="/" component={App}>
                 {/*<Route component={FooterContainer}>*/}
                 <IndexRoute component={SliderBanner}/>
-
             </Route>
         </Router>
     </Provider>
