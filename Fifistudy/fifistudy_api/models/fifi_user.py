@@ -8,7 +8,7 @@ class FifiUser(models.Model):
 
     username = models.CharField(max_length=150, null=False, blank=False, unique=True)
     password = models.CharField(max_length=254, null=False, blank=False)
-    avatar = models.ImageField()
+    avatar = models.ImageField(blank=True, null=True, upload_to='user/avatar/')
     first_name = models.CharField(max_length=150, null=True, blank=True)
     last_name = models.CharField(max_length=150, null=True, blank=True)
     gender = models.PositiveSmallIntegerField(choices=GENDER_CHOICES)
