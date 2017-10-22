@@ -8,7 +8,7 @@ import BannerItem from '../components/BannerItem.jsx';
 class SliderBanner extends React.Component {
     constructor(props) {
         super(props);
-        this.renderSlides = this.renderSlides.bind(this);
+        // this.renderSlides = this.renderSlides.bind(this);
     }
 
     renderSlides = () => {

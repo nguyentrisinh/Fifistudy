@@ -6,9 +6,9 @@ function Level({level}) {
     function renderLevel() {
         let arr = [];
         for (let i = 0; i < 3; i++) {
-            if (i + 1 < level) {
+            if (i < level) {
                 arr.push(
-                    <div className={classNames(`level__item level__item--${i + 1}`)}/>
+                    <div className={classNames(`level__item level__item--${level}`)}/>
                 )
             }
             else {

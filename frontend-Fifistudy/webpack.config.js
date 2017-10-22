@@ -9,6 +9,9 @@ var config = {
         publicPath: '/',
         filename: 'bundle.js'
     },
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
     devServer: {
         contentBase: path.resolve(__dirname, 'src/client'),
         hot:true,

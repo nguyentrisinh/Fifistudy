@@ -2,7 +2,7 @@ import React from 'react';
 
 import SliderBanner from './containers/SliderBanner.jsx';
 import '../static/css/index.scss';
-
+import Index from './containers/Index.jsx';
 import {Provider} from "react-redux";
 
 import reducer from "./reducers/app";
@@ -21,7 +21,7 @@ render(
         <Router history={browserHistory}>
             <Route path="/" component={App}>
                 {/*<Route component={FooterContainer}>*/}
-                <IndexRoute component={SliderBanner}/>
+                <IndexRoute component={Index}/>
             </Route>
         </Router>
     </Provider>
