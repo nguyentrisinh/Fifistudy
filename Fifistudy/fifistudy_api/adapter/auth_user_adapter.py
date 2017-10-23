@@ -21,3 +21,13 @@ class AuthUserAdapter:
             auth_user.save()
 
             return auth_user
+
+    def delete_by_user(self, user):
+        try:
+            auth_user = AuthUser.objects.get(user_id=user)
+
+            auth_user.delete()
+
+            return 'You has logout complele'
+        except AuthUser.DoesNotExist:
+            raise ApiCustomException(ErrorDefine.USER_NOT_FOUND)

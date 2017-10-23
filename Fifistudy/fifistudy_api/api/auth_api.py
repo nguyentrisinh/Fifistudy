@@ -5,12 +5,14 @@ from django.conf.urls import url
 from ..services import AuthServices
 from ..serializers import NoneAttributeSerializer, LoginSerializer
 from .api_base import ApiBase
+from ..utils import FifiUserTokenAuthentication
 
 
 class AuthViewSet(ModelViewSet, ApiBase):
     authentication_classes = (AllowAny,)
     permission_classes = (AllowAny,)
     serializer_class = NoneAttributeSerializer
+    authentication_classes = (FifiUserTokenAuthentication,)
 
     auth_services = AuthServices()
 
@@ -22,9 +24,11 @@ class AuthViewSet(ModelViewSet, ApiBase):
             })),
             url(r'^login/$', cls.as_view({
                 'post': 'login'
-            }))
+            })),
+            url(r'^logout/$', cls.as_view({
+                'get': 'logout'
+            })),
         ]
-
         return urlpatterns
 
     def get_token(self, request, *args, **kwargs):
@@ -47,6 +51,13 @@ class AuthViewSet(ModelViewSet, ApiBase):
         password = request.data['password']
 
         result = self.auth_services.login(username, password)
+
+        return self.as_success(result)
+
+    def logout(self, request, *args, **kwargs):
+        user = self.check_anonymous(request)
+
+        result = self.auth_services.logout(user)
 
         return self.as_success(result)
 

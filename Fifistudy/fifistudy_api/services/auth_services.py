@@ -30,3 +30,8 @@ class AuthServices:
         }
 
         return result
+
+    def logout(self, user):
+        result = self.auth_user_adapter.delete_by_user(user)
+
+        return result
