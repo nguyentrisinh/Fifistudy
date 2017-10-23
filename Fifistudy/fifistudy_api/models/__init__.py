@@ -19,3 +19,4 @@ from .user_save_film import UserSaveFilm
 from .user_save_vocabulary import UserSaveVocabulary
 from .user_watch_episode import UserWatchEpisode
 from .vocabulary import Vocabulary
+from .auth_user import AuthUser

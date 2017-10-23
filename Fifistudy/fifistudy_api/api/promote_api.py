@@ -6,7 +6,7 @@ from .api_base import ApiBase
 from ..models import Promote
 from ..serializers import BasePromoteSerializer
 from ..services import PromoteServices
-from ..utils import ExpiringTokenAuthentication
+from ..utils import ExpiringTokenAuthentication, FifiUserTokenAuthentication
 
 
 class PromoteViewSet(ModelViewSet, ApiBase):

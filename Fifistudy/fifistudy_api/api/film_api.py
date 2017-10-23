@@ -6,11 +6,13 @@ from .api_base import ApiBase
 from ..models import Film
 from ..serializers import BaseFilmSerializer
 from ..services import FilmServices
+from ..utils import FifiUserTokenAuthentication
 
 
 class FilmViewSet(ModelViewSet, ApiBase):
     queryset = Film.objects.all().order_by('-updated_at')
-    serializer_class = (BaseFilmSerializer,)
+    serializer_class = BaseFilmSerializer
+    authentication_classes = (FifiUserTokenAuthentication,)
 
     # services
     film_services = FilmServices()
