@@ -5,6 +5,17 @@ GENDER_CHOICES = (
 )
 
 STATUS_CHOICES = (
-    (0, 'INACTIVE'),
-    (1, 'ACTIVE'),
+    (0, 'Inactive'),
+    (1, 'Active'),
+)
+
+ROLE_CHOICES = (
+    (1, 'Admin'),
+    (2, 'User'),
+)
+
+DIFFICULT_LEVEL = (
+    (1, 'Easy'),
+    (2, 'Normal'),
+    (3, 'Hard'),
 )
