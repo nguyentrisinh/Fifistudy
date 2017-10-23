@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_swagger',
+    'rest_framework.authtoken',
     'fifistudy_api'
 ]
 
@@ -51,6 +52,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8080'
+)
 
 ROOT_URLCONF = 'Fifistudy.urls'
 
