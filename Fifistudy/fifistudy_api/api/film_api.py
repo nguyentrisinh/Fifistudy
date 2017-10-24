@@ -20,12 +20,26 @@ class FilmViewSet(ModelViewSet, ApiBase):
     @classmethod
     def get_router(cls):
         urlpatterns = [
+            # get list homepage film order_by view
             url(r'^get_all_order_by_view/$', cls.as_view({
                 'get': 'get_homepage_list_order_by_view'
             })),
+            url(r'^get_all_order_by_view_with_auth/$', cls.as_view({
+                'get': 'get_homepage_list_order_by_view_with_auth'
+            })),
+
+            # get list homepage film order_by save_number
             url(r'^get_all_order_by_save_number/$', cls.as_view({
                 'get': 'get_homepage_list_order_by_save_number'
-            }))
+            })),
+            url(r'^get_all_order_by_save_number_with_auth/$', cls.as_view({
+                'get': 'get_homepage_list_order_by_save_number_with_auth'
+            })),
+
+            # get film detail
+            url(r'^detail/(?P<film_id>[0-9]+)$', cls.as_view({
+                'get': 'get_detail_by_id'
+            })),
         ]
 
         return urlpatterns
@@ -37,5 +51,25 @@ class FilmViewSet(ModelViewSet, ApiBase):
 
     def get_homepage_list_order_by_save_number(self, request, *args, **kwargs):
         result = self.film_services.get_list_order_by_save_number()
+
+        return self.as_success(result)
+
+    # with auth token to check if film that user is saved or not
+    def get_homepage_list_order_by_view_with_auth(self, request, *args, **kwargs):
+        user = self.check_anonymous(request)
+        result = self.film_services.get_list_order_by_view(user=user)
+
+        return self.as_success(result)
+
+    def get_homepage_list_order_by_save_number_with_auth(self, request, *args, **kwargs):
+        user = self.check_anonymous(request)
+        result = self.film_services.get_list_order_by_save_number(user=user)
+
+        return self.as_success(result)
+
+    def get_detail_by_id(self, request, *args, **kwargs):
+        film_id = kwargs['film_id']
+
+        result = self.film_services.get_detail_by_id(film_id=film_id)
 
         return self.as_success(result)

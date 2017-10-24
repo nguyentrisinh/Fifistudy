@@ -20,3 +20,10 @@ class FilmServices:
         serializer = HomepageListFilmSerializer(films, many=True)
 
         return serializer.data
+
+    def get_detail_by_id(self, film_id, user=None):
+        film = self.film_adapter.get_detail_by_id(film_id=film_id, user=user)
+
+        serializer = HomepageListFilmSerializer(film, many=False)
+
+        return serializer.data

@@ -9,7 +9,7 @@ from ..utils import FifiUserTokenAuthentication
 
 
 class AuthViewSet(ModelViewSet, ApiBase):
-    authentication_classes = (AllowAny,)
+    # authentication_classes = (AllowAny,)
     permission_classes = (AllowAny,)
     serializer_class = NoneAttributeSerializer
     authentication_classes = (FifiUserTokenAuthentication,)

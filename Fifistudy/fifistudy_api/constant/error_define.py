@@ -16,5 +16,8 @@ class ErrorDefine:
     USER_ALREADY_EXISTS = ApiErrorMessage('User have already existed', 1005)
     MISSING_TOKEN = ApiErrorMessage('Missing token', 1006)
 
+    # Error film not found: 11xx
+    FILM_NOT_FOUND = ApiErrorMessage('Film not found', 1100)
+
 
 
