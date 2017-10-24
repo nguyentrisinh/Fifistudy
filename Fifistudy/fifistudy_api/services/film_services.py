@@ -27,3 +27,4 @@ class FilmServices:
         serializer = HomepageListFilmSerializer(film, many=False)
 
         return serializer.data
+

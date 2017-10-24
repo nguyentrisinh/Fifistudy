@@ -4,3 +4,4 @@ from .film_adapter import FilmAdapter
 from .promote_adapter import PromoteAdapter
 from .fifi_user_adapter import FifiUserAdapter
 from .auth_user_adapter import AuthUserAdapter
+from .actor_adapter import ActorAdapter

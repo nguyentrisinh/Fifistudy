@@ -1,7 +1,6 @@
 from django.db.models import Case, When, Value, Count, BooleanField
 
 from ..models import Film, UserSaveFilm, Episode
-from ..serializers import BaseFilmSerializer
 from ..infrastructures import ApiCustomException
 from ..constant import ErrorDefine
 
@@ -55,7 +54,22 @@ class FilmAdapter:
 
     def get_detail_by_id(self, film_id, user=None):
         if user is not None:
-            pass
+            try:
+                film = Film.objects.get(id=film_id)
+
+                user_save_film = UserSaveFilm.objects.filter(film_id=film, user_id=user)
+
+                if user_save_film.exists():
+                    film.is_saved = True
+                else:
+                    film.is_saved = False
+
+                film.save_number = UserSaveFilm.objects.filter(film_id=film).count()
+                film.episode_count = Episode.objects.filter(film_id=film).count()
+
+                return film
+            except Film.DoesNotExist:
+                raise ApiCustomException(ErrorDefine.FILM_NOT_FOUND)
         else:
             try:
                 film = Film.objects.get(id=film_id)

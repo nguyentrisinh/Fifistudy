@@ -40,6 +40,9 @@ class FilmViewSet(ModelViewSet, ApiBase):
             url(r'^detail/(?P<film_id>[0-9]+)$', cls.as_view({
                 'get': 'get_detail_by_id'
             })),
+            url(r'^detail_with_auth/(?P<film_id>[0-9]+)$', cls.as_view({
+                'get': 'get_detail_by_id_with_auth'
+            }))
         ]
 
         return urlpatterns
@@ -71,5 +74,13 @@ class FilmViewSet(ModelViewSet, ApiBase):
         film_id = kwargs['film_id']
 
         result = self.film_services.get_detail_by_id(film_id=film_id)
+
+        return self.as_success(result)
+
+    def get_detail_by_id_with_auth(self, request, *args, **kwargs):
+        film_id = kwargs['film_id']
+        user = self.check_anonymous(request)
+
+        result = self.film_services.get_detail_by_id(film_id=film_id, user=user)
 
         return self.as_success(result)
