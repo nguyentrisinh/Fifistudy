@@ -2,6 +2,15 @@ import React from 'react';
 import Film from './Film';
 
 function Section() {
+    const renderFilm = () => {
+        return [{}, {}, {}, {}, {}, {}, {}, {}].map(item => {
+            return (
+                <div className="section__item">
+                    <Film/>
+                </div>
+            )
+        })
+    };
     return (
         <div className="section">
             <div className="container section__title">
@@ -9,18 +18,9 @@ function Section() {
             </div>
             <div className="divider"></div>
             <div className="container section__body">
-                <div className="section__item">
-                    <Film/>
-                </div>
-                <div className="section__item">
-                    <Film/>
-                </div>
-                <div className="section__item">
-                    <Film/>
-                </div>
-                <div className="section__item">
-                    <Film/>
-                </div>
+                {
+                    renderFilm()
+                }
             </div>
             <div className="divider"></div>
         </div>

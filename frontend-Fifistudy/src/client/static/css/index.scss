@@ -328,9 +328,10 @@ body {
   &__body {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
   }
   &__item {
-
+    width: 25%;
     flex-grow: 1;
   }
 }
@@ -342,8 +343,8 @@ body {
     width: 100%;
   }
   &__thumnail {
-    padding-top: 56.25%;
     position: relative;
+    padding-top: 56.25%;
     margin-bottom: 25px;
   }
   &__image {
@@ -355,6 +356,9 @@ body {
     text-align: center;
     color: #ffff4e;
     margin-bottom: 15px;
+    .fa {
+      margin-right: 4px;
+    }
   }
   &__eng-name {
     font-size: 20px;
@@ -373,5 +377,104 @@ body {
   &__level {
     text-align: center;
     padding-bottom: 30px;
+  }
+  &__bookmark {
+    color: #ffff00;
+    position: absolute;
+    left: 10px;
+    top: -5;
+  }
+  &__overlay {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0+100 */
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a6000000', endColorstr='#00000000', GradientType=1); /* IE6-9 */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  &__episode {
+    background-color: #cc3333;
+    color: white;
+    font-size: 20px;
+    border-radius: 50%;
+    padding: 10px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+  }
+}
+
+.section-blog {
+  background: url('../images/backgroundPolygon.png');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(#080f17, 0.8);
+  }
+  &__wrap {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding-top: 35px;
+    padding-bottom: 40px;
+  }
+
+  &__blog {
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-grow: 1;
+  }
+  &__title {
+    height: 52px;
+    margin-bottom: 20px;
+    color: #ff8d8d;
+    font-size: 21px;
+    line-height: calc(26 / 21);
+    text-align: center;
+  }
+  &__description {
+    color: #d5d5d5;
+    text-align: center;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: calc(26 / 18);
+  }
+}
+
+.footer {
+  padding-top: 70px;
+  padding-bottom: 30px;
+  text-align: center;
+  &__intro {
+    color: #fdfdfd;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: calc(30 / 22);
+  }
+  &__contact {
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    margin-top: 20px;
+
+  }
+  &__lisence {
+    color: #c1c1c1;
+    font-size: 20px;
+    margin-top: 40px;
+    font-weight: 400;
   }
 }

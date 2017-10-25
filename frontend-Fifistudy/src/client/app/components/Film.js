@@ -4,8 +4,19 @@ import Level from './Level'
 function Film() {
     return (
         <div className="film">
+
             <div className="film__thumnail">
+
                 <img src="http://placehold.it/1920x1080" alt="" className="film__image"/>
+                <div className="film__overlay">
+
+                </div>
+                <div className="film__bookmark">
+                    <i className="material-icons">bookmark</i>
+                </div>
+                <div className="film__episode">
+                    15
+                </div>
             </div>
             <div className="film__score">
                 <i className="fa fa-star"/>
