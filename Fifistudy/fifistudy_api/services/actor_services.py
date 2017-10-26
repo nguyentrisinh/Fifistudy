@@ -14,3 +14,10 @@ class ActorServices:
         serializer = ListFilmHasActorSerializer(film_has_actors, many=True)
 
         return serializer.data
+
+    def get_list_by_slug(self, slug):
+        film_has_actors = self.actor_adapter.get_list_actor_by_slug(slug)
+
+        serializer = ListFilmHasActorSerializer(film_has_actors, many=True)
+
+        return serializer.data

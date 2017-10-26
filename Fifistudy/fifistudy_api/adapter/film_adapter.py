@@ -16,17 +16,13 @@ class FilmAdapter:
                 is_saved=Case(
                     When(usersavefilm__user_id=user, then=True),
                     default=False, output_field=BooleanField()
-                ),
-                save_number=Count('usersavefilm'),
-                episode_count = Count('episode')
+                )
             ).order_by('-view_number', '-updated_at')[begin_record:end_record]
 
             return films
         else:
             films = Film.objects.all().annotate(
                 is_saved=Case(default=False, output_field=BooleanField()),
-                save_number=Count('usersavefilm'),
-                episode_count = Count('episode')
             ).order_by('-view_number', '-updated_at')[begin_record:end_record]
 
             return films
@@ -37,17 +33,13 @@ class FilmAdapter:
                 is_saved=Case(
                     When(usersavefilm__user_id=user, then=True),
                     default=False, output_field=BooleanField()
-                ),
-                save_number=Count('usersavefilm'),
-                episode_count=Count('episode'),
+                )
             ).order_by('-save_number', '-updated_at')[begin_record:end_record]
 
             return films
         else:
             films = Film.objects.all().annotate(
-                is_saved=Case(default=False, output_field=BooleanField()),
-                save_number=Count('usersavefilm'),
-                episode_count=Count('episode'),
+                is_saved=Case(default=False, output_field=BooleanField())
             ).order_by('-save_number', '-updated_at')[begin_record:end_record]
 
             return films
@@ -64,9 +56,6 @@ class FilmAdapter:
                 else:
                     film.is_saved = False
 
-                film.save_number = UserSaveFilm.objects.filter(film_id=film).count()
-                film.episode_count = Episode.objects.filter(film_id=film).count()
-
                 return film
             except Film.DoesNotExist:
                 raise ApiCustomException(ErrorDefine.FILM_NOT_FOUND)
@@ -76,10 +65,37 @@ class FilmAdapter:
 
                 film.is_saved = False
 
-                film.save_number = UserSaveFilm.objects.filter(film_id=film).count()
-                film.episode_count = Episode.objects.filter(film_id=film).count()
+                return film
+            except Film.DoesNotExist:
+                raise ApiCustomException(ErrorDefine.FILM_NOT_FOUND)
+
+    def get_detail_by_slug(self, slug, user=None):
+        if user is not None:
+            try:
+                film = Film.objects.get(slug=slug)
+
+                user_save_film = UserSaveFilm.objects.filter(film_id=film, user_id=user)
+
+                if user_save_film.exists():
+                    film.is_saved = True
+                else:
+                    film.is_saved = False
 
                 return film
             except Film.DoesNotExist:
                 raise ApiCustomException(ErrorDefine.FILM_NOT_FOUND)
+        else:
+            try:
+                film = Film.objects.get(slug=slug)
+
+                film.is_saved = False
+
+                return film
+            except Film.DoesNotExist:
+                raise ApiCustomException(ErrorDefine.FILM_NOT_FOUND)
+
+    def get_list_by_difficult_level(self, difficult_level, begin_row=0, end_row=6):
+        films = Film.objects.filter(difficult_level=difficult_level)[begin_row:end_row]
+
+        return films
 

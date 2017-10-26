@@ -1,6 +1,7 @@
 from rest_framework.authentication import TokenAuthentication
 from datetime import datetime, timedelta
 import pytz
+from rest_framework import status
 
 from ..infrastructures import ApiCustomException
 from ..constant import ErrorDefine, Constant
@@ -15,16 +16,16 @@ class FifiUserTokenAuthentication(TokenAuthentication):
             auth_user = AuthUser.objects.get(token=key)
 
         except AuthUser.DoesNotExist:
-            raise ApiCustomException(ErrorDefine.INVALID_TOKEN)
+            raise ApiCustomException(ErrorDefine.INVALID_TOKEN, status.HTTP_401_UNAUTHORIZED)
 
         if auth_user.user_id.status == 0:
-            raise ApiCustomException(ErrorDefine.USER_INACTIVE)
+            raise ApiCustomException(ErrorDefine.USER_INACTIVE, status.HTTP_401_UNAUTHORIZED)
 
         # This is required for the time comparison
         utc_now = datetime.utcnow()
         utc_now = utc_now.replace(tzinfo=pytz.utc)
 
         if auth_user.updated_at < utc_now - timedelta(seconds=self.constant.get_token_expired_time()):
-            raise ApiCustomException(ErrorDefine.TOKEN_EXPIRED)
+            raise ApiCustomException(ErrorDefine.TOKEN_EXPIRED, status.HTTP_401_UNAUTHORIZED)
 
         return auth_user.user_id, auth_user

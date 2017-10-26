@@ -18,7 +18,7 @@ class FifiUser(models.Model):
     phone = models.CharField(max_length=30, blank=True, null=True)
 
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES)
-    status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES)
+    status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES, default=0)
     last_login = models.DateTimeField(null=True, blank=True)
     
     created_at = models.DateTimeField(auto_now_add=True, auto_now=False, editable=False)

@@ -28,3 +28,18 @@ class FilmServices:
 
         return serializer.data
 
+    def get_detail_by_slug(self, slug, user=None):
+        film = self.film_adapter.get_detail_by_slug(slug, user)
+
+        serializer = HomepageListFilmSerializer(film, many=False)
+
+        return serializer.data
+
+    def get_list_by_difficult_level(self, difficult_level):
+        films = self.film_adapter.get_list_by_difficult_level(difficult_level=difficult_level)
+
+        serializer = BaseFilmSerializer(films, many=True)
+
+        return serializer.data
+
+

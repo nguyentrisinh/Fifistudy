@@ -36,13 +36,26 @@ class FilmViewSet(ModelViewSet, ApiBase):
                 'get': 'get_homepage_list_order_by_save_number_with_auth'
             })),
 
-            # get film detail
-            url(r'^detail/(?P<film_id>[0-9]+)$', cls.as_view({
-                'get': 'get_detail_by_id'
+            # get film detail by slug
+            url(r'^detail/slug/(?P<film_slug>\w+)$', cls.as_view({
+                'get': 'get_detail_by_slug'
             })),
-            url(r'^detail_with_auth/(?P<film_id>[0-9]+)$', cls.as_view({
-                'get': 'get_detail_by_id_with_auth'
-            }))
+            url(r'^detail_with_auth/slug/(?P<film_slug>\w+)$', cls.as_view({
+                'get': 'get_detail_by_slug_with_auth'
+            })),
+
+            url(r'^get_list_by_difficult_level/(?P<difficult_level>[0-9]+)$', cls.as_view({
+                'get': 'get_list_by_difficult_level'
+            })),
+
+            # # get film detail
+            # url(r'^detail/(?P<film_id>[0-9]+)$', cls.as_view({
+            #     'get': 'get_detail_by_id'
+            # })),
+            # url(r'^detail_with_auth/(?P<film_id>[0-9]+)$', cls.as_view({
+            #     'get': 'get_detail_by_id_with_auth'
+            # })),
+
         ]
 
         return urlpatterns
@@ -70,17 +83,39 @@ class FilmViewSet(ModelViewSet, ApiBase):
 
         return self.as_success(result)
 
-    def get_detail_by_id(self, request, *args, **kwargs):
-        film_id = kwargs['film_id']
+    # def get_detail_by_id(self, request, *args, **kwargs):
+    #     film_id = kwargs['film_id']
+    #
+    #     result = self.film_services.get_detail_by_id(film_id=film_id)
+    #
+    #     return self.as_success(result)
+    #
+    # def get_detail_by_id_with_auth(self, request, *args, **kwargs):
+    #     film_id = kwargs['film_id']
+    #     user = self.check_anonymous(request)
+    #
+    #     result = self.film_services.get_detail_by_id(film_id=film_id, user=user)
+    #
+    #     return self.as_success(result)
 
-        result = self.film_services.get_detail_by_id(film_id=film_id)
+    def get_detail_by_slug(self, request, *args, **kwargs):
+        slug = kwargs['film_slug']
+
+        result = self.film_services.get_detail_by_slug(slug=slug)
 
         return self.as_success(result)
 
-    def get_detail_by_id_with_auth(self, request, *args, **kwargs):
-        film_id = kwargs['film_id']
+    def get_detail_by_slug_with_auth(self, request, *args, **kwargs):
+        slug = kwargs['film_slug']
         user = self.check_anonymous(request)
 
-        result = self.film_services.get_detail_by_id(film_id=film_id, user=user)
+        result = self.film_services.get_detail_by_slug(slug=slug, user=user)
+
+        return self.as_success(result)
+
+    def get_list_by_difficult_level(self, request, *args, **kwargs):
+        difficult_level = int(kwargs['difficult_level'])
+
+        result = self.film_services.get_list_by_difficult_level(difficult_level)
 
         return self.as_success(result)
