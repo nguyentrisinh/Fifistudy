@@ -478,3 +478,48 @@ body {
     font-weight: 400;
   }
 }
+
+.detail-page {
+  position: relative;
+
+  height: 100vh;
+  &__overlay {
+    z-index: -1;
+    top: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    filter: blur(10px);
+    &:after {
+      top: 0;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(#060b11, 0.9);
+      content: "";
+    }
+  }
+}
+
+.film-title {
+  padding-top: 120px;
+  &__en-name {
+    color: #ececec;
+    font-size: 50px;
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 5px;
+  }
+  &__vi-name {
+    color: #626b74;
+    margin-top: 10px;
+    font-size: 40px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+}

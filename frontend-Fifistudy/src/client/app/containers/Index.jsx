@@ -1,6 +1,5 @@
 import React from 'react';
 import SliderBanner from './SliderBanner';
-import Header from '../components/Header';
 import Intro from '../components/Intro';
 import Section from '../components/SectionFilm'
 import SectionBlog from '../components/SectionBlog'
@@ -15,7 +14,7 @@ class Index extends React.Component {
     render() {
         return (
             <div className="index-page">
-                <Header/>
+                {/*<Header/>*/}
                 <SliderBanner/>
                 <Intro/>
                 <Section/>

@@ -8,8 +8,9 @@ import {Provider} from "react-redux";
 import reducer from "./reducers/app";
 import {applyMiddleware, createStore} from "redux";
 import {render} from 'react-dom';
-import {browserHistory, Router, IndexRoute, Route} from 'react-router';
-import App from './App'
+import {browserHistory, hashHistory, Router, IndexRoute, Route} from 'react-router';
+import App from './App';
+import DetailPage from './containers/Detail'
 
 import reduxThunk from "redux-thunk";
 
@@ -22,6 +23,7 @@ render(
             <Route path="/" component={App}>
                 {/*<Route component={FooterContainer}>*/}
                 <IndexRoute component={Index}/>
+                <Route path="/detail" component={DetailPage}/>
             </Route>
         </Router>
     </Provider>

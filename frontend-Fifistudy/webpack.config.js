@@ -16,6 +16,7 @@ var config = {
         contentBase: path.resolve(__dirname, 'src/client'),
         hot:true,
         inline:true,
+        historyApiFallback: true
     },
     module: {
         loaders: [
