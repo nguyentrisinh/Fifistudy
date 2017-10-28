@@ -2,6 +2,7 @@ import React from 'react'
 import film1 from '../../static/images/film1.jpg'
 import FilmTitle from '../components/FilmTitle'
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import VideoFilm from '../components/VideoFilm'
 
 class Detail extends React.Component {
     constructor(props) {
@@ -19,6 +20,7 @@ class Detail extends React.Component {
 
 
                     <FilmTitle/>
+                    <VideoFilm/>
 
                 </div>
             </PerfectScrollbar>
