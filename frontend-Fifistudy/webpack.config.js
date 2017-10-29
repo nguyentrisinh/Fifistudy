@@ -9,6 +9,9 @@ var config = {
         publicPath: '/',
         filename: 'bundle.js'
     },
+    node: {
+        fs: "empty"
+    },
     resolve: {
         extensions: ['.js', '.jsx']
     },
