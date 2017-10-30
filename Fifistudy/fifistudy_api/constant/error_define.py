@@ -30,4 +30,7 @@ class ErrorDefine:
     # Error Comment: 13xx
     COMMENT_NOT_FOUND = ApiErrorMessage('Comment not found', 1300)
 
+    # Error Review: 14xx
+    USER_NOT_REVIEW = ApiErrorMessage('User haven\'t review this film', 1400)
+
 

@@ -5,3 +5,4 @@ from .actor_services import ActorServices
 from .user_services import UserServices
 from .comment_services import CommentServices
 from .signup_services import SignupServices
+from .review_services import ReviewServices

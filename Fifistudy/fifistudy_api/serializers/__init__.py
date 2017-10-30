@@ -10,4 +10,5 @@ from .comment_serializer import BaseCommentSerializer, ListCommentSerializer, Sa
 from .episode_serializer import BaseEpisodeSerializer
 from .signup_serializer import SignupStepOneSerializer, AcitveUserSerializer, SignupStepTwoSerializer, \
     BaseUserSerializer, UpdateAvatarSerializer
+from .review_serializer import BaseReviewSerializer, SaveReviewSerializer
 
