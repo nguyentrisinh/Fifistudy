@@ -30,7 +30,7 @@ class FilmServices:
 
     def get_detail_by_slug(self, slug, user=None):
         film = self.film_adapter.get_detail_by_slug(slug, user)
-
+        print ('test')
         serializer = FilmDetailSerializer(film, many=False)
 
         return serializer.data
