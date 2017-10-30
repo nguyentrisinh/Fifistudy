@@ -1,6 +1,6 @@
 from django.db.models import Q, Case, When, Value, Count, BooleanField
 
-from ..models import Comment, Film, FifiUser
+from ..models import Comment, Film, FifiUser, UserLikeComment
 from ..infrastructures import ApiCustomException
 from ..constant import ErrorDefine, Constant
 
@@ -54,3 +54,32 @@ class CommentAdapter:
                 return comments
             except Film.DoesNotExist:
                 raise ApiCustomException(ErrorDefine.FILM_NOT_FOUND)
+
+    def save_comment(self, content, user, film_id):
+        try:
+            film = Film.objects.get(id=film_id)
+
+            comment = Comment(user_id=user, content=content, film_id=film)
+            comment.save()
+
+            return comment
+        except Film.DoesNotExist:
+            raise ApiCustomException(ErrorDefine.FILM_NOT_FOUND)
+
+    def like_comment(self, user, comment_id):
+        try:
+            comment = Comment.objects.get(id=comment_id)
+
+            user_like_comment = UserLikeComment.objects.filter(comment_id=comment, user_id=user)
+
+            if user_like_comment.exists():
+                user_like_comment.first().delete()
+
+                return 'You unlike success'
+
+            user_like_comment = UserLikeComment(user_id=user, comment_id=comment)
+            user_like_comment.save()
+
+            return 'You like comment success'
+        except Comment.DoesNotExist:
+            raise ApiCustomException(ErrorDefine.COMMENT_NOT_FOUND)

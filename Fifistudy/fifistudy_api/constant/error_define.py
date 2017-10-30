@@ -27,4 +27,7 @@ class ErrorDefine:
     USER_ALREADY_ACTIVE = ApiErrorMessage('User alreay active', 1204)
     GENDER_INVALID = ApiErrorMessage('Use\'s gender invalid', 1205)
 
+    # Error Comment: 13xx
+    COMMENT_NOT_FOUND = ApiErrorMessage('Comment not found', 1300)
+
 

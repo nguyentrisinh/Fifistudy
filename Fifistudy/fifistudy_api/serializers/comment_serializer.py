@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from ..models import Comment
+from ..models import Comment, UserLikeComment
 
 
 class BaseCommentSerializer(serializers.ModelSerializer):
@@ -19,3 +19,15 @@ class ListCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
+
+
+class SaveCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('content', 'film_id')
+
+
+class LikeCommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserLikeComment
+        fields = ('comment_id',)

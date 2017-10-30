@@ -27,7 +27,7 @@ def increase_like_number(sender, instance, created, raw, **kwargs):
 def decrease_like_number(sender, instance, **kwargs):
     instance.comment_id.like_number -= 1
 
-    if instance.like_number < 0:
+    if instance.comment_id.like_number < 0:
         instance.comment_id.like_number = 0
     instance.comment_id.save()
 

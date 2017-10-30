@@ -13,3 +13,15 @@ class CommentServices:
 
         serializer = ListCommentSerializer(comments, many=True)
         return serializer.data
+
+    def save_comment(self, user, content, film_id):
+        comment = self.comment_adapter.save_comment(content, user, film_id)
+
+        serializer = BaseCommentSerializer(comment, many=False)
+
+        return serializer.data
+
+    def like_comment(self, user, comment_id):
+        result = self.comment_adapter.like_comment(user, comment_id)
+
+        return result
