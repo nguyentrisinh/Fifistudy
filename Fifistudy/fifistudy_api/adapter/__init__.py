@@ -6,3 +6,4 @@ from .fifi_user_adapter import FifiUserAdapter
 from .auth_user_adapter import AuthUserAdapter
 from .actor_adapter import ActorAdapter
 from .comment_adapter import CommentAdapter
+from .signup_adapter import SignupAdapter

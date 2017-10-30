@@ -31,3 +31,11 @@ class AuthUserAdapter:
             return 'You has logout complele'
         except AuthUser.DoesNotExist:
             raise ApiCustomException(ErrorDefine.USER_NOT_FOUND)
+
+    def get_by_token(self, token):
+        try:
+            auth_user = AuthUser.objects.get(token=token)
+
+            return auth_user
+        except AuthUser.DoesNotExist:
+            raise ApiCustomException(ErrorDefine.INVALID_TOKEN)

@@ -4,3 +4,4 @@ from .auth_services import AuthServices
 from .actor_services import ActorServices
 from .user_services import UserServices
 from .comment_services import CommentServices
+from .signup_services import SignupServices

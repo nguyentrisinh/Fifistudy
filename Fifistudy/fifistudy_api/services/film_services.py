@@ -1,5 +1,5 @@
 from ..models import Film
-from ..serializers import BaseFilmSerializer, HomepageListFilmSerializer
+from ..serializers import BaseFilmSerializer, HomepageListFilmSerializer, FilmDetailSerializer
 from ..adapter import FilmAdapter
 
 
@@ -24,14 +24,14 @@ class FilmServices:
     def get_detail_by_id(self, film_id, user=None):
         film = self.film_adapter.get_detail_by_id(film_id=film_id, user=user)
 
-        serializer = HomepageListFilmSerializer(film, many=False)
+        serializer = FilmDetailSerializer(film, many=False)
 
         return serializer.data
 
     def get_detail_by_slug(self, slug, user=None):
         film = self.film_adapter.get_detail_by_slug(slug, user)
 
-        serializer = HomepageListFilmSerializer(film, many=False)
+        serializer = FilmDetailSerializer(film, many=False)
 
         return serializer.data
 

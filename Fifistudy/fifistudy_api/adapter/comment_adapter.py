@@ -28,6 +28,8 @@ class CommentAdapter:
                 for comment in comments:
                     comment.username = comment.user_id.username
                     comment.avatar = comment.user_id.avatar.url
+                    comment.first_name = comment.user_id.first_name
+                    comment.last_name = comment.user_id.last_name
 
                 return comments
             except Film.DoesNotExist:
@@ -46,6 +48,8 @@ class CommentAdapter:
                 for comment in comments:
                     comment.username = comment.user_id.username
                     comment.avatar = comment.user_id.avatar.url
+                    comment.first_name = comment.user_id.first_name
+                    comment.last_name = comment.user_id.last_name
 
                 return comments
             except Film.DoesNotExist:

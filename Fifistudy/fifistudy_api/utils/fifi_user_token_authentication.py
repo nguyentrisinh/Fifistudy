@@ -1,4 +1,4 @@
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import TokenAuthentication, get_authorization_header
 from datetime import datetime, timedelta
 import pytz
 from rest_framework import status
@@ -29,3 +29,14 @@ class FifiUserTokenAuthentication(TokenAuthentication):
             raise ApiCustomException(ErrorDefine.TOKEN_EXPIRED, status.HTTP_401_UNAUTHORIZED)
 
         return auth_user.user_id, auth_user
+
+    @classmethod
+    def get_token(cls, request):
+        try:
+            authorization = get_authorization_header(request).split()
+
+            token = authorization[1]
+
+            return token
+        except Exception:
+            raise ApiCustomException(ErrorDefine.MISSING_TOKEN)

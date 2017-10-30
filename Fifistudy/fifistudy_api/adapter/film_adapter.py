@@ -49,6 +49,9 @@ class FilmAdapter:
             try:
                 film = Film.objects.get(id=film_id)
 
+                episodes = Episode.objects.filter(film_id=film)
+                film.episodes = episodes
+
                 user_save_film = UserSaveFilm.objects.filter(film_id=film, user_id=user)
 
                 if user_save_film.exists():
@@ -63,6 +66,9 @@ class FilmAdapter:
             try:
                 film = Film.objects.get(id=film_id)
 
+                episodes = Episode.objects.filter(film_id=film)
+                film.episodes = episodes
+
                 film.is_saved = False
 
                 return film
@@ -73,6 +79,9 @@ class FilmAdapter:
         if user is not None:
             try:
                 film = Film.objects.get(slug=slug)
+
+                episodes = Episode.objects.filter(film_id=film)
+                film.episodes = episodes
 
                 user_save_film = UserSaveFilm.objects.filter(film_id=film, user_id=user)
 
@@ -87,6 +96,9 @@ class FilmAdapter:
         else:
             try:
                 film = Film.objects.get(slug=slug)
+
+                episodes = Episode.objects.filter(film_id=film)
+                film.episodes = episodes
 
                 film.is_saved = False
 

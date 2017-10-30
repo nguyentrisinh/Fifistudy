@@ -1,7 +1,8 @@
 from rest_framework.routers import DefaultRouter
 from django.conf.urls import url, include
 
-from .api import StartupViewSet, PromoteViewSet, FilmViewSet, AuthViewSet, ActorViewSet, UserViewSet, CommentViewSet
+from .api import StartupViewSet, PromoteViewSet, FilmViewSet, AuthViewSet, ActorViewSet, UserViewSet, CommentViewSet, \
+    SignupViewSet
 
 urlpatterns = [
     url(r'^startup/', include(StartupViewSet.get_router(), namespace='startup')),
@@ -11,4 +12,5 @@ urlpatterns = [
     url(r'^actor/', include(ActorViewSet.get_router(), namespace='actor')),
     url(r'^fifi_user/', include(UserViewSet.get_router(), namespace='fifi user')),
     url(r'^comments/', include(CommentViewSet.get_router(), namespace='comments')),
+    url(r'^signup/', include(SignupViewSet.get_router(), namespace='signup')),
 ]

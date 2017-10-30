@@ -1,4 +1,5 @@
 from django.db.models import Q
+import datetime
 
 from ..models import FifiUser
 from ..infrastructures import ApiCustomException
@@ -18,6 +19,9 @@ class FifiUserAdapter:
 
             if user.status == 0:
                 raise ApiCustomException(ErrorDefine.USER_INACTIVE)
+
+            user.last_login = datetime.datetime.utcnow()
+            user.save()
 
             return user
         except FifiUser.DoesNotExist:
