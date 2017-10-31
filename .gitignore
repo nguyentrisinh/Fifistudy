@@ -101,6 +101,9 @@ ENV/
 # django migrations
 Fifistudy/fifistudy_api/migrations/
 
+# video media file
+Fifistudy/media/episode/video
+
 # idea
 \.idea/
 

@@ -11,7 +11,8 @@ class Episode(models.Model):
     number = models.CharField(max_length=10, blank=False, null=False)
     name = models.CharField(max_length=150, blank=False, null=False)
     description = models.TextField(blank=True, null=True)
-    video = models.CharField(max_length=255, blank=False, null=False)
+    # video = models.CharField(max_length=255, blank=False, null=False)
+    video = models.FileField(upload_to='episode/video/')
     sub = models.FileField(upload_to='episode/sub/')
     thumbnail = models.ImageField(upload_to='episode/thumbnail/')
 
