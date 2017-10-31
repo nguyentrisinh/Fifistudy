@@ -11,4 +11,7 @@ from .episode_serializer import BaseEpisodeSerializer
 from .signup_serializer import SignupStepOneSerializer, AcitveUserSerializer, SignupStepTwoSerializer, \
     BaseUserSerializer, UpdateAvatarSerializer
 from .review_serializer import BaseReviewSerializer, SaveReviewSerializer
+from .user_save_film_serializer import BaseUserSaveFilmSerializer, UserSaveFilmSerializer
+from .episode_serializer import BaseEpisodeSerializer, BaseUserWatchEpisodeSerializer, EpisodeDetailSerializer
+
 

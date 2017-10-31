@@ -1,5 +1,6 @@
 from ..models import Film
-from ..serializers import BaseFilmSerializer, HomepageListFilmSerializer, FilmDetailSerializer
+from ..serializers import BaseFilmSerializer, HomepageListFilmSerializer, FilmDetailSerializer, \
+    BaseUserSaveFilmSerializer
 from ..adapter import FilmAdapter
 
 
@@ -40,5 +41,17 @@ class FilmServices:
         serializer = BaseFilmSerializer(films, many=True)
 
         return serializer.data
+
+    def user_save_film(self, user, film_id):
+        user_save_film = self.film_adapter.user_save_film(user, film_id)
+
+        if user_save_film is None:
+            return 'You remove film from your save list success'
+
+        serializer = BaseUserSaveFilmSerializer(user_save_film)
+
+        return serializer.data
+
+
 
 

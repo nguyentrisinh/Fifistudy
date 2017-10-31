@@ -7,4 +7,6 @@ from .user_api import UserViewSet
 from .comment_api import CommentViewSet
 from .signup_api import SignupViewSet
 from .review_api import ReviewViewSet
+from .episode_api import EpisodeViewSet
+
 

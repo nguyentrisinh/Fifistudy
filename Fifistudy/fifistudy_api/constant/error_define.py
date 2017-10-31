@@ -33,4 +33,7 @@ class ErrorDefine:
     # Error Review: 14xx
     USER_NOT_REVIEW = ApiErrorMessage('User haven\'t review this film', 1400)
 
+    # Error Episode: 15xx
+    EPISODE_NOT_EXIST = ApiErrorMessage('Episode does not exist', 1500)
+
 

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from ..models import Film
+from ..models import Film, UserSaveFilm
 from .episode_serializer import BaseEpisodeSerializer
 
 
@@ -25,6 +25,8 @@ class FilmDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Film
         fields = '__all__'
+
+
 
 
 

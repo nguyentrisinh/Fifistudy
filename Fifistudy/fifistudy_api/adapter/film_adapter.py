@@ -4,6 +4,7 @@ from ..models import Film, UserSaveFilm, Episode
 from ..infrastructures import ApiCustomException
 from ..constant import ErrorDefine
 
+
 class FilmAdapter:
     def __init__(self):
         pass
@@ -110,4 +111,22 @@ class FilmAdapter:
         films = Film.objects.filter(difficult_level=difficult_level)[begin_row:end_row]
 
         return films
+
+    def user_save_film(self, user, film_id):
+        try:
+            film = Film.objects.get(id=film_id)
+
+            user_save_film = UserSaveFilm.objects.filter(film_id=film, user_id=user)
+
+            if user_save_film.exists():
+                user_save_film.first().delete()
+
+                return None
+
+            user_save_film = UserSaveFilm(user_id=user, film_id=film)
+            user_save_film.save()
+
+            return user_save_film
+        except Film.DoesNotExist:
+            raise ApiCustomException(ErrorDefine.FILM_NOT_FOUND)
 

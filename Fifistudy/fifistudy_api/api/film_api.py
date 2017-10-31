@@ -4,7 +4,7 @@ from django.conf.urls import url, include
 
 from .api_base import ApiBase
 from ..models import Film
-from ..serializers import BaseFilmSerializer
+from ..serializers import BaseFilmSerializer, BaseUserSaveFilmSerializer, UserSaveFilmSerializer
 from ..services import FilmServices
 from ..utils import FifiUserTokenAuthentication
 
@@ -48,6 +48,10 @@ class FilmViewSet(ModelViewSet, ApiBase):
                 'get': 'get_list_by_difficult_level'
             })),
 
+            url(r'^save_film/$', cls.as_view({
+                'post': 'user_save_film'
+            }))
+
             # # get film detail
             # url(r'^detail/(?P<film_id>[0-9]+)$', cls.as_view({
             #     'get': 'get_detail_by_id'
@@ -59,6 +63,12 @@ class FilmViewSet(ModelViewSet, ApiBase):
         ]
 
         return urlpatterns
+
+    def get_serializer_class(self):
+        if self.action == 'user_save_film':
+            return UserSaveFilmSerializer
+
+        return BaseFilmSerializer
 
     def get_homepage_list_order_by_view(self, request, *args, **kwargs):
         result = self.film_services.get_list_order_by_view()
@@ -117,5 +127,17 @@ class FilmViewSet(ModelViewSet, ApiBase):
         difficult_level = int(kwargs['difficult_level'])
 
         result = self.film_services.get_list_by_difficult_level(difficult_level)
+
+        return self.as_success(result)
+
+    def user_save_film(self, request, *args, **kwargs):
+        user = self.check_anonymous(request)
+
+        serializer = UserSaveFilmSerializer(data=request.data)
+        serializer.is_valid()
+
+        film_id = request.data['film_id']
+
+        result = self.film_services.user_save_film(user, film_id)
 
         return self.as_success(result)
