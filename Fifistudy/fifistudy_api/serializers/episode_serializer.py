@@ -22,3 +22,9 @@ class EpisodeDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Episode
         exclude = ('created_at', 'updated_at')
+
+
+class SaveUserWatchEpisodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserWatchEpisode
+        fields = ('current_time', 'episode_id')

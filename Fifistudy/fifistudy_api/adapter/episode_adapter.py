@@ -7,6 +7,25 @@ class EpisodeAdapter:
     def __init__(self):
         pass
 
+    def save_current_watch_time(self, user, current_time, episode_id):
+        try:
+            episode = Episode.objects.get(id=episode_id)
+            user_watch_episode = UserWatchEpisode.objects.filter(user_id=user, episode_id_id=episode_id)
+
+            if user_watch_episode.exists():
+                user_watch_episode = user_watch_episode.first()
+                user_watch_episode.current_time = current_time
+                user_watch_episode.save()
+
+                return user_watch_episode
+
+            user_watch_episode = UserWatchEpisode(user_id=user, episode_id=episode, current_time=current_time)
+            user_watch_episode.save()
+
+            return user_watch_episode
+        except Episode.DoesNotExist:
+            raise ApiCustomException(ErrorDefine.EPISODE_NOT_EXIST)
+
     def get_user_watch_episode_by_user_and_epsiode_id(self, episode, user=None):
         if user is None:
             return None
