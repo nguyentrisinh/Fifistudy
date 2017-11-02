@@ -5,11 +5,51 @@ import {
   TouchableHighlight,
   Image,
   Button,
-  View
+  View,
+  Dimensions
 } from 'react-native';
 
+import ImageSlider from '../../components/ImageSlider/ImageSlider';
 
 export default class HomeScreen extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            position: 1,
+            interval: null,
+            dataSource: [
+              {
+                title: 'Title 1',
+                caption: 'Caption 1',
+                url: 'http://placeimg.com/640/480/any',
+              }, {
+                title: 'Title 2',
+                caption: 'Caption 2',
+                url: 'http://placeimg.com/640/480/any',
+              }, {
+                title: 'Title 3',
+                caption: 'Caption 3',
+                url: 'http://placeimg.com/640/480/any',
+              },
+            ],
+          };
+    }
+
+    componentWillMount() {
+        this.setState({
+            interval: setInterval(() => {
+                this.setState({
+                    position: this.state.position === this.state.dataSource.length ? 0 : this.state.position + 1
+                });
+            }, 2000) // (postion, time to change image)
+        });
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.interval);
+    }
+
     static navigationOptions = {
         drawerLabel: 'HomeScreen',
         
@@ -18,21 +58,22 @@ export default class HomeScreen extends Component {
     render() {
         const {navigate } = this.props.navigation;
         return (
-            // Tool bar
             <View style={{
-                flexDirection: 'row',
                 backgroundColor: 'lightskyblue',
                 flex: 1
                 }}>
+                {/* Tool bar */}
                 <View style={{
                     flexDirection: 'row',
-                    width: '100%',
+                    width: Dimensions.get('window').width,
                     height: 56,
                     justifyContent: 'space-between',
                     paddingLeft: 12,
                     paddingRight: 12,
                     paddingTop: 4,
-                    paddingBottom: 4 }}>
+                    paddingBottom: 4,
+                    zIndex: 5,
+                    }}>
                     <TouchableHighlight style={{
                         width: 48,
                         height: 48,
@@ -56,7 +97,24 @@ export default class HomeScreen extends Component {
                                 style={{resizeMode: 'contain'}}/>
                     </TouchableHighlight>
                 </View>
+
+                <View 
+                    style={{
+                        width: Dimensions.get('window').width,
+                        height: Dimensions.get('window').width/2,
+                        backgroundColor: 'lightgray',
+                        position: 'absolute',
+                        zIndex: 0
+                    }}>
+
+                    <ImageSlider
+                        dataSource={this.state.dataSource}
+                        position={this.state.position}
+                        onPostionChange={position => this.setState({position})}
+                    />
+                </View>
             </View>
         );
     }
+
 }
