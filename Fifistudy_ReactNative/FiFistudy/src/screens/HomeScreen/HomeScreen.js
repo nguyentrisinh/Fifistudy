@@ -20,17 +20,17 @@ export default class HomeScreen extends Component {
             interval: null,
             bannerSliderSource: [
               {
-                title: 'Title 1',
-                caption: 'Caption 1',
-                url: 'http://placeimg.com/640/480/any',
+                title: 'Spider Man 1',
+                caption: 'Người nhện 1',
+                url: 'https://i.ytimg.com/vi/qGmHrPGylho/maxresdefault.jpg',
               }, {
-                title: 'Title 2',
-                caption: 'Caption 2',
-                url: 'http://placeimg.com/640/480/any',
+                title: 'Star Wars',
+                caption: 'Chiến tranh giữa các vì sao',
+                url: 'https://mediacdns.karnaval.com/media/news_media/images/thumbnail_475768.jpg?v=220816122701',
               }, {
-                title: 'Title 3',
-                caption: 'Caption 3',
-                url: 'http://placeimg.com/640/480/any',
+                title: 'Thor: Ragnarok',
+                caption: 'Thời khắc tận thế',
+                url: 'https://i.ytimg.com/vi/r-7Grp4kbgA/maxresdefault.jpg',
               },
             ],
           };

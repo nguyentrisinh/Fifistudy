@@ -55,7 +55,7 @@ export default class HamburgerMenu extends Component {
                     <View style={{
                         height: 1,
                         width: width * 0.8,
-                        backgroundColor: '#9E9E9E',
+                        backgroundColor: '#BDBDBD',
                         alignSelf: 'center',
                         marginTop: 6,
                         marginBottom: 6}}/>
