@@ -106,3 +106,5 @@ Fifistudy/fifistudy_api/migrations/
 
 # reactjs node_modules
 frontend-Fifistudy/node_modules/
+
+frontend-Fifistudy/src/client/static/media/video\.mp4
