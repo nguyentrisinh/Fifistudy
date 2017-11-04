@@ -11,7 +11,8 @@ import MenuItem from './MenuItem';
 
 export default class HamburgerMenu extends Component {
     render() {
-        width = Dimensions.get('window').width;
+        const width = Dimensions.get('window').width;
+        const iconLocation = '../../resources/icons/';
 
         return (
             <View style={{flex: 1, backgroundColor: '#f5f5f5'}}>
@@ -46,10 +47,10 @@ export default class HamburgerMenu extends Component {
 
                 {/* SECTION MENU'S ITEM */}
                 <View>
-                    <MenuItem image={require('./resources/ic_box.png')} lable='Thể loại'/>
-                    <MenuItem image={require('./resources/ic_level.png')} lable='Độ khó'/>
-                    <MenuItem image={require('./resources/ic_tip.png')} lable='Tip'/>
-                    <MenuItem image={require('./resources/ic_search.png')} lable='Tìm kiếm'/>
+                    <MenuItem image={require('../../resources/icons/ic_box.png')} lable='Thể loại'/>
+                    <MenuItem image={require('../../resources/icons/ic_level.png')} lable='Độ khó'/>
+                    <MenuItem image={require('../../resources/icons/ic_tip.png')} lable='Tip'/>
+                    <MenuItem image={require('../../resources/icons/ic_search.png')} lable='Tìm kiếm'/>
 
                     {/* LINE */}
                     <View style={{
@@ -61,9 +62,9 @@ export default class HamburgerMenu extends Component {
                         marginBottom: 6}}/>
                     
                     <Text style={{marginLeft: 16, marginTop: 8, color: '#9E9E9E'}}>Cá nhân</Text>
-                    <MenuItem image={require('./resources/ic_history.png')} lable='Lịch sử'/>
-                    <MenuItem image={require('./resources/ic_bookmarks.png')} lable='Đánh dấu'/>
-                    <MenuItem image={require('./resources/ic_note.png')} lable='Sổ tay'/>
+                    <MenuItem image={require('../../resources/icons/ic_history.png')} lable='Lịch sử'/>
+                    <MenuItem image={require('../../resources/icons/ic_bookmarks.png')} lable='Đánh dấu'/>
+                    <MenuItem image={require('../../resources/icons/ic_note.png')} lable='Sổ tay'/>
                 </View>
             </View>
         );

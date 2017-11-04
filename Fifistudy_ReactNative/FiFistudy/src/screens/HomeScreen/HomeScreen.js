@@ -3,12 +3,12 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
+  TouchableOpacity,
   Image,
   Button,
   View,
   Dimensions
 } from 'react-native';
-
 import ImageSlider from '../../components/ImageSlider/ImageSlider';
 
 export default class HomeScreen extends Component {
@@ -57,6 +57,10 @@ export default class HomeScreen extends Component {
 
     render() {
         const {navigate } = this.props.navigation;
+        const iconLocation = '../../resources/icons/';
+        const width = Dimensions.get('window').width;
+
+
         return (
             <View style={{
                 backgroundColor: 'lightskyblue',
@@ -72,6 +76,7 @@ export default class HomeScreen extends Component {
                     paddingRight: 12,
                     paddingTop: 4,
                     paddingBottom: 4,
+                    position: 'absolute',
                     zIndex: 5,
                     }}>
                     <TouchableHighlight style={{
@@ -83,7 +88,7 @@ export default class HomeScreen extends Component {
                         }}
                         underlayColor='rgba(255,255,255,0.3)'
                         onPress={() => this.props.navigation.navigate('DrawerToggle')}>
-                        <Image source={require('./ic_menu.png')}
+                        <Image source={require('../../resources/icons/ic_menu.png')}
                                 style={{resizeMode: 'contain'}}/>
                     </TouchableHighlight>
                     <TouchableHighlight style={{
@@ -93,7 +98,7 @@ export default class HomeScreen extends Component {
                         justifyContent: 'center',
                         alignItems: 'center'
                         }}>
-                        <Image source={require('./ic_search.png')}
+                        <Image source={require('../../resources/icons/ic_search.png')}
                                 style={{resizeMode: 'contain'}}/>
                     </TouchableHighlight>
                 </View>
@@ -101,10 +106,9 @@ export default class HomeScreen extends Component {
                 {/* SECTION BANNER */}
                 <View 
                     style={{
-                        width: Dimensions.get('window').width,
-                        height: Dimensions.get('window').width/2,
+                        width: width,
+                        height: width/2,
                         backgroundColor: 'lightgray',
-                        position: 'absolute',
                         zIndex: 0
                     }}>
 
@@ -113,6 +117,29 @@ export default class HomeScreen extends Component {
                         position={this.state.position}
                         onPostionChange={position => this.setState({position})}
                     />
+                </View>
+
+
+
+
+                {/* SECTION HISTORY SLIDER */}
+                <View style={{
+                    height: 100,
+                    width: width,
+                    backgroundColor: '#fafafa',
+                    }}>
+                    {/* TITLE */}
+                    <View style={{
+                        flexDirection: 'row',
+                        marginLeft: 16,
+                        marginRight: 16}}>
+                        <Text style={{fontWeight: 'bold'}}>Phim đã xem</Text>
+                        
+                        <View style={{flexDirection: 'row',}}>
+                            <Text>Xem thêm</Text>
+                            <Image source={require('../../resources/icons/ic_back.png')}/>
+                        </View>
+                    </View>
                 </View>
             </View>
         );

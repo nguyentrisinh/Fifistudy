@@ -50,7 +50,7 @@ export default class MenuItem extends Component {
 }
 
 MenuItem.defaultProps = {
-    image: require('./resources/ic_menu.png'),
+    image: require('../../resources/icons/ic_menu.png'),
     lable: 'Menu Item',
 }
 
