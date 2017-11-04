@@ -1,8 +1,12 @@
 import React from 'react'
-import film1 from '../../static/images/film1.jpg'
+import film1 from '../../static/images/HowIMetUrMother.jpg'
 import FilmTitle from '../components/FilmTitle'
-import PerfectScrollbar from 'react-perfect-scrollbar';
 import VideoFilm from '../components/VideoFilm'
+import Episode from '../components/Episode'
+import SectionDetailExtra from '../components/SectionDetailExtra'
+import Footer from '../components/Footer'
+
+import {Scrollbars} from 'react-custom-scrollbars';
 
 class Detail extends React.Component {
     constructor(props) {
@@ -13,17 +17,30 @@ class Detail extends React.Component {
     render() {
         return (
 
-            <PerfectScrollbar>
-                <div className="detail-page">
-                    <div className="detail-page__overlay" style={{backgroundImage: `url(${film1})`}}>
-                    </div>
+
+            <div className="detail-page">
+
+                <div className="detail-page__overlay" style={{backgroundImage: `url(${film1})`}}>
+                </div>
+                <Scrollbars
+                    autoHide={true}
+                    renderTrackVertical={props => <div {...props} className="scroll-bar__track-vertical"/>}
+                    renderThumbVertical={props => <div {...props} className="scroll-bar__thumb-vertical"/>}
+                    autoHeight={true}
+                    autoHeightMin="100%"
+                    autoHeightMax="100%"
+                >
 
 
                     <FilmTitle/>
                     <VideoFilm/>
+                    <Episode/>
+                    <SectionDetailExtra/>
 
-                </div>
-            </PerfectScrollbar>
+                    <Footer/>
+                </Scrollbars>
+            </div>
+
         )
     }
 }

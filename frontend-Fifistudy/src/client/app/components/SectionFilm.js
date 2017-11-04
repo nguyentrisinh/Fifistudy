@@ -1,29 +1,26 @@
 import React from 'react';
 import Film from './Film';
 
-function Section() {
-    const renderFilm = () => {
-        return [{}, {}, {}, {}, {}, {}, {}, {}].map(item => {
-            return (
-                <div className="section__item">
-                    <Film/>
+class SectionFilm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    render() {
+        return (
+            <div className="section">
+                <div className="container section__title">
+                    PHIM ĐƯỢC XEM NHIỀU NHẤT
                 </div>
-            )
-        })
-    };
-    return (
-        <div className="section">
-            <div className="container section__title">
-                PHIM ĐƯỢC XEM NHIỀU NHẤT
+                <div className="divider"></div>
+                <div className="container section__body">
+                    {this.props.children}
+                </div>
+                <div className="divider"></div>
             </div>
-            <div className="divider"></div>
-            <div className="container section__body">
-                {
-                    renderFilm()
-                }
-            </div>
-            <div className="divider"></div>
-        </div>
-    )
+        )
+
+    }
 }
-export default Section
+export default SectionFilm

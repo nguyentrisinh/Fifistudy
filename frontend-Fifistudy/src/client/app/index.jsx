@@ -4,6 +4,8 @@ import SliderBanner from './containers/SliderBanner.jsx';
 import '../static/css/index.scss';
 import Index from './containers/Index.jsx';
 import {Provider} from "react-redux";
+import FilmIntro from './containers/FilmIntro'
+import ListPage from "./containers/ListPage"
 
 import reducer from "./reducers/app";
 import {applyMiddleware, createStore} from "redux";
@@ -24,6 +26,9 @@ render(
                 {/*<Route component={FooterContainer}>*/}
                 <IndexRoute component={Index}/>
                 <Route path="/detail" component={DetailPage}/>
+
+                <Route path="/intro" component={FilmIntro}/>
+                <Route path="/list" component={ListPage}/>
             </Route>
         </Router>
     </Provider>

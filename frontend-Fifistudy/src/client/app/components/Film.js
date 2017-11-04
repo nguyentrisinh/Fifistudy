@@ -1,5 +1,6 @@
 import React from 'react';
 import Level from './Level'
+import Star from './Star'
 
 function Film() {
     return (
@@ -19,11 +20,8 @@ function Film() {
                 </div>
             </div>
             <div className="film__score">
-                <i className="fa fa-star"/>
-                <i aria-hidden="true" className="fa fa-star"/>
-                <i className="fa fa-star"/>
-                <i className="fa fa-star"/>
-                <i className="fa fa-star-o"/>
+
+                <Star score={3}></Star>
             </div>
             <div className="film__eng-name">
                 I love you
