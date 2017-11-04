@@ -18,7 +18,7 @@ export default class HomeScreen extends Component {
         this.state = {
             position: 1,
             interval: null,
-            dataSource: [
+            bannerSliderSource: [
               {
                 title: 'Title 1',
                 caption: 'Caption 1',
@@ -40,7 +40,7 @@ export default class HomeScreen extends Component {
         this.setState({
             interval: setInterval(() => {
                 this.setState({
-                    position: this.state.position === this.state.dataSource.length ? 0 : this.state.position + 1
+                    position: this.state.position === this.state.bannerSliderSource.length ? 0 : this.state.position + 1
                 });
             }, 2000) // (postion, time to change image)
         });
@@ -62,7 +62,7 @@ export default class HomeScreen extends Component {
                 backgroundColor: 'lightskyblue',
                 flex: 1
                 }}>
-                {/* Tool bar */}
+                {/* SECTION TOOL BAR */}
                 <View style={{
                     flexDirection: 'row',
                     width: Dimensions.get('window').width,
@@ -98,6 +98,7 @@ export default class HomeScreen extends Component {
                     </TouchableHighlight>
                 </View>
 
+                {/* SECTION BANNER */}
                 <View 
                     style={{
                         width: Dimensions.get('window').width,
@@ -108,7 +109,7 @@ export default class HomeScreen extends Component {
                     }}>
 
                     <ImageSlider
-                        dataSource={this.state.dataSource}
+                        dataSource={this.state.bannerSliderSource}
                         position={this.state.position}
                         onPostionChange={position => this.setState({position})}
                     />
