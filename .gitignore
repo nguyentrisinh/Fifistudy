@@ -111,3 +111,5 @@ Fifistudy/media/episode/video
 frontend-Fifistudy/node_modules/
 
 frontend-Fifistudy/src/client/static/media/video\.mp4
+
+*.mp4
