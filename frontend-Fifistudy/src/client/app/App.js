@@ -1,13 +1,16 @@
 import React from 'react';
 
-class App extends React.Component{
-    constructor(props){
+import Header from './components/Header';
+class App extends React.Component {
+    constructor(props) {
         super(props);
-        this.state={};
+        this.state = {};
     }
-    render(){
+
+    render() {
         return (
             <div>
+                <Header/>
                 {this.props.children}
             </div>
         )

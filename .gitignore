@@ -109,3 +109,7 @@ Fifistudy/media/episode/video
 
 # reactjs node_modules
 frontend-Fifistudy/node_modules/
+
+frontend-Fifistudy/src/client/static/media/video\.mp4
+
+*.mp4
