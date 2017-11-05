@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_swagger',
+    'rest_framework.authtoken',
     'fifistudy_api'
 ]
 
@@ -51,6 +52,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8080'
+)
 
 ROOT_URLCONF = 'Fifistudy.urls'
 
@@ -159,3 +164,10 @@ STATIC_URL = '/static/'
 # swagger login logout
 LOGIN_URL = 'rest_framework:login'
 LOGOUT_URL = 'rest_framework:logout'
+
+# media settings
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# email backend
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

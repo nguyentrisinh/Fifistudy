@@ -14,4 +14,4 @@ class Promote(models.Model):
     updated_at = models.DateTimeField(auto_now=True, editable=True)
 
     def __str__(self):
-        return self.id
+        return str(self.id)

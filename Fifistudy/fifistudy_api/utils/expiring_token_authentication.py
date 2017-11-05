@@ -3,6 +3,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from django.core import exceptions
 from datetime import datetime, timedelta
 import pytz
+from rest_framework import status
 
 from ..infrastructures import ApiCustomException
 from ..constant import ErrorDefine
@@ -18,16 +19,16 @@ class ExpiringTokenAuthentication(TokenAuthentication):
         try:
             token = model.objects.get(key=key)
         except model.DoesNotExist:
-            raise ApiCustomException(ErrorDefine.INVALID_TOKEN)
+            raise ApiCustomException(ErrorDefine.INVALID_TOKEN, status.HTTP_401_UNAUTHORIZED)
 
         if not token.user.is_active:
-            raise ApiCustomException(ErrorDefine.USER_INACTIVE)
+            raise ApiCustomException(ErrorDefine.USER_INACTIVE, status.HTTP_401_UNAUTHORIZED)
 
         # This is required for the time comparison
         utc_now = datetime.utcnow()
         utc_now = utc_now.replace(tzinfo=pytz.utc)
 
         if token.created < utc_now - timedelta(seconds=self.constant.get_token_expired_time()):
-            raise ApiCustomException(ErrorDefine.TOKEN_EXPIRED)
+            raise ApiCustomException(ErrorDefine.TOKEN_EXPIRED, status.HTTP_401_UNAUTHORIZED)
 
         return token.user, token
