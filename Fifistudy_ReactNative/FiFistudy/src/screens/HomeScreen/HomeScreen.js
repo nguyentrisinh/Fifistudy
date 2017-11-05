@@ -14,6 +14,7 @@ import Styles from './style';
 import Resources from '../../resources/resources';
 import ImageSlider from '../../components/ImageSlider/ImageSlider';
 import ImageButton from '../../components/ImageButton';
+import FilmGroup from './FilmGroup';
 
 export default class HomeScreen extends Component {
     constructor(props) {
@@ -62,17 +63,6 @@ export default class HomeScreen extends Component {
         clearInterval(this.state.interval);
     }
 
-    createHistoryListItem(url){
-        return (
-            <Image source={{uri: url}}
-                        style={{
-                            resizeMode: 'contain',
-                            width: Dimensions.get('window').width/3,
-                            height: Dimensions.get('window').width * (9 / 16),
-                        }}/>
-        );
-    }
-
     static navigationOptions = {
         drawerLabel: 'HomeScreen',
         
@@ -115,16 +105,11 @@ export default class HomeScreen extends Component {
                         backgroundColor: 'lightgray',
                         zIndex: 0
                     }}>
-
                     <ImageSlider
                         dataSource={this.state.bannerSliderSource}
                         position={this.state.position}
-                        onPostionChange={position => this.setState({position})}
-                    />
+                        onPostionChange={position => this.setState({position})}/>
                 </View>
-
-
-
 
                 {/* SECTION HISTORY SLIDER */}
                 <View style={{
@@ -133,15 +118,9 @@ export default class HomeScreen extends Component {
                     paddingBottom: 16,
                     }}>
                     {/* TITLE */}
-                    <View style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        marginLeft: 16,
-                        marginRight: 6}}>
-                        <Text style={{fontWeight: 'bold'}}>Phim đã xem</Text>
-                        
-                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                    <View style={Styles.titleGroup}>
+                        <Text style={Styles.title}>Phim đã xem</Text>
+                        <View style={Styles.titleGroup}>
                             <Text>Xem thêm</Text>
                             <ImageButton source={Resources.homePage.icMore}/>
                         </View>
@@ -165,6 +144,22 @@ export default class HomeScreen extends Component {
                             }
                         </ScrollView>
                     </View>
+                </View>
+
+                {/* SECTION GROUP OF NEW FILMS */}
+                <View>
+                    {/* TITLE */}
+                    <View style={Styles.titleGroup}>
+                        <Text style={Styles.title}>Phim mới</Text>
+                        <View style={Styles.titleGroup}>
+                            <Text>Xem thêm</Text>
+                            <ImageButton source={Resources.homePage.icMore}/>
+                        </View>
+                    </View>
+                </View>
+
+                <View style={{height: 100, width: 100}}>
+                    <FilmGroup />
                 </View>
             </View>
         );

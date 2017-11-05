@@ -6,6 +6,7 @@ import {
   Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import Resources from '../resources/resources';
 
 export default class ImageButton extends Component {
     render(){
@@ -14,20 +15,26 @@ export default class ImageButton extends Component {
             <TouchableHighlight style={styles.container} onPress={this.props.onPress}
                 underlayColor='#2196F3' activeOpacity={0.3}>
                 <Image source={this.props.source}
-                        style={[styles.image, {tintColor: this.props.tintColor}]}/>
+                        style={[styles.image, {
+                            tintColor: this.props.tintColor,
+                            height: this.props.size,
+                            width: this.props.size
+                            }]}/>
             </TouchableHighlight>
         );
     }
 }
 
 ImageButton.defaultProps = {
-    source: require('../resources/icons/ic_menu.png'),
-    tintColor: '#616161'
+    source: Resources.icError,
+    tintColor: '#616161',
+    size: 20,
 }
 
 ImageButton.propTypes = {
     source: PropTypes.number.isRequired,
-    tintColor: PropTypes.string
+    tintColor: PropTypes.string,
+    size: PropTypes.number,
 }
 
 
@@ -39,8 +46,6 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     image: {
-        height: 20,
-        width: 20,
         padding: 2,
         resizeMode: 'contain',
     }
