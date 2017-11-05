@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny, DjangoModelPermissions
-from django.conf.urls import url, include
+from django.conf.urls import url
 
 from .api_base import ApiBase
 from ..models import Episode
