@@ -7,9 +7,13 @@ import {
   Image,
   Button,
   View,
-  Dimensions
+  Dimensions,
+  ScrollView
 } from 'react-native';
+import Styles from './style';
+import Resources from '../../resources/resources';
 import ImageSlider from '../../components/ImageSlider/ImageSlider';
+import ImageButton from '../../components/ImageButton';
 
 export default class HomeScreen extends Component {
     constructor(props) {
@@ -33,6 +37,14 @@ export default class HomeScreen extends Component {
                 url: 'https://i.ytimg.com/vi/r-7Grp4kbgA/maxresdefault.jpg',
               },
             ],
+            historyFilms: [
+                { url: 'https://i.ytimg.com/vi/OK-7IOkIFWQ/maxresdefault.jpg', },
+                { url: 'https://i.ytimg.com/vi/gvDlOCxDopA/maxresdefault.jpg', },
+                { url: 'https://i.ytimg.com/vi/qGmHrPGylho/maxresdefault.jpg', },
+                { url: 'https://i.ytimg.com/vi/c4as9E4Pi_Y/maxresdefault.jpg', },
+                { url: 'https://i.ytimg.com/vi/eHM1f3OEnyI/maxresdefault.jpg', },
+
+            ]
           };
     }
 
@@ -50,6 +62,17 @@ export default class HomeScreen extends Component {
         clearInterval(this.state.interval);
     }
 
+    createHistoryListItem(url){
+        return (
+            <Image source={{uri: url}}
+                        style={{
+                            resizeMode: 'contain',
+                            width: Dimensions.get('window').width/3,
+                            height: Dimensions.get('window').width * (9 / 16),
+                        }}/>
+        );
+    }
+
     static navigationOptions = {
         drawerLabel: 'HomeScreen',
         
@@ -57,9 +80,7 @@ export default class HomeScreen extends Component {
 
     render() {
         const {navigate } = this.props.navigation;
-        const iconLocation = '../../resources/icons/';
         const width = Dimensions.get('window').width;
-
 
         return (
             <View style={{
@@ -79,28 +100,11 @@ export default class HomeScreen extends Component {
                     position: 'absolute',
                     zIndex: 5,
                     }}>
-                    <TouchableHighlight style={{
-                        width: 48,
-                        height: 48,
-                        padding: 8,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        }}
-                        underlayColor='rgba(255,255,255,0.3)'
-                        onPress={() => this.props.navigation.navigate('DrawerToggle')}>
-                        <Image source={require('../../resources/icons/ic_menu.png')}
-                                style={{resizeMode: 'contain'}}/>
-                    </TouchableHighlight>
-                    <TouchableHighlight style={{
-                        width: 48,
-                        height: 48,
-                        padding: 8,
-                        justifyContent: 'center',
-                        alignItems: 'center'
-                        }}>
-                        <Image source={require('../../resources/icons/ic_search.png')}
-                                style={{resizeMode: 'contain'}}/>
-                    </TouchableHighlight>
+                    <ImageButton
+                        onPress={() => this.props.navigation.navigate('DrawerToggle')}
+                        source={Resources.homePage.icMenu}
+                        tintColor='white'/>
+                    <ImageButton source={Resources.homePage.icSearch} tintColor='#fafafa'/>
                 </View>
 
                 {/* SECTION BANNER */}
@@ -124,21 +128,42 @@ export default class HomeScreen extends Component {
 
                 {/* SECTION HISTORY SLIDER */}
                 <View style={{
-                    height: 100,
                     width: width,
-                    backgroundColor: '#fafafa',
+                    paddingTop: 8,
+                    paddingBottom: 16,
                     }}>
                     {/* TITLE */}
                     <View style={{
                         flexDirection: 'row',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
                         marginLeft: 16,
-                        marginRight: 16}}>
+                        marginRight: 6}}>
                         <Text style={{fontWeight: 'bold'}}>Phim đã xem</Text>
                         
-                        <View style={{flexDirection: 'row',}}>
+                        <View style={{flexDirection: 'row', alignItems: 'center'}}>
                             <Text>Xem thêm</Text>
-                            <Image source={require('../../resources/icons/ic_back.png')}/>
+                            <ImageButton source={Resources.homePage.icMore}/>
                         </View>
+                    </View>
+
+                    {/* LIST FILM */}
+                    <View style={{elevation: 3, backgroundColor: 'white'}}>
+                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                            {
+                                this.state.historyFilms.map((film, index) => (
+                                    //return createHistoryListItem(film.url);
+                                    <View key={index}>
+                                        <Image source={{uri: film.url}}
+                                            style={{
+                                                resizeMode: 'contain',
+                                                width: width/2.5,
+                                                height: width/2.5*(9/16),
+                                        }}/>
+                                    </View>
+                                ))
+                            }
+                        </ScrollView>
                     </View>
                 </View>
             </View>
