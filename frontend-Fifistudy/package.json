@@ -28,13 +28,15 @@
     "react-perfect-scrollbar": "^0.2.3",
     "react-redux": "^5.0.6",
     "react-router": "^3.0.5",
+    "react-router-redux": "^4.0.8",
     "react-slick": "^0.15.4",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "subtitles-parser": "0.0.2",
     "vtt-json": "^1.0.1",
     "vtt-to-json": "^0.1.1",
-    "vtt.js": "^0.13.0"
+    "vtt.js": "^0.13.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",

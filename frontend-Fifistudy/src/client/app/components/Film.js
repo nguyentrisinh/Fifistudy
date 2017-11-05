@@ -1,38 +1,40 @@
 import React from 'react';
-import Level from './Level'
+import Level from './Level.jsx'
 import Star from './Star'
+import {Link} from 'react-router'
 
-function Film() {
+function Film({data}) {
+    console.log('data', data)
     return (
-        <div className="film">
+        <Link to={`/film/${data.slug}`} className="film">
 
             <div className="film__thumnail">
 
-                <img src="http://placehold.it/1920x1080" alt="" className="film__image"/>
+                <img src={"http://localhost:8000" + data.thumbnail} alt="" className="film__image"/>
                 <div className="film__overlay">
 
                 </div>
                 <div className="film__bookmark">
-                    <i className="material-icons">bookmark</i>
+                    <i className="fa fa-bookmark-o"/>
                 </div>
                 <div className="film__episode">
-                    15
+                    {data.episode_count}
                 </div>
             </div>
             <div className="film__score">
 
-                <Star score={3}></Star>
+                <Star score={data.average_score}></Star>
             </div>
             <div className="film__eng-name">
-                I love you
+                {data.english_name}
             </div>
             <div className="film__vi-name">
-                Tôi yêu em
+                {data.vietnamese_name}
             </div>
             <div className="film__level">
-                <Level level={2}/>
+                <Level level={data.difficult_level}/>
             </div>
-        </div>
+        </Link>
     )
 }
 export default Film

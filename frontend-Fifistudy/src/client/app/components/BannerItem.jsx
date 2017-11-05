@@ -1,19 +1,20 @@
-import Level from './Level.jsx';
+import Level from './Level';
 import React from 'react';
 
 function BannerItem({data}) {
+    let filmDetail = data.film_detail
     return (
-        <div key={data.id} className="banner-item">
-            <img className="banner-item__img" src={data.image} alt=""/>
+        <div className="banner-item">
+            <img className="banner-item__img" src={"http://localhost:8000" + filmDetail.thumbnail} alt=""/>
             <div className="banner-item__info">
                 <div className="banner-item__eng-title">
                     {
-                        data.engName
+                        filmDetail.english_name
                     }
                 </div>
                 <div className="banner-item__vi-title">
                     {
-                        data.viName
+                        filmDetail.vietnamese_name
                     }
                 </div>
                 <div className="banner-item__quote">
@@ -23,7 +24,7 @@ function BannerItem({data}) {
                 </div>
                 <div className="banner-item__level">
                     {
-                        <Level level={data.level}/>
+                        <Level level={filmDetail.difficult_level}/>
                     }
                 </div>
             </div>

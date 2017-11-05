@@ -15,6 +15,11 @@ $ColorDarkGray: #626b74;
 $ColorTextGray: #d5d5d5;
 $MenuHeight: 65px;
 
+a {
+  text-decoration: none;
+
+}
+
 html {
   font-family: 'Roboto', sans-serif !important;
 }
@@ -124,6 +129,9 @@ body {
       font-size: 3rem;
       font-weight: 500;
     }
+  }
+  &__level {
+    margin-top: 15px;
   }
 }
 
@@ -354,6 +362,7 @@ body {
 
 .film {
   border-left: solid 0.5px $ColorBorder;
+  display: block;
   border-right: solid 0.5px $ColorBorder;
   &__score {
     text-align: center;
@@ -373,6 +382,8 @@ body {
   }
 
   &__eng-name {
+    padding-left: 15px;
+    padding-right: 15px;
     font-size: 20px;
     font-weight: 400;
     text-align: center;
@@ -380,6 +391,8 @@ body {
     margin-bottom: 5px;
   }
   &__vi-name {
+    padding-left: 15px;
+    padding-right: 15px;
     font-size: 18px;
     font-weight: 400;
     text-align: center;
