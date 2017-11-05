@@ -29,7 +29,8 @@ class VideoFilm extends React.Component {
     }
 
     componentWillMount = () => {
-        axios.get("../static/media/sub.vtt")
+        // axios.get("../static/media/sub.vtt")
+        axios.get("http://localhost:8000/media/episode/sub/sub.vtt")
             .then(response => {
                 let stringVTT = response.data.split(/\n\s*\n/);
                 stringVTT.shift();
@@ -84,7 +85,9 @@ class VideoFilm extends React.Component {
     componentDidMount = () => {
 
         this.player = window.jwplayer('player').setup({
-            file: '../static/media/video.mp4',
+            // file: '../static/media/video.mp4',
+            file: 'http://localhost:8000/media/episode/video/How_i_met_your_mother1_01.mp4',
+
             tracks: [{
                 file: "../static/media/sub.vtt",
                 label: "Eng-Vie",
