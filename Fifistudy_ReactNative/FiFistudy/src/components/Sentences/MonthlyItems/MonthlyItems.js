@@ -15,16 +15,7 @@ class MonthlyItems extends Component {
         console.disableYellowBox = true;
         super(props);
         this.state = {
-            dataSource: [
-                {
-                    day: '1',
-                    sentence: 'Hello World',
-                },
-                {
-                    day: '2',
-                    sentence: 'Hello Nhan',
-                }
-            ]
+            dataSource: this.props.listSentences
         }
     }
 
