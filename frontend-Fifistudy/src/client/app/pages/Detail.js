@@ -15,12 +15,12 @@ class Detail extends React.Component {
     }
 
     render() {
+        let {filmDetail, episode} = this.props;
         return (
-
-
             <div className="detail-page">
 
-                <div className="detail-page__overlay" style={{backgroundImage: `url(${film1})`}}>
+                <div className="detail-page__overlay"
+                     style={{backgroundImage: `url(http://localhost:8000${filmDetail.thumbnail})`}}>
                 </div>
                 <Scrollbars
                     autoHide={true}
@@ -32,9 +32,9 @@ class Detail extends React.Component {
                 >
 
 
-                    <FilmTitle/>
-                    <VideoFilm/>
-                    <Episode/>
+                    <FilmTitle enName={filmDetail.english_name} viName={filmDetail.vietnamese_name}/>
+                    <VideoFilm data={episode}/>
+                    <Episode data={filmDetail}/>
                     <SectionDetailExtra/>
 
                     <Footer/>

@@ -4,5 +4,8 @@ export const Api = {
     getMostView: `api/films/get_all_order_by_view/`,
     getFilm: (slug) => {
         return `api/films/detail/slug/${slug}`
+    },
+    getEpisode: (filmSlug, episodeId) => {
+        return `api/episodes/detail/${filmSlug}/${episodeId}/`
     }
 }

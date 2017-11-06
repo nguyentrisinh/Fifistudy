@@ -3,6 +3,7 @@ import film from '../../static/images/HowIMetUrMother.jpg'
 import Level from '../components/Level';
 import Star from '../components/Star'
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 
 class Banner extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class Banner extends React.Component {
     render() {
         let data = this.props.film;
         return (
-            <div className="banner">
+            <Link to={`/${data.slug}/${data.episodes[data.episodes.length - 1].id}`} className="banner">
                 <div className="container">
                     <div className="banner__wrap">
                         <img src={`http://localhost:8000${data.thumbnail}`} alt="" className="banner__image"/>
@@ -59,7 +60,7 @@ class Banner extends React.Component {
                     </div>
                     <div className="divider"></div>
                 </div>
-            </div>
+            </Link>
         )
     }
 }

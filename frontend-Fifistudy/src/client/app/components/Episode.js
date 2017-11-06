@@ -6,6 +6,22 @@ class Episode extends React.Component {
         this.state = {};
     }
 
+    renderEpisode = () => {
+        let {data} = this.props;
+        let arr = data.episodes.map(item => {
+            return item.number
+        })
+        return arr.map(item => {
+            return (
+
+                <div className="episode__item">
+                    {item}
+                </div>
+            )
+
+        })
+    }
+
     render() {
         return (
 
@@ -18,27 +34,9 @@ class Episode extends React.Component {
                         </div>
                         <div className="episode__content">
 
-                            <div className="episode__item">
-                                1
-                            </div>
-                            <div className="episode__item">
-                                2
-                            </div>
-                            <div className="episode__item">
-                                3
-                            </div>
-                            <div className="episode__item">
-                                4
-                            </div>
-                            <div className="episode__item">
-                                5
-                            </div>
-                            <div className="episode__item">
-                                6
-                            </div>
-                            <div className="episode__item">
-                                7
-                            </div>
+                            {
+                                this.renderEpisode()
+                            }
                         </div>
                     </div>
 

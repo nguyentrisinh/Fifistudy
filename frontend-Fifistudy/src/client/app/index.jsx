@@ -14,7 +14,7 @@ import {render} from 'react-dom';
 import {syncHistoryWithStore} from 'react-router-redux';
 import {browserHistory, hashHistory, Router, IndexRoute, Route} from 'react-router';
 import App from './App';
-import DetailPage from './pages/Detail'
+import DetailPageContainer from './pages/DetailContainer'
 
 import reduxThunk from "redux-thunk";
 
@@ -29,10 +29,11 @@ render(
             <Route path="/" component={App}>
                 {/*<Route component={FooterContainer}>*/}
                 <IndexRoute component={Index}/>
-                <Route path="detail" component={DetailPage}/>
 
-                <Route path="film/:slug" component={FilmIntroContainer}/>
+
                 <Route path="list" component={ListPage}/>
+                <Route path="film/:slug" component={FilmIntroContainer}/>
+                <Route path=":filmSlug/:episodeId" component={DetailPageContainer}/>
             </Route>
         </Router>
     </Provider>
