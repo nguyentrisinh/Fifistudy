@@ -14,13 +14,20 @@ class DailySentences extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isPressed: false
+            isPressed: false,
+            isDeleted: false
         }
     }
 
     changeStatePressed() {
         this.setState({
             isPressed: !this.state.isPressed
+        })
+    }
+
+    deleteItems() {
+        this.setState({
+            isDeleted: true
         })
     }
 
@@ -57,7 +64,9 @@ class DailySentences extends Component {
                         </TouchableOpacity>
                         <View style={styles.blackLine}>
                         </View>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => this.deleteItems()}
+                        >
                             <Text style={styles.textSetting}>
                                 Xóa
                             </Text>
@@ -83,7 +92,7 @@ class DailySentences extends Component {
                         </Text>
                         <View style={styles.icon}>
                             <TouchableOpacity
-                                onPress={() => this.renderDropdownList()}
+                                onPress={() => this.changeStatePressed()}
                             >
                                 <Image style={styles.icon}
                                     source={require('./ic_more.png')}
@@ -91,15 +100,17 @@ class DailySentences extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                </View>              
+                </View>
             </View>
         )
     }
 
     render() {
+        if (this.state.isDeleted)
+            return null;
         if (!this.state.isPressed)
             return this.renderNormal();
-        return this.renderPressed();    
+        return this.renderPressed();
     }
 }
 

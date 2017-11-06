@@ -15,14 +15,14 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: 'red',
+        backgroundColor: 'lightcyan',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
     },
     textDate: {
         textAlign: 'center',
-        color: 'lightskyblue',
+        color: 'royalblue',
         fontSize: 20,
     },
     sentenceContainer: {
@@ -34,13 +34,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         borderRadius: 7
     },
+
     textSentence: {
         marginLeft: 20,
         fontSize: 20,
         textAlign: 'left',
-        fontFamily: 'sans-serif-light',
-        color: 'black',
-        fontWeight: 'bold'
+        fontFamily: 'sans-serif',
+        color: 'grey',
     },
     icon:{
     },
