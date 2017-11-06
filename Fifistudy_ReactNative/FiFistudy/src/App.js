@@ -9,7 +9,10 @@ import TestScreen from './screens/TestScreen/TestScreen';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
 import HamburgerMenu from './screens/HamburgerMenu/HamburgerMenu';
 
+import Container from './components/Sentences/Container/Container.js';
+
 const Hamburger = DrawerNavigator({
+  Container: { screen: Container},
   HomeScreen: { screen: HomeScreen },
   TestScreen: { screen: TestScreen },
 }, {
