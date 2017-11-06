@@ -28,6 +28,25 @@ class FilmAdapter:
 
             return films
 
+    def get_list_order_by_updated(self, user=None, begin_record=0, end_record=8):
+        if user is not None:
+            # check if user is not none, we can check that that film user have already saved or not
+            # To-Do list
+            films = Film.objects.all().annotate(
+                is_saved=Case(
+                    When(usersavefilm__user_id=user, then=True),
+                    default=False, output_field=BooleanField()
+                )
+            ).order_by('-updated_at')[begin_record:end_record]
+
+            return films
+        else:
+            films = Film.objects.all().annotate(
+                is_saved=Case(default=False, output_field=BooleanField()),
+            ).order_by('-updated_at')[begin_record:end_record]
+
+            return films
+
     def get_list_order_by_saved_number(self, user=None, begin_record=0, end_record=8):
         if user is not None:
             films = Film.objects.all().annotate(

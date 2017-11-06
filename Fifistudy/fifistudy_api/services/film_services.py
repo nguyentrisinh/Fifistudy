@@ -22,6 +22,13 @@ class FilmServices:
 
         return serializer.data
 
+    def get_list_order_by_updated(self, user=None):
+        films = self.film_adapter.get_list_order_by_updated(user=user)
+
+        serializer = HomepageListFilmSerializer(films, many=True)
+
+        return serializer.data
+
     def get_detail_by_id(self, film_id, user=None):
         film = self.film_adapter.get_detail_by_id(film_id=film_id, user=user)
 

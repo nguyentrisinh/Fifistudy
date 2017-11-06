@@ -28,6 +28,14 @@ class FilmViewSet(ModelViewSet, ApiBase):
                 'get': 'get_homepage_list_order_by_view_with_auth'
             })),
 
+            # get list homepage film order_by updated_at
+            url(r'^get_all_order_by_updated/$', cls.as_view({
+                'get': 'get_homepage_list_order_by_updated'
+            })),
+            url(r'^get_all_order_by_updated_with_auth/$', cls.as_view({
+                'get': 'get_homepage_list_order_by_updated_with_auth'
+            })),
+
             # get list homepage film order_by save_number
             url(r'^get_all_order_by_save_number/$', cls.as_view({
                 'get': 'get_homepage_list_order_by_save_number'
@@ -80,6 +88,11 @@ class FilmViewSet(ModelViewSet, ApiBase):
 
         return self.as_success(result)
 
+    def get_homepage_list_order_by_updated(self, request, *args, **kwargs):
+        result = self.film_services.get_list_order_by_updated()
+
+        return self.as_success(result)
+
     # with auth token to check if film that user is saved or not
     def get_homepage_list_order_by_view_with_auth(self, request, *args, **kwargs):
         user = self.check_anonymous(request)
@@ -93,6 +106,11 @@ class FilmViewSet(ModelViewSet, ApiBase):
 
         return self.as_success(result)
 
+    def get_homepage_list_order_by_updated_with_auth(self, request, *args, **kwargs):
+        user = self.check_anonymous(request)
+        result = self.film_services.get_list_order_by_updated(user=user)
+
+        return self.as_success(result)
     # def get_detail_by_id(self, request, *args, **kwargs):
     #     film_id = kwargs['film_id']
     #
