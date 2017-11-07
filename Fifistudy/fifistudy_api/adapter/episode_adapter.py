@@ -46,3 +46,17 @@ class EpisodeAdapter:
             return episode
         except Episode.DoesNotExist:
             raise ApiCustomException(ErrorDefine.EPISODE_NOT_EXIST)
+
+    def get_by_episode_number(self, episode_number, slug, user=None):
+        try:
+            episode = Episode.objects.filter(number=episode_number, film_id__slug=slug)
+
+            if not episode.exists():
+                raise ApiCustomException(ErrorDefine.EPISODE_NOT_FOUND)
+
+            episode = episode.first()
+            episode.user_watch_episode = self.get_user_watch_episode_by_user_and_epsiode_id(episode, user)
+
+            return episode
+        except Episode.DoesNotExist:
+            raise ApiCustomException(ErrorDefine.EPISODE_NOT_EXIST)
