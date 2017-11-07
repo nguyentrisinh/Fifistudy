@@ -20,10 +20,10 @@ class CommentViewSet(ModelViewSet, ApiBase):
     @classmethod
     def get_router(cls):
         urlpatterns = [
-            url(r'^film/(?P<film_slug>\w+)/$', cls.as_view({
+            url(r'^film/$', cls.as_view({
                 'get': 'get_paging_by_slug'
             })),
-            url(r'^film_with_auth/(?P<film_slug>\w+)/$', cls.as_view({
+            url(r'^film_with_auth/$', cls.as_view({
                 'get': 'get_paging_by_slug_with_auth'
             })),
             url(r'^save_comment/$', cls.as_view({
@@ -46,7 +46,7 @@ class CommentViewSet(ModelViewSet, ApiBase):
         return BaseCommentSerializer
 
     def get_paging_by_slug(self, request, *args, **kwargs):
-        slug = kwargs['film_slug']
+        slug = request.GET.get('film_slug')
 
         page = request.GET.get('page')
 
@@ -61,7 +61,7 @@ class CommentViewSet(ModelViewSet, ApiBase):
 
     def get_paging_by_slug_with_auth(self, request, *args, **kwargs):
         user = self.check_anonymous(request)
-        slug = kwargs['film_slug']
+        slug = request.GET.get('film_slug')
 
         page = request.GET.get('page')
 

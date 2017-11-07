@@ -23,6 +23,15 @@ class EpisodeServices:
 
         return serializer.data
 
+    def get_by_episode_number(self, episode_number, slug, user=None):
+        episode = self.episode_adapter.get_by_episode_number(episode_number, slug, user)
+
+        serializer = EpisodeDetailSerializer(episode)
+
+        self.increase_view_number(episode)
+
+        return serializer.data
+
     def save_current_time(self, user, current_time, episode_id):
         user_watch_episode = self.episode_adapter.save_current_watch_time(user, current_time, episode_id)
 

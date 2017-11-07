@@ -35,5 +35,6 @@ class ErrorDefine:
 
     # Error Episode: 15xx
     EPISODE_NOT_EXIST = ApiErrorMessage('Episode does not exist', 1500)
+    EPISODE_NOT_FOUND = ApiErrorMessage('Episode does not found', 1501)
 
 
