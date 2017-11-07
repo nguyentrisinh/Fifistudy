@@ -34,7 +34,7 @@ class FilmIntro extends React.Component {
                     autoHeightMin="100%"
                     autoHeightMax="100%"
                 >
-                    <Banner/>
+                    <Banner router={this.props.router}/>
                     <ListActor/>
                     <SectionDetailExtra/>
 

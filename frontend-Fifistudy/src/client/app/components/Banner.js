@@ -11,10 +11,26 @@ class Banner extends React.Component {
         this.state = {};
     }
 
+    onClickBanner = (evt) =>{
+
+        let data = this.props.film;
+        console.log('this',this);
+        if (data.episodes[data.episodes.length-1]){
+            if (data.episodes[data.episodes.length - 1].id){
+               this.props.router.push(`/${data.slug}/${data.episodes[data.episodes.length - 1].id}`);
+            }
+        }
+        else{
+            event.preventDefault();
+        }
+    }
+
     render() {
         let data = this.props.film;
         return (
-            <Link to={`/${data.slug}/${data.episodes[data.episodes.length - 1].id}`} className="banner">
+            <Link onClick={this.onClickBanner}
+                  // to={`/${data.slug}/${data.episodes[data.episodes.length - 1].id}`}
+                  className="banner">
                 <div className="container">
                     <div className="banner__wrap">
                         <img src={`http://localhost:8000${data.thumbnail}`} alt="" className="banner__image"/>

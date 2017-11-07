@@ -18,7 +18,7 @@ class FilmIntroContainer extends React.Component {
         if (this.props.film) {
             if (this.props.film.errors == null) {
                 return (
-                    <FilmIntro/>
+                    <FilmIntro router={this.props.router}/>
                 )
             }
         }
