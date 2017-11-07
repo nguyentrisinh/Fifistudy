@@ -10,7 +10,7 @@ const resources = {
         moreArrow: require('./icons/ic_more_arrow.png'),
         moreDot: require('./icons/ic_more.png'),
         bookmark: require('./icons/ic_bookmark.png'),
-        //bookmarkFull: require('./icons/ic_bookmark_full.png'),
+        bookmarkFull: require('./icons/ic_bookmark_full.png'),
     },
 
     icError: require('./icons/ic_error.png')
