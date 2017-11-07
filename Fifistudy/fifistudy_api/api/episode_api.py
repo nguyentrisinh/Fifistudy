@@ -21,10 +21,10 @@ class EpisodeViewSet(ModelViewSet, ApiBase):
     @classmethod
     def get_router(cls):
         urlpatterns = [
-            url(r'detail/(?P<film_slug>\w+)/$', cls.as_view({
+            url(r'detail/$', cls.as_view({
                 'get': 'get_by_episode_number'
             })),
-            url(r'detail_with_auth/(?P<film_slug>\w+)/$', cls.as_view({
+            url(r'detail_with_auth/$', cls.as_view({
                 'get': 'get_by_episode_number_with_auth'
             })),
             url(r'save_current_time/$', cls.as_view({
@@ -41,7 +41,7 @@ class EpisodeViewSet(ModelViewSet, ApiBase):
         return BaseEpisodeSerializer
 
     def get_by_episode_number(self, request, *args, **kwargs):
-        slug = kwargs['film_slug']
+        slug = request.GET.get('film_slug')
         episode_number = request.GET.get('episode_number')
 
         result = self.episode_services.get_by_episode_number(episode_number, slug)
@@ -51,7 +51,7 @@ class EpisodeViewSet(ModelViewSet, ApiBase):
         user = self.check_anonymous(request)
 
         episode_number = request.GET.get('episode_number')
-        slug = kwargs['film_slug']
+        slug = request.GET.get('film_slug')
 
         result = self.episode_services.get_by_episode_number(episode_number, slug, user)
 

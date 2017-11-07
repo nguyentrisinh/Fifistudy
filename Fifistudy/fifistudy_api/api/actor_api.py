@@ -20,7 +20,7 @@ class ActorViewSet(ModelViewSet, ApiBase):
     @classmethod
     def get_router(cls):
         urlpatterns = [
-            url(r'^film/(?P<slug>\w+)$', cls.as_view({
+            url(r'^film/$', cls.as_view({
                 'get': 'get_list_by_slug'
             })),
         ]
@@ -32,7 +32,7 @@ class ActorViewSet(ModelViewSet, ApiBase):
         return BaseActorSerializer
 
     def get_list_by_slug(self, request, *args, **kwargs):
-        slug = kwargs['slug']
+        slug = request.GET.get('film_slug')
 
         result = self.actor_services.get_list_by_slug(slug)
 

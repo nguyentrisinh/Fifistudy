@@ -45,10 +45,10 @@ class FilmViewSet(ModelViewSet, ApiBase):
             })),
 
             # get film detail by slug
-            url(r'^detail/slug/(?P<film_slug>\w+)$', cls.as_view({
+            url(r'^detail/slug/$', cls.as_view({
                 'get': 'get_detail_by_slug'
             })),
-            url(r'^detail_with_auth/slug/(?P<film_slug>\w+)$', cls.as_view({
+            url(r'^detail_with_auth/slug/$', cls.as_view({
                 'get': 'get_detail_by_slug_with_auth'
             })),
 
@@ -127,14 +127,14 @@ class FilmViewSet(ModelViewSet, ApiBase):
     #     return self.as_success(result)
 
     def get_detail_by_slug(self, request, *args, **kwargs):
-        slug = kwargs['film_slug']
+        slug = request.GET.get('film_slug')
 
         result = self.film_services.get_detail_by_slug(slug=slug)
 
         return self.as_success(result)
 
     def get_detail_by_slug_with_auth(self, request, *args, **kwargs):
-        slug = kwargs['film_slug']
+        slug = request.GET.get('film_slug')
         user = self.check_anonymous(request)
 
         result = self.film_services.get_detail_by_slug(slug=slug, user=user)
