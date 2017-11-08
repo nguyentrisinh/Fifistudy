@@ -6,15 +6,16 @@ import SectionBlog from '../components/SectionBlog'
 import Footer from '../components/Footer';
 import Film from '../components/Film'
 import MostViewContainer from '../containers/MostViewContainer'
+import LatestContainer from '../containers/LatestContainer'
 import {connect} from 'react-redux';
-import {getPromotes, getMostSave, getMostView} from '../actions/dataHomepage'
+import {getPromotes, getLastest, getMostView} from '../actions/dataHomepage'
 
 import {Scrollbars} from 'react-custom-scrollbars';
 
 class Index extends React.Component {
     componentWillMount = () => {
         this.props.getPromotes();
-        this.props.getMostSave();
+        this.props.getLastest();
         this.props.getMostView();
     }
 
@@ -51,10 +52,11 @@ class Index extends React.Component {
                     {/*<Section title="PHIM ĐƯỢC QUAN TÂM NHIỀU NHẤT">*/}
                     {/*{this.renderFilm()}*/}
                     {/*</Section>*/}
+                    <LatestContainer/>
                     <Footer/>
                 </Scrollbars>
             </div>
         )
     }
 }
-export default  connect(null, {getPromotes, getMostSave, getMostView})(Index)
+export default  connect(null, {getPromotes, getLastest, getMostView})(Index)

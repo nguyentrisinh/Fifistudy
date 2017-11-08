@@ -3,7 +3,7 @@ import * as Types from '../constants/dataHomepage'
 const initialState = {
     promotes: null,
     mostView: null,
-    mostSave: null,
+    mostLastest: null,
 }
 
 export default function dataHomepage(state = initialState, action) {
@@ -16,9 +16,9 @@ export default function dataHomepage(state = initialState, action) {
             return Object.assign({}, state, {
                 mostView: action.serverData
             })
-        case Types.GET_MOST_SAVE:
+        case Types.GET_LATEST:
             return Object.assign({}, state, {
-                mostSave: action.serverData
+                mostLatest: action.serverData
             })
         default:
             return state

@@ -31,12 +31,12 @@ export function getMostView() {
 
     }
 }
-export function getMostSave() {
+export function getLastest() {
     return function (dispatch) {
-        axios.get(Api.getMostSave)
+        axios.get(Api.getLastest)
             .then(response => {
                 dispatch({
-                    type: Types.GET_MOST_SAVE,
+                    type: Types.GET_LATEST,
                     serverData: response.data
                 })
 
