@@ -2,6 +2,7 @@ import React from 'react';
 import SliderBannerContainer from '../containers/SliderBannerContainer';
 import Intro from '../components/Intro';
 import Section from '../components/SectionFilm'
+import FadeTransition from '../components/FadeTransition';
 import SectionBlog from '../components/SectionBlog'
 import Footer from '../components/Footer';
 import Film from '../components/Film'
@@ -17,6 +18,15 @@ class Index extends React.Component {
         this.props.getPromotes();
         this.props.getLastest();
         this.props.getMostView();
+        this.state = {
+            in: true
+        }
+    }
+
+    componentWillUnmount = () => {
+        this.setState({
+            in: false
+        })
     }
 
     constructor(props) {
@@ -36,26 +46,30 @@ class Index extends React.Component {
 
     render() {
         return (
-            <div className="index-page">
-                <Scrollbars
-                    autoHide={true}
-                    renderTrackVertical={props => <div {...props} className="scroll-bar__track-vertical"/>}
-                    renderThumbVertical={props => <div {...props} className="scroll-bar__thumb-vertical"/>}
-                    autoHeight={true}
-                    autoHeightMin="100%"
-                    autoHeightMax="100%"
-                >
-                    <SliderBannerContainer/>
-                    <Intro/>
-                    <MostViewContainer/>
-                    <SectionBlog/>
-                    {/*<Section title="PHIM ĐƯỢC QUAN TÂM NHIỀU NHẤT">*/}
-                    {/*{this.renderFilm()}*/}
-                    {/*</Section>*/}
-                    <LatestContainer/>
-                    <Footer/>
-                </Scrollbars>
-            </div>
+            <FadeTransition timeout={350}
+                            classNames="fade"
+                            shouldShow={this.state.in}>
+                <div className="index-page">
+                    <Scrollbars
+                        autoHide={true}
+                        renderTrackVertical={props => <div {...props} className="scroll-bar__track-vertical"/>}
+                        renderThumbVertical={props => <div {...props} className="scroll-bar__thumb-vertical"/>}
+                        autoHeight={true}
+                        autoHeightMin="100%"
+                        autoHeightMax="100%"
+                    >
+                        <SliderBannerContainer/>
+                        <Intro/>
+                        <MostViewContainer/>
+                        <SectionBlog/>
+                        {/*<Section title="PHIM ĐƯỢC QUAN TÂM NHIỀU NHẤT">*/}
+                        {/*{this.renderFilm()}*/}
+                        {/*</Section>*/}
+                        <LatestContainer/>
+                        <Footer/>
+                    </Scrollbars>
+                </div>
+            </FadeTransition>
         )
     }
 }

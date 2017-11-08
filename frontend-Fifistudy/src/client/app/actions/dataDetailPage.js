@@ -31,3 +31,35 @@ export function getFilmDetail(slug) {
 
     }
 }
+
+export function getDataDetailPage(filmSlug, episodeId) {
+
+    return function (dispatch) {
+        dispatch({
+            type: Types.GET_DATTA_DETAIL_PAGE,
+            serverData: null,
+            isLoading: true
+        })
+        Promise.all([axios.get(Api.getEpisode(filmSlug, episodeId))
+            .then(response => {
+                return response.data
+
+            })
+            .catch(err => console.log(err)), axios.get(Api.getFilm(filmSlug))
+            .then(response => {
+                return response.data
+
+            })
+            .catch(err => console.log(err))]).then(values => {
+            dispatch({
+                type: Types.GET_DATTA_DETAIL_PAGE,
+                serverData: {
+                    episode: values[0],
+                    film: values[1]
+                },
+                isLoading: false
+            })
+        });
+
+    }
+}

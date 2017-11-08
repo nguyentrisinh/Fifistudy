@@ -1,4 +1,6 @@
 import React from 'react'
+
+import FadeTransition from '../components/FadeTransition'
 import film1 from '../../static/images/HowIMetUrMother.jpg'
 import FilmTitle from '../components/FilmTitle'
 import VideoFilm from '../components/VideoFilm'
@@ -11,37 +13,47 @@ import {Scrollbars} from 'react-custom-scrollbars';
 class Detail extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {in: true};
+    }
+
+    componentWillUnmount = () => {
+        this.setState({
+            in: false
+        })
     }
 
     render() {
         let {filmDetail, episode} = this.props;
         return (
-            <div className="detail-page">
+            <FadeTransition timeout={350}
+                            classNames="fade"
+                            shouldShow={this.state.in}>
+                <div className="detail-page">
 
-                <div className="detail-page__overlay"
-                     style={{backgroundImage: `url(http://localhost:8000${filmDetail.thumbnail})`}}>
+                    <div className="detail-page__overlay"
+                         style={{backgroundImage: `url(http://localhost:8000${filmDetail.thumbnail})`}}>
+                    </div>
+                    <Scrollbars
+                        autoHide={true}
+                        renderTrackVertical={props => <div {...props} className="scroll-bar__track-vertical"/>}
+                        renderThumbVertical={props => <div {...props} className="scroll-bar__thumb-vertical"/>}
+                        autoHeight={true}
+                        autoHeightMin="100%"
+                        autoHeightMax="100%"
+                    >
+
+
+                        <FilmTitle enName={filmDetail.english_name} viName={filmDetail.vietnamese_name}/>
+                        <VideoFilm data={episode}/>
+                        <Episode data={filmDetail}/>
+                        <SectionDetailExtra/>
+
+                        <Footer/>
+                    </Scrollbars>
                 </div>
-                <Scrollbars
-                    autoHide={true}
-                    renderTrackVertical={props => <div {...props} className="scroll-bar__track-vertical"/>}
-                    renderThumbVertical={props => <div {...props} className="scroll-bar__thumb-vertical"/>}
-                    autoHeight={true}
-                    autoHeightMin="100%"
-                    autoHeightMax="100%"
-                >
-
-
-                    <FilmTitle enName={filmDetail.english_name} viName={filmDetail.vietnamese_name}/>
-                    <VideoFilm data={episode}/>
-                    <Episode data={filmDetail}/>
-                    <SectionDetailExtra/>
-
-                    <Footer/>
-                </Scrollbars>
-            </div>
+            </FadeTransition>
 
         )
     }
 }
-export default  Detail
+export default Detail

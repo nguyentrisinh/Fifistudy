@@ -1,7 +1,12 @@
 import React from 'react';
 import Logo from './Logo.jsx';
 import Menu from './Menu'
-import {Link} from 'react-router';
+// import {Link} from 'react-router';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom'
 import classNames from 'classnames'
 
 class Header extends React.Component {

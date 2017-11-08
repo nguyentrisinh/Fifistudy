@@ -6,7 +6,7 @@ export const Api = {
         return `api/films/detail/slug/?film_slug=${slug}`
     },
     getEpisode: (filmSlug, episodeId) => {
-        return `api/episodes/detail/?film_slug=${filmSlug}&episode_number=${episodeId}/`
+        return `api/episodes/detail/?film_slug=${filmSlug}&episode_number=${episodeId}`
     }
 }
 

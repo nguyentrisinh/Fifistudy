@@ -1,10 +1,11 @@
 import Level from './Level';
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 function BannerItem({data}) {
     let filmDetail = data.film_detail
     return (
-        <div className="banner-item">
+        <Link to={`/film/${filmDetail.slug}`} className="banner-item">
             <img className="banner-item__img" src={"http://localhost:8000" + filmDetail.thumbnail} alt=""/>
             <div className="banner-item__info">
                 <div className="banner-item__eng-title">
@@ -28,7 +29,7 @@ function BannerItem({data}) {
                     }
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 export default BannerItem;

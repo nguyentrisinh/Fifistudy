@@ -1,7 +1,7 @@
 import React from 'react';
 import {getFilm} from '../actions/dataIntropage'
-
 import {connect} from 'react-redux';
+import Loading from '../components/Loading'
 import FilmIntro from './FilmIntro';
 
 class FilmIntroContainer extends React.Component {
@@ -11,18 +11,21 @@ class FilmIntroContainer extends React.Component {
     }
 
     componentWillMount = () => {
-        this.props.getFilm(this.props.params.slug);
+        this.props.getFilm(this.props.match.params.slug);
     }
 
     render() {
-        if (this.props.film) {
-            if (this.props.film.errors == null) {
+        if (this.props.film.isLoading) {
+            return <Loading/>
+        }
+        else {
+            if (this.props.film.data.errors == null) {
                 return (
-                    <FilmIntro router={this.props.router}/>
+                    <FilmIntro data={this.props.film.data.data}/>
                 )
             }
         }
-        return null
+        return <div style={{color: "white"}}>Loi</div>
 
     }
 }
