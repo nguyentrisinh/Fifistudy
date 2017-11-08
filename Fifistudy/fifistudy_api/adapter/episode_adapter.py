@@ -60,3 +60,11 @@ class EpisodeAdapter:
             return episode
         except Episode.DoesNotExist:
             raise ApiCustomException(ErrorDefine.EPISODE_NOT_EXIST)
+
+    def get_base_by_id(self, episode_id):
+        try:
+            episode = Episode.objects.get(id=episode_id)
+
+            return episode
+        except Episode.DoesNotExist:
+            raise ApiCustomException(ErrorDefine.EPISODE_NOT_EXIST)

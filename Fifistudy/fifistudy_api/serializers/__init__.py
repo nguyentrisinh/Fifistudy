@@ -14,5 +14,8 @@ from .review_serializer import BaseReviewSerializer, SaveReviewSerializer
 from .user_save_film_serializer import BaseUserSaveFilmSerializer, UserSaveFilmSerializer
 from .episode_serializer import BaseEpisodeSerializer, BaseUserWatchEpisodeSerializer, EpisodeDetailSerializer, \
     SaveUserWatchEpisodeSerializer
+from .vocabulary_serializer import BaseVocabularySerializer, BaseUserSaveVocabularySerializer, \
+    ListUserSaveVocabularySerializer, SaveVocabularySerializer, UpdateVocabularySerializer
+
 
 
