@@ -73,7 +73,7 @@ export default class HomeScreen extends Component {
         const width = Dimensions.get('window').width;
 
         return (
-            <View style={{
+            <ScrollView style={{
                 backgroundColor: 'lightskyblue',
                 flex: 1
                 }}>
@@ -158,11 +158,20 @@ export default class HomeScreen extends Component {
                     </View>
                 </View>
 
-                <View style={{height: 100, width: 100}}>
-                    <FilmGroup />
+                <View style={{}}>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+                        <FilmGroup />
+                        <FilmGroup />
+                    </View>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+                        <FilmGroup />
+                        <FilmGroup />
+                    </View>
                 </View>
-            </View>
+            </ScrollView>
         );
     }
 
 }
+
+
