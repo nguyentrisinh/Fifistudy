@@ -44,11 +44,14 @@ class ApiBase:
         return self.as_error_code(message, DEFAULT_ERROR_CODE, status_http)
 
     # check user is anonymous
+    # it can confirm which request has token or not
+    # if request don't have token, out system will treats it like anonymous user that can use some special function
+    # this method can do as trigger to use for some request don't need login
     def check_anonymous(self, request):
-        consumer = request.user
-        if consumer.is_anonymous():
-            raise ApiCustomException(ErrorDefine.INVALID_TOKEN_CONSUMER)
-        return consumer
+        fifi_user = request.user
+        if fifi_user.is_anonymous():
+            raise ApiCustomException(ErrorDefine.INVALID_TOKEN)
+        return fifi_user
 
 
 

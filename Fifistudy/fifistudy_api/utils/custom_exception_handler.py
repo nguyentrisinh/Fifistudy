@@ -21,6 +21,12 @@ def custom_exception_handler(exc, context):
                 error_message = '{}: {}'.format(key, value[0])
                 api_error_message = ApiErrorMessage(error_message, 9999)
                 errors.append(api_error_message.get())
+            # for key in list(exc.detail.keys()):
+            #     value = exc.detail[key]
+            #     error_message = '{}: {}'.format(key, value[0])
+            #     api_error_message = ApiErrorMessage(error_message, 9999)
+            #     errors.append(api_error_message.get())
+
         elif type_exc is ApiCustomException:
             errors.append(exc.detail)
         else:

@@ -9,13 +9,26 @@ var config = {
         publicPath: '/',
         filename: 'bundle.js'
     },
+    node: {
+        fs: "empty"
+    },
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
     devServer: {
         contentBase: path.resolve(__dirname, 'src/client'),
-        hot:true,
-        inline:true,
+        hot: true,
+        inline: true,
+        historyApiFallback: true
     },
     module: {
-        loaders: [
+        loaders: [{
+            test: /\.html$/,
+            loader: 'html-loader?attrs[]=video:src'
+        }, {
+            test: /\.mp4$/,
+            loader: 'url?limit=10000&mimetype=video/mp4'
+        },
             {test: /\.(js|jsx)$/, exclude: /node_modules/, loaders: ['babel-loader']},
             {test: /(\.css)$/, loaders: ['style-loader', 'css-loader']},
             {
@@ -36,6 +49,19 @@ var config = {
                         options: {}
                     }
                 ]
+            },
+            {
+                test: /\.(js|jsx)$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                query: {
+                    presets: ['react', 'es2015'],
+                    plugins: ['transform-class-properties']
+                }
+            },
+            {
+                test: /\.vtt/,
+                use: 'raw-loader'
             }
         ],
 
