@@ -50,7 +50,7 @@ class EpisodeAdapter:
     def get_by_episode_number(self, episode_number, slug, user=None):
         try:
             episode = Episode.objects.filter(number=episode_number, film_id__slug=slug)
-
+            print(episode_number)
             if not episode.exists():
                 raise ApiCustomException(ErrorDefine.EPISODE_NOT_FOUND)
 
