@@ -7,3 +7,4 @@ from .comment_services import CommentServices
 from .signup_services import SignupServices
 from .review_services import ReviewServices
 from .episode_services import EpisodeServices
+from .vocabulary_services import VocabularyServices
