@@ -11,7 +11,7 @@ class Loading extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            in:true
+            in: true
         };
     }
 
@@ -32,9 +32,9 @@ class Loading extends React.Component {
             <FadeTransition timeout={350}
                             classNames="fade"
                             shouldShow={this.state.in}>
-            <div ref="loading" className="loading">
-                Loading...
-            </div>
+                <div ref="loading" className="loading">
+                    Loading...
+                </div>
             </FadeTransition>
         )
     }

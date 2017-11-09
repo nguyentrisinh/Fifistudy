@@ -18,9 +18,23 @@ class DetailContainer extends React.Component {
     }
 
     componentWillMount = () => {
-        this.props.getDataDetailPage(this.props.match.params.filmSlug, this.props.match.params.episodeId);
+        let {filmSlug, episodeId} = this.props.match.params
+        this.getData(filmSlug, episodeId);
+        // this.props.getDataDetailPage(filmSlug, episodeId);
         // this.props.getEpisode(this.props.match.params.filmSlug, this.props.match.params.episodeId);
         // this.props.getFilmDetail(this.props.match.params.filmSlug);
+    }
+
+    getData = (filmSlug, episodeId) => {
+        this.props.getDataDetailPage(filmSlug, episodeId);
+    }
+
+
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.match.params.filmSlug !== this.props.match.params.filmSlug || nextProps.match.params.episodeId !== this.props.match.params.episodeId) {
+            let {filmSlug, episodeId} = nextProps.match.params
+            this.getData(filmSlug, episodeId);
+        }
     }
 
     render() {

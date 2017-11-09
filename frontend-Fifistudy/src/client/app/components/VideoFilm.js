@@ -45,7 +45,7 @@ class VideoFilm extends React.Component {
                     };
                 });
                 this.setState({
-                    sub: sub
+                    sub
                 })
             })
             .catch(err => console.log(err));
@@ -57,6 +57,7 @@ class VideoFilm extends React.Component {
     renderSub = () => {
         if (this.state.sub) {
             return this.state.sub.map(item => {
+                console.log(item);
                 return (
                     <div onClick={this.onClickSub.bind(this, item)} ref={item.number} key={item.number}
                          className={classNames("video-film__sub-item", {"video-film__sub-item--current": this.state.currentLine.number === item.number})}>

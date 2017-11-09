@@ -6,7 +6,7 @@ import FadeTransition from '../components/FadeTransition'
 
 import {Scrollbars} from 'react-custom-scrollbars';
 import film from '../../static/images/HowIMetUrMother.jpg'
-import ListActor from '../components/ListActor'
+import ListActorContainer from '../components/ListActorContainer'
 
 import SectionDetailExtra from '../components/SectionDetailExtra'
 import Footer from '../components/Footer'
@@ -45,7 +45,7 @@ export default class FilmIntro extends React.Component {
                         autoHeightMax="100%"
                     >
                         <Banner data={this.props.data}/>
-                        <ListActor/>
+                        <ListActorContainer/>
                         <SectionDetailExtra/>
 
                         <Footer/>

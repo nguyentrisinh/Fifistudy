@@ -22,3 +22,23 @@ export function getFilm(slug) {
 
     }
 }
+export function getActorIntro(slug) {
+    return function (dispatch) {
+        dispatch({
+            type: Types.GET_ACTOR_INTRO,
+            serverData: null,
+            isLoading: true
+        })
+        axios.get(Api.getActor(slug))
+            .then(response => {
+                dispatch({
+                    type: Types.GET_ACTOR_INTRO,
+                    serverData: response.data,
+                    isLoading: false
+                })
+
+            })
+            .catch(err => console.log(err));
+
+    }
+}

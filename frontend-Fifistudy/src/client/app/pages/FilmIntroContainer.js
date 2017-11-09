@@ -1,5 +1,5 @@
 import React from 'react';
-import {getFilm} from '../actions/dataIntropage'
+import {getFilm, getActorIntro} from '../actions/dataIntropage'
 import {connect} from 'react-redux';
 import Loading from '../components/Loading'
 import FilmIntro from './FilmIntro';
@@ -12,6 +12,7 @@ class FilmIntroContainer extends React.Component {
 
     componentWillMount = () => {
         this.props.getFilm(this.props.match.params.slug);
+        this.props.getActorIntro(this.props.match.params.slug);
     }
 
     render() {
@@ -35,4 +36,4 @@ const mapStateToProps = state => {
         film: state.dataIntropage.film
     }
 }
-export default connect(mapStateToProps, {getFilm})(FilmIntroContainer)
+export default connect(mapStateToProps, {getFilm, getActorIntro})(FilmIntroContainer)

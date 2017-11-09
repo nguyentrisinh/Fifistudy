@@ -32,6 +32,7 @@ export function getFilmDetail(slug) {
     }
 }
 
+
 export function getDataDetailPage(filmSlug, episodeId) {
 
     return function (dispatch) {
