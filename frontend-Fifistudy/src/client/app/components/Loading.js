@@ -1,5 +1,5 @@
 import React from 'react';
-
+import FadeTransition from'../components/FadeTransition';
 import $ from 'jquery';
 import '../../static/css/loading.scss'
 import jQuery from 'jquery';
@@ -10,7 +10,9 @@ require('imports-loader?jQuery=jquery!letteringjs');
 class Loading extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            in:true
+        };
     }
 
     componentDidMount = () => {
@@ -19,11 +21,21 @@ class Loading extends React.Component {
         })
     }
 
+    componentWillUnmount = () => {
+        this.setState({
+            in: false
+        })
+    }
+
     render() {
         return (
+            <FadeTransition timeout={350}
+                            classNames="fade"
+                            shouldShow={this.state.in}>
             <div ref="loading" className="loading">
                 Loading...
             </div>
+            </FadeTransition>
         )
     }
 }
