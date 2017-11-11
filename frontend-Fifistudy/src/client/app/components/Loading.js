@@ -1,10 +1,10 @@
 import React from 'react';
 import FadeTransition from'../components/FadeTransition';
-import $ from 'jquery';
 import '../../static/css/loading.scss'
 import jQuery from 'jquery';
 require('imports-loader?jQuery=jquery!letteringjs');
 // window.$ = window.jQuery = jQuery;
+// import 'letteringjs';
 
 
 class Loading extends React.Component {
