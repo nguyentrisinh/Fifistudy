@@ -1118,6 +1118,8 @@ body {
 
     background: rgba(#fff, 0.1);
     padding: 15px;
+    flex-grow: 1;
+    flex-shrink: 1;
   }
   &__description {
     box-sizing: border-box;
