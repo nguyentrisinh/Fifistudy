@@ -1250,4 +1250,18 @@ padding-top: 20px;
 
 .sign-up-page{
   padding-top: 80px;
+  background-image: url(https://www.edgehill.ac.uk/courses/files/2015/01/Further-Education-and-Training-2.jpg);
+  position: relative;
+  height:calc(100vh - 80px);
+  background-size: cover;
+
+  &__overlay{
+position: absolute;
+    top:0
+  ;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: rgba($ColorBackgroundDark,0.7);
+  }
 }
