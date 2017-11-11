@@ -1,7 +1,13 @@
 import React from 'react';
 import Logo from './Logo.jsx';
 import Menu from './Menu'
-import classNames from 'classnames';
+// import {Link} from 'react-router';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom'
+import classNames from 'classnames'
 
 class Header extends React.Component {
     constructor(props) {
@@ -27,9 +33,9 @@ class Header extends React.Component {
         return (
             <div className="header">
                 <div className="container header__container">
-                    <div className="header__item">
+                    <Link to="/" className="header__item">
                         <Logo/>
-                    </div>
+                    </Link>
                     <div
                         onClick={this.onClickMenu.bind(this, "phim")}
                         className={classNames("header__item header__item--has-children", {"header__item--open": this.state.open === "phim"})}

@@ -15,6 +15,11 @@ $ColorDarkGray: #626b74;
 $ColorTextGray: #d5d5d5;
 $MenuHeight: 65px;
 
+a {
+  text-decoration: none;
+
+}
+
 html {
   font-family: 'Roboto', sans-serif !important;
 }
@@ -34,15 +39,8 @@ body {
   padding-top: calc(1170px * 0.5625);
   width: 1170px;
   margin: auto;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,000000+45,000000+55,ffffff+100 */
-  background: rgb(255, 255, 255); /* Old browsers */
-  background: -moz-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 1) 55%, rgba(255, 255, 255, 1) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 1) 55%, rgba(255, 255, 255, 1) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 1) 55%, rgba(255, 255, 255, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1); /* IE6-9 */
 
   position: relative;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,000000+45,000000+55,ffffff+100 */
   &__container {
     position: absolute;
     width: 1170px;
@@ -90,6 +88,7 @@ body {
 
 .banner-item {
   position: absolute;
+  width: 100%;
   &__img {
     width: 100%;
     z-index: -1;
@@ -124,6 +123,9 @@ body {
       font-size: 3rem;
       font-weight: 500;
     }
+  }
+  &__level {
+    margin-top: 15px;
   }
 }
 
@@ -354,6 +356,7 @@ body {
 
 .film {
   border-left: solid 0.5px $ColorBorder;
+  display: block;
   border-right: solid 0.5px $ColorBorder;
   &__score {
     text-align: center;
@@ -373,6 +376,8 @@ body {
   }
 
   &__eng-name {
+    padding-left: 15px;
+    padding-right: 15px;
     font-size: 20px;
     font-weight: 400;
     text-align: center;
@@ -380,6 +385,8 @@ body {
     margin-bottom: 5px;
   }
   &__vi-name {
+    padding-left: 15px;
+    padding-right: 15px;
     font-size: 18px;
     font-weight: 400;
     text-align: center;
@@ -391,10 +398,19 @@ body {
     padding-bottom: 30px;
   }
   &__bookmark {
+    cursor: pointer;
     color: #ffff00;
     position: absolute;
-    left: 10px;
+    left: 15px;
     top: -5;
+    font-size: 25px;
+    .fa {
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+    }
   }
   &__overlay {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0+100 */
@@ -413,11 +429,15 @@ body {
     color: white;
     font-size: 20px;
     border-radius: 50%;
+    height: 25px;
+    width: 25px;
     padding: 10px;
     position: absolute;
     right: 10px;
     top: 10px;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -808,6 +828,9 @@ body {
     &:hover {
       background-color: $ColorWave;
     }
+    &--current {
+      background-color: $ColorDarkWave;
+    }
   }
 }
 
@@ -985,6 +1008,22 @@ body {
 }
 
 .banner {
+  &__overlay-btn {
+    transition: all 0.3s;
+    opacity: 0;
+    visibility: hidden;
+    &--open {
+      transition: all 0.3s;
+      opacity: 1;
+      visibility: visible;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background-color: rgba(#000, 0.4);
+    }
+  }
   &__wrap {
     width: 100%;
     padding-top: 56.25%;
@@ -1097,6 +1136,14 @@ body {
 }
 
 .list-actor {
+  &__info{
+    color: $ColorDarkGray;
+    font-style: italic;
+    padding-left: 20px;
+    background-color: $ColorBackgroundDark;
+padding-top: 20px;
+    padding-bottom: 40px;
+  }
   &__wrap {
     background-color: $ColorBackgroundDark;
   }
@@ -1112,13 +1159,25 @@ body {
     z-index: 1;
     width: 50px;
     height: 50px;
+    position: absolute;
+    top:50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+      background-color: rgba(#000,0.7);
+    }
     &--next {
       right: 0;
-      transform: translateX(calc(100% + 10px));
+      transform: translateX(100%);
     }
     &--prev {
       left: 0;
-      transform: translateX(calc(-100% - 10px));
+      transform: translateX(-100%);
     }
     &:before {
       font-size: 50px;
@@ -1160,4 +1219,26 @@ body {
   padding-top: $MenuHeight;
   &__wrap {
   }
+}
+
+.fade-enter {
+
+  opacity: 0.01
+}
+
+.fade-enter.fade-enter-active {
+
+  opacity: 1;
+  transition: opacity 500ms ease-in
+}
+
+.fade-exit {
+
+  opacity: 1
+}
+
+.fade-exit.fade-exit-active {
+
+  opacity: 0.01;
+  transition: opacity 300ms ease-in
 }
