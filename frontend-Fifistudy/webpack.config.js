@@ -22,7 +22,10 @@ var config = {
         historyApiFallback:true
     },
     module: {
-        loaders: [{
+        loaders: [ {
+            test: require.resolve("jquery"),
+            use: "imports-loader?this=>window"
+        },{
             test: /\.html$/,
             loader: 'html-loader?attrs[]=video:src'
         }, {

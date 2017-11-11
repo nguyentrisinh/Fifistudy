@@ -7,6 +7,7 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group'
 import {Switch} from 'react-router'
 
 import FilmIntroContainer from './pages/FilmIntroContainer'
+import SignUp from './pages/SignUp';
 import {
     BrowserRouter as Router,
     Route,
@@ -54,13 +55,14 @@ class App extends React.Component {
 
         return (
             <Router>
-                <div>
+                <div className="app">
                     <Header/>
                     <TransitionGroup>
                         <Switch>
                             <Route exact path="/" component={Index}/>
                             <Route exact path="/film/:filmSlug/:episodeId" component={DetailPageContainer}/>
                             <Route exact path="/film/:slug" component={FilmIntroContainer}/>
+                            <Route exact path="/signup" component={SignUp}/>
                         </Switch>
                     </TransitionGroup>
 
