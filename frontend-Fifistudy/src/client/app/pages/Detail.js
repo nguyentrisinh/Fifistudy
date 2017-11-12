@@ -13,21 +13,13 @@ import {Scrollbars} from 'react-custom-scrollbars';
 class Detail extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {in: true};
     }
 
-    componentWillUnmount = () => {
-        this.setState({
-            in: false
-        })
-    }
 
     render() {
         let {filmDetail, episode} = this.props;
         return (
-            <FadeTransition timeout={350}
-                            classNames="fade"
-                            shouldShow={this.state.in}>
+            <FadeTransition>
                 <div className="detail-page">
 
                     <div className="detail-page__overlay"

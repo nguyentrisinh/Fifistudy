@@ -8,6 +8,8 @@ import Input from '../components/Input';
 import update from 'react-addons-update';
 import {instanceOf} from 'prop-types';
 import validator from 'validator';
+
+import FadeTransition from '../components/FadeTransition'
 import {SERVER_ERRORS} from '../constants/serverErrors';
 import {Link} from 'react-router-dom';
 
@@ -16,6 +18,8 @@ class SignUp extends React.Component {
     static propTypes = {
         cookies: instanceOf(Cookies).isRequired
     };
+    componentWillUnmount = () => {
+    }
 
     constructor(props) {
         super(props);
@@ -37,7 +41,8 @@ class SignUp extends React.Component {
             disableNextTwo: true,
             disableNextThree: true,
             avatarFile: null,
-            disableNextFour: true
+            disableNextFour: true,
+            token: ''
         };
 
     }
@@ -207,10 +212,11 @@ class SignUp extends React.Component {
                 this.setState({
                     disableNextOne: false,
                     serverErrors: [],
+                    token: res.data.data.token,
                 })
                 this.animateNext(el);
 
-                cookies.set("token", res.data.data.token);
+                // cookies.set("token", res.data.data.token);
             }
 
         })
@@ -223,8 +229,9 @@ class SignUp extends React.Component {
         let data = {
             pin: this.state.pin
         }
-        let headers = {headers: {Authorization: `Token ${cookies.get("token")}`}}
+        let headers = {headers: {Authorization: `Token ${this.state.token}`}}
         let el = evt.target;
+        let token = this.state.token;
         postSignUpTwo(data, headers)
             .then(res => {
 
@@ -245,6 +252,7 @@ class SignUp extends React.Component {
                         serverErrors: [],
                     })
                     this.animateNext(el);
+                    cookies.set("token", token);
                 }
 
 
@@ -394,151 +402,153 @@ class SignUp extends React.Component {
 
     render() {
         return (
-            <div className="sign-up-page">
-                <div className="sign-up-page__overlay"></div>
-                <form id="msform">
-                    <ul id="progressbar">
-                        <li className="active">Tạo tài khoản</li>
-                        <li>Xác nhận tài khoản</li>
-                        <li>Nhập thông tin tài khoản</li>
-                        <li>Upload avatar</li>
-                        <li>Hoàn thành</li>
-                    </ul>
-                    <fieldset>
-                        <h2 className="fs-title">Tạo tài khoản</h2>
-                        <h3 className="fs-subtitle">Để lại nơi đây 1 chút thông tin tài khoản nào</h3>
-                        {/*<input onBlur={this.onBlurTextInput} type="text" onChange={this.onChangeTextInput}*/}
-                        {/*name="username" placeholder="Tên tài khoản"*/}
-                        {/*value={this.state.username}/>*/}
-                        <Input onBlur={this.onBlurTextInput} type="text" onChange={this.onChangeTextInput}
-                               name="username" placeholder="Tên tài khoản"
-                               value={this.state.username} err={this.state.errors.username}/>
-                        <Input onBlur={this.onBlurTextInput} type="text" onChange={this.onChangeTextInput}
-                               name="email"
-                               placeholder="Email"
-                               value={this.state.email} err={this.state.errors.email}/>
+            <FadeTransition>
+                <div className="sign-up-page">
+                    <div className="sign-up-page__overlay"></div>
+                    <form id="msform">
+                        <ul id="progressbar">
+                            <li className="active">Tạo tài khoản</li>
+                            <li>Xác nhận tài khoản</li>
+                            <li>Nhập thông tin tài khoản</li>
+                            <li>Upload avatar</li>
+                            <li>Hoàn thành</li>
+                        </ul>
+                        <fieldset>
+                            <h2 className="fs-title">Tạo tài khoản</h2>
+                            <h3 className="fs-subtitle">Để lại nơi đây 1 chút thông tin tài khoản nào</h3>
+                            {/*<input onBlur={this.onBlurTextInput} type="text" onChange={this.onChangeTextInput}*/}
+                            {/*name="username" placeholder="Tên tài khoản"*/}
+                            {/*value={this.state.username}/>*/}
+                            <Input onBlur={this.onBlurTextInput} type="text" onChange={this.onChangeTextInput}
+                                   name="username" placeholder="Tên tài khoản"
+                                   value={this.state.username} err={this.state.errors.username}/>
+                            <Input onBlur={this.onBlurTextInput} type="text" onChange={this.onChangeTextInput}
+                                   name="email"
+                                   placeholder="Email"
+                                   value={this.state.email} err={this.state.errors.email}/>
 
-                        <Input onBlur={this.onBlurTextInput} type="password" onChange={this.onChangeTextInput}
-                               name="password" placeholder="Mật khẩu"
-                               value={this.state.password} err={this.state.errors.password}/>
+                            <Input onBlur={this.onBlurTextInput} type="password" onChange={this.onChangeTextInput}
+                                   name="password" placeholder="Mật khẩu"
+                                   value={this.state.password} err={this.state.errors.password}/>
 
-                        <Input onBlur={this.onBlurTextInput} type="password" onChange={this.onChangeTextInput}
-                               name="confirmPass"
-                               placeholder="Xác nhận mật khẩu" value={this.state.confirmPass}
-                               err={this.state.errors.confirmPass}/>
-                        <div className="signup__error">
+                            <Input onBlur={this.onBlurTextInput} type="password" onChange={this.onChangeTextInput}
+                                   name="confirmPass"
+                                   placeholder="Xác nhận mật khẩu" value={this.state.confirmPass}
+                                   err={this.state.errors.confirmPass}/>
+                            <div className="signup__error">
 
+                                {
+                                    this.renderServerErrors()
+                                }
+                            </div>
+                            <button disabled={this.state.disableNextOne} onClick={this.onClickStepOne} type="button"
+                                    name="next" className="next action-button"
+                            >
+                                Tiếp theo
+                            </button>
+                        </fieldset>
+                        <fieldset>
+                            <h2 className="fs-title">Xác nhận tài khoản</h2>
+                            <h3 className="fs-subtitle">Nhập mã xác nhận vào cho vui nhà vui cửa nòe</h3>
+                            <Input type="text" onChange={this.onChangeTextInput} name="pin" placeholder="Mã xác nhận"
+                                   value={this.state.pin} error={this.state.errors.pin}/>
                             {
                                 this.renderServerErrors()
                             }
-                        </div>
-                        <button disabled={this.state.disableNextOne} onClick={this.onClickStepOne} type="button"
-                                name="next" className="next action-button"
-                        >
-                            Tiếp theo
-                        </button>
-                    </fieldset>
-                    <fieldset>
-                        <h2 className="fs-title">Xác nhận tài khoản</h2>
-                        <h3 className="fs-subtitle">Nhập mã xác nhận vào cho vui nhà vui cửa nòe</h3>
-                        <Input type="text" onChange={this.onChangeTextInput} name="pin" placeholder="Mã xác nhận"
-                               value={this.state.pin} error={this.state.errors.pin}/>
-                        {
-                            this.renderServerErrors()
-                        }
-                        <button disabled={this.state.disableNextTwo} onClick={this.onClickStepTwo}
-                                type="button"
-                                name="next" className="next action-button"
-                        >
-                            Tiếp theo
-                        </button>
-                    </fieldset>
-                    <fieldset>
-                        <h2 className="fs-title">Nhập thông tin tài khoản</h2>
-                        <h3 className="fs-subtitle">Bạn đã tạo tài khoản thành công. Thêm một ít thông tin về bạn
-                            nhóe</h3>
-                        <Input type="text" onChange={this.onChangeTextInput} name="firstName"
-                               placeholder="Họ và tên lót" value={this.state.firstName}/>
-                        <Input type="text" onChange={this.onChangeTextInput} name="lastName" placeholder="Tên"
-                               value={this.state.lastName}/>
-                        <div className="wrap-input">
-                            <div className="wrap-input__title">Giới tính</div>
-                            <label className="label--radio">
-                                <input type="radio" className="radio" onChange={this.onRadioButtonChange}
-                                       checked={this.state.sex == 1} name={1}/>
-                                Nam
-                            </label>
-                            <label className="label--radio">
-                                <input type="radio" className="radio" onChange={this.onRadioButtonChange}
-                                       checked={this.state.sex == 0} name={0}/>
-                                Nữ
-                            </label>
-                        </div>
-                        <Input type="text" onChange={this.onChangeTextInput} name="phone"
-                               placeholder="Số điện thoại" err={this.state.errors.phone}
-                               value={this.state.phone}/>
-                        <Input type="text" onChange={this.onChangeTextInput} name="birthday" placeholder="Ngày sinh"
-                               value={this.state.birthday}/>
-                        <textarea className="input-com__input" onChange={this.onChangeTextInput} type="text"
-                                  name="address" placeholder="Địa chỉ"
-                                  value={this.state.address}/>
-                        {
-                            this.renderServerErrors()
-                        }
-                        <button onClick={this.onClickCancelButton} type="button"
-                                name="next" className="next action-button action-button__cancel"
-                        >
-                            Bỏ qua
-                        </button>
-                        <button disabled={this.state.disableNextThree} onClick={this.onClickStepThree} type="button"
-                                name="next" className="next action-button"
-                        >
-                            Tiếp theo
-                        </button>
-                    </fieldset>
-                    <fieldset>
-                        <h2 className="fs-title">Cập nhật ảnh đại diện</h2>
-                        <h3 className="fs-subtitle">Thêm cái bản mặt vô để cân bằng giao diện nào</h3>
-                        <div className="wrap-input wrap-input--center">
-                            <label htmlFor="avatar" className="action-button">
-                                Upload Avatar
-                            </label>
-                        </div>
+                            <button disabled={this.state.disableNextTwo} onClick={this.onClickStepTwo}
+                                    type="button"
+                                    name="next" className="next action-button"
+                            >
+                                Tiếp theo
+                            </button>
+                        </fieldset>
+                        <fieldset>
+                            <h2 className="fs-title">Nhập thông tin tài khoản</h2>
+                            <h3 className="fs-subtitle">Bạn đã tạo tài khoản thành công. Thêm một ít thông tin về bạn
+                                nhóe</h3>
+                            <Input type="text" onChange={this.onChangeTextInput} name="firstName"
+                                   placeholder="Họ và tên lót" value={this.state.firstName}/>
+                            <Input type="text" onChange={this.onChangeTextInput} name="lastName" placeholder="Tên"
+                                   value={this.state.lastName}/>
+                            <div className="wrap-input">
+                                <div className="wrap-input__title">Giới tính</div>
+                                <label className="label--radio">
+                                    <input type="radio" className="radio" onChange={this.onRadioButtonChange}
+                                           checked={this.state.sex == 1} name={1}/>
+                                    Nam
+                                </label>
+                                <label className="label--radio">
+                                    <input type="radio" className="radio" onChange={this.onRadioButtonChange}
+                                           checked={this.state.sex == 0} name={0}/>
+                                    Nữ
+                                </label>
+                            </div>
+                            <Input type="text" onChange={this.onChangeTextInput} name="phone"
+                                   placeholder="Số điện thoại" err={this.state.errors.phone}
+                                   value={this.state.phone}/>
+                            <Input type="text" onChange={this.onChangeTextInput} name="birthday" placeholder="Ngày sinh"
+                                   value={this.state.birthday}/>
+                            <textarea className="input-com__input" onChange={this.onChangeTextInput} type="text"
+                                      name="address" placeholder="Địa chỉ"
+                                      value={this.state.address}/>
+                            {
+                                this.renderServerErrors()
+                            }
+                            <button onClick={this.onClickCancelButton} type="button"
+                                    name="next" className="next action-button action-button__cancel"
+                            >
+                                Bỏ qua
+                            </button>
+                            <button disabled={this.state.disableNextThree} onClick={this.onClickStepThree} type="button"
+                                    name="next" className="next action-button"
+                            >
+                                Tiếp theo
+                            </button>
+                        </fieldset>
+                        <fieldset>
+                            <h2 className="fs-title">Cập nhật ảnh đại diện</h2>
+                            <h3 className="fs-subtitle">Thêm cái bản mặt vô để cân bằng giao diện nào</h3>
+                            <div className="wrap-input wrap-input--center">
+                                <label htmlFor="avatar" className="action-button">
+                                    Upload Avatar
+                                </label>
+                            </div>
 
-                        {
-                            this.state.avatarFile ?
-                                <div>{this.state.avatarFile.name}</div> : null
-                        }
+                            {
+                                this.state.avatarFile ?
+                                    <div>{this.state.avatarFile.name}</div> : null
+                            }
 
 
-                        <input onChange={this.onOpenAvatar} id="avatar" type="file" hidden={true}/>
+                            <input onChange={this.onOpenAvatar} id="avatar" type="file" hidden={true}/>
 
-                        <button onClick={this.onClickBackButton} type="button"
-                                name="next" className="next action-button"
-                        >
-                            Trở lại
-                        </button>
-                        <button onClick={this.onClickCancelButton} type="button"
-                                name="next" className="next action-button action-button__cancel"
-                        >
-                            Bỏ qua
-                        </button>
-                        <button disabled={this.state.disableNextFour} onClick={this.onClickUploadAvatarButton}
-                                type="button"
-                                name="next" className="next action-button "
-                        >
-                            Xong
-                        </button>
-                    </fieldset>
-                    <fieldset>
-                        <h2 className="fs-title">Hoàn thành</h2>
-                        <Link to="/" className="next action-button "
-                        >
-                            OK
-                        </Link>
-                    </fieldset>
-                </form>
-            </div>
+                            <button onClick={this.onClickBackButton} type="button"
+                                    name="next" className="next action-button"
+                            >
+                                Trở lại
+                            </button>
+                            <button onClick={this.onClickCancelButton} type="button"
+                                    name="next" className="next action-button action-button__cancel"
+                            >
+                                Bỏ qua
+                            </button>
+                            <button disabled={this.state.disableNextFour} onClick={this.onClickUploadAvatarButton}
+                                    type="button"
+                                    name="next" className="next action-button "
+                            >
+                                Xong
+                            </button>
+                        </fieldset>
+                        <fieldset>
+                            <h2 className="fs-title">Hoàn thành</h2>
+                            <Link to="/" className="next action-button "
+                            >
+                                OK
+                            </Link>
+                        </fieldset>
+                    </form>
+                </div>
+            </FadeTransition>
         )
     }
 }

@@ -18,16 +18,8 @@ class Index extends React.Component {
         this.props.getPromotes();
         this.props.getLastest();
         this.props.getMostView();
-        this.state = {
-            in: true
-        }
     }
 
-    componentWillUnmount = () => {
-        this.setState({
-            in: false
-        })
-    }
 
     constructor(props) {
         super(props);
@@ -46,9 +38,7 @@ class Index extends React.Component {
 
     render() {
         return (
-            <FadeTransition timeout={350}
-                            classNames="fade"
-                            shouldShow={this.state.in}>
+            <FadeTransition>
                 <div className="index-page">
                     <Scrollbars
                         autoHide={true}

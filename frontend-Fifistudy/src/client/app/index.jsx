@@ -6,7 +6,7 @@ import '../static/css/index.scss';
 import {Provider} from "react-redux";
 import ListPage from "./pages/ListPage"
 
-import reducer from "./reducers/app";
+import reducer from "./reducers/main";
 import {applyMiddleware, createStore} from "redux";
 import {render} from 'react-dom';
 import App from './App';

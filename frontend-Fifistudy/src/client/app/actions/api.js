@@ -74,3 +74,39 @@ export const postUpdateAvatar = (data, config) => {
             return err.response
         })
 }
+
+export const getUserInfo = (token) => {
+
+    let config = {
+        headers: {
+            Authorization: `Token ${token}`
+        }
+    }
+
+    return axios.get(Api.getUserInfo, config)
+        .then(response => {
+            return response
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+export const postLogin = (data) => {
+    // {
+    //     "username": "string",
+    //     "password": "string"
+    // }
+
+//     headers:{
+//         Authorization:"Token xxxxx...."
+//     }
+
+    return axios.post(Api.postLogin, data)
+        .then(response => {
+            return response
+        })
+        .catch(err => {
+            return err.response
+        })
+}

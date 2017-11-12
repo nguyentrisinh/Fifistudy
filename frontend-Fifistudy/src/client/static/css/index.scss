@@ -144,6 +144,13 @@ body {
   z-index: 99999999;
   width: 100%;
   top:0;
+  &__signup{
+    color: white;
+    &:hover,&:focus,&:active{
+      color: $ColorRed;
+    }
+  }
+
 
   &__container {
     box-sizing: border-box;
@@ -155,10 +162,15 @@ body {
   }
   &__item {
     padding-left: 20px;
+    cursor:pointer;
     padding-right: 20px;
     color: #fffafa;
     font-size: 20px;
     transition: background-color 0.5s;
+    &--account{
+      font-size: 18px;
+      font-weight: 400;
+    }
     &--search {
       flex-grow: 1;
       font-size: 18px;
@@ -214,19 +226,26 @@ body {
     color: #fffafa;
   }
   &__wrap-avatar {
-    position: relative;
-    padding-top: 45px;
+    //position: relative;
+    //padding-top: 45px;
     width: 45px;
+    height:45px;
     overflow: hidden;
     margin-right: 10px;
-  }
-  &__avatar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
     border-radius: 50%;
   }
+  //&__avatar {
+  //  object-fit: cover;
+  //  position: absolute;
+  //  top: 0;
+  //  left: 0;
+  //  bottom:0;
+  //  right:0;
+  //  width: 100%;
+  //  border-radius: 50%;
+  //}
 
 }
 
@@ -1276,6 +1295,49 @@ position: absolute;
     color: #2C3E50;
     &--error{
       border:solid 1px $ColorDarkRed;
+    }
+  }
+}
+
+.modal-title{
+  margin-bottom: 20px;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  text-align: center;
+}
+
+.modal{
+  text-align: center;
+}
+
+
+/*buttons*/
+.action-button {
+  text-align: center;
+  background: #27AE60;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+  min-width: 100px;
+  &[disabled]{
+    background: $ColorDarkGray;
+  }
+  &__cancel{
+    background: $ColorLightGray;
+  }
+  &:hover, &:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+    outline:none;
+    &[disabled]{
+      box-shadow: none;
+      outline:none;
+      cursor: initial;
     }
   }
 }
