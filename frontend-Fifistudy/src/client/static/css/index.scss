@@ -1,19 +1,4 @@
-$ColorBlue: #337ab7;
-$ColorDarkBlue: #286090;
-$ColorGreen: #5cb85c;
-$ColorDarkGreen: #449d44;
-$ColorYellow: #f0ad4e;
-$ColorDarkYellow: #ec971f;
-$ColorRed: #d9534f;
-$ColorDarkRed: #c9302c;
-$ColorWave: #5bc0de;
-$ColorDarkWave: #31b0d5;
-$ColorBorder: #0e151d;
-$ColorBackgroundDark: #060b11;
-$ColorLightGray: #ececec;
-$ColorDarkGray: #626b74;
-$ColorTextGray: #d5d5d5;
-$MenuHeight: 65px;
+@import './colors';
 ul{
   padding-left: 0;
 }
@@ -1263,5 +1248,34 @@ position: absolute;
     right:0;
     bottom:0;
     background-color: rgba($ColorBackgroundDark,0.7);
+  }
+  &__error{
+    font-size: 14px;
+    margin-top: 19px;
+    margin-bottom: -5px;
+    color:$ColorDarkRed;
+  }
+}
+
+.input-com{
+  &__error{
+    text-align: left;
+    color: $ColorDarkRed;
+    font-size: 12px;
+    padding-bottom: 15px;
+    margin-top: -3px;
+  }
+  &__input{
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #2C3E50;
+    &--error{
+      border:solid 1px $ColorDarkRed;
+    }
   }
 }

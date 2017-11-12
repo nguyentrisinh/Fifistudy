@@ -9,7 +9,11 @@ export const Api = {
         return `api/episodes/detail/?film_slug=${filmSlug}&episode_number=${episodeId}`
     },
     getActor: (slug) => `api/actor/film/?film_slug=${slug}`,
-    postSignUpOne: `api/signup/signup_step_one/`
+    postSignUpOne: `api/signup/signup_step_one/`,
+    postSignUpTwo: `api/signup/active_user/`,
+    postUpdateUserInfo: `api/signup/signup_step_two/`,
+    postUpdateAvatar: `api/signup/update_avatar/`
+
 }
 
 // slug/?film_slug=<slug></slug>

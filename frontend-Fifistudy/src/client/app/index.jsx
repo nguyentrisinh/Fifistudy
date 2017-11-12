@@ -1,6 +1,7 @@
 import React from 'react';
 
 import SliderBanner from './components/SliderBanner.jsx';
+import {CookiesProvider} from 'react-cookie';
 import '../static/css/index.scss';
 import {Provider} from "react-redux";
 import ListPage from "./pages/ListPage"
@@ -23,7 +24,9 @@ const store = createStoreWithMiddleware(reducer, window.__REDUX_DEVTOOLS_EXTENSI
 
 render(
     <Provider store={store}>
-        <App/>
+        <CookiesProvider>
+            <App/>
+        </CookiesProvider>
     </Provider>
 
 

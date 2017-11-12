@@ -1,10 +1,11 @@
 import React from 'react';
 import Header from './components/Header';
-
 import DetailPageContainer from './pages/DetailContainer'
 import Index from './pages/Index.jsx';
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
 import {Switch} from 'react-router'
+
+import {instanceOf} from 'prop-types';
 
 import FilmIntroContainer from './pages/FilmIntroContainer'
 import SignUp from './pages/SignUp';
