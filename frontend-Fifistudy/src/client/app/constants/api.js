@@ -14,7 +14,8 @@ export const Api = {
     postUpdateUserInfo: `/api/signup/signup_step_two/`,
     postUpdateAvatar: `/api/signup/update_avatar/`,
     getUserInfo: `/api/fifi_user/get_current/`,
-    postLogin: `/api/auth/login/`
+    postLogin: `/api/auth/login/`,
+    getLogout: `/api/auth/logout/`
 
 }
 

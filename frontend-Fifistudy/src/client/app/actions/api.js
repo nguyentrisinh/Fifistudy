@@ -110,3 +110,20 @@ export const postLogin = (data) => {
             return err.response
         })
 }
+
+export const getLogout = (token) => {
+
+    let config = {
+        headers: {
+            Authorization: `Token ${token}`
+        }
+    }
+
+    return axios.get(Api.getLogout, config)
+        .then(response => {
+            return response
+        })
+        .catch(err => {
+            return err.response
+        })
+}

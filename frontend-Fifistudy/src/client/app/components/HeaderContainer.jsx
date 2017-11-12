@@ -8,7 +8,8 @@ import {
     Link
 } from 'react-router-dom';
 import ReactImageFallback from "react-image-fallback";
-import classNames from 'classnames'
+import classNames from 'classnames';
+import {getLogout} from '../actions/api'
 import ModalLogin from './ModalLogin'
 import {connect} from 'react-redux';
 import {withCookies} from 'react-cookie'
@@ -42,9 +43,17 @@ class Header extends React.Component {
 
     onClickAccountSection = () => {
         let {cookies} = this.props;
+
         if (cookies.get("token")) {
-            cookies.remove("token");
-            window.location.reload();
+            let token = cookies.get("token");
+
+            getLogout(token).then(res => {
+                if (res.data.errors == null) {
+                    cookies.remove("token");
+                    window.location.reload();
+                }
+            })
+
         }
     }
 
