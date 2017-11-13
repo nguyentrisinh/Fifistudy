@@ -58,7 +58,6 @@ class DetailContainer extends React.Component {
                 let {episode, film} = this.props.data.serverData;
                 if (episode.errors == null && film.errors == null) {
                     if (episode.data && film.data) {
-                        debugger
                         return (
                             <Detail episode={episode.data} filmDetail={film.data}/>
                         )

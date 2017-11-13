@@ -14,13 +14,8 @@ import Footer from '../components/Footer'
 export default class FilmIntro extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {in: true}
     }
 
-
-    componentWillUnmount() {
-        this.setState({in: false})
-    }
 
     componentWillMount = () => {
 
@@ -28,9 +23,7 @@ export default class FilmIntro extends React.Component {
 
     render() {
         return (
-            <FadeTransition timeout={350}
-                            classNames="fade"
-                            shouldShow={this.state.in}>
+            <FadeTransition>
                 <div className="film-intro-page">
 
                     <div className="detail-page__overlay"

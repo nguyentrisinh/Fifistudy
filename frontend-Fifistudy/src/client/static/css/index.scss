@@ -1,19 +1,4 @@
-$ColorBlue: #337ab7;
-$ColorDarkBlue: #286090;
-$ColorGreen: #5cb85c;
-$ColorDarkGreen: #449d44;
-$ColorYellow: #f0ad4e;
-$ColorDarkYellow: #ec971f;
-$ColorRed: #d9534f;
-$ColorDarkRed: #c9302c;
-$ColorWave: #5bc0de;
-$ColorDarkWave: #31b0d5;
-$ColorBorder: #0e151d;
-$ColorBackgroundDark: #060b11;
-$ColorLightGray: #ececec;
-$ColorDarkGray: #626b74;
-$ColorTextGray: #d5d5d5;
-$MenuHeight: 65px;
+@import './colors';
 ul{
   padding-left: 0;
 }
@@ -159,6 +144,13 @@ body {
   z-index: 99999999;
   width: 100%;
   top:0;
+  &__signup{
+    color: white;
+    &:hover,&:focus,&:active{
+      color: $ColorRed;
+    }
+  }
+
 
   &__container {
     box-sizing: border-box;
@@ -170,10 +162,15 @@ body {
   }
   &__item {
     padding-left: 20px;
+    cursor:pointer;
     padding-right: 20px;
     color: #fffafa;
     font-size: 20px;
     transition: background-color 0.5s;
+    &--account{
+      font-size: 18px;
+      font-weight: 400;
+    }
     &--search {
       flex-grow: 1;
       font-size: 18px;
@@ -229,19 +226,26 @@ body {
     color: #fffafa;
   }
   &__wrap-avatar {
-    position: relative;
-    padding-top: 45px;
+    //position: relative;
+    //padding-top: 45px;
     width: 45px;
+    height:45px;
     overflow: hidden;
     margin-right: 10px;
-  }
-  &__avatar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
     border-radius: 50%;
   }
+  //&__avatar {
+  //  object-fit: cover;
+  //  position: absolute;
+  //  top: 0;
+  //  left: 0;
+  //  bottom:0;
+  //  right:0;
+  //  width: 100%;
+  //  border-radius: 50%;
+  //}
 
 }
 
@@ -1250,4 +1254,90 @@ padding-top: 20px;
 
 .sign-up-page{
   padding-top: 80px;
+  background-image: url(https://www.edgehill.ac.uk/courses/files/2015/01/Further-Education-and-Training-2.jpg);
+  position: relative;
+  height:calc(100vh - 80px);
+  background-size: cover;
+
+  &__overlay{
+position: absolute;
+    top:0
+  ;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: rgba($ColorBackgroundDark,0.7);
+  }
+  &__error{
+    font-size: 14px;
+    margin-top: 19px;
+    margin-bottom: -5px;
+    color:$ColorDarkRed;
+  }
+}
+
+.input-com{
+  &__error{
+    text-align: left;
+    color: $ColorDarkRed;
+    font-size: 12px;
+    padding-bottom: 15px;
+    margin-top: -3px;
+  }
+  &__input{
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #2C3E50;
+    &--error{
+      border:solid 1px $ColorDarkRed;
+    }
+  }
+}
+
+.modal-title{
+  margin-bottom: 20px;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  text-align: center;
+}
+
+.modal{
+  text-align: center;
+}
+
+
+/*buttons*/
+.action-button {
+  text-align: center;
+  background: #27AE60;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+  min-width: 100px;
+  &[disabled]{
+    background: $ColorDarkGray;
+  }
+  &__cancel{
+    background: $ColorLightGray;
+  }
+  &:hover, &:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+    outline:none;
+    &[disabled]{
+      box-shadow: none;
+      outline:none;
+      cursor: initial;
+    }
+  }
 }

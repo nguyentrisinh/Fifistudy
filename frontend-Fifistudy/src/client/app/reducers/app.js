@@ -1,14 +1,18 @@
-import {combineReducers} from "redux";
-import index from './index'
-import dataHomepage from './dataHomepage'
-import dataIntropage from './dataIntropage'
-import dataDetailpage from './dataDetailPage'
+import * as Types from '../constants/app'
+import update from 'react-addons-update'
+// update(state, {$merge: {userInfo: res}})
+const initialState = {
+    userInfo: null
+}
 
-const rootReducer = combineReducers({
-    index,
-    dataHomepage,
-    dataIntropage,
-    dataDetailpage
-})
+export default function index(state = initialState, action) {
 
-export default rootReducer
+    switch (action.type) {
+        case Types.GET_USER_INFO:
+
+            return Object.assign({}, state, {userInfo: action.serverData})
+        // Object.assign({},state,{userInfo:action.serverData})
+        default:
+            return state
+    }
+}

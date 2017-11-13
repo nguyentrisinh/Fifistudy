@@ -1,5 +1,5 @@
 /*custom font*/
-
+@import './colors';
 /*form styles*/
 #msform {
   width: 800px;
@@ -27,31 +27,43 @@
 /*inputs*/
 #msform {
   input[type="text"],input[type="password"],input[type="email"],textarea {
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  margin-bottom: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 14px;
-  color: #2C3E50;
+  //padding: 15px;
+  //border: 1px solid #ccc;
+  //border-radius: 3px;
+  //margin-bottom: 10px;
+  //width: 100%;
+  //box-sizing: border-box;
+  //font-size: 14px;
+  //color: #2C3E50;
 }
 }
 /*buttons*/
 #msform .action-button {
-  width: 100px;
   background: #27AE60;
   font-weight: bold;
   color: white;
   border: 0 none;
   border-radius: 1px;
+  display: inline-block;
   cursor: pointer;
   padding: 10px 5px;
   margin: 10px 5px;
+  min-width: 100px;
+  &[disabled]{
+    background: $ColorDarkGray;
+  }
+  &__cancel{
+    background: $ColorLightGray;
+  }
 }
 #msform .action-button:hover, #msform .action-button:focus {
   box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
   outline:none;
+  &[disabled]{
+    box-shadow: none;
+    outline:none;
+    cursor: initial;
+  }
 }
 /*headings*/
 .fs-title {
@@ -78,11 +90,13 @@
   color: white;
   text-transform: uppercase;
   font-size: 14px;
-  width: 25%;
+  width: 20%;
   float: left;
   position: relative;
 }
 #progressbar li:before {
+  z-index: 2;
+  position: relative;
   content: counter(step);
   counter-increment: step;
   width: 40px;
@@ -107,7 +121,7 @@
   position: absolute;
   left: -50%;
   top: 20px;
-  z-index: -1; /*put it behind the numbers*/
+  z-index: 0; /*put it behind the numbers*/
 }
 #progressbar li:first-child:after {
   /*connector not needed before the first step*/
@@ -120,5 +134,18 @@
   color: white;
 }
 
+.wrap-input {
+  padding-bottom: 15px;
+  text-align: left;
+  &__title {
+    padding: 15px;
+    padding-left: 2px;
+    color: #2C3E50;
+    font-size: 14px;
+  }
+  &--center{
+    text-align: center;
+  }
+}
 
 

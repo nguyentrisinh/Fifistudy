@@ -8,21 +8,6 @@ $twitter: #2980b9;
   @return #{$val / $baseFontSize}rem;
 }
 
-body {
-  font-size: #{$baseFontSize}px;
-}
-
-h1 {
-  padding: .5rem 1rem;
-  margin: .5rem .5rem 0 .5rem;
-
-  border-left: rem(3) solid $primaryColor;
-
-  font-family: Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  line-height: 130%;
-}
-
 .number {
   position: absolute;
   top: rem(35);
@@ -160,10 +145,6 @@ h1 {
   }
 }
 
-.footer {
-  position: relative;
-}
-
 .btn {
   transition: background .3s ease-in-out ;
 
@@ -181,26 +162,5 @@ h1 {
 
   &:hover {
     background: darken($primaryColor, 5%);
-  }
-}
-
-.btn--twitter {
-  right: 2rem;
-
-  background: $twitter;
-
-  &:hover {
-    background: darken($twitter, 5%);
-  }
-}
-
-.wrap-input {
-  padding-bottom: 15px;
-  text-align: left;
-  &__title {
-    padding: 15px;
-    padding-left: 2px;
-    color: #2C3E50;
-    font-size: 14px;
   }
 }

@@ -1,13 +1,16 @@
 import React from 'react';
-import Header from './components/Header';
-
+import Header from './components/HeaderContainer';
 import DetailPageContainer from './pages/DetailContainer'
 import Index from './pages/Index.jsx';
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
 import {Switch} from 'react-router'
-
-import FilmIntroContainer from './pages/FilmIntroContainer'
+import {withCookies} from 'react-cookie'
+import {instanceOf} from 'prop-types';
+import {getUserInfo} from './actions/app'
+import FilmIntroContainer from './pages/FilmIntroContainer';
+import {connect} from 'react-redux';
 import SignUp from './pages/SignUp';
+import App from './App'
 import {
     BrowserRouter as Router,
     Route,
@@ -28,10 +31,17 @@ import {
 // };
 
 
-class App extends React.Component {
+class AppContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {show: false};
+    }
+
+    componentWillMount = () => {
+        const {cookies} = this.props;
+        if (cookies.get("token")) {
+            this.props.getUserInfo(cookies.get("token"));
+        }
     }
 
     //
@@ -85,4 +95,5 @@ class App extends React.Component {
     }
 }
 
-export default App
+
+export default withCookies(connect(null, {getUserInfo})(AppContainer))
