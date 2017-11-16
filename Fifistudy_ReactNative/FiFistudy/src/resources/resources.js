@@ -12,6 +12,10 @@ const resources = {
         bookmark: require('./icons/ic_bookmark.png'),
         bookmarkFull: require('./icons/ic_bookmark_full.png'),
     },
+    image: {
+        default: require('./img/img_default.png'),
+        
+    },
 
     icError: require('./icons/ic_error.png')
 }
