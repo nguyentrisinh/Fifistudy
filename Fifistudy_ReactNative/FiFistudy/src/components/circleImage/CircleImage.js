@@ -12,13 +12,13 @@ import Styles from './styles';
 export default class CircleImage extends Component {
     render(){
         return (
-            <Image style={[styles, {
+            <Image style={[Styles, {
                     height: this.props.size,
                     width: this.props.size,
-                    elevation: this.props.showShadow ? 3 : 0,
                     }]}
                     resizeMode='contain'
-                    source={this.props.source}/>
+                    source={this.props.source}
+                    elevation={this.props.showShadow ? 3 : 0}/>
         );
     }
 }

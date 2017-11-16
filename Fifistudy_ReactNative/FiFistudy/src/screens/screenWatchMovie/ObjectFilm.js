@@ -6,6 +6,7 @@ let objFilm = {
     listEpisode: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     comments: [
         {
+            ID: 1,
             user: 'phuongnl',
             userAvatar: '',
             firstName: 'Phuong',

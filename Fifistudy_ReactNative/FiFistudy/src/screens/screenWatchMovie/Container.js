@@ -12,8 +12,8 @@ import {
 import Utils from '../../Utils';
 import ObjectFilm from './ObjectFilm';
 import EpisodeCircleView from '../../components/EpisodeCircleView';
-import CircleImage from '../../components/circleImage/CircleImage';
 import ImageButton from '../../components/ImageButton';
+import CommentItem from './CommentItem';
 import Resources from '../../resources/resources';
 import Styles from './styles';
 
@@ -64,8 +64,12 @@ export default class WatchScreen extends Component {
                     </View>
 
                     {/* List comment */}
-                    {/* <FlatList data={ObjectFilm.comments}
-                    renderItem={}/> */}
+                    <FlatList
+                    data={ObjectFilm.comments}
+                    keyExtractor={item => item.ID}
+                    renderItem={({item}) => (
+                        <CommentItem/>
+                    )}/>
             </View>
             </ScrollView>
         );

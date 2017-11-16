@@ -8,6 +8,7 @@ const resources = {
         bookmarkFull: require('./icons/ic_bookmark_full.png'),
         error: require('./icons/ic_error.png'),
         send: require('./icons/ic_send.png'),
+        like: require('./icons/ic_like.png'),
     },
     image: {
         default: require('./img/img_default.png'),
