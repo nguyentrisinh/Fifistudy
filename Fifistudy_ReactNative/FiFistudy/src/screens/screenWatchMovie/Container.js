@@ -4,25 +4,21 @@ import {
     Text,
     Image,
     View,
-    Dimensions,
     ScrollView,
+    Dimensions,
+    TextInput,
     FlatList,
 } from 'react-native';
 import Utils from '../../Utils';
 import ObjectFilm from './ObjectFilm';
-import ListEpisode from './ListEpisode';
-import EnterCommentView from './EnterCommentView';
+import EpisodeCircleView from '../../components/EpisodeCircleView';
+import CircleImage from '../../components/circleImage/CircleImage';
+import ImageButton from '../../components/ImageButton';
+import Resources from '../../resources/resources';
+import Styles from './styles';
 
 
 export default class WatchScreen extends Component {
-    constructor(props){
-        super(props);
-
-        this.state = {
-            listEpisode: [1, 2, 3, 3.5, 6, 10],
-        }
-    }
-
     render(){
         width = Dimensions.get('window').width;
         return (
@@ -45,19 +41,32 @@ export default class WatchScreen extends Component {
                 </View>
                 {/* END SUB SECTION */}
 
-                <ListEpisode/>
+                {/* LIST EPISODE */}
+                <FlatList 
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    data={ObjectFilm.listEpisode}
+                    keyExtractor={item => item}
+                    renderItem={({item}) => (
+                        <EpisodeCircleView episodeNumber={item} size={42} />
+                    )}                
+                />
 
                 {/* COMMENT SECTION */}
-                <View style={{
-                    backgroundColor: 'lightgray',
-                    width: width,
-                    height: width * Utils.RATIO,
-                    }}>
-                    <Text style={{fontWeight: 'bold'}}>Bình luận</Text>
-                    <EnterCommentView/>
+                <View style={Styles.commentContainer}>
+                    <Text style={Styles.text}>Bình luận</Text>
+
+
+                    {/* Enter comment section */}
+                    <View style={Styles.enterCommentContainer}>
+                        <TextInput style={{flex: 1}} multiline={true} blurOnSubmit={false}/>
+                        <ImageButton source={Resources.icons.send}/>
+                    </View>
+
+                    {/* List comment */}
                     {/* <FlatList data={ObjectFilm.comments}
                     renderItem={}/> */}
-                </View>
+            </View>
             </ScrollView>
         );
     }
