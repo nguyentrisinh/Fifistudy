@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-export default class CircleTV extends Component {
+export default class EpisodeCircleView extends Component {
     render(){
         return (
             <View style={[styles.cicle, 
@@ -20,22 +20,22 @@ export default class CircleTV extends Component {
                     fontWeight: 'bold',
                     color: this.props.textColor,
                 }}>
-                    {this.props.text}
+                    {this.props.episodeNumber}
                 </Text>
             </View>
         );
     }
 }
 
-CircleTV.defaultProps = {
-    text: 'number',
+EpisodeCircleView.defaultProps = {
+    episodeNumber: 0,
     color: '#2196F3',
     textColor: 'white',
     size: 32,
 }
 
-CircleTV.propTypes = {
-    text: PropTypes.string.isRequired,
+EpisodeCircleView.propTypes = {
+    episodeNumber: PropTypes.number.isRequired,
     color: PropTypes.string,
     textColor: PropTypes.string,
     size: PropTypes.number,
