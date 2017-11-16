@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import Notes from './Containers/Notes.js';
+import React, { Component } from 'react';
+import DrawerApp from './Navigators/DrawerApp.js';
 
 class App extends Component {
     render() {
         return (
-            <Notes />
+            <DrawerApp />
         )
     }
 }

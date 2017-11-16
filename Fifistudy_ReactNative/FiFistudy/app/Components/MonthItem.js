@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import {
     View,
-    Text
+    Text,
+    FlatList
 } from 'react-native';
 
 import styles from '../Styles/MonthItem.js';
+
+import DailyNoteItem from './DailyNoteItem.js';
 
 class MonthItem extends Component {
     constructor(props) {
@@ -17,7 +20,7 @@ class MonthItem extends Component {
 
     renderDailySentences(item) {
         return (
-            <DailySentences day={item.day} sentence={item.sentence} />
+            <DailyNoteItem day={item.day} sentence={item.sentence} />
         )
     }
 

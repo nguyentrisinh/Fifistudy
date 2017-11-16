@@ -1,17 +1,20 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     View,
-    Text
+    Text,
+    TouchableOpacity,
+    Image
 } from 'react-native';
 
 import styles from '../Styles/DailyNoteItem.js';
+import res from '../Resources/index.js';
+import { DialogNoteItem } from './index.js';
 
 class DailyNoteItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isPressed: false,
-            isDeleted: false
         }
     }
 
@@ -21,13 +24,8 @@ class DailyNoteItem extends Component {
         })
     }
 
-    deleteItems() {
-        this.setState({
-            isDeleted: true
-        })
-    }
 
-    renderPressed() {
+    renderPessed() {
         return (
             <View style={styles.container}>
                 <View style={styles.containerRow1}>
@@ -45,29 +43,14 @@ class DailyNoteItem extends Component {
                                 onPress={() => this.changeStatePressed()}
                             >
                                 <Image style={styles.icon}
-                                    source={require('./ic_more.png')}
+                                    source={res.ic_more}
                                 />
                             </TouchableOpacity>
                         </View>
                     </View>
                 </View>
                 <View style={styles.containerBot}>
-                    <View style={styles.containerDropDown}>
-                        <TouchableOpacity>
-                            <Text style={styles.textSetting}>
-                                Đổi tên
-                            </Text>
-                        </TouchableOpacity>
-                        <View style={styles.blackLine}>
-                        </View>
-                        <TouchableOpacity
-                            onPress={() => this.deleteItems()}
-                        >
-                            <Text style={styles.textSetting}>
-                                Xóa
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
+                    <DialogNoteItem />
                 </View>
             </View>
         )
@@ -91,7 +74,7 @@ class DailyNoteItem extends Component {
                                 onPress={() => this.changeStatePressed()}
                             >
                                 <Image style={styles.icon}
-                                    source={require('./ic_more.png')}
+                                    source={res.ic_more}
                                 />
                             </TouchableOpacity>
                         </View>
@@ -102,8 +85,6 @@ class DailyNoteItem extends Component {
     }
 
     render() {
-        if (this.state.isDeleted)
-            return null;
         if (!this.state.isPressed)
             return this.renderNormal();
         return this.renderPressed();
