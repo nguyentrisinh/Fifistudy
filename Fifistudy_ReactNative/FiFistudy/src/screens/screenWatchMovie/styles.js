@@ -3,6 +3,7 @@ import {
     Dimensions,
 } from 'react-native';
 import Utils from '../../Utils';
+import Resources from '../../resources/resources';
 
 const width = Dimensions.get('window').width;
 
@@ -12,11 +13,22 @@ const styles = StyleSheet.create({
     commentContainer: {
         width: width,
     },
-    movieTitle: {
-
+    titleContainer: {
+        marginTop: 16,
+        marginBottom: 12,
+        marginLeft: 16,
+        marginRight: 16,
     },
-    movieSubTitle: {
-
+    title: {
+        fontFamily: Resources.fonts.common,
+        color: Resources.colors.blue,
+        fontSize: 24,
+        marginBottom: 8
+    },
+    subtitle: {
+        fontFamily: Resources.fonts.common,
+        color: Resources.colors.subtitle,
+        fontSize: 16
     },
     text: {
         fontWeight: 'bold'

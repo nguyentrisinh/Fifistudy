@@ -16,10 +16,11 @@ const resources = {
     },
     colors: {
         background: '#fafafa',
+        subtitle: '#757575',
         body: '#9e9e9e',
         blue: '#64B5F6',
         pink: '#E91E63',
-        violet: '#9C27B0',
+        violet: '#AB47BC',
         yellow: '#FFC107',
         line: '#E0E0E0',
     },

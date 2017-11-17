@@ -6,7 +6,7 @@ import {
     FlatList,
 } from 'react-native';
 import ObjectFilm from './ObjectFilm';
-import CircleImage from '../../components/circleImage/CircleImage';
+import AvatarView from '../../components/avatarView/AvatarView';
 import ImageButton from '../../components/ImageButton';
 import Styles from './commentItemStyles';
 import Resources from '../../resources/resources';
@@ -20,7 +20,7 @@ export default class CommentItem extends Component {
             <View style={Styles.container}>
                 {/* Account's Avatar */}
                 <View>
-                    <CircleImage source={{uri: ObjectComment.userAvatar}}/>
+                    <AvatarView source={{uri: ObjectComment.userAvatar}}/>
                 </View>
 
                 <View style={Styles.contentContainer}>
