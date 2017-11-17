@@ -2,16 +2,12 @@ import {
     StyleSheet,
     Dimensions,
 } from 'react-native';
-import Utils from '../../Utils';
 import Resources from '../../resources/resources';
 
 const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     listEpisode: {
-    },
-    commentContainer: {
-        width: width,
     },
     titleContainer: {
         marginTop: 16,
@@ -30,12 +26,18 @@ const styles = StyleSheet.create({
         color: Resources.colors.subtitle,
         fontSize: 16
     },
-    text: {
-        fontWeight: 'bold'
-    },
-    enterCommentContainer: {
+    toolbar: {
         flexDirection: 'row',
-        width: Dimensions.get('window').width,
+        paddingLeft: 6,
+        paddingRight: 6,
+        position: 'absolute',
+        zIndex: 1,
+        bottom: 0,
+        right: 0,
+        backgroundColor: '#fafafa',
+        borderRadius: 6,
+        elevation: 8,
+        margin: 8
     }
 
 });

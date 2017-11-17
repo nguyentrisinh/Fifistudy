@@ -12,8 +12,12 @@ export default class ImageButton extends Component {
     render(){
         console.log(typeof this.props.onPress);
         return(    
-            <TouchableHighlight style={styles.container} onPress={this.props.onPress}
-                underlayColor='#2196F3' activeOpacity={0.3}>
+            <TouchableHighlight
+                style={styles.container}
+                onPress={this.props.onPress}
+                underlayColor='#2196F3'
+                activeOpacity={0.3}>
+                
                 <Image source={this.props.source}
                         style={[styles.image, {
                             tintColor: this.props.tintColor,

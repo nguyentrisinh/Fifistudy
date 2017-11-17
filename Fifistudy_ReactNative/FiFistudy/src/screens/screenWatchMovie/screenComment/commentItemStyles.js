@@ -2,7 +2,7 @@ import {
     StyleSheet,
     Dimensions,
 } from 'react-native';
-import Resources from '../../resources/resources';
+import Resources from '../../../resources/resources';
 
 const width = Dimensions.get('window').width;
 

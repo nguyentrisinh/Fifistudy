@@ -5,11 +5,11 @@ import {
     View,
     FlatList,
 } from 'react-native';
-import ObjectFilm from './ObjectFilm';
-import AvatarView from '../../components/avatarView/AvatarView';
-import ImageButton from '../../components/ImageButton';
+import ObjectFilm from '../ObjectFilm';
+import AvatarView from '../../../components/avatarView/AvatarView';
+import ImageButton from '../../../components/ImageButton';
 import Styles from './commentItemStyles';
-import Resources from '../../resources/resources';
+import Resources from '../../../resources/resources';
 
 import ObjectComment from './ObjectComment';
 

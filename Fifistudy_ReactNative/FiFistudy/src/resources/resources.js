@@ -9,6 +9,10 @@ const resources = {
         error: require('./icons/ic_error.png'),
         send: require('./icons/ic_send.png'),
         like: require('./icons/ic_like.png'),
+        close: require('./icons/ic_close.png'),
+        comment: require('./icons/ic_comment.png'),
+        quiz: require('./icons/ic_quiz.png'),
+        volcabulary: require('./icons/ic_volcabulary.png'),
     },
     images: {
         default: require('./img/img_default.png'),

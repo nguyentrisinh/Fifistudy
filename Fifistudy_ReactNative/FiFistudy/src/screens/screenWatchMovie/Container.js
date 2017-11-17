@@ -13,7 +13,6 @@ import Utils from '../../Utils';
 import ObjectFilm from './ObjectFilm';
 import EpisodeCircleView from '../../components/EpisodeCircleView';
 import ImageButton from '../../components/ImageButton';
-import CommentItem from './CommentItem';
 import Resources from '../../resources/resources';
 import Styles from './styles';
 
@@ -27,6 +26,7 @@ export default class WatchScreen extends Component {
     render(){
         const width = Dimensions.get('window').width;
         return (
+            <View>
             <ScrollView style={{backgroundColor: Resources.colors.background}}
                         showsVerticalScrollIndicator={false}>
                 {/* MEDIA PLAYER SECTION */}
@@ -71,25 +71,14 @@ export default class WatchScreen extends Component {
                     )}                
                 />
 
-                {/* COMMENT SECTION */}
-                <View style={Styles.commentContainer}>
-                    <Text style={Styles.text}>Bình luận</Text>
-
-                    {/* Enter comment section */}
-                    <View style={Styles.enterCommentContainer}>
-                        <TextInput style={{flex: 1}} multiline={true} blurOnSubmit={false}/>
-                        <ImageButton source={Resources.icons.send}/>
-                    </View>
-
-                    {/* List comment */}
-                    <FlatList
-                    data={ObjectFilm.comments}
-                    keyExtractor={item => item.ID}
-                    renderItem={({item}) => (
-                        <CommentItem/>
-                    )}/>
-            </View>
             </ScrollView>
+                {/* TOOLBAR SECTION */}
+                <View style={Styles.toolbar}>
+                    <ImageButton source={Resources.icons.comment} tintColor={Resources.colors.pink}/>
+                    <ImageButton source={Resources.icons.quiz} tintColor={Resources.colors.pink}/>
+                    <ImageButton source={Resources.icons.volcabulary} tintColor={Resources.colors.pink}/>
+                </View>
+            </View>
         );
     }
 }
