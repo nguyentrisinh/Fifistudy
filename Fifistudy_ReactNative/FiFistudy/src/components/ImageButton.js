@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
     },
     image: {
         padding: 2,
-        resizeMode: 'contain',
+        resizeMode: 'cover',
     }
 });

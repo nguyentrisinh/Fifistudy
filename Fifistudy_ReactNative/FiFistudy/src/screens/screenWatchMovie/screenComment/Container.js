@@ -72,7 +72,7 @@ export default class ScreenComment extends Component {
                     data={ObjectFilm.comments}
                     keyExtractor={item => item.ID}
                     renderItem={({item}) => (
-                    <CommentItem/>
+                    <CommentItem data={item}/>
                 )}/>
             </View>
         );

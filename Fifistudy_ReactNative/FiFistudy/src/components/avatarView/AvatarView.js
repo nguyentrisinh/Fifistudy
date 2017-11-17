@@ -16,7 +16,7 @@ export default class AvatarView extends Component {
                     height: this.props.size,
                     width: this.props.size,
                 }]}
-                resizeMode='contain'
+                resizeMode='cover'
                 source={imageObj}
                 elevation={this.props.showShadow ? 3 : 0}/>
         );
