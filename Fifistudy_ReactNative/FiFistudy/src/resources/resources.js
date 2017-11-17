@@ -10,16 +10,17 @@ const resources = {
         send: require('./icons/ic_send.png'),
         like: require('./icons/ic_like.png'),
     },
-    image: {
+    images: {
         default: require('./img/img_default.png'),
         avatar: require('./img/img_avatar.png'),
     },
     colors: {
         background: '#fafafa',
-        // blue: '#2196F3',
         body: '#9e9e9e',
         blue: '#64B5F6',
-        //body: '#BDBDBD',
+        pink: '#E91E63',
+        violet: '#9C27B0',
+        yellow: '#FFC107',
         line: '#E0E0E0',
     },
     fonts: {

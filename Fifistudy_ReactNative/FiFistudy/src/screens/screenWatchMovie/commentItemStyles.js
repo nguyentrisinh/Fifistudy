@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
     },
     likedNum: {
         fontFamily: Resources.fonts.common,
-        color: Resources.colors.blue,
     },
     line: {
         backgroundColor: Resources.colors.line,

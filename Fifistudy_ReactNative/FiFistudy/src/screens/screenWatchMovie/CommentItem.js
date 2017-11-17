@@ -1,45 +1,43 @@
 import React, {Component} from 'react';
 import {
-    StyleSheet,
     Text,
     Image,
     View,
-    Dimensions,
     FlatList,
 } from 'react-native';
-import Utils from '../../Utils';
 import ObjectFilm from './ObjectFilm';
 import CircleImage from '../../components/circleImage/CircleImage';
 import ImageButton from '../../components/ImageButton';
 import Styles from './commentItemStyles';
 import Resources from '../../resources/resources';
 
+import ObjectComment from './ObjectComment';
+
 export default class CommentItem extends Component {
     render(){
+        const likedColor = ObjectComment.isLiked === true ? Resources.colors.yellow : Resources.colors.blue;
         return (
             <View style={Styles.container}>
                 {/* Account's Avatar */}
                 <View>
-                    <CircleImage source={Resources.image.avatar}/>
+                    <CircleImage source={{uri: ObjectComment.userAvatar}}/>
                 </View>
 
                 <View style={Styles.contentContainer}>
                     <View style={Styles.headerContainer}>
                         {/* Account's first_name last_name */}                        
-                        <Text style={Styles.accountName}>Firstname Lastname</Text>
+                        <Text style={Styles.accountName}>{ObjectComment.firstName} {ObjectComment.lastName}</Text>
                         {/* Created date */}
-                        <Text style={Styles.dateTime}>50 phút</Text>
+                        <Text style={Styles.dateTime}>{ObjectComment.dateTime}</Text>
                     </View>
 
                     {/* Comment content */}
-                    <Text style={Styles.comment} >
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </Text>
+                    <Text style={Styles.comment}>{ObjectComment.content}</Text>
 
                     {/* Liked view */}
                     <View style={Styles.likedContainer}>
-                        <ImageButton source={Resources.icons.like} tintColor={Resources.colors.blue}/>
-                        <Text style={Styles.likedNum}>23</Text>
+                        <ImageButton source={Resources.icons.like} tintColor={likedColor}/>
+                        <Text style={[Styles.likedNum, {color: likedColor}]}>{ObjectComment.likedNum}</Text>
                     </View>
 
                     {/* Line */}
