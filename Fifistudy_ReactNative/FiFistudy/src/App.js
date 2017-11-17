@@ -5,16 +5,17 @@ import {
    View,
   } from 'react-native';
 import { DrawerNavigator } from 'react-navigation';
-import TestScreen from './screens/TestScreen/TestScreen';
 import HomeScreen from './screens/HomeScreen/HomeScreen';
 import HamburgerMenu from './screens/HamburgerMenu/HamburgerMenu';
-
 import Container from './components/Sentences/Container/Container.js';
+import DetailScreen from './screens/screenDetailFilm/Container';
+import MovieWatchScreen from './screens/screenWatchMovie/Container';
 
 const Hamburger = DrawerNavigator({
+  MovieWatchScreen: {screen: MovieWatchScreen},
+  DetailScreen: {screen: DetailScreen},
   Container: { screen: Container},
   HomeScreen: { screen: HomeScreen },
-  TestScreen: { screen: TestScreen },
 }, {
   headerMode: 'none',
   contentComponent: props => <HamburgerMenu/>

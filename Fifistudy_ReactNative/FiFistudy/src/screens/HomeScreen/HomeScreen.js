@@ -92,9 +92,9 @@ export default class HomeScreen extends Component {
                     }}>
                     <ImageButton
                         onPress={() => this.props.navigation.navigate('DrawerToggle')}
-                        source={Resources.homePage.icMenu}
+                        source={Resources.icons.menu}
                         tintColor='white'/>
-                    <ImageButton source={Resources.homePage.icSearch} tintColor='#fafafa'/>
+                    <ImageButton source={Resources.icons.search} tintColor='#fafafa'/>
                 </View>
 
                 {/* SECTION BANNER */}
@@ -122,7 +122,7 @@ export default class HomeScreen extends Component {
                         <Text style={Styles.title}>Phim đã xem</Text>
                         <View style={Styles.titleGroup}>
                             <Text>Xem thêm</Text>
-                            <ImageButton source={Resources.homePage.icMore}/>
+                            <ImageButton source={Resources.icons.moreArrow}/>
                         </View>
                     </View>
 
@@ -153,7 +153,7 @@ export default class HomeScreen extends Component {
                         <Text style={Styles.title}>Phim mới</Text>
                         <View style={Styles.titleGroup}>
                             <Text>Xem thêm</Text>
-                            <ImageButton source={Resources.homePage.icMore}/>
+                            <ImageButton source={Resources.icons.moreArrow}/>
                         </View>
                     </View>
                 </View>
