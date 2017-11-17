@@ -12,6 +12,19 @@ const resources = {
     },
     image: {
         default: require('./img/img_default.png'),
+        avatar: require('./img/img_avatar.png'),
     },
+    colors: {
+        background: '#fafafa',
+        // blue: '#2196F3',
+        body: '#9e9e9e',
+        blue: '#64B5F6',
+        //body: '#BDBDBD',
+        line: '#E0E0E0',
+    },
+    fonts: {
+        common: 'sans-serif',
+        light: 'sans-serif-light',
+    }
 }
 export default resources;

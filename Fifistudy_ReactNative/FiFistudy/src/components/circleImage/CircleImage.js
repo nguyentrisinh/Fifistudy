@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import {
-    StyleSheet,
-    Text,
     Image,
     View,
 } from 'react-native';
@@ -12,10 +10,14 @@ import Styles from './styles';
 export default class CircleImage extends Component {
     render(){
         return (
-            <Image style={[Styles, {
+            <Image
+                style={{
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     height: this.props.size,
                     width: this.props.size,
-                    }]}
+                    borderRadius: 50,
+                }}
                     resizeMode='contain'
                     source={this.props.source}
                     elevation={this.props.showShadow ? 3 : 0}/>

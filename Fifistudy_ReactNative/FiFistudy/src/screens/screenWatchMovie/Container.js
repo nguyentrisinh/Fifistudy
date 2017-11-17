@@ -22,23 +22,23 @@ export default class WatchScreen extends Component {
     render(){
         width = Dimensions.get('window').width;
         return (
-            <ScrollView  >
+            <ScrollView style={{backgroundColor: Resources.colors.background}}>
                 {/* MEDIA PLAYER SECTION */}
-                <View style={{
+                {/* <View style={{
                     backgroundColor: 'black',
                     width: width,
                     height: width * Utils.RATIO,
                     }}>
-                </View>
+                </View> */}
                 {/* END MEDIA PLAYER SECTION */}
 
                 {/* SUB SECTION */}
-                <View style={{
+                {/* <View style={{
                     backgroundColor: 'lightgray',
                     width: width,
                     height: width * Utils.RATIO,
                     }}>
-                </View>
+                </View> */}
                 {/* END SUB SECTION */}
 
                 {/* LIST EPISODE */}

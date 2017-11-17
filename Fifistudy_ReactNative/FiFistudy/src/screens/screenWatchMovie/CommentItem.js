@@ -11,34 +11,40 @@ import Utils from '../../Utils';
 import ObjectFilm from './ObjectFilm';
 import CircleImage from '../../components/circleImage/CircleImage';
 import ImageButton from '../../components/ImageButton';
+import Styles from './commentItemStyles';
 import Resources from '../../resources/resources';
 
 export default class CommentItem extends Component {
     render(){
         return (
-            <View>
-                <View style={{
-                    width: Dimensions.get('window').width,
-                    flexDirection: 'row'}}>
-                    
-                    <CircleImage source={Resources.image.default}/>
-
-                    <View style={{flex: 1}}>
-                        <Text style={{fontWeight: 'bold'}}>Name</Text>
-                        <Text>qbwiu2wghlsnflksjoeuo
-                            wegowufj
-                            fjwhehfowjflks
-                        </Text>
-                        <ImageButton source={Resources.icons.like}/>
-                    </View>
+            <View style={Styles.container}>
+                {/* Account's Avatar */}
+                <View>
+                    <CircleImage source={Resources.image.avatar}/>
                 </View>
-                <View style={{
-                    backgroundColor: 'gray',
-                    width: '80%',
-                    height: 1,
-                    marginLeft: 16,
-                    marginRight: 16
-                }}/>
+
+                <View style={Styles.contentContainer}>
+                    <View style={Styles.headerContainer}>
+                        {/* Account's first_name last_name */}                        
+                        <Text style={Styles.accountName}>Firstname Lastname</Text>
+                        {/* Created date */}
+                        <Text style={Styles.dateTime}>50 phút</Text>
+                    </View>
+
+                    {/* Comment content */}
+                    <Text style={Styles.comment} >
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    </Text>
+
+                    {/* Liked view */}
+                    <View style={Styles.likedContainer}>
+                        <ImageButton source={Resources.icons.like} tintColor={Resources.colors.blue}/>
+                        <Text style={Styles.likedNum}>23</Text>
+                    </View>
+
+                    {/* Line */}
+                    <View style={Styles.line}/>
+                </View>
             </View>
         );
     }

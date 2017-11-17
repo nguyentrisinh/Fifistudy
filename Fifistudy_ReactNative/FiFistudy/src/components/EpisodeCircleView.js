@@ -6,6 +6,7 @@ import {
     ScrollView,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import Resource from '../resources/resources';
 
 export default class EpisodeCircleView extends Component {
     render(){
@@ -29,7 +30,7 @@ export default class EpisodeCircleView extends Component {
 
 EpisodeCircleView.defaultProps = {
     episodeNumber: 0,
-    color: '#2196F3',
+    color: Resource.colors.blue,
     textColor: 'white',
     size: 32,
 }

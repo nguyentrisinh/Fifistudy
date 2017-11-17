@@ -8,12 +8,9 @@ const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     listEpisode: {
-
     },
     commentContainer: {
-        backgroundColor: 'lightgray',
         width: width,
-        height: width * Utils.RATIO,
     },
     movieTitle: {
 
