@@ -6,7 +6,12 @@ const vttToJson = require("vtt-json");
 import $ from 'jquery';
 import {Scrollbars} from 'react-custom-scrollbars';
 import classNames from 'classnames';
-import ReactDOM from 'react-dom'
+import {toggleModalLogin} from '../actions/app'
+import ReactDOM from 'react-dom';
+import {connect} from 'react-redux';
+import {postSaveVocabulary} from '../actions/api'
+import {withCookies} from 'react-cookie';
+import {withRouter} from 'react-router'
 
 
 class VideoFilm extends React.Component {
@@ -54,6 +59,35 @@ class VideoFilm extends React.Component {
         this.player.seek(item.start);
     }
 
+    onClickSave = (evt, item) => {
+        evt.preventDefault();
+        evt.stopPropagation();
+
+        if (this.props.isLogin) {
+            let {cookies, match} = this.props;
+            let token = cookies.get("token");
+            let data = {
+                current_time: item.start,
+                meaning: item.sub[1].replace(/<\/?[^>]+(>|$)/g, ""),
+                vocabulary: item.sub[0].replace(/<\/?[^>]+(>|$)/g, ""),
+                episode_id: this.props.data.id
+            }
+            postSaveVocabulary(data, token).then(
+                response => {
+                    if (response.data.errors === null) {
+                        alert("Save thanh cong")
+                    }
+                    else {
+                        alert('Save that bai')
+                    }
+                }
+            )
+        }
+        else {
+            this.props.toggleModalLogin();
+        }
+    }
+
     renderSub = () => {
         if (this.state.sub) {
             return this.state.sub.map(item => {
@@ -74,7 +108,7 @@ class VideoFilm extends React.Component {
                             </div>
                         </div>
 
-                        <div className="video-film__bookmark">
+                        <div className="video-film__bookmark" onClick={(evt) => this.onClickSave(evt, item)}>
                             <i className="fa fa-bookmark-o"></i>
                         </div>
                     </div>
@@ -251,4 +285,10 @@ class VideoFilm extends React.Component {
         )
     }
 }
-export default VideoFilm
+
+const mapStateToProps = state => {
+    return {
+        isLogin: state.app.isLogin
+    }
+}
+export default connect(mapStateToProps, {toggleModalLogin})(withRouter(withCookies(VideoFilm)))

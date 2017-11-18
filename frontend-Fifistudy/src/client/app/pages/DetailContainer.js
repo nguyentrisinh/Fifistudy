@@ -9,7 +9,7 @@ import Loading from '../components/Loading'
 import Detail from './Detail'
 import {connect} from 'react-redux';
 import {Scrollbars} from 'react-custom-scrollbars';
-import {getEpisode, getFilmDetail, getDataDetailPage} from '../actions/dataDetailPage'
+import {getEpisode, getFilmDetail, getDataDetailPage} from '../actions/dataDetailpage'
 
 class DetailContainer extends React.Component {
     constructor(props) {

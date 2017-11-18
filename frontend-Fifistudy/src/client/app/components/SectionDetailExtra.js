@@ -1,6 +1,6 @@
 import React from 'react';
-import Comments from './Comments';
-import RelatedFilm from './SectionRelatedFilm'
+import CommentContainer from './CommentContainer';
+import RelatedFilmContainer from './RelatedFilmContainer'
 
 class SectionDetailExtra extends React.Component {
     constructor(props) {
@@ -16,13 +16,13 @@ class SectionDetailExtra extends React.Component {
                         <div className="detail-extra__title">
                             BÌNH LUẬN
                         </div>
-                        <Comments/>
+                        <CommentContainer data={this.props.data}/>
                     </div>
                     <div className="detail-extra__item">
                         <div className="detail-extra__title">
                             PHIM CÙNG CẤP ĐỘ
                         </div>
-                        <RelatedFilm/>
+                        <RelatedFilmContainer/>
                     </div>
 
                 </div>

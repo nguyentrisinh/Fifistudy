@@ -1,5 +1,6 @@
 import {Api} from '../constants/api'
 import axios from '../config/axios'
+const tokenFormat = (token) => `Token ${token}`
 
 export const postSignUpOne = (data) => {
     // data={
@@ -115,7 +116,7 @@ export const getLogout = (token) => {
 
     let config = {
         headers: {
-            Authorization: `Token ${token}`
+            Authorization: tokenFormat(token)
         }
     }
 
@@ -127,3 +128,101 @@ export const getLogout = (token) => {
             return err.response
         })
 }
+
+export const postUserSaveFilm = (data, config) => {
+
+    return axios.post(Api.postUserSaveFilm, data, config)
+        .then(response => {
+            return response
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+
+export const postComment = (data, token) => {
+    // {
+    //     "content": "string",
+    //     "film_id": "string"
+    // }
+    let config = {
+        headers: {
+            "Authorization": tokenFormat(token)
+        }
+    }
+    return axios.post(Api.postComment, data, config)
+        .then(response => {
+            return response
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+export const postLikeComment = (data, token) => {
+    // {
+    //     "comment_id": "string"
+    // }
+    let config = {
+        headers: {
+            "Authorization": tokenFormat(token)
+        }
+    }
+
+    return axios.post(Api.postLikeComment, data, config)
+        .then(response => {
+            return response
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+export const getFilmByDifficult = (difficultLevel) => {
+
+    return axios.post(Api.getFilmByDifficult(difficultLevel))
+        .then(response => {
+            return response
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+export const postSaveVocabulary = (data, token) => {
+    // {
+    //     "current_time": "string",
+    //     "meaning": "string",
+    //     "vocabulary": "string",
+    //     "episode_id": "string"
+    // }
+    let config = {
+        headers: {
+            "Authorization": tokenFormat(token)
+        }
+    }
+    return axios.post(Api.postSaveVocabulary, data, config)
+        .then(response => {
+            return response
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+export const getVocabulary = (token) => {
+    let config = {
+        headers: {
+            "Authorization": tokenFormat(token)
+        }
+    }
+    return axios.get(Api.getVocabulary, config)
+        .then(response => {
+            return response
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+

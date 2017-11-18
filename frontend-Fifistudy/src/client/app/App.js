@@ -6,16 +6,19 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group'
 import {Switch} from 'react-router'
 import {withCookies} from 'react-cookie'
 import {instanceOf} from 'prop-types';
-import {getUserInfo} from './actions/app'
+import {getUserInfo, doLogin, toggleModalLogin} from './actions/app'
 import FilmIntroContainer from './pages/FilmIntroContainer';
 import {connect} from 'react-redux';
 import SignUp from './pages/SignUp';
+import Userpage from './pages/UserPage'
 import App from './App'
 import {
     BrowserRouter as Router,
     Route,
     Link
 } from 'react-router-dom'
+
+import ModalLogin from './components/ModalLogin'
 // import {Transition} from 'react-transition-group'
 
 //
@@ -32,6 +35,10 @@ import {
 
 
 class AppContainer extends React.Component {
+    onClickOutside = () => {
+        this.props.toggleModalLogin();
+    }
+
     constructor(props) {
         super(props);
         this.state = {show: false};
@@ -41,6 +48,17 @@ class AppContainer extends React.Component {
         const {cookies} = this.props;
         if (cookies.get("token")) {
             this.props.getUserInfo(cookies.get("token"));
+        }
+    }
+
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.isLogin !== this.props.isLogin) {
+            if (nextProps.isLogin) {
+                this.props.doLogin(true);
+            }
+            else {
+                this.props.doLogin(false)
+            }
         }
     }
 
@@ -73,8 +91,11 @@ class AppContainer extends React.Component {
                             <Route exact path="/film/:filmSlug/:episodeId" component={DetailPageContainer}/>
                             <Route exact path="/film/:slug" component={FilmIntroContainer}/>
                             <Route exact path="/signup" component={SignUp}/>
+                            <Route exact path="/user" component={Userpage}/>
                         </Switch>
                     </TransitionGroup>
+
+                    <ModalLogin onClickOutside={this.onClickOutside} isOpen={this.props.isOpenModalLogin}/>
 
 
                     {/*<Transition in={true} timeout={duration}>*/}
@@ -95,5 +116,11 @@ class AppContainer extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        isOpenModalLogin: state.app.isOpenModalLogin
+    }
+}
 
-export default withCookies(connect(null, {getUserInfo})(AppContainer))
+
+export default withCookies(connect(mapStateToProps, {getUserInfo, toggleModalLogin, doLogin})(AppContainer))

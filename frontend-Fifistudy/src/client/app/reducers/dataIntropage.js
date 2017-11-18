@@ -9,6 +9,14 @@ const initialState = {
         isLoading: true,
         data: null
 
+    },
+    comment: {
+        isLoading: true,
+        data: null
+    },
+    filmEqualDifficult: {
+        isLoading: true,
+        data: null
     }
 }
 
@@ -32,6 +40,22 @@ export default function dataHomepage(state = initialState, action) {
                 })
             });
             break;
+        case Types.GET_COMMENT:
+            return Object.assign({}, state, {
+                comment: Object.assign({}, state.comment, {
+                    data: action.serverData,
+                    isLoading: action.isLoading
+
+                })
+            });
+        case Types.GET_FILM_BY_DIFFICULT:
+            return Object.assign({}, state, {
+                filmEqualDifficult: Object.assign({}, state.filmEqualDifficult, {
+                    data: action.serverData,
+                    isLoading: action.isLoading
+
+                })
+            });
         default:
             return state
     }

@@ -8,7 +8,8 @@ import {connect} from 'react-redux';
  */
 import {postLogin} from '../actions/api';
 import {getUserInfo} from '../actions/app'
-import Modal from '../components/Modal'
+import Modal from '../components/Modal';
+import {doLogin} from '../actions/app'
 
 class ModalLogin extends React.Component {
     constructor(props) {
@@ -25,9 +26,9 @@ class ModalLogin extends React.Component {
         let {cookies} = this.props;
         postLogin(data).then(res => {
             if (res.data.errors == null) {
-
                 cookies.set("token", res.data.data.token);
                 this.props.getUserInfo(res.data.data.token);
+                this.props.doLogin(true);
                 this.props.onClickOutside();
             }
         })
@@ -56,4 +57,4 @@ class ModalLogin extends React.Component {
         )
     }
 }
-export default connect(null, {getUserInfo})(withCookies(ModalLogin))
+export default connect(null, {getUserInfo, doLogin})(withCookies(ModalLogin))

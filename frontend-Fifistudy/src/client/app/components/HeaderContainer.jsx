@@ -7,10 +7,10 @@ import {
     Route,
     Link
 } from 'react-router-dom';
+import {toggleModalLogin} from '../actions/app'
 import ReactImageFallback from "react-image-fallback";
 import classNames from 'classnames';
 import {getLogout} from '../actions/api'
-import ModalLogin from './ModalLogin'
 import {connect} from 'react-redux';
 import {withCookies} from 'react-cookie'
 
@@ -19,14 +19,7 @@ class Header extends React.Component {
         super(props);
         this.state = {
             open: null,
-            isModalOpen: false,
         };
-    }
-
-    onClickOutside = () => {
-        this.setState({
-            isModalOpen: false
-        })
     }
 
     onClickMenu = (menu) => {
@@ -94,9 +87,10 @@ class Header extends React.Component {
     }
 
     onClickLogin = () => {
-        this.setState({
-            isModalOpen: true
-        })
+        // this.setState({
+        //     isModalOpen: true
+        // })
+        this.props.toggleModalLogin();
     }
 
     render() {
@@ -128,7 +122,6 @@ class Header extends React.Component {
                     </div>
                     {this.renderAccountSection()}
                 </div>
-                <ModalLogin onClickOutside={this.onClickOutside} isOpen={this.state.isModalOpen}/>
             </div>
         )
     }
@@ -139,4 +132,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(withCookies(Header));
+export default connect(mapStateToProps, {toggleModalLogin})(withCookies(Header));

@@ -2,11 +2,18 @@ import React from 'react';
 import Level from './Level.jsx'
 import Star from './Star'
 import classNames from 'classnames';
+import {postUserSaveFilm} from '../actions/api';
+import {getMostView, getLastest} from '../actions/dataHomepage'
+import {withCookies} from 'react-cookie';
+import {SERVER_ERRORS} from '../constants/serverErrors'
+import {connect} from 'react-redux';
+import {toggleModalLogin} from '../actions/app';
+
 import {
     BrowserRouter as Router,
     Route,
     Link
-} from 'react-router-dom'
+} from 'react-router-dom';
 class Film extends React.Component {
     constructor(props) {
         super(props);
@@ -26,6 +33,47 @@ class Film extends React.Component {
             isEnter: false
         })
     }
+    updateNewDataFromServer = () => {
+        let {cookies} = this.props;
+        let token = cookies.get("token");
+        this.props.getLastest(token);
+        this.props.getMostView(token);
+    }
+    onClickBookmark = (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        if (this.props.isLogin) {
+            let {cookies, data} = this.props;
+            // console.log(this.props.data)
+            let sendData = {
+                film_id: data.id
+            }
+            let config = {
+                headers: {
+                    "Authorization": `Token ${cookies.get("token")}`
+                }
+            }
+            postUserSaveFilm(sendData, config).then((response) => {
+                if (response.data.errors == null) {
+                    alert('Thao tác thành công');
+                    this.updateNewDataFromServer();
+
+                    //Thanh cong
+                    // this.props.updateHomepageSavedFilm(response.data.data.film_id);
+
+                }
+                else {
+                    alert(SERVER_ERRORS[response.data.errors[0].errorCode])
+                }
+            })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+        else {
+            this.props.toggleModalLogin()
+        }
+    }
 
     render() {
         let {data} = this.props;
@@ -36,10 +84,12 @@ class Film extends React.Component {
                     <div className="film__overlay">
                     </div>
                     <div className="film__bookmark">
-                        <i onMouseEnter={this.onMouseEnterBookmark} onMouseLeave={this.onLeaveEnterBookmark}
+                        <i onClick={this.onClickBookmark} onMouseEnter={this.onMouseEnterBookmark}
+                           onMouseLeave={this.onLeaveEnterBookmark}
                            className={classNames("fa", {
-                               "fa-bookmark": this.state.isEnter,
-                               "fa-bookmark-o": !this.state.isEnter
+
+                               "fa-bookmark-o": !this.state.isEnter && !data.is_saved,
+                               "fa-bookmark": this.state.isEnter || data.is_saved
                            })}/>
                     </div>
                     <div className="film__episode">
@@ -64,4 +114,12 @@ class Film extends React.Component {
     }
 
 }
-export default Film
+
+const mapStateToProps = state => {
+    return {
+        isLogin: state.app.isLogin
+    }
+}
+
+
+export default connect(mapStateToProps, {toggleModalLogin, getLastest, getMostView})(withCookies(Film))

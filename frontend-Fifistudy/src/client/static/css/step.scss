@@ -7,6 +7,7 @@
   text-align: center;
   position: relative;
 }
+
 #msform fieldset {
   background: white;
   border: 0 none;
@@ -20,23 +21,26 @@
   /*stacking fieldsets above each other*/
   position: relative;
 }
+
 /*Hide all except first fieldset*/
 #msform fieldset:not(:first-of-type) {
   display: none;
 }
+
 /*inputs*/
 #msform {
-  input[type="text"],input[type="password"],input[type="email"],textarea {
-  //padding: 15px;
-  //border: 1px solid #ccc;
-  //border-radius: 3px;
-  //margin-bottom: 10px;
-  //width: 100%;
-  //box-sizing: border-box;
-  //font-size: 14px;
-  //color: #2C3E50;
+  input[type="text"], input[type="password"], input[type="email"], textarea {
+    //padding: 15px;
+    //border: 1px solid #ccc;
+    //border-radius: 3px;
+    //margin-bottom: 10px;
+    //width: 100%;
+    //box-sizing: border-box;
+    //font-size: 14px;
+    //color: #2C3E50;
+  }
 }
-}
+
 /*buttons*/
 #msform .action-button {
   background: #27AE60;
@@ -49,22 +53,24 @@
   padding: 10px 5px;
   margin: 10px 5px;
   min-width: 100px;
-  &[disabled]{
+  &[disabled] {
     background: $ColorDarkGray;
   }
-  &__cancel{
+  &__cancel {
     background: $ColorLightGray;
   }
 }
+
 #msform .action-button:hover, #msform .action-button:focus {
   box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
-  outline:none;
-  &[disabled]{
+  outline: none;
+  &[disabled] {
     box-shadow: none;
-    outline:none;
+    outline: none;
     cursor: initial;
   }
 }
+
 /*headings*/
 .fs-title {
   font-size: 15px;
@@ -72,12 +78,14 @@
   color: #2C3E50;
   margin-bottom: 10px;
 }
+
 .fs-subtitle {
   font-weight: normal;
   font-size: 14px;
   color: #666;
   margin-bottom: 20px;
 }
+
 /*progressbar*/
 #progressbar {
   margin-bottom: 70px;
@@ -85,6 +93,7 @@
   /*CSS counters to number the steps*/
   counter-reset: step;
 }
+
 #progressbar li {
   list-style-type: none;
   color: white;
@@ -94,13 +103,14 @@
   float: left;
   position: relative;
 }
+
 #progressbar li:before {
   z-index: 2;
   position: relative;
   content: counter(step);
   counter-increment: step;
   width: 40px;
-  height:40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,6 +122,7 @@
   border-radius: 3px;
   margin: 0 auto 20px auto;
 }
+
 /*progressbar connectors*/
 #progressbar li:after {
   content: '';
@@ -123,13 +134,15 @@
   top: 20px;
   z-index: 0; /*put it behind the numbers*/
 }
+
 #progressbar li:first-child:after {
   /*connector not needed before the first step*/
   content: none;
 }
+
 /*marking active/completed steps green*/
 /*The number of the step and the connector before it = green*/
-#progressbar li.active:before,  #progressbar li.active:after{
+#progressbar li.active:before, #progressbar li.active:after {
   background: #27AE60;
   color: white;
 }
@@ -143,7 +156,7 @@
     color: #2C3E50;
     font-size: 14px;
   }
-  &--center{
+  &--center {
     text-align: center;
   }
 }
