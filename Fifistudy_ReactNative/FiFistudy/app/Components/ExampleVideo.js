@@ -105,7 +105,7 @@ export default class VideoPlayer extends Component {
           <Video
             ref={(ref: Video) => { this.video = ref }}
             /* For ExoPlayer */
-            source={{ uri: 'https://www.youtube.com/watch?v=z5Jc7KiTLbs', type: 'mpd' }} 
+            source={{ uri: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4', type: 'mpd' }} 
             //source={require('./example.mp3')}
             style={styles.fullScreen}
             rate={this.state.rate}
