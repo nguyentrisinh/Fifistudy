@@ -38,7 +38,10 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         elevation: 8,
         margin: 8
+    },
+    listEpisode: {
+        marginBottom: 48,
+        alignSelf: 'center'
     }
-
 });
 export default styles;
