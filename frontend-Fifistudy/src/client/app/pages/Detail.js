@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import FadeTransition from '../components/FadeTransition'
 import film1 from '../../static/images/HowIMetUrMother.jpg'
@@ -6,13 +6,21 @@ import FilmTitle from '../components/FilmTitle'
 import VideoFilm from '../components/VideoFilm'
 import Episode from '../components/Episode'
 import SectionDetailExtra from '../components/SectionDetailExtra'
-import Footer from '../components/Footer'
+import Footer from '../components/Footer';
+import {getFilmByDifficult} from '../actions/dataIntropage';
+import {connect} from 'react-redux';
 
 import {Scrollbars} from 'react-custom-scrollbars';
 
 class Detail extends React.Component {
     constructor(props) {
         super(props);
+    }
+
+    componentWillMount = () => {
+        let {filmDetail, episode} = this.props;
+        this.props.getFilmByDifficult(filmDetail.difficult_level)
+
     }
 
 
@@ -48,4 +56,4 @@ class Detail extends React.Component {
         )
     }
 }
-export default Detail
+export default connect(null,{getFilmByDifficult})(Detail)

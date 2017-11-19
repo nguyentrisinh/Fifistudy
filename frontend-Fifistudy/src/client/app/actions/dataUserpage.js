@@ -1,20 +1,25 @@
 import * as Types from '../constants/dataUserpage';
 import axios from '../config/axios';
-import {Api} from '../constants/api';
+import {API_PATH} from '../constants/apiPath';
+import * as Api from '../actions/api'
 
 export function getVocabulary(token) {
-    return function (dispatch) {
-        dispatch({
-            type: Types.GET_VOCABULARY,
-            serverData: null,
-            isLoading: true
-        })
+    return function (dispatch, getState) {
+        // if (getState().dataUserpage.vocabulary == true) {
+        //     dispatch({
+        //         type: Types.GET_VOCABULARY,
+        //         serverData: null,
+        //         isLoading: true
+        //     })
+        // }
+        // console.log(getState)
+
         let config = {
             headers: {
                 "Authorization": `Token ${token}`
             }
         }
-        axios.get(Api.getVocabulary, config)
+        axios.get(API_PATH.getVocabulary, config)
             .then(response => {
                 dispatch({
                     type: Types.GET_VOCABULARY,
@@ -25,6 +30,29 @@ export function getVocabulary(token) {
             })
             .catch(err => console.log(err));
 
+
+    }
+}
+
+export function getUserSaveFilm(token) {
+    return function (dispatch) {
+        // if (getState().dataUserpage.vocabulary == true) {
+        //     dispatch({
+        //         type: Types.GET_VOCABULARY,
+        //         serverData: null,
+        //         isLoading: true
+        //     })
+        // }
+        // console.log(getState)
+        Api.getUserSaveFilm(token).then(
+            res =>{
+                dispatch({
+                    type:Types.GET_SAVE_FILM,
+                    serverData:res
+                })
+            }
+
+        )
 
     }
 }

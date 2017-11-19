@@ -1,5 +1,6 @@
 import React from 'react';
 import Comment from './Comment';
+import FlipMove from 'react-flip-move';
 
 
 class Comments extends React.Component {
@@ -63,9 +64,11 @@ class Comments extends React.Component {
     render() {
         return (
             <div>
+                <FlipMove>
                 {
                     this.renderComment()
                 }
+                </FlipMove>
 
             </div>
 

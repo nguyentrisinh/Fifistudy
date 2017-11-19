@@ -5,9 +5,11 @@ import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import FadeTransition from '../components/FadeTransition';
 import UserAvatar from '../components/UserAvatar';
 import ScrollBar from '../components/ScrollBar';
+import SectionSavedFilmContainer from '../components/SectionSavedFilmContainer';
 import SectionVocabularyContainer from '../components/SectionVocabularyContainer'
-
+import _ from 'lodash';
 import {connect} from 'react-redux';
+import SectionUserInfo from '../components/SectionUserInfo';
 
 
 class UserPage extends React.Component {
@@ -16,7 +18,14 @@ class UserPage extends React.Component {
         this.state = {};
     }
 
-
+renderUserInfo  = () =>{
+        if (_.has(this.props.userInfo,"data.errors")){
+            if (this.props.userInfo.data.errors==null){
+                return <UserAvatar data={this.props.userInfo.data.data}/>
+            }
+        }
+        return null
+}
     render() {
         return (
             <FadeTransition>
@@ -26,7 +35,7 @@ class UserPage extends React.Component {
 
                             <Tabs>
                                 <div className="user-page__menu">
-                                    <UserAvatar/>
+                                    {this.renderUserInfo()}
                                     <div className="user-menu">
                                         <TabList className="user-menu__ul">
                                             <Tab selectedClassName="user-menu__li--selected" className="user-menu__li">
@@ -56,10 +65,10 @@ class UserPage extends React.Component {
                                 </div>
                                 <div className="user-page__content">
                                     <TabPanel>
-                                        User Info
+                                        <SectionUserInfo/>
                                     </TabPanel>
                                     <TabPanel>
-                                        Phim da luu
+                                       <SectionSavedFilmContainer/>
                                     </TabPanel>
                                     <TabPanel>
                                         <SectionVocabularyContainer/>
@@ -80,4 +89,9 @@ class UserPage extends React.Component {
     }
 }
 
-export default  UserPage
+const mapStateToProps = state =>    {
+    return {
+        userInfo:state.app.userInfo
+    }
+}
+export default  connect(mapStateToProps)(UserPage)

@@ -1,4 +1,4 @@
-import {Api} from '../constants/api'
+import {API_PATH} from '../constants/apiPath'
 import axios from '../config/axios'
 const tokenFormat = (token) => `Token ${token}`
 
@@ -9,7 +9,7 @@ export const postSignUpOne = (data) => {
     //     "password": "string",
     //     "email": "string"
     // }
-    return axios.post(Api.postSignUpOne, data)
+    return axios.post(API_PATH.postSignUpOne, data)
         .then(response => {
             return response
         })
@@ -27,7 +27,7 @@ export const postSignUpTwo = (data, config) => {
 //         Authorization:"Token xxxxx...."
 //     }
 
-    return axios.post(Api.postSignUpTwo, data, config)
+    return axios.post(API_PATH.postSignUpTwo, data, config)
         .then(response => {
             return response
         })
@@ -49,7 +49,7 @@ export const postUpdateUserInfo = (data, config) => {
 //         Authorization:"Token xxxxx...."
 //     }
 
-    return axios.post(Api.postUpdateUserInfo, data, config)
+    return axios.post(API_PATH.postUpdateUserInfo, data, config)
         .then(response => {
             return response
         })
@@ -67,7 +67,7 @@ export const postUpdateAvatar = (data, config) => {
 //         Authorization:"Token xxxxx...."
 //     }
 
-    return axios.post(Api.postUpdateAvatar, data, config)
+    return axios.post(API_PATH.postUpdateAvatar, data, config)
         .then(response => {
             return response
         })
@@ -84,7 +84,7 @@ export const getUserInfo = (token) => {
         }
     }
 
-    return axios.get(Api.getUserInfo, config)
+    return axios.get(API_PATH.getUserInfo, config)
         .then(response => {
             return response
         })
@@ -103,7 +103,7 @@ export const postLogin = (data) => {
 //         Authorization:"Token xxxxx...."
 //     }
 
-    return axios.post(Api.postLogin, data)
+    return axios.post(API_PATH.postLogin, data)
         .then(response => {
             return response
         })
@@ -120,7 +120,7 @@ export const getLogout = (token) => {
         }
     }
 
-    return axios.get(Api.getLogout, config)
+    return axios.get(API_PATH.getLogout, config)
         .then(response => {
             return response
         })
@@ -131,7 +131,7 @@ export const getLogout = (token) => {
 
 export const postUserSaveFilm = (data, config) => {
 
-    return axios.post(Api.postUserSaveFilm, data, config)
+    return axios.post(API_PATH.postUserSaveFilm, data, config)
         .then(response => {
             return response
         })
@@ -151,7 +151,7 @@ export const postComment = (data, token) => {
             "Authorization": tokenFormat(token)
         }
     }
-    return axios.post(Api.postComment, data, config)
+    return axios.post(API_PATH.postComment, data, config)
         .then(response => {
             return response
         })
@@ -170,7 +170,7 @@ export const postLikeComment = (data, token) => {
         }
     }
 
-    return axios.post(Api.postLikeComment, data, config)
+    return axios.post(API_PATH.postLikeComment, data, config)
         .then(response => {
             return response
         })
@@ -181,7 +181,7 @@ export const postLikeComment = (data, token) => {
 
 export const getFilmByDifficult = (difficultLevel) => {
 
-    return axios.post(Api.getFilmByDifficult(difficultLevel))
+    return axios.post(API_PATH.getFilmByDifficult(difficultLevel))
         .then(response => {
             return response
         })
@@ -202,7 +202,7 @@ export const postSaveVocabulary = (data, token) => {
             "Authorization": tokenFormat(token)
         }
     }
-    return axios.post(Api.postSaveVocabulary, data, config)
+    return axios.post(API_PATH.postSaveVocabulary, data, config)
         .then(response => {
             return response
         })
@@ -217,7 +217,38 @@ export const getVocabulary = (token) => {
             "Authorization": tokenFormat(token)
         }
     }
-    return axios.get(Api.getVocabulary, config)
+    return axios.get(API_PATH.getVocabulary, config)
+        .then(response => {
+            return response
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+export const deleteVocabulary = (vocabularyId, token) => {
+    let config = {
+        headers: {
+            "Authorization": tokenFormat(token)
+        }
+    }
+    return axios.delete(API_PATH.deleteVocabulary(vocabularyId), config)
+        .then(response => {
+            return response
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+
+export const getUserSaveFilm = (token) => {
+    let config = {
+        headers: {
+            "Authorization": tokenFormat(token)
+        }
+    }
+    return axios.get(API_PATH.getUserSaveFilm, config)
         .then(response => {
             return response
         })

@@ -1,4 +1,5 @@
 import React from 'react';
+import {serverDomain} from '../config/server'
 
 export default class UserAvatar extends React.Component {
     constructor(props) {
@@ -7,10 +8,11 @@ export default class UserAvatar extends React.Component {
     }
 
     render() {
+        let {data} = this.props
         return (
             <div className="user-avatar">
-                <div className="user-avatar__wrap">
-                    <img src="http://placehold.it/200x200" alt="" className="user-avatar__img"/>
+                <div className="user-avatar__wrap" style={{backgroundImage:`url(${serverDomain+data.avatar})`}}>
+                    {/*<img src={} alt="" className="user-avatar__img"/>*/}
                     <label className="user-avatar__edit" htmlFor="avatar">
                         <i className="fa fa-plus-circle user-avatar__icon"></i>
                     </label>
@@ -18,7 +20,7 @@ export default class UserAvatar extends React.Component {
 
                 </div>
                 <div className="user-avatar__name">
-                    Nguyễn Thanh Liêm
+                    {data.first_name+" "+data.last_name}
                 </div>
             </div>
         )

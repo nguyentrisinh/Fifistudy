@@ -33,28 +33,6 @@ class VideoFilm extends React.Component {
         b + (a[2] ? a[0] * 3600 + a[1] * 60 + a[2] * 1 : a[1] ? a[0] * 60 + a[1] * 1 : a[0] * 1) * 1e3 // optimized
     }
 
-    componentWillMount = () => {
-        let {data} = this.props;
-        // axios.get("../static/media/sub.vtt")
-        axios.get(`http://localhost:8000${data.sub}`)
-            .then(response => {
-                let stringVTT = response.data.split(/\n\s*\n/);
-                stringVTT.shift();
-                let sub = stringVTT.map((item) => {
-                    var parts = item.split("\n");
-                    return {
-                        number: parts[0],
-                        start: this.timeString2ms(parts[1].split('-->')[0].trim()) / 1000,
-                        end: this.timeString2ms(parts[1].split('-->')[1].trim()) / 1000,
-                        sub: parts.slice(2, parts.length),
-                    };
-                });
-                this.setState({
-                    sub
-                })
-            })
-            .catch(err => console.log(err));
-    }
     onClickSub = (item) => {
         this.player.seek(item.start);
     }
@@ -91,7 +69,6 @@ class VideoFilm extends React.Component {
     renderSub = () => {
         if (this.state.sub) {
             return this.state.sub.map(item => {
-                console.log(item);
                 return (
                     <div onClick={this.onClickSub.bind(this, item)} ref={item.number} key={item.number}
                          className={classNames("video-film__sub-item", {"video-film__sub-item--current": this.state.currentLine.number === item.number})}>
@@ -116,9 +93,7 @@ class VideoFilm extends React.Component {
             })
         }
     }
-
-    componentDidMount = () => {
-        let {data} = this.props;
+    initPlayer = (data) => {
         this.player = window.jwplayer('player').setup({
             // file: '../static/media/video.mp4',
             file: `http://localhost:8000${data.video}`,
@@ -132,6 +107,24 @@ class VideoFilm extends React.Component {
             }],
             aspectratio: "16:9"
         })
+        axios.get(`http://localhost:8000${data.sub}`)
+            .then(response => {
+                let stringVTT = response.data.split(/\n\s*\n/);
+                stringVTT.shift();
+                let sub = stringVTT.map((item) => {
+                    var parts = item.split("\n");
+                    return {
+                        number: parts[0],
+                        start: this.timeString2ms(parts[1].split('-->')[0].trim()) / 1000,
+                        end: this.timeString2ms(parts[1].split('-->')[1].trim()) / 1000,
+                        sub: parts.slice(2, parts.length),
+                    };
+                });
+                this.setState({
+                    sub
+                })
+            })
+            .catch(err => console.log(err));
         this.player.on('time', (data) => {
             if (this.state.sub) {
                 let currentLine = this.state.sub.find(o => (o.start <= data.position && o.end >= data.position));
@@ -146,6 +139,16 @@ class VideoFilm extends React.Component {
                 }
             }
         })
+    }
+    componentDidMount = () => {
+        let {data} = this.props;
+        this.initPlayer(data);
+    }
+
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.data !== this.props.data) {
+            this.initPlayer(nextProps.data);
+        }
     }
     onClickBtnSwipe = () => {
         this.setState({
@@ -195,7 +198,6 @@ class VideoFilm extends React.Component {
     };
 
     applySpeed = (valueSpeed) => {
-        console.log(valueSpeed)
         document.getElementById('player').querySelector('video').playbackRate = valueSpeed;
         // document.getElementById('player').querySelector('video').play();
 

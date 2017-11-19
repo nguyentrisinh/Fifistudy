@@ -561,7 +561,7 @@ body {
 }
 
 .film-title {
-  padding-top: 120px;
+  padding-top: 80px;
   margin-bottom: 30px;
   &__en-name {
     color: #ececec;
@@ -869,6 +869,7 @@ body {
   &__section-comment {
     display: flex;
     flex-direction: row;
+    align-items: center;
     padding: 20px;
     background-color: rgba(#fdfdfd, 0.1);
   }
@@ -882,6 +883,9 @@ body {
     padding-top: 50px;
     margin-right: 20px;
     overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
   }
   &__image {
     position: absolute;
@@ -965,6 +969,8 @@ body {
   }
   &__wrap-image {
     background-size: cover;
+
+    flex-shrink: 0;
     border-radius: 50%;
     position: relative;
     width: 50px;
@@ -1394,6 +1400,8 @@ body {
   &__wrap {
     width: 200px;
     padding-top: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
     position: relative;
     border-radius: 50%;
     overflow: hidden;
@@ -1492,17 +1500,30 @@ body {
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
-  &__control {
+  &:hover{
+    .vocabulary{
+      &__control-overlay {
+        height: 30%;
+      }
+      &__control{
+        height: 32px;
+      }
+    }
+
+
+  }
+  &__control-overlay {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    height: 30%;
+    height: 0;
     background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc000000', endColorstr='#00000000', GradientType=0); /* IE6-9 */
+    transition: all 0.5s;
   }
   &__content {
     position: absolute;
@@ -1516,9 +1537,9 @@ body {
     left: 0;
     right: 0;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+30,000000+100&0.8+0,0.5+30,0+100 */
-    background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 40%, transparent 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 40%, transparent 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 40%, transparent 100%);
+    background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc000000', endColorstr='#00000000', GradientType=0); /* IE6-9 */
   }
   &__en-name {
@@ -1543,5 +1564,90 @@ body {
     font-size: 14px;
     color: #ececec;
 
+  }
+  &__control {
+    overflow: hidden;
+
+    height: 0px;
+    transition: all 0.5s;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__icon {
+    padding: 5px 5px;
+    font-size: 20px;
+    font-weight: 100;
+    cursor: pointer;
+    &:hover {
+      background-color: $ColorRed;
+    }
+
+  }
+}
+
+.section-user-info {
+  padding-left: 50px;
+  padding-right: 50px;
+  display: flex;
+  flex-direction: column;
+  &__item {
+    &--first-name {
+      flex: 0 0 50%;
+      box-sizing: border-box;
+    }
+    &--last-name {
+      padding-left: 20px;
+      flex: 0 0 calc(50% - 20px);
+      box-sizing: border-box;
+    }
+
+    .radio:before {
+      background: #313a3d;
+    }
+  }
+  &__row {
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+  }
+
+}
+
+.user-input {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  font-size: 18px;
+  align-items: center;
+  width: 100%;
+  &__label {
+    height: 50px;
+    background-color: #313a3d;
+    text-transform: uppercase;
+    flex:  0 0 100px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    color: #fdfdfd;
+    white-space: nowrap;
+    padding-right: 20px;
+    &--radio{
+      background-color: transparent;
+    }
+  }
+  &__input {
+    overflow: hidden;
+    height: 50px;
+    outline: none !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-grow: 1;
   }
 }

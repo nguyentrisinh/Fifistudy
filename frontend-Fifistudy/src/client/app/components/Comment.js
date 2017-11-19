@@ -6,7 +6,11 @@ import {getComment} from '../actions/dataIntropage'
 import {withCookies} from 'react-cookie';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
-import {toggleModalLogin} from '../actions/app'
+import {toggleModalLogin} from '../actions/app';
+import TimeAgo from 'react-timeago';
+import viStrings from 'react-timeago/lib/language-strings/vi'
+import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
+const formatter = buildFormatter(viStrings)
 
 
 class Comment extends React.Component {
@@ -50,7 +54,9 @@ class Comment extends React.Component {
                     <div className="comment__name">
                         {data.first_name + " " + data.last_name} <span className="comment__time">
                         <i className="fa fa-circle fa-lg comment__dot"></i>
-                       <span>  3 ngày trước</span>
+                       {/*<span>  3 ngày trước</span>*/}
+                       &nbsp;
+                        <TimeAgo date={data.created_at} formatter={formatter} />
                     </span>
                     </div>
                     <div className="comment__content">

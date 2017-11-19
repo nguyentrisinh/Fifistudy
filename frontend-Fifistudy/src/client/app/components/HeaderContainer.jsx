@@ -74,6 +74,11 @@ class Header extends React.Component {
                                 }
                             </div>
                         </div>
+                        <div className="menu">
+                            <div className="menu__item">Phim theo cấp</div>
+                            <div className="menu__item">Phim mới nhất</div>
+                            <div className="menu__item">Phim quan tâm nhiều</div>
+                        </div>
                     </div>
                 )
 

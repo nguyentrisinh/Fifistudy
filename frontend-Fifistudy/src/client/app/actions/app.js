@@ -14,6 +14,8 @@ export const getUserInfo = (token) => {
                 dispatch(doLogin(true));
             }
             else {
+                dispatch(doLogin(false));
+
             }
         })
     }

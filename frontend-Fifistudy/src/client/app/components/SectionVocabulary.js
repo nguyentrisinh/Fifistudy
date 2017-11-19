@@ -1,6 +1,7 @@
 import React from 'react';
 import Vocabulary from './Vocabulary'
 import {connect} from 'react-redux';
+import FlipMove from 'react-flip-move'
 
 class SectionVocabulary extends React.Component {
     constructor(props) {
@@ -27,11 +28,11 @@ class SectionVocabulary extends React.Component {
                 <div className="section-vocabulary__title">
                     TỪ VỰNG ĐÃ LƯU
                 </div>
-                <div className="section-vocabulary">
-                    {
-                        this.renderVocabulary()
-                    }
-                </div>
+                    <FlipMove enterAnimation="fade" leaveAnimation="fade" className="section-vocabulary">
+                        {
+                            this.renderVocabulary()
+                        }
+                    </FlipMove>
             </div>
 
         )

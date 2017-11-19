@@ -88,7 +88,7 @@ class AppContainer extends React.Component {
                     <TransitionGroup>
                         <Switch>
                             <Route exact path="/" component={Index}/>
-                            <Route exact path="/film/:filmSlug/:episodeId" component={DetailPageContainer}/>
+                            <Route exact path="/film/:slug/:episodeId" component={DetailPageContainer}/>
                             <Route exact path="/film/:slug" component={FilmIntroContainer}/>
                             <Route exact path="/signup" component={SignUp}/>
                             <Route exact path="/user" component={Userpage}/>

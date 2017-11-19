@@ -1,10 +1,11 @@
 import React from 'react';
 import Actor from './Actor'
 import Slider from 'react-slick';
+import _ from 'lodash';
 import {connect} from 'react-redux';
 import ListActor from './ListActor'
 import Comment from "./Comment";
-import _ from 'lodash'
+import {serverDomain} from '../config/server'
 import {withRouter} from 'react-router'
 
 import {postComment} from '../actions/api';
@@ -99,15 +100,23 @@ class CommentContainer extends React.Component {
 
 
     render() {
+        let userInfo = null;
+        if (_.has(this.props.userInfo, "data.errors")) {
+            if (this.props.userInfo.data.errors == null) {
+                userInfo = this.props.userInfo.data.data
+            }
+        }
         return (
             <div className="comments">
                 <div className="comments__section-comment">
-                    <div className="comments__wrap-image">
-                        <img src="http://placehold.it/50x50" alt="Avatar" className="comments__image"/>
+                    <div className="comments__wrap-image" style={{backgroundImage:`url(${userInfo?serverDomain+userInfo.avatar:"http://placehold.it/100x100"})`}}>
+                        {/*<img src={} alt="Avatar" className="comments__image"/>*/}
                     </div>
                     <div className="comments__comment">
                         <div className="comments__name">
-                            Nguyễn Thanh Liêm
+                            {
+                                userInfo ? userInfo.first_name + " " + userInfo.last_name:"Nhập bình luận tại đây"
+                            }
                         </div>
                         <textarea onClick={this.onTextareaFocus} onKeyPress={this.onTextareaKeyPress}
                                   onChange={this.onTextareaChange}
@@ -127,7 +136,7 @@ const mapStateToProps = state => {
     return {
         comment: state.dataIntropage.comment,
         isLogin: state.app.isLogin,
-        userInfo: state.app.userInfo
+        userInfo: state.app.userInfo,
     }
 }
 

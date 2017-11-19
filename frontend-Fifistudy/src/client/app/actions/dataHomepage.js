@@ -1,10 +1,10 @@
 import * as Types from '../constants/dataHomepage';
 import axios from '../config/axios';
-import {Api} from '../constants/api'
+import {API_PATH} from '../constants/apiPath'
 
 export function getPromotes() {
     return function (dispatch) {
-        axios.get(Api.getPromote)
+        axios.get(API_PATH.getPromote)
             .then(response => {
                 dispatch({
                     type: Types.GET_PROMOTE,
@@ -35,7 +35,7 @@ export function getMostView(token = null) {
                     "Authorization": `Token ${token}`
                 }
             }
-            axios.get(Api.getMostViewWithAuth, config)
+            axios.get(API_PATH.getMostViewWithAuth, config)
                 .then(response => {
                     dispatch({
                         type: Types.GET_MOST_VIEW,
@@ -46,7 +46,7 @@ export function getMostView(token = null) {
                 .catch(err => console.log(err));
         }
         else {
-            axios.get(Api.getMostView)
+            axios.get(API_PATH.getMostView)
                 .then(response => {
                     dispatch({
                         type: Types.GET_MOST_VIEW,
@@ -68,7 +68,7 @@ export function getLastest(token = null) {
                     "Authorization": `Token ${token}`
                 }
             };
-            axios.get(Api.getLastestWithAuth, config)
+            axios.get(API_PATH.getLastestWithAuth, config)
                 .then(response => {
                     dispatch({
                         type: Types.GET_LATEST,
@@ -79,7 +79,7 @@ export function getLastest(token = null) {
                 .catch(err => console.log(err));
         }
         else {
-            axios.get(Api.getLastest)
+            axios.get(API_PATH.getLastest)
                 .then(response => {
                     dispatch({
                         type: Types.GET_LATEST,

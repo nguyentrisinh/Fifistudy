@@ -26,7 +26,12 @@ class ModalLogin extends React.Component {
         let {cookies} = this.props;
         postLogin(data).then(res => {
             if (res.data.errors == null) {
-                cookies.set("token", res.data.data.token);
+                let date = new Date();
+                date = date.setDate(date.getDate() + 1);
+                date = new Date(date);
+                cookies.set("token", res.data.data.token, {
+                    expires: date
+                });
                 this.props.getUserInfo(res.data.data.token);
                 this.props.doLogin(true);
                 this.props.onClickOutside();

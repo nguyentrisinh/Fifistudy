@@ -1,10 +1,10 @@
 import * as Types from '../constants/dataDetailPage';
 import axios from '../config/axios';
-import {Api} from '../constants/api'
+import {API_PATH} from '../constants/apiPath'
 
 export function getEpisode(filmSlug, episodeId) {
     return function (dispatch) {
-        axios.get(Api.getEpisode(filmSlug, episodeId))
+        axios.get(API_PATH.getEpisode(filmSlug, episodeId))
             .then(response => {
                 dispatch({
                     type: Types.GET_EPISODE,
@@ -19,7 +19,7 @@ export function getEpisode(filmSlug, episodeId) {
 
 export function getFilmDetail(slug) {
     return function (dispatch) {
-        axios.get(Api.getFilm(slug))
+        axios.get(API_PATH.getFilm(slug))
             .then(response => {
                 dispatch({
                     type: Types.GET_FILM_DETAIL,
@@ -36,17 +36,17 @@ export function getFilmDetail(slug) {
 export function getDataDetailPage(filmSlug, episodeId) {
 
     return function (dispatch) {
-        dispatch({
-            type: Types.GET_DATTA_DETAIL_PAGE,
-            serverData: null,
-            isLoading: true
-        })
-        Promise.all([axios.get(Api.getEpisode(filmSlug, episodeId))
+        // dispatch({
+        //     type: Types.GET_DATTA_DETAIL_PAGE,
+        //     serverData: null,
+        //     isLoading: true
+        // })
+        Promise.all([axios.get(API_PATH.getEpisode(filmSlug, episodeId))
             .then(response => {
                 return response.data
 
             })
-            .catch(err => console.log(err)), axios.get(Api.getFilm(filmSlug))
+            .catch(err => console.log(err)), axios.get(API_PATH.getFilm(filmSlug))
             .then(response => {
                 return response.data
 
