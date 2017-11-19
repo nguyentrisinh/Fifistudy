@@ -9,16 +9,33 @@ class FilmAdapter:
     def __init__(self):
         pass
 
+    def is_saved(self, user, film):
+        user_save_film = UserSaveFilm.objects.filter(user_id=user, film_id=film)
+
+        if user_save_film.exists():
+            return True
+
+        return False
+
     def get_list_order_by_view(self, user=None, begin_record=0, end_record=8):
         if user is not None:
             # check if user is not none, we can check that that film user have already saved or not
             # To-Do list
-            films = Film.objects.all().annotate(
-                is_saved=Case(
-                    When(usersavefilm__user_id=user, then=True),
-                    default=False, output_field=BooleanField()
-                )
-            ).order_by('-view_number', '-updated_at')[begin_record:end_record]
+            # duplicate data when UserSaveFilm table has many user save 1 film
+            # (if 3 people save 1 film, that film will same 3 times)
+            # need to find out why (Now will fix it with easy way but not very performance
+
+            # films = Film.objects.all().annotate(
+            #     is_saved=Case(
+            #         When(usersavefilm__user_id=user, then=True),
+            #         default=False, output_field=BooleanField()
+            #     )
+            # ).order_by('-view_number', '-updated_at')[begin_record:end_record]
+
+            films = Film.objects.all().order_by('-view_number', '-updated_at')[begin_record:end_record]
+
+            for film in films:
+                film .is_saved = self.is_saved(user, film)
 
             return films
         else:
@@ -32,12 +49,21 @@ class FilmAdapter:
         if user is not None:
             # check if user is not none, we can check that that film user have already saved or not
             # To-Do list
-            films = Film.objects.all().annotate(
-                is_saved=Case(
-                    When(usersavefilm__user_id=user, then=True),
-                    default=False, output_field=BooleanField()
-                )
-            ).order_by('-updated_at')[begin_record:end_record]
+            # duplicate data when UserSaveFilm table has many user save 1 film
+            # (if 3 people save 1 film, that film will same 3 times)
+            # need to find out why (Now will fix it with easy way but not very performance
+
+            # films = Film.objects.all().annotate(
+            #     is_saved=Case(
+            #         When(usersavefilm__user_id=user, then=True),
+            #         default=False, output_field=BooleanField()
+            #     )
+            # ).order_by('-updated_at')[begin_record:end_record]
+
+            films = Film.objects.all().order_by('-updated_at')[begin_record:end_record]
+
+            for film in films:
+                film .is_saved = self.is_saved(user, film)
 
             return films
         else:
@@ -49,12 +75,21 @@ class FilmAdapter:
 
     def get_list_order_by_saved_number(self, user=None, begin_record=0, end_record=8):
         if user is not None:
-            films = Film.objects.all().annotate(
-                is_saved=Case(
-                    When(usersavefilm__user_id=user, then=True),
-                    default=False, output_field=BooleanField()
-                )
-            ).order_by('-save_number', '-updated_at')[begin_record:end_record]
+            # duplicate data when UserSaveFilm table has many user save 1 film
+            # (if 3 people save 1 film, that film will same 3 times)
+            # need to find out why (Now will fix it with easy way but not very performance
+
+            # films = Film.objects.all().annotate(
+            #     is_saved=Case(
+            #         When(usersavefilm__user_id=user, then=True),
+            #         default=False, output_field=BooleanField()
+            #     )
+            # ).order_by('-save_number', '-updated_at')[begin_record:end_record]
+
+            films = Film.objects.all().order_by('-save_number', '-updated_at')[begin_record:end_record]
+
+            for film in films:
+                film .is_saved = self.is_saved(user, film)
 
             return films
         else:
