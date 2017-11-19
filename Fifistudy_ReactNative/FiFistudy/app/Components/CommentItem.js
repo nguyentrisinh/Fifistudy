@@ -41,11 +41,11 @@ class CommentItem extends Component {
 
                 <View style={styles.horizontal}>
                     <View style={styles.ava}>
-                        {/* <Image
-                        source={this.props.ava}
-                        resizeMode='stretch'
-                        style={styles.ava}
-                    /> */}
+                        <Image
+                            source={this.props.ava}
+                            //resizeMode='stretch'
+                            style={styles.ava}
+                        />
                     </View>
                     <View style={styles.commentContainer}>
                         <View style={styles.txtCommentContainer}>

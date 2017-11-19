@@ -22,8 +22,6 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
         borderRadius: 35,
-        overflow: 'hidden',
-        backgroundColor: 'black',
     },
     liked: {
         marginLeft: 10,
