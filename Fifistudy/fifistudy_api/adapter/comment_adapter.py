@@ -23,7 +23,7 @@ class CommentAdapter:
                         When(userlikecomment__user_id=user, then=True),
                         default=False, output_field=BooleanField()
                     ),
-                ).order_by('-updated_at')[begin_row:end_row]
+                ).order_by('-created_at')[begin_row:end_row]
 
                 for comment in comments:
                     comment.username = comment.user_id.username
@@ -43,7 +43,7 @@ class CommentAdapter:
 
                 comments = Comment.objects.filter(film_id=film).annotate(
                     is_liked=Case(default=False, output_field=BooleanField()),
-                ).order_by('-updated_at')[begin_row:end_row]
+                ).order_by('-created_at')[begin_row:end_row]
 
                 for comment in comments:
                     comment.username = comment.user_id.username

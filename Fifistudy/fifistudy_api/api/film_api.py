@@ -57,6 +57,7 @@ class FilmViewSet(ModelViewSet, ApiBase):
             })),
 
             url(r'^save_film/$', cls.as_view({
+                'get': 'get_list_user_save_film',
                 'post': 'user_save_film'
             }))
 
@@ -157,5 +158,12 @@ class FilmViewSet(ModelViewSet, ApiBase):
         film_id = request.data['film_id']
 
         result = self.film_services.user_save_film(user, film_id)
+
+        return self.as_success(result)
+
+    def get_list_user_save_film(self, request, *args, **kwargs):
+        user = self.check_anonymous(request)
+
+        result = self.film_services.get_list_user_save_film(user)
 
         return self.as_success(result)

@@ -149,3 +149,11 @@ class FilmAdapter:
         except Film.DoesNotExist:
             raise ApiCustomException(ErrorDefine.FILM_NOT_FOUND)
 
+    def get_list_user_save_film(self, user):
+        user_save_film = UserSaveFilm.objects.filter(user_id=user)
+
+        for film in user_save_film:
+            film.film_detail = film.film_id
+
+        return user_save_film
+
