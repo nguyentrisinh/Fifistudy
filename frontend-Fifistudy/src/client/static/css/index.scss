@@ -165,7 +165,7 @@ body {
     display: flex;
     flex-direction: row;
     padding-left: 20px;
-    padding-right: 20px;
+    //padding-right: 20px;
     align-items: center;
   }
   &__item {
@@ -231,6 +231,8 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    padding-right: 20px;
     color: #fffafa;
   }
   &__wrap-avatar {
@@ -268,6 +270,7 @@ body {
 
 .menu {
   left: 0;
+  min-width:100%;
   position: absolute;
   bottom: 0;
   transform: translateY(100%);
@@ -284,6 +287,8 @@ body {
   &__item {
     white-space: nowrap;
     padding: 10px 10px;
+    display: block;
+    color: white;
     cursor: pointer;
     &:hover {
       background-color: rgba(255, 255, 255, 0.2);
@@ -1379,14 +1384,21 @@ body {
     width: 30%;
     float: left;
   }
+  &__scroll {
+
+    box-sizing: border-box;
+    width: 70%;
+    float: left;
+  }
+
   &__content {
+
+    padding-top: calc(#{$MenuHeight} + 40px);
+
 
     box-sizing: border-box;
     padding-left: 25px;
     padding-right: 25px;
-    width: 70%;
-    float: left;
-    padding-top: calc(#{$MenuHeight} + 40px);
   }
 }
 
@@ -1649,5 +1661,10 @@ body {
     padding-left: 10px;
     padding-right: 10px;
     flex-grow: 1;
+  }
+}
+.section-saved-film{
+  &__item{
+    flex: 0 0 33.33%;
   }
 }

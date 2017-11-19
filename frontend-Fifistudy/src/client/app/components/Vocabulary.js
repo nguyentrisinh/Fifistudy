@@ -12,15 +12,15 @@ class Vocabulary extends React.Component {
         this.state = {};
     }
 
-    onClickDelete = () =>{
+    onClickDelete = () => {
         let {vocabulary, episode, film} = this.props.data;
         let {cookies} = this.props;
         let token = cookies.get("token")
-        deleteVocabulary(vocabulary.id,token).then(response=>{
-            if (response.data.errors==null){
+        deleteVocabulary(vocabulary.id, token).then(response => {
+            if (response.data.errors == null) {
                 this.props.getVocabulary(token);
             }
-            else{
+            else {
                 alert("Xóa thất bại")
             }
         })
@@ -57,4 +57,4 @@ class Vocabulary extends React.Component {
     }
 }
 
-export default connect(null,{getVocabulary})(withCookies(Vocabulary))
+export default connect(null, {getVocabulary})(withCookies(Vocabulary))

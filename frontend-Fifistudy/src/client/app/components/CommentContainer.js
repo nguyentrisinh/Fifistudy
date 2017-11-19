@@ -44,7 +44,7 @@ class CommentContainer extends React.Component {
                 let token = cookies.get("token")
                 postComment(data, token).then(res => {
                     if (res.data.errors === null) {
-                        alert('Comment thanh cong');
+                        // alert('Comment thanh cong');
                         this.setState({
                             comment: ""
                         })
@@ -109,13 +109,14 @@ class CommentContainer extends React.Component {
         return (
             <div className="comments">
                 <div className="comments__section-comment">
-                    <div className="comments__wrap-image" style={{backgroundImage:`url(${userInfo?serverDomain+userInfo.avatar:"http://placehold.it/100x100"})`}}>
+                    <div className="comments__wrap-image"
+                         style={{backgroundImage: `url(${userInfo ? serverDomain + userInfo.avatar : "http://placehold.it/100x100"})`}}>
                         {/*<img src={} alt="Avatar" className="comments__image"/>*/}
                     </div>
                     <div className="comments__comment">
                         <div className="comments__name">
                             {
-                                userInfo ? userInfo.first_name + " " + userInfo.last_name:"Nhập bình luận tại đây"
+                                userInfo ? userInfo.first_name + " " + userInfo.last_name : "Nhập bình luận tại đây"
                             }
                         </div>
                         <textarea onClick={this.onTextareaFocus} onKeyPress={this.onTextareaKeyPress}

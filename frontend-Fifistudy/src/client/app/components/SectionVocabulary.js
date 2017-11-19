@@ -28,11 +28,11 @@ class SectionVocabulary extends React.Component {
                 <div className="section-vocabulary__title">
                     TỪ VỰNG ĐÃ LƯU
                 </div>
-                    <FlipMove enterAnimation="fade" leaveAnimation="fade" className="section-vocabulary">
-                        {
-                            this.renderVocabulary()
-                        }
-                    </FlipMove>
+                <FlipMove enterAnimation="fade" leaveAnimation="fade" className="section-vocabulary">
+                    {
+                        this.renderVocabulary()
+                    }
+                </FlipMove>
             </div>
 
         )

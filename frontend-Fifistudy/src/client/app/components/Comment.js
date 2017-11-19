@@ -54,9 +54,9 @@ class Comment extends React.Component {
                     <div className="comment__name">
                         {data.first_name + " " + data.last_name} <span className="comment__time">
                         <i className="fa fa-circle fa-lg comment__dot"></i>
-                       {/*<span>  3 ngày trước</span>*/}
-                       &nbsp;
-                        <TimeAgo date={data.created_at} formatter={formatter} />
+                        {/*<span>  3 ngày trước</span>*/}
+                        &nbsp;
+                        <TimeAgo date={data.created_at} formatter={formatter}/>
                     </span>
                     </div>
                     <div className="comment__content">

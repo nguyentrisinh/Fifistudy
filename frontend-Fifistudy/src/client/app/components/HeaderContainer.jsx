@@ -24,7 +24,7 @@ class Header extends React.Component {
 
     onClickMenu = (menu) => {
         this.setState({
-            open: menu
+            open: menu === this.state.open ? null : menu
         })
     }
 
@@ -34,7 +34,7 @@ class Header extends React.Component {
         })
     }
 
-    onClickAccountSection = () => {
+    onClickLogout = () => {
         let {cookies} = this.props;
 
         if (cookies.get("token")) {
@@ -56,7 +56,10 @@ class Header extends React.Component {
             if (this.props.userInfo.data.errors == null) {
                 let userInfo = this.props.userInfo.data.data;
                 return (
-                    <div className="header__item" onClick={this.onClickAccountSection}>
+                    <div
+                        onClick={this.onClickMenu.bind(this, "account")}
+                        className={classNames("header__item header__item--has-children", {"header__item--open": this.state.open === "account"})}
+                    >
                         <div className="header__profile">
                             <div className="header__wrap-avatar"
                                  style={{backgroundImage: userInfo.avatar ? `url(http://localhost:8000${userInfo.avatar})` : `url(http://placehold.it/50x50)`}}>
@@ -74,11 +77,17 @@ class Header extends React.Component {
                                 }
                             </div>
                         </div>
-                        <div className="menu">
-                            <div className="menu__item">Phim theo cấp</div>
-                            <div className="menu__item">Phim mới nhất</div>
-                            <div className="menu__item">Phim quan tâm nhiều</div>
-                        </div>
+                        <Menu data={[{
+                            name: "Vào trang cá nhân",
+                            link: "/user", onClick: null
+                        },
+                            {
+                                name: "Đăng xuất",
+                                link: null
+                                , onClick: this.onClickLogout
+                            }
+                        ]} closeMenu={this.closeMenu} outsideClickIgnoreClass="header__item--has-children"
+                              isOpen={this.state.open === "account"}/>
                     </div>
                 )
 
@@ -110,7 +119,24 @@ class Header extends React.Component {
                         className={classNames("header__item header__item--has-children", {"header__item--open": this.state.open === "phim"})}
                     >
                         Phim
-                        <Menu closeMenu={this.closeMenu} outsideClickIgnoreClass="header__item--has-children"
+                        <Menu data={[
+                            {
+                                name: "Phim mới nhất",
+                                link: "/",
+                                onClick: null,
+                            },
+                            {
+                                name: "Phim mới được quan tâm nhiều",
+                                link: "/",
+                                onClick: null,
+                            },
+                            {
+                                name: "Phim được xem nhiều",
+                                link: "/",
+                                onClick: null,
+                            }
+                        ]} closeMenu={this.closeMenu}
+                              outsideClickIgnoreClass="header__item--has-children"
                               isOpen={this.state.open === "phim"}/>
                     </div>
                     <div
@@ -118,7 +144,24 @@ class Header extends React.Component {
                         className={classNames("header__item header__item--has-children", {"header__item--open": this.state.open === "blog"})}
                     >
                         Blog
-                        <Menu closeMenu={this.closeMenu} outsideClickIgnoreClass="header__item--has-children"
+                        <Menu data={[
+                            {
+                                name: "Kinh nghiệm học tiếng Anh",
+                                link: "/",
+                                onClick: null,
+                            },
+                            {
+                                name: "Tài liệu",
+                                link: "/",
+                                onClick: null,
+                            },
+                            {
+                                name: "Khác",
+                                link: "/",
+                                onClick: null,
+                            }
+                        ]} closeMenu={this.closeMenu}
+                              outsideClickIgnoreClass="header__item--has-children"
                               isOpen={this.state.open === "blog"}/>
                     </div>
                     <div className="header__item header__item--search">

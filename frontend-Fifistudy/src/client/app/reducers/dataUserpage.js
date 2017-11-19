@@ -5,7 +5,7 @@ const initialState = {
         isLoading: true,
         data: null
     },
-    saved_film: {
+    savedFilm: {
         isLoading: true,
         data: null
     }
@@ -24,7 +24,7 @@ export default function dataHomepage(state = initialState, action) {
             break;
         case Types.GET_SAVE_FILM:
             return Object.assign({}, state, {
-                saved_film: Object.assign({}, state.saved_film, {
+                savedFilm: Object.assign({}, state.savedFilm, {
                     data: action.serverData,
                     isLoading: action.isLoading
 

@@ -2,17 +2,18 @@ import React from 'react';
 import validator from 'validator';
 import classNames from 'classnames';
 
-export default function ({placeholder,label, type, name, value, err, onBlur, onChange}) {
+export default function ({placeholder, label, type, name, value, err, onBlur, onChange}) {
     return (
         <div className="user-input">
 
             <label className="user-input__label" htmlFor={name}>{label}</label>
-            <input id={label} className={classNames("user-input__input", {"input-input__input--error": !!err})} onBlur={ (evt) => {
-                if (onBlur) {
-                    onBlur(evt);
-                }
-            }
-            }
+            <input id={label} className={classNames("user-input__input", {"input-input__input--error": !!err})}
+                   onBlur={ (evt) => {
+                       if (onBlur) {
+                           onBlur(evt);
+                       }
+                   }
+                   }
                    type={type} onChange={(evt) => {
                 if (onChange) {
                     onChange(evt);

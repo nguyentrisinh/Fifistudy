@@ -250,10 +250,10 @@ export const getUserSaveFilm = (token) => {
     }
     return axios.get(API_PATH.getUserSaveFilm, config)
         .then(response => {
-            return response
+            return response.data
         })
         .catch(err => {
-            return err.response
+            return err.response.data
         })
 }
 

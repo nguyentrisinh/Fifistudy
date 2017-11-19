@@ -18,69 +18,77 @@ class UserPage extends React.Component {
         this.state = {};
     }
 
-renderUserInfo  = () =>{
-        if (_.has(this.props.userInfo,"data.errors")){
-            if (this.props.userInfo.data.errors==null){
+    renderUserInfo = () => {
+        if (_.has(this.props.userInfo, "data.errors")) {
+            if (this.props.userInfo.data.errors == null) {
                 return <UserAvatar data={this.props.userInfo.data.data}/>
             }
         }
         return null
-}
+    }
+
     render() {
         return (
             <FadeTransition>
                 <div className="container">
                     <div className="user-page clearfix">
-                        <ScrollBar>
 
-                            <Tabs>
-                                <div className="user-page__menu">
-                                    {this.renderUserInfo()}
-                                    <div className="user-menu">
-                                        <TabList className="user-menu__ul">
-                                            <Tab selectedClassName="user-menu__li--selected" className="user-menu__li">
-                                                <i className="fa fa-user-o user-menu__icon"></i>
-                                                <span className="user-menu__text">
+
+                        <Tabs>
+                            <div className="user-page__menu">
+                                {this.renderUserInfo()}
+                                <div className="user-menu">
+                                    <TabList className="user-menu__ul">
+                                        <Tab selectedClassName="user-menu__li--selected" className="user-menu__li">
+                                            <i className="fa fa-user-o user-menu__icon"></i>
+                                            <span className="user-menu__text">
                                             THÔNG TIN CÁ NHÂN
                                         </span>
-                                            </Tab>
-                                            <Tab selectedClassName="user-menu__li--selected" className="user-menu__li">
-                                                <i className="fa fa-film user-menu__icon"></i>
-                                                <span className="user-menu__text">
+                                        </Tab>
+                                        <Tab selectedClassName="user-menu__li--selected" className="user-menu__li">
+                                            <i className="fa fa-film user-menu__icon"></i>
+                                            <span className="user-menu__text">
                                            phim đã lưu
                                         </span></Tab>
-                                            <Tab selectedClassName="user-menu__li--selected" className="user-menu__li">
-                                                <i className="fa fa-pencil-square-o user-menu__icon"></i>
-                                                <span className="user-menu__text">
+                                        <Tab selectedClassName="user-menu__li--selected" className="user-menu__li">
+                                            <i className="fa fa-pencil-square-o user-menu__icon"></i>
+                                            <span className="user-menu__text">
                                            từ vựng đã lưu
                                         </span></Tab>
-                                            <Tab selectedClassName="user-menu__li--selected" className="user-menu__li">
-                                                <i className="fa fa-sticky-note-o user-menu__icon"></i>
-                                                <span className="user-menu__text">
+                                        <Tab selectedClassName="user-menu__li--selected" className="user-menu__li">
+                                            <i className="fa fa-sticky-note-o user-menu__icon"></i>
+                                            <span className="user-menu__text">
                                            ghi chú của tôi
                                         </span></Tab>
-                                        </TabList>
+                                    </TabList>
+                                </div>
+
+                            </div>
+
+
+                            <div className="user-page__scroll">
+                                <ScrollBar>
+                                    <div className="user-page__content">
+                                        <TabPanel>
+                                            <SectionUserInfo/>
+                                        </TabPanel>
+                                        <TabPanel>
+                                            <SectionSavedFilmContainer/>
+                                        </TabPanel>
+                                        <TabPanel>
+                                            <SectionVocabularyContainer/>
+                                        </TabPanel>
+                                        <TabPanel>
+                                            GHi chu
+                                        </TabPanel>
                                     </div>
-
-                                </div>
-                                <div className="user-page__content">
-                                    <TabPanel>
-                                        <SectionUserInfo/>
-                                    </TabPanel>
-                                    <TabPanel>
-                                       <SectionSavedFilmContainer/>
-                                    </TabPanel>
-                                    <TabPanel>
-                                        <SectionVocabularyContainer/>
-                                    </TabPanel>
-                                    <TabPanel>
-                                        GHi chu
-                                    </TabPanel>
-                                </div>
-                            </Tabs>
+                                </ScrollBar>
+                            </div>
 
 
-                        </ScrollBar>
+                        </Tabs>
+
+
                     </div>
                 </div>
             </FadeTransition>
@@ -89,9 +97,9 @@ renderUserInfo  = () =>{
     }
 }
 
-const mapStateToProps = state =>    {
+const mapStateToProps = state => {
     return {
-        userInfo:state.app.userInfo
+        userInfo: state.app.userInfo
     }
 }
 export default  connect(mapStateToProps)(UserPage)

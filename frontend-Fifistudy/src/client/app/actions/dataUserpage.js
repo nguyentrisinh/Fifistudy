@@ -45,13 +45,13 @@ export function getUserSaveFilm(token) {
         // }
         // console.log(getState)
         Api.getUserSaveFilm(token).then(
-            res =>{
+            res => {
                 dispatch({
-                    type:Types.GET_SAVE_FILM,
-                    serverData:res
+                    type: Types.GET_SAVE_FILM,
+                    serverData: res,
+                    isLoading: false
                 })
             }
-
         )
 
     }

@@ -3,10 +3,10 @@ import Actor from './Actor'
 import Slider from 'react-slick';
 import {connect} from 'react-redux';
 import ListActor from './ListActor'
-import {getVocabulary,getUserSaveFilm} from '../actions/dataUserpage';
+import {getVocabulary, getUserSaveFilm} from '../actions/dataUserpage';
 import {withCookies} from 'react-cookie';
 import SectionVocabulary  from './SectionVocabulary'
-
+import SectionSavedFilm from '../components/SectionSavedFilm'
 class SectionVocabularyContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -22,17 +22,19 @@ class SectionVocabularyContainer extends React.Component {
 
     renderContent = () => {
 
-        let {vocabulary} = this.props;
-        if (vocabulary.isLoading) {
+        let {savedFilm} = this.props;
+        if (savedFilm.isLoading) {
             return (
                 <div className="list-actor__info"> Đang tải ... </div>
             )
         }
         else {
-            if (vocabulary.data.errors == null) {
-                if (vocabulary.data.data.length > 0) {
+            if (savedFilm.data.errors == null) {
+                if (savedFilm.data.data.length > 0) {
                     return (
-                        <SectionVocabulary data={vocabulary.data.data}/>
+                        <SectionSavedFilm data={savedFilm.data.data}/>
+
+
                     )
                 }
                 else {
@@ -59,8 +61,8 @@ class SectionVocabularyContainer extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        vocabulary: state.dataUserpage.vocabulary
+        savedFilm: state.dataUserpage.savedFilm
     }
 }
 
-export default connect(mapStateToProps, {getVocabulary,getUserSaveFilm})(withCookies(SectionVocabularyContainer))
+export default connect(mapStateToProps, {getUserSaveFilm})(withCookies(SectionVocabularyContainer))

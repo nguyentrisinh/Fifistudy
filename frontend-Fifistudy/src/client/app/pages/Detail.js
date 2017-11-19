@@ -56,4 +56,4 @@ class Detail extends React.Component {
         )
     }
 }
-export default connect(null,{getFilmByDifficult})(Detail)
+export default connect(null, {getFilmByDifficult})(Detail)

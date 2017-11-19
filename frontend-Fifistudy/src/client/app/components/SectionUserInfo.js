@@ -26,18 +26,22 @@ class SectionUserInfo extends React.Component {
                         </div>
                     </div>
                     <div className="section-user-info__row">
-                            <Input1 label="EMAIL"/>
+                        <Input1 label="EMAIL"/>
                     </div>
                     <div className="section-user-info__row">
-                            <Input1 label="MẬT KHẨU"/>
+                        <Input1 label="MẬT KHẨU"/>
                     </div>
                     <div className="section-user-info__row">
                         <div className="user-input__label">
                             GIỚI TÍNH
                         </div>
 
-                        <label className="user-input__label user-input__label--radio"><input type="radio" className="radio" name="0" value="on"/>Nam</label>
-                            <label className="user-input__label user-input__label--radio"><input type="radio" className="radio" name="0" value="on"/>Nữ</label>
+                        <label className="user-input__label user-input__label--radio"><input type="radio"
+                                                                                             className="radio" name="0"
+                                                                                             value="on"/>Nam</label>
+                        <label className="user-input__label user-input__label--radio"><input type="radio"
+                                                                                             className="radio" name="0"
+                                                                                             value="on"/>Nữ</label>
 
                     </div>
                     <div className="section-user-info__row">

@@ -4,6 +4,7 @@ import Star from './Star'
 import classNames from 'classnames';
 import {postUserSaveFilm} from '../actions/api';
 import {getMostView, getLastest} from '../actions/dataHomepage'
+import {getUserSaveFilm} from '../actions/dataUserpage'
 import {withCookies} from 'react-cookie';
 import {SERVER_ERRORS} from '../constants/serverErrors'
 import {connect} from 'react-redux';
@@ -38,6 +39,7 @@ class Film extends React.Component {
         let token = cookies.get("token");
         this.props.getLastest(token);
         this.props.getMostView(token);
+        this.props.getUserSaveFilm(token);
     }
     onClickBookmark = (event) => {
         event.stopPropagation();
@@ -88,8 +90,8 @@ class Film extends React.Component {
                            onMouseLeave={this.onLeaveEnterBookmark}
                            className={classNames("fa", {
 
-                               "fa-bookmark-o": !this.state.isEnter && !data.is_saved,
-                               "fa-bookmark": this.state.isEnter || data.is_saved
+                               "fa-bookmark-o": this.props.isSaved ? !this.props.isSaved : !this.state.isEnter && !data.is_saved,
+                               "fa-bookmark": this.props.isSaved ? this.props.isSaved : this.state.isEnter || data.is_saved
                            })}/>
                     </div>
                     <div className="film__episode">
@@ -115,6 +117,10 @@ class Film extends React.Component {
 
 }
 
+Film.defaultProps = {
+    isSaved: false
+}
+
 const mapStateToProps = state => {
     return {
         isLogin: state.app.isLogin
@@ -122,4 +128,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, {toggleModalLogin, getLastest, getMostView})(withCookies(Film))
+export default connect(mapStateToProps, {toggleModalLogin, getLastest, getMostView, getUserSaveFilm})(withCookies(Film))

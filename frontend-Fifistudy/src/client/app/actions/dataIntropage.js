@@ -85,7 +85,7 @@ export function getComment(slug, token = null) {
 }
 
 export function getFilmByDifficult(difficultLevel) {
-    return function (dispatch,getState) {
+    return function (dispatch, getState) {
         // if (getState().dataIntropage.filmEqualDifficult.isLoading == true) {
         //     dispatch({
         //         type: Types.GET_FILM_BY_DIFFICULT,

@@ -65,9 +65,9 @@ class Comments extends React.Component {
         return (
             <div>
                 <FlipMove>
-                {
-                    this.renderComment()
-                }
+                    {
+                        this.renderComment()
+                    }
                 </FlipMove>
 
             </div>
