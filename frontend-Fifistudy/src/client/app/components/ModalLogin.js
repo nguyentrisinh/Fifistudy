@@ -51,7 +51,7 @@ class ModalLogin extends React.Component {
                 <h1 className="modal-title">Đăng nhập</h1>
                 <Input type="text" onChange={this.onChangeTextInput} name="username" placeholder="Tên đăng nhập"
                        value={this.state.username}/>
-                <Input type="text" onChange={this.onChangeTextInput} name="password" placeholder="Mật khẩu"
+                <Input type="password" onChange={this.onChangeTextInput} name="password" placeholder="Mật khẩu"
                        value={this.state.password}/>
                 <button onClick={this.onClickLogin} type="button"
                         className="action-button"
