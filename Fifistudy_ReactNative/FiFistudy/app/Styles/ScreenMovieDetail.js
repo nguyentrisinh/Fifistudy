@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
         fontSize: 15
     },
     rateContainer: {
+        marginTop: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
@@ -26,12 +27,14 @@ const styles = StyleSheet.create({
         height: 15
     },
     purpletxt: {
+        textAlign: 'center',
         color: 'purple',
         marginLeft: 10
     },
     greentxt: {
+        textAlign: 'center',
         color: 'green',
-        marginLeft: 10
+        marginLeft: 10,
     },
     italictxt: {
         fontStyle: 'italic'
@@ -49,6 +52,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     scroll: {
+        marginTop: 10,
         flex: 1
     }
 })

@@ -1,27 +1,56 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        margin: 10,
+
+    },
     horizontal: {
         flexDirection: 'row',
     },
+
+    containerIconLike: {
+        flexDirection: 'row',
+    },
+
     vertical: {
         flexDirection: 'column',
     },
     ava: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
+        width: 70,
+        height: 70,
+        borderRadius: 35,
+        overflow: 'hidden',
+        backgroundColor: 'black',
     },
-
+    liked: {
+        marginLeft: 10,
+        textAlign: 'center'
+    },
+    txtComment: {
+        marginLeft: 10,
+        marginTop: 5
+    },
     commentContainer: {
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
+        //justifyContent: 'space-between',
+        //alignItems: 'center'
     },
-
+    txtCommentContainer: {
+        height: 40
+    },
     ic_like: {
-        width: 25,
-        height: 25,
+        width: 20,
+        height: 20,
+        marginLeft: 15,
+    },
+    blackLine: {
+        flex: 1,
+        height: 2,
+        marginTop: 10,
+        backgroundColor: 'lavender',
     }
 })
 

@@ -4,7 +4,7 @@ const res = {
     green_star: require('./Icons/green-star.png'),
     purple_chart: require('./Icons/purple-chart.png'),
     ic_like: require('./Icons/ic_like.png'),
-
+    ic_like_blue: require('./Icons/ic_like_blue.png'),
     //images
     banner_film: require('./Images/ghost_in_shell.png'),
 
