@@ -13,7 +13,7 @@ import {
     ListView
 } from 'react-native';
 import ProgressController from '../screenWatchMovie/screenComment/ProgressController'
-import VideoFile from '../../resources/video/mov_bbb.mp4'
+// import VideoFile from '../../resources/video/mov_bbb.mp4'
 import Video from 'react-native-video'
 import Utils from '../../Utils';
 import ObjectFilm from './ObjectFilm';
@@ -21,7 +21,41 @@ import EpisodeCircleView from '../../components/EpisodeCircleView';
 import ImageButton from '../../components/ImageButton';
 import Resources from '../../resources/resources';
 import Styles from './styles';
-
+let styles = StyleSheet.create({
+    fullScreen: {flex: 1, backgroundColor: "black"},
+    controller: {
+        height: 100,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    controllerButton: {height: 20, width: 20},
+    videoView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    progressBar: {
+        alignSelf: "stretch",
+        margin: 20
+    },
+    videoContainer: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0
+    },
+    videoIcon: {
+        position: "relative",
+        alignSelf: "center",
+        width: 79,
+        height: 78,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        top: 0
+    }
+});
 
 export default class WatchScreen extends Component {
     setEpisodeColor(item){
@@ -54,7 +88,6 @@ export default class WatchScreen extends Component {
     }
 
     onClickPlayPauseButton = () =>{
-        console.log('ClickPause');
         this.setState({
             isPlay:!this.state.isPlay
         })
@@ -68,6 +101,12 @@ export default class WatchScreen extends Component {
         console.log('SetDuration',value);
         this.setState({
             duration:value.duration
+        })
+    }
+
+    onProgress = (value)=>{
+        this.setState({
+            currentTime:value.currentTime
         })
     }
 
@@ -151,10 +190,15 @@ export default class WatchScreen extends Component {
         color="#841584"
         accessibilityLabel="Learn more about this purple button"
     />
+    <View style={[styles.controller]}>
+        <View
+            style={[styles.progressBar]}>
     <ProgressController duration={duration}
                         currentTime={currentTime}
                         percent={completedPercentage}
                         onNewPercent={this.onProgressChanged.bind(this)}/>
+        </View>
+    </View>
 </View>
                 {/* SUB SECTION */}
                 <View style={{

@@ -15,13 +15,13 @@ let styles = StyleSheet.create({
         height: radiusOfHolder * 2,
         width: radiusOfHolder * 2,
         borderRadius: radiusOfHolder,
-        backgroundColor: "white"
+        backgroundColor: "darkgreen"
     },
     activeHolder: {
         height: radiusOfActiveHolder * 2,
         width: radiusOfActiveHolder * 2,
         borderRadius: radiusOfActiveHolder,
-        backgroundColor: "white"
+        backgroundColor: "green"
     }
 });
 class ProgressController extends Component {
@@ -112,7 +112,8 @@ class ProgressController extends Component {
     render() {
         let {moving} = this.state;
         let {currentTime, duration, percent} = this.props;
-        return <View style={styles.view}>
+        return(
+        <View style={styles.view}>
             <Text style={[styles.timeText, {marginRight: 10}]}>{this.formatSeconds(currentTime)}</Text>
             <View style={styles.barView}
                   onLayout={this.onLayout.bind(this)} {...this.holderPanResponder.panHandlers}>
@@ -125,7 +126,7 @@ class ProgressController extends Component {
                 <Animated.View style={this.getHolderStyle()}/>
             </View>
             <Text style={[styles.timeText, {marginLeft: 10}]}>{this.formatSeconds(duration)}</Text>
-        </View>
+        </View>)
     }
 }
 
