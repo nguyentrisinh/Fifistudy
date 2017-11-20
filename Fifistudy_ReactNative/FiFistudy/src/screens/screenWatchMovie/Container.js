@@ -7,9 +7,14 @@ import {
     ScrollView,
     Dimensions,
     TextInput,
+    Button,
     FlatList,
+    Slider,
     ListView
 } from 'react-native';
+import ProgressController from '../screenWatchMovie/screenComment/ProgressController'
+import VideoFile from '../../resources/video/mov_bbb.mp4'
+import Video from 'react-native-video'
 import Utils from '../../Utils';
 import ObjectFilm from './ObjectFilm';
 import EpisodeCircleView from '../../components/EpisodeCircleView';
@@ -24,7 +29,67 @@ export default class WatchScreen extends Component {
         return item === ObjectFilm.episode ? Resources.colors.violet : Resources.colors.blue;
     }
 
+    constructor(props){
+        super(props);
+        this.state = {
+            isPlay:true,
+            text:"5",
+            currentTime:0,
+            duration:0,
+        }
+    }
+
+
+    // Xa video lay vi tri hien tai cong them thoi gian user nhap o input
+
+    onClickSeekNext = () =>{
+        this.player.seek(this.state.currentTime+ parseInt(this.state.text));
+    }
+
+
+    onClickSeekPrev = () =>{
+
+        this.player.seek(this.state.currentTime - parseInt(this.state.text));
+
+    }
+
+    onClickPlayPauseButton = () =>{
+        console.log('ClickPause');
+        this.setState({
+            isPlay:!this.state.isPlay
+        })
+    }
+
+    loadStart = (value)=>{
+        console.log('loadStart',value);
+    }
+
+    setDuration=  (value)=>{
+        console.log('SetDuration',value);
+        this.setState({
+            duration:value.duration
+        })
+    }
+
+    getCurrentTimePercentage = (currentTime, duration)=> {
+        if (currentTime > 0) {
+            return parseFloat(currentTime) / parseFloat(duration);
+        } else {
+            return 0;
+        }
+    }
+
+    onProgressChanged(newPercent, paused) {
+        let {duration} = this.state;
+        let newTime = newPercent * duration / 100;
+        this.setState({currentTime: newTime, paused: paused});
+        this.player.seek(newTime);
+    }
+
+
     render(){
+        let {currentTime, duration} = this.state;
+        const completedPercentage = this.getCurrentTimePercentage(currentTime, duration) * 100;
         const width = Dimensions.get('window').width;
         return (
             <View>
@@ -32,13 +97,65 @@ export default class WatchScreen extends Component {
                         showsVerticalScrollIndicator={false}>
                 {/* MEDIA PLAYER SECTION */}
                 <View style={{
+                    position:"relative",
                     backgroundColor: 'black',
                     width: width,
                     height: width * Utils.RATIO,
                     }}>
+                    <Video style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        bottom: 0,
+                        right: 0,
+                    }} source={{uri:"http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" }}   // Can be a URL or a local file.
+                           ref={(ref) => {
+                               this.player = ref
+                           }}
+                           rate={1.0}                              // 0 is paused, 1 is normal.
+                           volume={1.0}                            // 0 is muted, 1 is normal.
+                           muted={false}                           // Mutes the audio entirely.
+                           paused={!this.state.isPlay} resizeMode="cover"                      // Fill the whole screen at aspect ratio.*
+                           repeat={true}
+                           autoplay={true}
+                           onProgress={this.onProgress}
+                           onLoadStart={this.loadStart} // Callback when video starts to load
+                           onLoad={this.setDuration}
+                    />
+                    <ImageButton onPress={this.onPressPlay} source={Resources.icons.comment} tintColor={Resources.colors.pink}/>
                 </View>
                 {/* END MEDIA PLAYER SECTION */}
 
+                {/*CONTROL*/}
+<View>
+    <Button
+        onPress={this.onClickPlayPauseButton}
+        title="Play/Pause"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+    />
+    <TextInput
+        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+        onChangeText={(text) => this.setState({text})}
+        value={this.state.text}
+    />
+    <Button
+        onPress={this.onClickSeekNext}
+        title="Next"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+    />
+    <Button
+        onPress={this.onClickSeekPrev}
+        title="Previous"
+        color="#841584"
+        accessibilityLabel="Learn more about this purple button"
+    />
+    <ProgressController duration={duration}
+                        currentTime={currentTime}
+                        percent={completedPercentage}
+                        onNewPercent={this.onProgressChanged.bind(this)}/>
+</View>
                 {/* SUB SECTION */}
                 <View style={{
                     backgroundColor: 'lightgray',
