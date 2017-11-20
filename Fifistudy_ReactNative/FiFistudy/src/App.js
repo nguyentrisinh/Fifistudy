@@ -5,7 +5,7 @@ import {
    View,
   } from 'react-native';
 import { DrawerNavigator } from 'react-navigation';
-import HomeScreen from './screens/HomeScreen/HomeScreen';
+import HomeScreen from './screens/screenHome/Container';
 import HamburgerMenu from './screens/HamburgerMenu/HamburgerMenu';
 import Container from './components/Sentences/Container/Container.js';
 import DetailScreen from './screens/screenDetailFilm/Container';
