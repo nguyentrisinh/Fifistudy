@@ -10,8 +10,8 @@ import ScreenMovieDetail from '../Screens/ScreenMovieDetail.js';
 import ScreenMovieComment from '../Screens/ScreenMovieComment.js';
 
 const TabMovies = TabNavigator({
-    ScreenMovieDetail: { screen: ScreenMovieDetail },
-    ScreenMovieComment: { screen: ScreenMovieComment }
+    'Thông tin': { screen: ScreenMovieDetail },
+    'Bình luận': { screen: ScreenMovieComment }
 }, {
         tabBarPosition: 'bottom',
         tabBarOptions: {
