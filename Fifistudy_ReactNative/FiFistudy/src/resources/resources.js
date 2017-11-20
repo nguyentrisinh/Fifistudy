@@ -20,6 +20,7 @@ const resources = {
     },
     colors: {
         background: '#fafafa',
+        homePageBackground: '#F5F5F5',
         subtitle: '#757575',
         body: '#9e9e9e',
         blue: '#64B5F6',
@@ -27,10 +28,15 @@ const resources = {
         violet: '#AB47BC',
         yellow: '#FFC107',
         line: '#E0E0E0',
+
+        //level's colors
+        levelEasy: '#009688',
+        levelMedium: '#AB47BC',
+        levelHard: '#E91E63',
     },
     fonts: {
         common: 'sans-serif',
         light: 'sans-serif-light',
-    }
+    },
 }
 export default resources;

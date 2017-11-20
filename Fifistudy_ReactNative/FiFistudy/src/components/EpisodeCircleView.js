@@ -16,11 +16,11 @@ export default class EpisodeCircleView extends Component {
                     backgroundColor: this.props.color,
                     height: this.props.size,
                     width: this.props.size,
+                    elevation: this.props.elevation,
                 }]}>
-                <Text style={{
-                    fontWeight: 'bold',
+                <Text style={[styles.episodeNumber, {
                     color: this.props.textColor,
-                }}>
+                }]}>
                     {this.props.episodeNumber}
                 </Text>
             </View>
@@ -32,7 +32,8 @@ EpisodeCircleView.defaultProps = {
     episodeNumber: 0,
     color: Resource.colors.blue,
     textColor: 'white',
-    size: 32,
+    size: 36,
+    elevation: 0,
 }
 
 EpisodeCircleView.propTypes = {
@@ -40,6 +41,7 @@ EpisodeCircleView.propTypes = {
     color: PropTypes.string,
     textColor: PropTypes.string,
     size: PropTypes.number,
+    elevation: PropTypes.number,
 }
 
 
@@ -48,6 +50,11 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 10
+        margin: 10,
     },
+    episodeNumber: {
+        fontFamily: Resource.fonts.common,
+        fontWeight: 'bold',
+        fontSize: 17
+    }
 });
