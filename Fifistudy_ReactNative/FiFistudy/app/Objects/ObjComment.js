@@ -25,4 +25,12 @@ export default ObjComment = [
         comment: 'Hay hay hay 3',
         liked: 20
     },
+    {
+        key: 4,
+        avatar: res.ava3,
+        user_id: 'uid3',
+        user_name: 'user 3',
+        comment: 'Hay hay hay 3',
+        liked: 20
+    },
 ]
