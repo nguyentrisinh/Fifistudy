@@ -8,6 +8,7 @@ import {
     Dimensions,
     TextInput,
     FlatList,
+    ListView
 } from 'react-native';
 import Utils from '../../Utils';
 import ObjectFilm from './ObjectFilm';
@@ -57,8 +58,9 @@ export default class WatchScreen extends Component {
 
                 {/* LIST EPISODE */}
                 <FlatList 
-                    style={{marginBottom: 16}}
-                    horizontal={true}
+                    contentContainerStyle={Styles.listEpisode}
+                    horizontal={false}
+                    numColumns={6}
                     showsHorizontalScrollIndicator={false}
                     data={ObjectFilm.listEpisode}
                     keyExtractor={item => item}
@@ -70,7 +72,7 @@ export default class WatchScreen extends Component {
                         />
                     )}                
                 />
-
+               
             </ScrollView>
                 {/* TOOLBAR SECTION */}
                 <View style={Styles.toolbar}>

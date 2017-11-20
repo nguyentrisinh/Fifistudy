@@ -13,7 +13,7 @@ import MovieWatchScreen from './screens/screenWatchMovie/Container';
 import CommentScreen from './screens/screenWatchMovie/screenComment/Container';
 
 const Hamburger = DrawerNavigator({
-  CommentScreen: {screen: CommentScreen},
+  // CommentScreen: {screen: CommentScreen},
   MovieWatchScreen: {screen: MovieWatchScreen},
   DetailScreen: {screen: DetailScreen},
   Container: { screen: Container},
