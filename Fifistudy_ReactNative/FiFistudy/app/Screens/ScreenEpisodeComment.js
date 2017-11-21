@@ -13,10 +13,10 @@ import ObjComment from '../Objects/ObjComment.js';
 import {
     ImageButton,
     EpisodeCircleView,
-    CommentItem2
+    EpisodeCommentItem
 } from '../Components/index.js';
 import Resources from '../Resources/index.js';
-import Styles from '../Styles/ScreenComment.js';
+import Styles from '../Styles/ScreenEpisodeComment.js';
 
 export default class ScreenComment extends Component {
     render() {
@@ -74,7 +74,7 @@ export default class ScreenComment extends Component {
                     data={ObjComment}
                     keyExtractor={item => item.ID}
                     renderItem={({item}) => (
-                    <CommentItem data={item}/>
+                    <EpisodeCommentItem data={item}/>
                 )}/>
             </View>
         );

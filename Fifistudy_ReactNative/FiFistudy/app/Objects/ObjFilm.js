@@ -1,4 +1,5 @@
 const ObjFilm = {
+    id: 1,
     titleHeader: 'Big Hero 6 (2014)',
     titleFilm: 'Biệt đội Big Hero 6',
     star: '4,5',

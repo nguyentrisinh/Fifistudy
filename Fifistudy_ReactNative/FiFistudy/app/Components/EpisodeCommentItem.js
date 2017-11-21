@@ -1,4 +1,4 @@
-// comment item for ScreenComment
+// comment item for ScreenEpisodeComment
 import React, {Component} from 'react';
 import {
     Text,
@@ -11,7 +11,7 @@ import {
     ImageButton,
 } from '../Components/index.js';
 import Resources from '../Resources/index.js';
-import Styles from '../Styles/CommentItem2.js';
+import Styles from '../Styles/EpisodeCommentItem.js';
 
 export default class CommentItem extends Component {
     getColor(comment){

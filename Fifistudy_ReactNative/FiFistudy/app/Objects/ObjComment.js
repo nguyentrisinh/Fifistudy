@@ -34,14 +34,17 @@ export default ObjComment = [
         liked: 20
     },
     {
-        key: 5,
-        userAvatar: 'https://vignette.wikia.nocookie.net/csydes-test/images/6/6b/%28AnimeFreak%29_Mirai_Kuriyama.png/revision/latest?cb=20170404065736',
-        user: 'phuongnl',
+        id: 5,
+        isLiked: true,
+        username: 'phuongnl',
+        avatar: 'https://vignette.wikia.nocookie.net/csydes-test/images/6/6b/%28AnimeFreak%29_Mirai_Kuriyama.png/revision/latest?cb=20170404065736',
         firstName: 'Phuong',
         lastName: 'Nguyen Lan',
         content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-        isLiked: true,
-        likedNum: 3,
-        dateTime: '31/12/2017',
+        likedNumber: 3,
+        createdAt: '31/12/2017',
+        updateAt: '31/12/2017',
+        userId: 1,
+        filmId: 2,
     }
 ]

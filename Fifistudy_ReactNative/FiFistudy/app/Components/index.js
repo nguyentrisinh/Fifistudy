@@ -7,7 +7,7 @@ import EpisodeCircleView from './EpisodeCircleView.js';
 import ImageButton from './ImageButton.js';
 import FilmCardItem from './FilmCardItem.js';
 import TipItem from './TipItem.js';
-import CommentItem2 from './CommentItem2.js';
+import EpisodeCommentItem from './EpisodeCommentItem.js';
 import AvatarView from './AvatarView.js';
 
 
@@ -21,6 +21,6 @@ export {
     ImageButton,
     FilmCardItem,
     TipItem,
-    CommentItem2,
+    EpisodeCommentItem,
     AvatarView,
 }
