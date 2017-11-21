@@ -32,17 +32,6 @@ const styles = StyleSheet.create({
         color: Res.colors.blue,
         fontSize: 17,
     },
-    listHistoryFilm: {
-        width: width,
-        elevation: 3,
-        backgroundColor: 'white'
-    },
-    historyFilmImg: {
-        resizeMode: 'cover',
-        width: width/2.5,
-        height: width/2.5*(Res.ratio),
-    },
-
 });
 
 export default styles;

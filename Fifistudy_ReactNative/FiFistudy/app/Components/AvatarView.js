@@ -5,7 +5,7 @@ import {
     View,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import Resources from '../../resources/resources';
+import Resources from '../Resources/index.js';
 
 export default class AvatarView extends Component {
     render(){

@@ -3,6 +3,8 @@ import ScreenMovies from './ScreenMovies.js';
 import ScreenMovieDetail from './ScreenMovieDetail.js';
 import ScreenMovieComment from './ScreenMovieComment.js';
 import ScreenHome from './ScreenHome.js';
+import ScreenComment from './ScreenComment';
+import ScreenWatchMovie from './ScreenWatchMovie';
 
 export {
     ScreenNotes,
@@ -10,4 +12,6 @@ export {
     ScreenMovieDetail,
     ScreenMovieComment,
     ScreenHome,
+    ScreenComment,
+    ScreenWatchMovie
 }
