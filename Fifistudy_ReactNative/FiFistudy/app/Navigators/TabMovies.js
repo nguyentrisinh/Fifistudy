@@ -1,4 +1,5 @@
 import { TabNavigator } from 'react-navigation';
+import Res from '../Resources/index.js';
 
 //Below import lines not working!!
 // import {
@@ -15,14 +16,15 @@ const TabMovies = TabNavigator({
 }, {
         tabBarPosition: 'bottom',
         tabBarOptions: {
-            activeTintColor: 'white',
+            activeTintColor: Res.colors.blue,
             inactiveTintColor: 'white',
             labelStyle: {
-                color: 'blue',
-                fontSize: 13
+                color: Res.colors.blue,
+                fontSize: 14,
+                fontWeight: 'bold',
             },
             style: {
-                backgroundColor: 'white'
+                backgroundColor: Res.colors.background,
             }
         }
     });

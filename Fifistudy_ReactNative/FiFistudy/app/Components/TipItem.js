@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import res from '../Resources/index';
 import imageButton from '../Components/ImageButton';
+import Styles from '../Styles/TipItem.js'
 
 
 
@@ -15,34 +16,17 @@ export default class TipItem extends Component {
         const {data} = this.props;
         const width = Dimensions.get('window').width;
         return (
-            <View style={{
-                width: width - 32,
-                margin: 16,
-                flexDirection: 'row',
-                backgroundColor: res.colors.background,
-                borderTopRightRadius: 5,
-                borderBottomRightRadius: 5,
-                elevation: 3,
-                alignItems: 'center'
-            }}>
+            <View style={Styles.container}>
                 <Image
-                    style={{
-                        marginTop: 3,
-                        marginRight: 3,
-                        marginLeft: 6,
-                        marginRight: 6,
-                        resizeMode: 'cover',
-                        width: 80,
-                        height: 60}}
+                    style={Styles.image}
                     source={{uri: 'http://www.corsielezioni.ch/oc-content/uploads/2/328_preview.jpg'}}/>
 
-                <View style={{
-                    width: 1,
-                    backgroundColor: res.colors.line,
-                    height: '82%'
-                }}/>
+                <View style={Styles.line}/>
 
-                <Text numberOfLines={1} style={{maxWidth: width}}>{data.title}</Text>
+                <View style={Styles.contentContainer}>
+                    <Text numberOfLines={1} style={Styles.title}>{data.title}</Text>
+                    <Text numberOfLines={2} style={Styles.content}>{data.content}</Text>
+                </View>
             </View>
         );
     }

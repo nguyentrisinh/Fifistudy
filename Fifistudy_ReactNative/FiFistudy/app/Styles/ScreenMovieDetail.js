@@ -1,26 +1,32 @@
 import { StyleSheet } from 'react-native';
+import Res from '../Resources/index.js';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        margin: 20
+        marginLeft: 20,
+        marginRight: 20,
+        marginTop: 16,
+        marginBottom: 6,
     },
     txtHeader: {
-        fontSize: 18,
-        fontWeight: 'bold'
+        marginTop: 8,
+        fontSize: 24,
+        color: Res.colors.blue,
     },
     txtFilm: {
-        fontSize: 15
+        fontSize: 17,
     },
     rateContainer: {
-        marginTop: 10,
+        marginTop: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
     },
     iconWithText: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        flex: 1,
     },
     icon: {
         width: 15,
@@ -46,13 +52,14 @@ const styles = StyleSheet.create({
         marginLeft: 10
     },
     spacetop: {
-        marginTop: 20
+        marginTop: 28
     },
     boldReview: {
         fontWeight: 'bold'
     },
     scroll: {
         marginTop: 10,
+        marginLeft: 8,
         flex: 1
     }
 })

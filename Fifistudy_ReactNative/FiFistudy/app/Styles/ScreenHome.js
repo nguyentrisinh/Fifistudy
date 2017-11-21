@@ -12,6 +12,18 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         alignItems: 'center'
     },
+    toolbar: {
+        flexDirection: 'row',
+        width: width,
+        height: 56,
+        justifyContent: 'space-between',
+        paddingLeft: 12,
+        paddingRight: 12,
+        paddingTop: 4,
+        paddingBottom: 4,
+        position: 'absolute',
+        zIndex: 5,
+    },
     bannerSlider: {
         width: width,
         height: width/2,

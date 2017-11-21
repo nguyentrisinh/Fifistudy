@@ -26,6 +26,12 @@ const res = {
         comment: require('./Icons/ic_comment.png'),
         quiz: require('./Icons/ic_quiz.png'),
         volcabulary: require('./Icons/ic_volcabulary.png'),
+        btnPlay: require('./Icons/btn_play.png'),
+        back: require('./Icons/ic_back.png'),
+        favorite: require('./Icons/ic_favorite_empty.png'),
+        favoriteFull: require('./Icons/ic_favorite_full.png'),
+        rating: require('./Icons/ic_rating_empty.png'),
+        ratingFull: require('./Icons/ic_rating_full.png'),
     },
     images: {
         default: require('./Images/img_default.png'),

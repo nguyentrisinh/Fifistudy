@@ -1,45 +1,54 @@
-import { StyleSheet } from 'react-native';
+import {
+    StyleSheet,
+    Dimensions
+} from 'react-native';
+import Res from '../Resources/index';
 
-const Dimensions = require('Dimensions');
-
+const width = Dimensions.get('window').width;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
-        backgroundColor: 'ghostwhite'
+        backgroundColor: Res.colors.background,
+        alignItems: 'center'
     },
-    img: {
-        width: Dimensions.get('window').width,
-        height: 200
+    toolbar: {
+        flexDirection: 'row',
+        width: width,
+        height: 56,
+        justifyContent: 'space-between',
+        paddingLeft: 12,
+        paddingRight: 12,
+        paddingTop: 4,
+        paddingBottom: 4,
+        position: 'absolute',
+        zIndex: 5,
+    },
+    image: {
+        width: width,
+        height: width * Res.ratio,
+        resizeMode: 'cover',
+    },
+    imgGradient: {
+        flex: 1
     },
     tabContainer: {
-        borderRadius: 10,
+        borderRadius: 8,
         backgroundColor: 'white',
-        borderWidth: 0.8,
-        marginTop: 150,
-        marginLeft: 20,
-        width: Dimensions.get('window').width - 40,
+        top: width * Res.ratio - 50,
+        bottom: 0,
+        left: 16,
+        right: 16,
         position: 'absolute',
-        height: Dimensions.get('window').height - 180
+        elevation: 6,
     },
     buttonFloat: {
         position: 'absolute',
-        backgroundColor: 'pink',
-        marginTop: 115,
-        marginLeft: Dimensions.get('window').width * 3 / 4 - 20,
-        borderRadius: 35,
+        right: 36,
+        top: width * Res.ratio - 85,
         width: 70,
         height: 70,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center'
+        elevation: 6,
     },
-    txtIsMore: {
-        textAlign: 'center',
-        color: 'white',
-        fontSize: 80,
-        marginBottom: 10,
-    }
 })
 
 export default styles;

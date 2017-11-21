@@ -4,16 +4,14 @@ import {
   Image,
   View,
   ScrollView,
-  FlatList
 } from 'react-native';
-import styles from '../Styles/ScreenHome';
+import Styles from '../Styles/ScreenHome';
 import Res from '../Resources/index';
-//import ImageSlider from '../../components/ImageSlider/ImageSlider';
-import ImageButton from '../Components/ImageButton';
+import {ImageButton, ImageSlider} from '../Components/index.js';
 import {
     HistoryFilmsContainer,
     FilmCardContainer,
-    TipContainer
+    TipContainer,
 } from '../Containers/index.js';
 
 import Obj from '../Objects/ObjTemp.js';
@@ -48,71 +46,60 @@ export default class ScreenHome extends Component {
     render() {
         return (
             <ScrollView 
-                contentContainerStyle={styles.container}
+                contentContainerStyle={Styles.container}
                 showsVerticalScrollIndicator={false}>
 
                 {/* TOOLBAR SECCTION */}
-                {/* <View style={{
-                    flexDirection: 'row',
-                    width: Dimensions.get('window').width,
-                    height: 56,
-                    justifyContent: 'space-between',
-                    paddingLeft: 12,
-                    paddingRight: 12,
-                    paddingTop: 4,
-                    paddingBottom: 4,
-                    position: 'absolute',
-                    zIndex: 5,
-                    }}>
+                <View style={Styles.toolbar}>
                     <ImageButton
                         onPress={() => this.props.navigation.navigate('DrawerToggle')}
-                        source={Resources.icons.menu}
+                        source={Res.icons.menu}
                         tintColor='white'/>
-                    <ImageButton source={Resources.icons.search} tintColor='white'/>
-                </View> */}
+                    <ImageButton source={Res.icons.search} tintColor='white'/>
+                </View>
 
                 
                 
                 {/* SECTION BANNER SLIDER */}
-                {/* <View 
+                <View 
                     style={Styles.bannerSlider}>
                     <ImageSlider
                         dataSource={Obj.sliderSource}
                         position={this.state.position}
                         onPostionChange={position => this.setState({position})}/>
-                </View> */}
+                </View>
 
 
 
 
                 {/* SECTION HISTORY SLIDER */}
                 {/* Title */}
-                <View style={styles.subtitleGroup}>
-                    <Text style={styles.subtitle}>Phim đã xem</Text>
+                <View style={Styles.subtitleGroup}>
+                    <Text style={Styles.subtitle}>Phim đã xem</Text>
                     <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}/>
                 </View>
                 <HistoryFilmsContainer/>
 
                 {/* NEWEST FILMS */}
                 {/* Title */}
-                <View style={styles.subtitleGroup}>
-                    <Text style={styles.subtitle}>Phim mới</Text>
+                <View style={Styles.subtitleGroup}>
+                    <Text style={Styles.subtitle}>Phim mới</Text>
                     <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}/>
                 </View>
                 <FilmCardContainer />
                 
                 {/* MOST VIEWED FILMS */}
                 {/* Title */}
-                <View style={styles.subtitleGroup}>
-                    <Text style={styles.subtitle}>Xem nhiều</Text>
+                <View style={Styles.subtitleGroup}>
+                    <Text style={Styles.subtitle}>Xem nhiều</Text>
                     <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}/>
                 </View>
                 <FilmCardContainer/>
 
                 {/* TIPS */}
                 {/* Title */}
-                <View style={styles.subtitleGroup}>
-                    <Text style={styles.subtitle}>Tips</Text>
+                <View style={Styles.subtitleGroup}>
+                    <Text style={Styles.subtitle}>Tips</Text>
                     <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}/>
                 </View>
                 <TipContainer/>

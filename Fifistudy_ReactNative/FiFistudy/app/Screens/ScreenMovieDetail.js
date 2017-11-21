@@ -13,13 +13,14 @@ import ObjFilm from '../Objects/ObjFilm.js';
 class ScreenMovieDetail extends Component {
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
                 <Text style={styles.txtHeader}>
                     {ObjFilm.titleHeader}
                 </Text>
                 <Text style={styles.txtFilm}>
                     {ObjFilm.titleFilm}
                 </Text>
+
                 <View style={styles.rateContainer}>
                     <View style={styles.iconWithText}>
                         <Image
@@ -42,6 +43,7 @@ class ScreenMovieDetail extends Component {
                         </Text>
                     </View>
                 </View>
+
                 <View style={styles.spacetop}>
                 </View>
                 <View style={styles.horiContainer}>
@@ -68,17 +70,21 @@ class ScreenMovieDetail extends Component {
                         {ObjFilm.cast}
                     </Text>
                 </View>
+
+                
                 <View style={styles.spacetop}>
                 </View>
                 <Text style={styles.boldReview}>
                     Sơ lược phim
                 </Text>
-                <ScrollView style={styles.scroll}>
+                <ScrollView style={styles.scroll}
+                    showsVerticalScrollIndicator={false}
+                    scrollEnabled={false}>
                     <Text>
                         {ObjFilm.summary}
                     </Text>
                 </ScrollView>
-            </View>
+            </ScrollView>
         )
     }
 }
