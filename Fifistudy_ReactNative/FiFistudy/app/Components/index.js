@@ -1,7 +1,7 @@
 import DailyNoteItem from './DailyNoteItem.js';
 import MonthItem from './MonthItem.js';
 import DialogNoteItem from './DialogNoteItem.js';
-import PlayVideo from './PlayVideo.js';
+//import PlayVideo from './PlayVideo.js';
 import CommentItem from './CommentItem.js';
 import EpisodeCircleView from './EpisodeCircleView.js';
 import ImageButton from './ImageButton.js';
@@ -15,7 +15,7 @@ export {
     DailyNoteItem,
     MonthItem,
     DialogNoteItem,
-    PlayVideo,
+    //PlayVideo,
     CommentItem,
     EpisodeCircleView,
     ImageButton,
