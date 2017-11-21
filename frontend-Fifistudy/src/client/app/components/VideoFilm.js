@@ -29,8 +29,9 @@ class VideoFilm extends React.Component {
     }
 
     componentWillMount = () => {
+        let {data} = this.props;
         // axios.get("../static/media/sub.vtt")
-        axios.get("http://localhost:8000/media/episode/sub/sub.vtt")
+        axios.get(`http://localhost:8000${data.sub}`)
             .then(response => {
                 let stringVTT = response.data.split(/\n\s*\n/);
                 stringVTT.shift();
@@ -43,9 +44,8 @@ class VideoFilm extends React.Component {
                         sub: parts.slice(2, parts.length),
                     };
                 });
-                console.log(sub);
                 this.setState({
-                    sub: sub
+                    sub
                 })
             })
             .catch(err => console.log(err));
@@ -57,6 +57,7 @@ class VideoFilm extends React.Component {
     renderSub = () => {
         if (this.state.sub) {
             return this.state.sub.map(item => {
+                console.log(item);
                 return (
                     <div onClick={this.onClickSub.bind(this, item)} ref={item.number} key={item.number}
                          className={classNames("video-film__sub-item", {"video-film__sub-item--current": this.state.currentLine.number === item.number})}>
@@ -83,13 +84,14 @@ class VideoFilm extends React.Component {
     }
 
     componentDidMount = () => {
-
+        let {data} = this.props;
         this.player = window.jwplayer('player').setup({
             // file: '../static/media/video.mp4',
-            file: 'http://localhost:8000/media/episode/video/How_i_met_your_mother1_01.mp4',
+            file: `http://localhost:8000${data.video}`,
+            // file: `http://localhost:8000/media/episode/video/How_i_met_your_mother1_01.mp4`,
 
             tracks: [{
-                file: "../static/media/sub.vtt",
+                file: `http://localhost:8000${data.sub}`,
                 label: "Eng-Vie",
                 kind: "captions",
                 "default": true

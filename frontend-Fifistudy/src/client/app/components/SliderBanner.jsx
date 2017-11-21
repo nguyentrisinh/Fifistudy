@@ -3,11 +3,12 @@ import Swiper from 'react-id-swiper';
 import film1 from '../../static/images/film1.jpg';
 import film2 from '../../static/images/film2.jpeg';
 import film3 from '../../static/images/film3.jpg';
-import BannerItem from '../components/BannerItem.jsx';
+import BannerItem from './BannerItem.jsx';
 
 class SliderBanner extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props);
         // this.renderSlides = this.renderSlides.bind(this);
     }
 
@@ -42,33 +43,4 @@ class SliderBanner extends React.Component {
     }
 }
 
-SliderBanner.defaultProps = {
-    data: [
-        {
-            id: 1,
-            image: film1,
-            quote: "The best I can give you is a fake smile and dead eyes",
-            engName: "How I met your mother",
-            viName: "Khi bố gặp mẹ",
-            level: 1,
-        },
-        {
-            id: 2,
-            image: film2,
-            quote: "The best I can give you is a fake smile and dead eyes",
-            engName: "How I met your mother",
-            viName: "Khi bố gặp mẹ",
-            level: 2,
-        },
-        {
-            id: 3,
-            image: film3,
-            quote: "The best I can give you is a fake smile and dead eyes",
-            engName: "How I met your mother",
-            viName: "Khi bố gặp mẹ",
-            level: 3,
-        }
-    ]
-}
-
-export default SliderBanner;
+export default SliderBanner

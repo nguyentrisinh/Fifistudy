@@ -11,7 +11,9 @@ class SectionFilm extends React.Component {
         return (
             <div className="section">
                 <div className="container section__title">
-                    PHIM ĐƯỢC XEM NHIỀU NHẤT
+                    {
+                        this.props.title
+                    }
                 </div>
                 <div className="divider"></div>
                 <div className="container section__body">

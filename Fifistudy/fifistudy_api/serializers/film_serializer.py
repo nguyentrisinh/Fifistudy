@@ -27,6 +27,13 @@ class FilmDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ListUserSaveFilm(serializers.ModelSerializer):
+    film_detail = BaseFilmSerializer(many=False)
+
+    class Meta:
+        model = UserSaveFilm
+        exclude = ('created_at', 'updated_at')
+
 
 
 

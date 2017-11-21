@@ -1,4 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
+import {withRouter} from 'react-router'
+import classNames from 'classnames';
 
 class Episode extends React.Component {
     constructor(props) {
@@ -6,7 +9,26 @@ class Episode extends React.Component {
         this.state = {};
     }
 
+    renderEpisode = () => {
+        let {data} = this.props;
+        let arr = data.episodes.map(item => {
+            return item.number
+        })
+        arr.sort((a, b) => a > b);
+        return arr.map(item => {
+            return (
+
+                <Link to={`/film/${data.slug}/${item}`}
+                      className={classNames("episode__item", {"episode__item--current": item == this.props.match.params.episodeId})}>
+                    {item}
+                </Link>
+            )
+
+        })
+    }
+
     render() {
+        console.log('this.props', this.props);
         return (
 
 
@@ -18,27 +40,9 @@ class Episode extends React.Component {
                         </div>
                         <div className="episode__content">
 
-                            <div className="episode__item">
-                                1
-                            </div>
-                            <div className="episode__item">
-                                2
-                            </div>
-                            <div className="episode__item">
-                                3
-                            </div>
-                            <div className="episode__item">
-                                4
-                            </div>
-                            <div className="episode__item">
-                                5
-                            </div>
-                            <div className="episode__item">
-                                6
-                            </div>
-                            <div className="episode__item">
-                                7
-                            </div>
+                            {
+                                this.renderEpisode()
+                            }
                         </div>
                     </div>
 
@@ -48,4 +52,4 @@ class Episode extends React.Component {
         )
     }
 }
-export default Episode
+export default withRouter(Episode)
