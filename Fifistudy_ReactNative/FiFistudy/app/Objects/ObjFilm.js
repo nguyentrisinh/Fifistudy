@@ -1,13 +1,22 @@
 const ObjFilm = {
     id: 1,
-    titleHeader: 'Big Hero 6 (2014)',
-    titleFilm: 'Biệt đội Big Hero 6',
-    star: '4,5',
-    review: 'Trung Bình',
-    episodes: '1/1',
-    category: 'Animation, Action, Adventure',
-    cast: 'Nhân',
-    summary: 'Hồ Chí Minh (19 tháng 5 năm 1890 – 2 tháng 9 năm 1969) tên khai sinh: Nguyễn Sinh Cung, là nhà cách mạng, người sáng lập Đảng Cộng sản Việt Nam, một trong những người đặt nền móng và lãnh đạo công cuộc đấu tranh giành độc lập, toàn vẹn lãnh thổ cho Việt Nam trong thế kỷ 20, một chiến sĩ cộng sản quốc tế. Ông là người viết và đọc bản Tuyên ngôn Độc lập Việt Nam khai sinh nước Việt Nam Dân chủ Cộng hòa ngày 2 tháng 9 năm 1945 tại quảng trường Ba Đình, Hà Nội, là Chủ tịch nước Việt Nam Dân chủ Cộng hòa trong thời gian 1945 – 1969, Chủ tịch Ban Chấp hành Trung ương Đảng Lao động Việt Nam trong thời gian 1951 – 1969.'
+    is_saved: false,
+    episodes: [1, 2, 2.5, ],
+    english_name: "How i met your mother",
+    vietnamese_name: "Khi ong gia gap ba gia",
+    slug: "how-i-met-your-mother",
+    difficult_level: 1,
+    description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+    thumbnail: "https://i.ytimg.com/vi/qGmHrPGylho/maxresdefault.jpg",
+    average_score: 5,
+    review_number: 3,
+    duration: "1h 30 min",
+    episode_number: 1,
+    episode_count: 1,
+    save_number: 20,
+    view_number: 107,
+    created_at: "2017-11-08T01:43:45.138000Z",
+    updated_at: "2017-11-21T17:44:12.767000Z"
 }
 
 export default ObjFilm;

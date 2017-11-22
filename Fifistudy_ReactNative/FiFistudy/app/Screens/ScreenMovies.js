@@ -11,6 +11,7 @@ import TabMovies from '../Navigators/TabMovies.js';
 import LinearGradient from 'react-native-linear-gradient';
 import {ImageButton} from '../Components/index.js';
 import {ToolbarContainer} from '../Containers/index.js';
+import ObjFilm from '../Objects/ObjFilm.js';
 
 class ScreenMovies extends Component {
     render() {
@@ -20,7 +21,7 @@ class ScreenMovies extends Component {
                 <ToolbarContainer/>
                 
                 <Image
-                    source={res.banner_film}
+                    source={{uri: ObjFilm.thumbnail}}
                     style={styles.image}>
                     <LinearGradient
                         colors={['rgba(0, 0, 0, 0.5)', 'transparent']}

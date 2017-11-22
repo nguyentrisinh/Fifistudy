@@ -14,25 +14,26 @@ import { EpisodeCircleView, ImageButton} from '../Components/index.js';
 import Resources from '../Resources/index.js';
 import Styles from '../Styles/ScreenWatchMovie';
 
-import ObjectFilm from '../Objects/ObjFilm.js';
+import ObjEpisode from '../Objects/ObjEpisode.js';
+import ObjFilm from '../Objects/ObjFilm.js';
 
 export default class WatchScreen extends Component {
     setEpisodeColor(item){
         // Cai object item se sua sau
-        return item === ObjectFilm.episode ? Resources.colors.violet : Resources.colors.blue;
+        return item == ObjEpisode.number ? Resources.colors.violet : Resources.colors.blue;
     }
 
     render(){
         const width = Dimensions.get('window').width;
         return (
-            <View>
+            <View style={{flex: 1}}>
             <ScrollView style={{backgroundColor: Resources.colors.background}}
                         showsVerticalScrollIndicator={false}>
                 {/* MEDIA PLAYER SECTION */}
                 <View style={{
                     backgroundColor: 'black',
                     width: width,
-                    height: width * Resources.RATIO,
+                    height: width * Resources.ratio,
                     }}>
                 </View>
                 {/* END MEDIA PLAYER SECTION */}
@@ -41,7 +42,7 @@ export default class WatchScreen extends Component {
                 <View style={{
                     backgroundColor: 'lightgray',
                     width: width,
-                    height: width * Resources.RATIO,
+                    height: width * Resources.ratio,
                     }}>
                 </View>
                 {/* END SUB SECTION */}
@@ -49,8 +50,8 @@ export default class WatchScreen extends Component {
 
                 {/* TITLE SECTION */}
                 <View style={Styles.titleContainer}>
-                    <Text style={Styles.title}>{ObjectFilm.titleEnglish}</Text>
-                    <Text style={Styles.subtitle}>{ObjectFilm.titleVietnamese}</Text>
+                    <Text style={Styles.title}>{ObjFilm.english_name}</Text>
+                    <Text style={Styles.subtitle}>{ObjEpisode.name}</Text>
                 </View>
 
 
@@ -60,7 +61,7 @@ export default class WatchScreen extends Component {
                     horizontal={false}
                     numColumns={6}
                     showsHorizontalScrollIndicator={false}
-                    data={ObjectFilm.listEpisode}
+                    data={ObjFilm.episodes}
                     keyExtractor={item => item}
                     renderItem={({item}) => (
                         <EpisodeCircleView

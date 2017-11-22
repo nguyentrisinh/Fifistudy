@@ -7,7 +7,8 @@ import {
 } from '../Screens/index.js';
 
 const DrawerApp = DrawerNavigator({
-    ScreenHome: { screen: ScreenHome },
+    ScreenWatchMovie: {screen: ScreenWatchMovie},
+    //ScreenHome: { screen: ScreenHome },
     ScreenMovies: { screen: ScreenMovies },
     ScreenNotes: { screen: ScreenNotes }
 })

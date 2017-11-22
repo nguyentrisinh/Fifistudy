@@ -48,3 +48,19 @@ export default ObjComment = [
         filmId: 2,
     }
 ]
+
+
+//     export default ObjComment = {
+//     id: 5,
+//     is_liked: false,
+//     username: "phuong",
+//     avatar: "https://vignette.wikia.nocookie.net/csydes-test/images/6/6b/%28AnimeFreak%29_Mirai_Kuriyama.png/revision/latest?cb=20170404065736",
+//     first_name: "Umino",
+//     last_name: "San",
+//     content: "nqgw8o;gwaoptmkca",
+//     like_number: 10,
+//     created_at: "2017-11-22T02:14:11.777000Z",
+//     updated_at: "2017-11-22T02:14:11.777000Z",
+//     user_id: 1,
+//     film_id: 1
+// }

@@ -11,14 +11,23 @@ import res from '../Resources/index.js';
 import ObjFilm from '../Objects/ObjFilm.js';
 
 class ScreenMovieDetail extends Component {
+
+    getDificultLevel(film){
+        let level = 'Dễ';
+        if (film.difficult_level === 2) level = 'Trung bình';
+        if (film.difficult_level === 3) level = 'Khó';
+
+        return level;
+    }
+
     render() {
         return (
             <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
                 <Text style={styles.txtHeader}>
-                    {ObjFilm.titleHeader}
+                    {ObjFilm.english_name}
                 </Text>
                 <Text style={styles.txtFilm}>
-                    {ObjFilm.titleFilm}
+                    {ObjFilm.vietnamese_name}
                 </Text>
 
                 <View style={styles.rateContainer}>
@@ -29,7 +38,7 @@ class ScreenMovieDetail extends Component {
                             style={styles.icon}
                         />
                         <Text style={styles.greentxt}>
-                            {ObjFilm.star}
+                            {ObjFilm.average_score}
                         </Text>
                     </View>
                     <View style={styles.iconWithText}>
@@ -39,7 +48,7 @@ class ScreenMovieDetail extends Component {
                             style={styles.icon}
                         />
                         <Text style={styles.purpletxt}>
-                            {ObjFilm.review}
+                            {this.getDificultLevel(ObjFilm)}
                         </Text>
                     </View>
                 </View>
@@ -51,7 +60,7 @@ class ScreenMovieDetail extends Component {
                         Số tập
                     </Text>
                     <Text style={styles.spacetxt}>
-                        {ObjFilm.episodes}
+                        {ObjFilm.episodes.length}
                     </Text>
                 </View>
                 <View style={styles.horiContainer}>
@@ -59,7 +68,7 @@ class ScreenMovieDetail extends Component {
                         Thể loại
                     </Text>
                     <Text style={styles.spacetxt}>
-                        {ObjFilm.category}
+                        {/* {ObjFilm.category} */}
                     </Text>
                 </View>
                 <View style={styles.horiContainer}>
@@ -67,7 +76,7 @@ class ScreenMovieDetail extends Component {
                         Diễn viên
                     </Text>
                     <Text style={styles.spacetxt}>
-                        {ObjFilm.cast}
+                        {/* {ObjFilm.cast} */}
                     </Text>
                 </View>
 
@@ -81,7 +90,7 @@ class ScreenMovieDetail extends Component {
                     showsVerticalScrollIndicator={false}
                     scrollEnabled={false}>
                     <Text>
-                        {ObjFilm.summary}
+                        {ObjFilm.description}
                     </Text>
                 </ScrollView>
             </ScrollView>
