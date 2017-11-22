@@ -16,11 +16,6 @@ export default class FilmIntro extends React.Component {
         super(props);
     }
 
-
-    componentWillMount = () => {
-
-    }
-
     render() {
         return (
             <FadeTransition>
@@ -39,7 +34,7 @@ export default class FilmIntro extends React.Component {
                     >
                         <Banner data={this.props.data}/>
                         <ListActorContainer/>
-                        <SectionDetailExtra/>
+                        <SectionDetailExtra data={this.props.data}/>
 
                         <Footer/>
 

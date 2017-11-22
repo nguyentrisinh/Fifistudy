@@ -9,7 +9,9 @@ import Loading from '../components/Loading'
 import Detail from './Detail'
 import {connect} from 'react-redux';
 import {Scrollbars} from 'react-custom-scrollbars';
-import {getEpisode, getFilmDetail, getDataDetailPage} from '../actions/dataDetailPage'
+import {getComment} from '../actions/dataIntropage'
+import {getEpisode, getFilmDetail, getDataDetailPage} from '../actions/dataDetailpage';
+import {withCookies} from 'react-cookie'
 
 class DetailContainer extends React.Component {
     constructor(props) {
@@ -18,8 +20,11 @@ class DetailContainer extends React.Component {
     }
 
     componentWillMount = () => {
-        let {filmSlug, episodeId} = this.props.match.params
-        this.getData(filmSlug, episodeId);
+        let {slug, episodeId} = this.props.match.params;
+        let {cookies} = this.props;
+        let token = cookies.get("token");
+        this.props.getComment(slug, token);
+        this.getData(slug, episodeId);
         // this.props.getDataDetailPage(filmSlug, episodeId);
         // this.props.getEpisode(this.props.match.params.filmSlug, this.props.match.params.episodeId);
         // this.props.getFilmDetail(this.props.match.params.filmSlug);
@@ -31,14 +36,14 @@ class DetailContainer extends React.Component {
 
 
     componentWillReceiveProps = (nextProps) => {
-        if (nextProps.match.params.filmSlug !== this.props.match.params.filmSlug || nextProps.match.params.episodeId !== this.props.match.params.episodeId) {
-            let {filmSlug, episodeId} = nextProps.match.params
-            this.getData(filmSlug, episodeId);
+        if (nextProps.match.params.slug !== this.props.match.params.slug || nextProps.match.params.episodeId !== this.props.match.params.episodeId) {
+            let {slug, episodeId} = nextProps.match.params;
+            this.getData(slug, episodeId);
         }
     }
 
     render() {
-        console.log(this.props.data, 'dataaa');
+        // console.log(this.props.data, 'dataaa');
         // if (this.props.episode && this.props.filmDetail) {
         //     if (this.props.episode.errors == null && this.props.filmDetail.errors == null) {
         //         if (this.props.episode.data && this.props.filmDetail.data) {
@@ -76,4 +81,9 @@ const mapStateToProps = state => {
         // filmDetail: state.dataDetailpage.filmDetail
     }
 }
-export default  connect(mapStateToProps, {getEpisode, getFilmDetail, getDataDetailPage})(DetailContainer)
+export default  connect(mapStateToProps, {
+    getEpisode,
+    getFilmDetail,
+    getComment,
+    getDataDetailPage
+})(withCookies(DetailContainer))

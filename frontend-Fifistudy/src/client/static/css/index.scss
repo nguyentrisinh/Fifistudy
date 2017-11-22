@@ -1,20 +1,29 @@
 @import './colors';
-ul{
+
+ul {
   padding-left: 0;
 }
+
 a {
   text-decoration: none;
 
 }
 
 html {
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Open Sans', sans-serif !important;
 }
 
 body {
   overflow-x: hidden;
 
   background-color: #060b11;
+}
+
+.clearfix:after {
+  content: "";
+  visibility: hidden;
+  display: block;
+  clear: both;
 }
 
 .container {
@@ -143,31 +152,30 @@ body {
   position: fixed;
   z-index: 99999999;
   width: 100%;
-  top:0;
-  &__signup{
+  top: 0;
+  &__signup {
     color: white;
-    &:hover,&:focus,&:active{
+    &:hover, &:focus, &:active {
       color: $ColorRed;
     }
   }
-
 
   &__container {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     padding-left: 20px;
-    padding-right: 20px;
+    //padding-right: 20px;
     align-items: center;
   }
   &__item {
     padding-left: 20px;
-    cursor:pointer;
+    cursor: pointer;
     padding-right: 20px;
     color: #fffafa;
     font-size: 20px;
     transition: background-color 0.5s;
-    &--account{
+    &--account {
       font-size: 18px;
       font-weight: 400;
     }
@@ -223,13 +231,15 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    padding-right: 20px;
     color: #fffafa;
   }
   &__wrap-avatar {
     //position: relative;
     //padding-top: 45px;
     width: 45px;
-    height:45px;
+    height: 45px;
     overflow: hidden;
     margin-right: 10px;
     background-size: cover;
@@ -260,6 +270,7 @@ body {
 
 .menu {
   left: 0;
+  min-width:100%;
   position: absolute;
   bottom: 0;
   transform: translateY(100%);
@@ -276,6 +287,8 @@ body {
   &__item {
     white-space: nowrap;
     padding: 10px 10px;
+    display: block;
+    color: white;
     cursor: pointer;
     &:hover {
       background-color: rgba(255, 255, 255, 0.2);
@@ -553,7 +566,7 @@ body {
 }
 
 .film-title {
-  padding-top: 120px;
+  padding-top: 80px;
   margin-bottom: 30px;
   &__en-name {
     color: #ececec;
@@ -861,6 +874,7 @@ body {
   &__section-comment {
     display: flex;
     flex-direction: row;
+    align-items: center;
     padding: 20px;
     background-color: rgba(#fdfdfd, 0.1);
   }
@@ -874,6 +888,9 @@ body {
     padding-top: 50px;
     margin-right: 20px;
     overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
   }
   &__image {
     position: absolute;
@@ -923,14 +940,22 @@ body {
     left: 0;
   }
   &__info {
+    overflow: hidden;
     padding: 20px;
   }
   &__eng-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-size: 20px;
-    color: $ColorLightGray;
+    color: #ececec;
     margin-bottom: 5px;
   }
   &__vi-name {
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     color: $ColorDarkGray;
     font-size: 18px;
     font-style: italic;
@@ -942,11 +967,16 @@ body {
   padding: 20px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   &__info {
     flex-grow: 1;
     flex-shrink: 1;
   }
   &__wrap-image {
+    background-size: cover;
+
+    flex-shrink: 0;
+    border-radius: 50%;
     position: relative;
     width: 50px;
     padding-top: 50px;
@@ -998,7 +1028,7 @@ body {
     color: #8c8c8c;
     cursor: pointer;
     margin-bottom: 5px;
-    &:hover {
+    &:hover, &--liked {
       color: $ColorWave;
       border-color: #ececec;
     }
@@ -1145,12 +1175,12 @@ body {
 }
 
 .list-actor {
-  &__info{
+  &__info {
     color: $ColorDarkGray;
     font-style: italic;
     padding-left: 20px;
     background-color: $ColorBackgroundDark;
-padding-top: 20px;
+    padding-top: 20px;
     padding-bottom: 40px;
   }
   &__wrap {
@@ -1169,7 +1199,7 @@ padding-top: 20px;
     width: 50px;
     height: 50px;
     position: absolute;
-    top:50%;
+    top: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1177,8 +1207,8 @@ padding-top: 20px;
     cursor: pointer;
     color: white;
     transition: all 0.3s ease-in-out;
-    &:hover{
-      background-color: rgba(#000,0.7);
+    &:hover {
+      background-color: rgba(#000, 0.7);
     }
     &--next {
       right: 0;
@@ -1252,39 +1282,38 @@ padding-top: 20px;
   transition: opacity 300ms ease-in
 }
 
-.sign-up-page{
+.sign-up-page {
   padding-top: 80px;
   background-image: url(https://www.edgehill.ac.uk/courses/files/2015/01/Further-Education-and-Training-2.jpg);
   position: relative;
-  height:calc(100vh - 80px);
+  height: calc(100vh - 80px);
   background-size: cover;
 
-  &__overlay{
-position: absolute;
-    top:0
-  ;
-    left:0;
-    right:0;
-    bottom:0;
-    background-color: rgba($ColorBackgroundDark,0.7);
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($ColorBackgroundDark, 0.7);
   }
-  &__error{
+  &__error {
     font-size: 14px;
     margin-top: 19px;
     margin-bottom: -5px;
-    color:$ColorDarkRed;
+    color: $ColorDarkRed;
   }
 }
 
-.input-com{
-  &__error{
+.input-com {
+  &__error {
     text-align: left;
     color: $ColorDarkRed;
     font-size: 12px;
     padding-bottom: 15px;
     margin-top: -3px;
   }
-  &__input{
+  &__input {
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -1293,13 +1322,13 @@ position: absolute;
     box-sizing: border-box;
     font-size: 14px;
     color: #2C3E50;
-    &--error{
-      border:solid 1px $ColorDarkRed;
+    &--error {
+      border: solid 1px $ColorDarkRed;
     }
   }
 }
 
-.modal-title{
+.modal-title {
   margin-bottom: 20px;
   font-size: 15px;
   text-transform: uppercase;
@@ -1307,10 +1336,9 @@ position: absolute;
   text-align: center;
 }
 
-.modal{
+.modal {
   text-align: center;
 }
-
 
 /*buttons*/
 .action-button {
@@ -1325,19 +1353,318 @@ position: absolute;
   padding: 10px 5px;
   margin: 10px 5px;
   min-width: 100px;
-  &[disabled]{
+  &[disabled] {
     background: $ColorDarkGray;
   }
-  &__cancel{
+  &__cancel {
     background: $ColorLightGray;
   }
   &:hover, &:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
-    outline:none;
-    &[disabled]{
+    outline: none;
+    &[disabled] {
       box-shadow: none;
-      outline:none;
+      outline: none;
       cursor: initial;
     }
+  }
+}
+
+.user-page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: $ColorBackgroundLight;
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+    border-right: solid 2px $ColorBorder;
+    clear: both;
+    width: 30%;
+    float: left;
+  }
+  &__scroll {
+
+    box-sizing: border-box;
+    width: 70%;
+    float: left;
+  }
+
+  &__content {
+
+    padding-top: calc(#{$MenuHeight} + 40px);
+
+
+    box-sizing: border-box;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+.user-avatar {
+  padding-top: 90px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 50px;
+  &__wrap {
+    width: 200px;
+    padding-top: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  &__img {
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+  }
+  &__edit {
+    cursor: pointer;
+    font-size: 24px;
+    background-color: rgba(#000, 0.5);
+    color: white;
+    position: absolute;
+    border-radius: 0;
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__icon {
+
+  }
+  &__name {
+    padding-top: 30px;
+    color: white;
+    font-size: 25px;
+  }
+}
+
+.user-menu {
+  flex-grow: 1;
+  background-color: $ColorBorder;
+  &__ul {
+
+    margin: 0;
+    list-style: none;
+    padding: 30px 25px;
+  }
+  &__li {
+    text-transform: uppercase;
+    display: flex;
+    outline: none !important;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    color: $ColorGray1;
+    font-size: 20px;
+    cursor: pointer;
+    &:focus, &:active {
+      outline: none !important;
+    }
+    &:hover {
+
+      color: $ColorRed;
+    }
+    &--selected {
+      color: $ColorDarkRed;
+    }
+  }
+  &__icon {
+    margin-right: 20px;
+  }
+  &__text {
+    flex-grow: 1;
+  }
+
+}
+
+.section-vocabulary {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  &__item {
+    box-sizing: border-box;
+    padding: 5px;
+    flex: 0 0 33.33%;
+  }
+  &__title {
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+  }
+}
+
+.vocabulary {
+  width: 100%;
+  padding-top: 56.25%;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  &:hover{
+    .vocabulary{
+      &__control-overlay {
+        height: 30%;
+      }
+      &__control{
+        height: 32px;
+      }
+    }
+
+
+  }
+  &__control-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc000000', endColorstr='#00000000', GradientType=0); /* IE6-9 */
+    transition: all 0.5s;
+  }
+  &__content {
+    position: absolute;
+    bottom: 0;
+
+  }
+  &__overlay {
+    top: 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+30,000000+100&0.8+0,0.5+30,0+100 */
+    background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc000000', endColorstr='#00000000', GradientType=0); /* IE6-9 */
+  }
+  &__en-name {
+    font-size: 16px;
+    color: #fdfdfd;
+    font-weight: 700;
+    line-height: 1.3;
+    padding-bottom: 3px;
+  }
+  &__content {
+    box-sizing: border-box;
+    width: 100%;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+  }
+  &__vi-name {
+    line-height: 1.4;
+    font-weight: 500;
+
+    font-size: 14px;
+    color: #ececec;
+
+  }
+  &__control {
+    overflow: hidden;
+
+    height: 0px;
+    transition: all 0.5s;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__icon {
+    padding: 5px 5px;
+    font-size: 20px;
+    font-weight: 100;
+    cursor: pointer;
+    &:hover {
+      background-color: $ColorRed;
+    }
+
+  }
+}
+
+.section-user-info {
+  padding-left: 50px;
+  padding-right: 50px;
+  display: flex;
+  flex-direction: column;
+  &__item {
+    &--first-name {
+      flex: 0 0 50%;
+      box-sizing: border-box;
+    }
+    &--last-name {
+      padding-left: 20px;
+      flex: 0 0 calc(50% - 20px);
+      box-sizing: border-box;
+    }
+
+    .radio:before {
+      background: #313a3d;
+    }
+  }
+  &__row {
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+  }
+
+}
+
+.user-input {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  font-size: 18px;
+  align-items: center;
+  width: 100%;
+  &__label {
+    height: 50px;
+    background-color: #313a3d;
+    text-transform: uppercase;
+    flex:  0 0 100px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    color: #fdfdfd;
+    white-space: nowrap;
+    padding-right: 20px;
+    &--radio{
+      background-color: transparent;
+    }
+  }
+  &__input {
+    overflow: hidden;
+    height: 50px;
+    outline: none !important;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-grow: 1;
+  }
+}
+.section-saved-film{
+  &__item{
+    flex: 0 0 33.33%;
   }
 }

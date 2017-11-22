@@ -16,6 +16,11 @@ export default class HeaderLogin extends React.Component {
                     </div>
                     <div className="header__name">
                         Nguyễn Thanh Liêm
+                        <div className="menu">
+                            <div className="menu__item">Phim theo cấp</div>
+                            <div className="menu__item">Phim mới nhất</div>
+                            <div className="menu__item">Phim quan tâm nhiều</div>
+                        </div>
                     </div>
                 </div>
             </div>

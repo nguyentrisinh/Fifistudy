@@ -2,7 +2,9 @@ import * as Types from '../constants/app'
 import update from 'react-addons-update'
 // update(state, {$merge: {userInfo: res}})
 const initialState = {
-    userInfo: null
+    userInfo: null,
+    isOpenModalLogin: false,
+    isLogin: false
 }
 
 export default function index(state = initialState, action) {
@@ -12,6 +14,11 @@ export default function index(state = initialState, action) {
 
             return Object.assign({}, state, {userInfo: action.serverData})
         // Object.assign({},state,{userInfo:action.serverData})
+        case Types.TOGGLE_MODAL_LOGIN:
+            return Object.assign({}, state, {isOpenModalLogin: !state.isOpenModalLogin})
+
+        case Types.DO_LOGIN:
+            return Object.assign({}, state, {isLogin: action.isLogin})
         default:
             return state
     }

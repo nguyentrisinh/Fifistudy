@@ -11,8 +11,7 @@ function Footer() {
                 <div className="footer__contact"> LIÊN HỆ HỖ TRỢ: 0946271752</div>
 
                 <div className="footer__lisence">
-                    Copyright ©2016 FIFISTUDY.VN. All Rights Reserved. Phiên bản thử nghiệm đang chờ xin giấy phép bộ TT
-                    & TT.
+                    Copyright ©2017 FIFISTUDY.VN
                 </div>
             </div>
 

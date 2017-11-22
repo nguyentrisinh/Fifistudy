@@ -1,8 +1,10 @@
 import React from 'react';
-import {getFilm, getActorIntro} from '../actions/dataIntropage'
+import {getFilm, getActorIntro, getComment, getFilmByDifficult} from '../actions/dataIntropage'
 import {connect} from 'react-redux';
 import Loading from '../components/Loading'
 import FilmIntro from './FilmIntro';
+import {withCookies} from 'react-cookie';
+import _ from 'lodash';
 
 class FilmIntroContainer extends React.Component {
     constructor(props) {
@@ -10,9 +12,27 @@ class FilmIntroContainer extends React.Component {
         this.state = {};
     }
 
+    initPage = (slug) => {
+        let {cookies} = this.props;
+        let token = cookies.get("token");
+        this.props.getFilm(slug);
+        this.props.getActorIntro(slug);
+        this.props.getComment(slug, token);
+    }
+
     componentWillMount = () => {
-        this.props.getFilm(this.props.match.params.slug);
-        this.props.getActorIntro(this.props.match.params.slug);
+        this.initPage(this.props.match.params.slug);
+    }
+
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.film !== this.props.film) {
+            if (_.has(nextProps.film, "data.data")) {
+                this.props.getFilmByDifficult(nextProps.film.data.data.difficult_level)
+            }
+        }
+        if (nextProps.match.params.slug !== this.props.match.params.slug) {
+            this.initPage(nextProps.match.params.slug)
+        }
     }
 
     render() {
@@ -36,4 +56,9 @@ const mapStateToProps = state => {
         film: state.dataIntropage.film
     }
 }
-export default connect(mapStateToProps, {getFilm, getActorIntro})(FilmIntroContainer)
+export default connect(mapStateToProps, {
+    getFilm,
+    getActorIntro,
+    getComment,
+    getFilmByDifficult
+})(withCookies(FilmIntroContainer))

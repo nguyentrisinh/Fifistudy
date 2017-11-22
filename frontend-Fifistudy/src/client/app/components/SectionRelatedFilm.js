@@ -7,10 +7,18 @@ class SectionRelatedFilm extends React.Component {
         this.state = {};
     }
 
+    renderFilm = () => {
+        return this.props.data.map(item => {
+            return <Film1 key={item.id} data={item}/>
+        })
+    }
+
     render() {
         return (
             <div className="section-related-film">
-                <Film1/><Film1/><Film1/><Film1/><Film1/>
+                {
+                    this.renderFilm()
+                }
             </div>
         )
     }

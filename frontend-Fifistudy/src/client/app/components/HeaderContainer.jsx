@@ -7,10 +7,10 @@ import {
     Route,
     Link
 } from 'react-router-dom';
+import {toggleModalLogin} from '../actions/app'
 import ReactImageFallback from "react-image-fallback";
 import classNames from 'classnames';
 import {getLogout} from '../actions/api'
-import ModalLogin from './ModalLogin'
 import {connect} from 'react-redux';
 import {withCookies} from 'react-cookie'
 
@@ -19,19 +19,12 @@ class Header extends React.Component {
         super(props);
         this.state = {
             open: null,
-            isModalOpen: false,
         };
-    }
-
-    onClickOutside = () => {
-        this.setState({
-            isModalOpen: false
-        })
     }
 
     onClickMenu = (menu) => {
         this.setState({
-            open: menu
+            open: menu === this.state.open ? null : menu
         })
     }
 
@@ -41,7 +34,7 @@ class Header extends React.Component {
         })
     }
 
-    onClickAccountSection = () => {
+    onClickLogout = () => {
         let {cookies} = this.props;
 
         if (cookies.get("token")) {
@@ -63,7 +56,10 @@ class Header extends React.Component {
             if (this.props.userInfo.data.errors == null) {
                 let userInfo = this.props.userInfo.data.data;
                 return (
-                    <div className="header__item" onClick={this.onClickAccountSection}>
+                    <div
+                        onClick={this.onClickMenu.bind(this, "account")}
+                        className={classNames("header__item header__item--has-children", {"header__item--open": this.state.open === "account"})}
+                    >
                         <div className="header__profile">
                             <div className="header__wrap-avatar"
                                  style={{backgroundImage: userInfo.avatar ? `url(http://localhost:8000${userInfo.avatar})` : `url(http://placehold.it/50x50)`}}>
@@ -81,6 +77,17 @@ class Header extends React.Component {
                                 }
                             </div>
                         </div>
+                        <Menu data={[{
+                            name: "Vào trang cá nhân",
+                            link: "/user", onClick: null
+                        },
+                            {
+                                name: "Đăng xuất",
+                                link: null
+                                , onClick: this.onClickLogout
+                            }
+                        ]} closeMenu={this.closeMenu} outsideClickIgnoreClass="header__item--has-children"
+                              isOpen={this.state.open === "account"}/>
                     </div>
                 )
 
@@ -94,9 +101,10 @@ class Header extends React.Component {
     }
 
     onClickLogin = () => {
-        this.setState({
-            isModalOpen: true
-        })
+        // this.setState({
+        //     isModalOpen: true
+        // })
+        this.props.toggleModalLogin();
     }
 
     render() {
@@ -111,7 +119,24 @@ class Header extends React.Component {
                         className={classNames("header__item header__item--has-children", {"header__item--open": this.state.open === "phim"})}
                     >
                         Phim
-                        <Menu closeMenu={this.closeMenu} outsideClickIgnoreClass="header__item--has-children"
+                        <Menu data={[
+                            {
+                                name: "Phim mới nhất",
+                                link: "/",
+                                onClick: null,
+                            },
+                            {
+                                name: "Phim mới được quan tâm nhiều",
+                                link: "/",
+                                onClick: null,
+                            },
+                            {
+                                name: "Phim được xem nhiều",
+                                link: "/",
+                                onClick: null,
+                            }
+                        ]} closeMenu={this.closeMenu}
+                              outsideClickIgnoreClass="header__item--has-children"
                               isOpen={this.state.open === "phim"}/>
                     </div>
                     <div
@@ -119,7 +144,24 @@ class Header extends React.Component {
                         className={classNames("header__item header__item--has-children", {"header__item--open": this.state.open === "blog"})}
                     >
                         Blog
-                        <Menu closeMenu={this.closeMenu} outsideClickIgnoreClass="header__item--has-children"
+                        <Menu data={[
+                            {
+                                name: "Kinh nghiệm học tiếng Anh",
+                                link: "/",
+                                onClick: null,
+                            },
+                            {
+                                name: "Tài liệu",
+                                link: "/",
+                                onClick: null,
+                            },
+                            {
+                                name: "Khác",
+                                link: "/",
+                                onClick: null,
+                            }
+                        ]} closeMenu={this.closeMenu}
+                              outsideClickIgnoreClass="header__item--has-children"
                               isOpen={this.state.open === "blog"}/>
                     </div>
                     <div className="header__item header__item--search">
@@ -128,7 +170,6 @@ class Header extends React.Component {
                     </div>
                     {this.renderAccountSection()}
                 </div>
-                <ModalLogin onClickOutside={this.onClickOutside} isOpen={this.state.isModalOpen}/>
             </div>
         )
     }
@@ -139,4 +180,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(withCookies(Header));
+export default connect(mapStateToProps, {toggleModalLogin})(withCookies(Header));
