@@ -41,4 +41,8 @@ class ErrorDefine:
     USER_SAVE_VOCABULARY_NOT_FOUND = ApiErrorMessage('User save vocabulary not found', 1600)
     YOUR_ROLE_IS_NOT_ALLOW_TO_DELETE = ApiErrorMessage('Your role is not allow to delete this vocabulary', 1601)
 
+    # ValueError: 80xx
+    PAGE_INVALID_TYPE = ApiErrorMessage('Page value must be number', 8000)
+    PAGE_SIZE_INVALID_TYPE = ApiErrorMessage('Page size must be number', 8001)
+
 

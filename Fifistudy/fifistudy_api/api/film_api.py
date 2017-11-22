@@ -59,7 +59,14 @@ class FilmViewSet(ModelViewSet, ApiBase):
             url(r'^save_film/$', cls.as_view({
                 'get': 'get_list_user_save_film',
                 'post': 'user_save_film'
-            }))
+            })),
+
+            url(r'^search_film_by_key/$', cls.as_view({
+                'get': 'search_film_by_key'
+            })),
+            url(r'^search_film_by_key_with_auth/$', cls.as_view({
+                'get': 'search_film_by_key_with_auth'
+            })),
 
             # # get film detail
             # url(r'^detail/(?P<film_id>[0-9]+)$', cls.as_view({
@@ -165,5 +172,28 @@ class FilmViewSet(ModelViewSet, ApiBase):
         user = self.check_anonymous(request)
 
         result = self.film_services.get_list_user_save_film(user)
+
+        return self.as_success(result)
+
+    def search_film_by_key_with_auth(self, request, *args, **kwargs):
+        user = self.check_anonymous(request)
+
+        search_key = request.GET.get('search_key')
+        page = request.GET.get('page')
+        page_size = request.GET.get('page_size')
+        order_by = request.GET.get('order_by')
+
+        result = self.film_services.search_film_by_key(user, search_key, page, page_size)
+
+        return self.as_success(result)
+
+    def search_film_by_key(self, request, *arg, **kwargs):
+        search_key = request.GET.get('search_key')
+        page = request.GET.get('page')
+        page_size = request.GET.get('page_size')
+        order_by = request.GET.get('order_by')
+
+        result = self.film_services.search_film_by_key(search_key=search_key, page=page, page_size=page_size,
+                                                       order_by=order_by)
 
         return self.as_success(result)
