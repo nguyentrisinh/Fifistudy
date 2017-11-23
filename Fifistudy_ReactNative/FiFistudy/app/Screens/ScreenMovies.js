@@ -8,7 +8,7 @@ import {
 import styles from '../Styles/ScreenMovies.js';
 import res from '../Resources/index.js';
 import TabMovies from '../Navigators/TabMovies.js';
-import LinearGradient from 'react-native-linear-gradient';
+//import LinearGradient from 'react-native-linear-gradient';
 import {ImageButton} from '../Components/index.js';
 import {ToolbarContainer} from '../Containers/index.js';
 import ObjFilm from '../Objects/ObjFilm.js';
@@ -23,7 +23,7 @@ class ScreenMovies extends Component {
                 <Image
                     source={{uri: ObjFilm.thumbnail}}
                     style={styles.image}>
-                    <LinearGradient
+                    {/* <LinearGradient
                         colors={['rgba(0, 0, 0, 0.5)', 'transparent']}
                         locations={[0.3, 1]}
                         style={styles.imgGradient}>
@@ -32,7 +32,7 @@ class ScreenMovies extends Component {
                         colors={['transparent', res.colors.background]}
                         locations={[0.7, 1]}
                         style={styles.imgGradient}>
-                    </LinearGradient>
+                    </LinearGradient> */}
                 </Image>
 
                 <View style={styles.tabContainer}>
