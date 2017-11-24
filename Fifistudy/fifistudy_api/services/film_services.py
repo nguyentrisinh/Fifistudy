@@ -2,11 +2,45 @@ from ..models import Film
 from ..serializers import BaseFilmSerializer, HomepageListFilmSerializer, FilmDetailSerializer, \
     BaseUserSaveFilmSerializer, ListUserSaveFilm
 from ..adapter import FilmAdapter
+from ..infrastructures import ApiCustomException
+from ..constant import ErrorDefine, Constant
 
 
 class FilmServices:
     def __init__(self):
         self.film_adapter = FilmAdapter()
+        self.constant = Constant()
+
+    def convert_valid_search_key(self, search_key):
+        if search_key is None:
+            return ''
+
+        return search_key
+
+    def check_valid_paging(self, page, page_size):
+        try:
+            if page is None:
+                page = 1
+
+            page = int(page)
+        except ValueError:
+            raise ApiCustomException(ErrorDefine.PAGE_INVALID_TYPE)
+
+        try:
+            if page_size is None:
+                page_size = Constant.PAGE_RECORDS_NUMBER
+
+            page_size = int(page_size)
+        except ValueError:
+            raise ApiCustomException(ErrorDefine.PAGE_SIZE_INVALID_TYPE)
+
+        return page, page_size
+
+    def check_valid_order_by(self, order_by):
+        if order_by is None:
+            return '-updated_at'
+
+        return order_by
 
     def get_list_order_by_view(self, user=None):
         films = self.film_adapter.get_list_order_by_view(user=user)
@@ -63,6 +97,18 @@ class FilmServices:
         user_save_film = self.film_adapter.get_list_user_save_film(user)
 
         serializer = ListUserSaveFilm(user_save_film, many=True)
+
+        return serializer.data
+
+    def search_film_by_key(self, user=None, search_key='', page=1, page_size=10, order_by='-updated_at'):
+        search_key = self.convert_valid_search_key(search_key)
+        page, page_size = self.check_valid_paging(page, page_size)
+        order_by = self.check_valid_order_by(order_by)
+
+        films = self.film_adapter.search_film_by_key(user=user, search_key=search_key, page=page, page_size=page_size,
+                                                     order_by=order_by)
+
+        serializer = HomepageListFilmSerializer(films, many=True)
 
         return serializer.data
 

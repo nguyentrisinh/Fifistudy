@@ -12,6 +12,7 @@ class Episode(models.Model):
     name = models.CharField(max_length=150, blank=False, null=False)
     # description = models.TextField(blank=True, null=True)
     video = models.FileField(upload_to='episode/video/')
+    link_video = models.CharField(max_length=255, null=True, blank=True)
     sub = models.FileField(upload_to='episode/sub/')
     eng_sub = models.FileField(blank=True, null=True, upload_to='episode/eng_sub/')
     vie_sub = models.FileField(blank=True, null=True, upload_to='episode/vie_sub/')
