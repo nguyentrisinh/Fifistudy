@@ -1608,6 +1608,30 @@ body {
   padding-right: 50px;
   display: flex;
   flex-direction: column;
+  &__btn{
+    color: white;
+    background-color: $ColorDarkRed;
+box-sizing: border-box;
+    min-width: 100px;
+    padding: 15px 20px;
+    text-align: center;
+    //min-height: 40px;
+    cursor: pointer;
+    float: right;
+    align-self: flex-end;
+    justify-self: flex-end;
+    border-radius: 5px;
+
+    &:hover{
+      background-color: $ColorRed;
+      //border:solid 1px $ColorDarkRed;
+    }
+  }
+  &__err{
+    color: $ColorRed;
+    //margin-bottom: 10px;
+    margin:0;
+  }
   &__item {
     &--first-name {
       flex: 0 0 50%;
@@ -1628,6 +1652,9 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
+    &--end{
+      justify-content: flex-end;
+    }
   }
 
 }
