@@ -1,6 +1,6 @@
 from ..models import Film
 from ..serializers import BaseFilmSerializer, HomepageListFilmSerializer, FilmDetailSerializer, \
-    BaseUserSaveFilmSerializer, ListUserSaveFilm
+    BaseUserSaveFilmSerializer, ListUserSaveFilm, SearchListFilmSerializer
 from ..adapter import FilmAdapter
 from ..infrastructures import ApiCustomException
 from ..constant import ErrorDefine, Constant
@@ -105,10 +105,19 @@ class FilmServices:
         page, page_size = self.check_valid_paging(page, page_size)
         order_by = self.check_valid_order_by(order_by)
 
-        films = self.film_adapter.search_film_by_key(user=user, search_key=search_key, page=page, page_size=page_size,
-                                                     order_by=order_by)
+        films, record_number, has_more = self.film_adapter.search_film_by_key(user=user, search_key=search_key,
+                                                                              page=page, page_size=page_size,
+                                                                              order_by=order_by)
 
-        serializer = HomepageListFilmSerializer(films, many=True)
+        list_films = {
+            'films': films,
+            'page': page,
+            'page_size': page_size,
+            'record_number': record_number,
+            'has_more': has_more
+        }
+
+        serializer = SearchListFilmSerializer(list_films)
 
         return serializer.data
 
