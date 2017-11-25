@@ -2,6 +2,7 @@ import React from 'react';
 import Level from './Level.jsx'
 import Star from './Star'
 import classNames from 'classnames';
+import {updateSaved} from '../actions/app'
 import {postUserSaveFilm} from '../actions/api';
 import {getMostView, getLastest} from '../actions/dataHomepage'
 import {getUserSaveFilm} from '../actions/dataUserpage'
@@ -9,7 +10,7 @@ import {withCookies} from 'react-cookie';
 import {SERVER_ERRORS} from '../constants/serverErrors'
 import {connect} from 'react-redux';
 import {toggleModalLogin} from '../actions/app';
-import {withRouter} from 'react-router'
+import {withRouter} from 'react-router';
 
 import {
     BrowserRouter as Router,
@@ -23,6 +24,7 @@ class Film extends React.Component {
             isEnter: false
         }
     }
+
 
     onMouseEnterBookmark = () => {
         this.setState({
@@ -59,6 +61,7 @@ class Film extends React.Component {
             postUserSaveFilm(sendData, config).then((response) => {
                 if (response.data.errors == null) {
                     alert('Thao tác thành công');
+                    this.props.updateSaved(film_id);
                     this.updateNewDataFromServer();
 
                     //Thanh cong
@@ -129,4 +132,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, {toggleModalLogin, getLastest, getMostView, getUserSaveFilm})(withCookies(Film))
+export default connect(mapStateToProps, {toggleModalLogin, getLastest, getMostView, getUserSaveFilm,updateSaved})(withRouter(withCookies(Film)))

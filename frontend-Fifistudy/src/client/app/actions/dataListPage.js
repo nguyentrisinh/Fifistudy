@@ -7,6 +7,7 @@ export const getListPage = (orderBy, pageNumber, pageSize = MAX_PAGE_LIST, token
     // debugger
     return function (dispatch) {
         dispatch(loadingListFilm());
+        // alert(token)
         Api.getSearch("", orderBy, pageNumber, pageSize, token).then(res => {
             dispatch({
                 type: Types.GET_LIST_FILM,

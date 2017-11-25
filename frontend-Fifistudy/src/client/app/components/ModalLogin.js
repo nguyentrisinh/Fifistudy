@@ -29,6 +29,7 @@ class ModalLogin extends React.Component {
                 let date = new Date();
                 date = date.setDate(date.getDate() + 1);
                 date = new Date(date);
+                debugger
                 cookies.set("token", res.data.data.token, {
                     expires: date,
                     domain: "/"

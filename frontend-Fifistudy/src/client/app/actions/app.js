@@ -71,3 +71,14 @@ export const loadingSearch = () =>{
         })
     }
 }
+
+
+export const updateSaved = (filmId) =>{
+    return function (dispatch){
+        dispatch({
+            type:Types.UPDATE_SAVED,
+            filmId
+        })
+    }
+}
+

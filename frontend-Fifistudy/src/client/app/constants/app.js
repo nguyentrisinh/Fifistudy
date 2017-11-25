@@ -10,3 +10,5 @@ export const RESET_SEARCH = "RESET_SEARCH";
 
 export const LOADING_SEARCH = "LOADING_SEARCH";
 
+export const UPDATE_SAVED = "UPDATE_SAVED";
+

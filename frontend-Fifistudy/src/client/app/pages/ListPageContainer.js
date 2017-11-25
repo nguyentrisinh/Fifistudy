@@ -2,6 +2,7 @@ import React from 'react'
 import Footer from '../components/Footer'
 import FadeTransition from '../components/FadeTransition'
 import Section from '../components/SectionFilm'
+import {withCookies} from 'react-cookie'
 import {connect} from 'react-redux';
 import {getListPage, resetListFilm} from '../actions/dataListPage';
 import Film from '../components/Film';
@@ -43,7 +44,10 @@ class ListPageContainer extends React.Component {
     };
 
     getData = (slugList, nextPage) => {
-        this.props.getListPage(slugList, nextPage, MAX_PAGE_LIST, null);
+        let {cookies} = this.props;
+        let token=cookies.get("token");
+        // alert(token)
+        this.props.getListPage(MAP_ROUTE_TO_ORDER_BY[slugList], nextPage, MAX_PAGE_LIST, token);
     }
     onClickSeeMore = () => {
         this.getData(this.props.match.params.slugList, this.props.dataListPage.nextPage);
@@ -76,8 +80,12 @@ class ListPageContainer extends React.Component {
     }
 
     componentWillReceiveProps = (nextProps) => {
+
+
+        let {cookies} = this.props;
+        let token=cookies.get("token");
         if (nextProps.match.params.slugList !== this.props.match.params.slugList) {
-            this.props.resetListFilm(nextProps.match.params.slugList, 1, MAX_PAGE_LIST, null);
+            this.props.resetListFilm(MAP_ROUTE_TO_ORDER_BY[nextProps.match.params.slugList], 1, MAX_PAGE_LIST, token);
         }
     }
 
@@ -117,7 +125,8 @@ class ListPageContainer extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        dataListPage: state.dataListPage.dataListPage
+        dataListPage: state.dataListPage.dataListPage,
+        isLogin:state.app.isLogin
     }
 }
-export default  connect(mapStateToProps, {getListPage, resetListFilm})(ListPageContainer)
+export default  connect(mapStateToProps, {getListPage, resetListFilm})(withCookies(ListPageContainer))
