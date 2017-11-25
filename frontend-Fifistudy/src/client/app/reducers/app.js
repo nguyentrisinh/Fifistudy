@@ -4,7 +4,8 @@ import update from 'react-addons-update'
 const initialState = {
     userInfo: null,
     isOpenModalLogin: false,
-    isLogin: false
+    isLogin: false,
+    searchResult: null
 }
 
 export default function index(state = initialState, action) {
@@ -19,6 +20,8 @@ export default function index(state = initialState, action) {
 
         case Types.DO_LOGIN:
             return Object.assign({}, state, {isLogin: action.isLogin})
+        case Types.GET_SEARCH:
+            return Object.assign({}, state, {searchResult: action.serverData})
         default:
             return state
     }

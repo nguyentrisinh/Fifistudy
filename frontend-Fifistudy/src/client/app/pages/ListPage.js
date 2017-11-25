@@ -15,7 +15,8 @@ class ListPage extends React.Component {
         return [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}].map(item => {
             return (
                 <div className="section__item">
-                    <Film/>
+                    {/*<Film/>*/}
+                    ahihi
                 </div>
             )
         })

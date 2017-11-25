@@ -9,6 +9,7 @@ import {withCookies} from 'react-cookie';
 import {SERVER_ERRORS} from '../constants/serverErrors'
 import {connect} from 'react-redux';
 import {toggleModalLogin} from '../actions/app';
+import {withRouter} from 'react-router'
 
 import {
     BrowserRouter as Router,
@@ -128,4 +129,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, {toggleModalLogin, getLastest, getMostView, getUserSaveFilm})(withCookies(Film))
+export default connect(mapStateToProps, {toggleModalLogin, getLastest, getMostView, getUserSaveFilm})(withRouter(Film))

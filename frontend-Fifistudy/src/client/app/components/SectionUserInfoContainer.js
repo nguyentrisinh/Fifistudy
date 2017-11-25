@@ -13,9 +13,9 @@ class SectionUserInfoContainer extends React.Component {
     }
 
     render() {
-        if (_.has(this.props.userInfo,"data")){
-            if (this.props.userInfo.data.errors ===null){
-                if (typeof this.props.userInfo.data.data =="object"){
+        if (_.has(this.props.userInfo, "data")) {
+            if (this.props.userInfo.data.errors === null) {
+                if (typeof this.props.userInfo.data.data == "object") {
                     return <SectionUserInfo data={this.props.userInfo.data.data}/>
                 }
             }
@@ -26,9 +26,9 @@ class SectionUserInfoContainer extends React.Component {
     }
 }
 
-const mapStateToProps = state =>    {
+const mapStateToProps = state => {
     return {
-        userInfo:state.app.userInfo
+        userInfo: state.app.userInfo
     }
 }
 

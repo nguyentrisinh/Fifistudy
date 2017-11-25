@@ -151,7 +151,7 @@ body {
   height: 65px;
   position: fixed;
   z-index: 99999999;
-  width: 100%;
+  min-width: 100%;
   top: 0;
   &__signup {
     color: white;
@@ -183,6 +183,7 @@ body {
       flex-grow: 1;
       font-size: 18px;
       font-weight: 400;
+      position: relative;
     }
     &--open {
       background-color: #cc3333;
@@ -924,7 +925,7 @@ body {
   display: flex;
   flex-direction: row;
   &__level {
-    margin-top: 15px;
+    margin-top: 6px;
   }
   &__wrap-image {
     flex: 0 0 40%;
@@ -940,8 +941,12 @@ body {
     left: 0;
   }
   &__info {
+
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    padding: 20px;
+    padding: 8px 20px 0 20px;
+    justify-content: center;
   }
   &__eng-name {
     overflow: hidden;
@@ -1353,12 +1358,6 @@ body {
   padding: 10px 5px;
   margin: 10px 5px;
   min-width: 100px;
-  &[disabled] {
-    background: $ColorDarkGray;
-  }
-  &__cancel {
-    background: $ColorLightGray;
-  }
   &:hover, &:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
     outline: none;
@@ -1368,6 +1367,17 @@ body {
       cursor: initial;
     }
   }
+  &[disabled] {
+    background: $ColorDarkGray;
+  }
+  &__cancel {
+    background: $ColorLightGray;
+    &:hover{
+      box-shadow: 0 0 0 2px white, 0 0 0 3px $ColorLightGray;
+      outline: none;
+    }
+  }
+
 }
 
 .user-page {
@@ -1592,6 +1602,7 @@ body {
     justify-content: flex-end;
   }
   &__icon {
+    color: white;
     padding: 5px 5px;
     font-size: 20px;
     font-weight: 100;
@@ -1617,7 +1628,7 @@ box-sizing: border-box;
     text-align: center;
     //min-height: 40px;
     cursor: pointer;
-    float: right;
+    display: inline-block;
     align-self: flex-end;
     justify-self: flex-end;
     border-radius: 5px;
@@ -1694,4 +1705,20 @@ box-sizing: border-box;
   &__item{
     flex: 0 0 33.33%;
   }
+}
+
+.search-result{
+  transition: all 0.4s ease-in-out;
+  width: calc(100% - 40px);
+  position: absolute;
+  background-color: rgba($ColorBackgroundDark,0.95);
+  max-height: 60vh;
+  overflow: hidden;
+  &__more{
+    //padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    padding: 15px 0;
+  }
+  //overflow: hidden;
 }

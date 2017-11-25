@@ -96,7 +96,8 @@ class VideoFilm extends React.Component {
     initPlayer = (data) => {
         this.player = window.jwplayer('player').setup({
             // file: '../static/media/video.mp4',
-            file: `http://localhost:8000${data.video}`,
+            file: 'http://media.studyphim.vn/VIPN5/Extra/01_Extra_English_-_Hectors_arrival.mp4',
+            // file: `http://localhost:8000${data.video}`,
             // file: `http://localhost:8000/media/episode/video/How_i_met_your_mother1_01.mp4`,
 
             tracks: [{
@@ -138,6 +139,14 @@ class VideoFilm extends React.Component {
                     }
                 }
             }
+        });
+        this.player.on('ready', () => {
+            if (this.props.location.state) {
+                if (this.props.location.state.currentTime) {
+                    console.log('propsroute', this.props);
+                    this.player.seek(this.props.location.state.currentTime);
+                }
+            }
         })
     }
     componentDidMount = () => {
@@ -145,6 +154,12 @@ class VideoFilm extends React.Component {
         this.initPlayer(data);
     }
 
+    componentWillUnmount = () => {
+        this.props.history.replace(
+            this.props.history.location.pathname,
+            undefined,
+        )
+    }
     componentWillReceiveProps = (nextProps) => {
         if (nextProps.data !== this.props.data) {
             this.initPlayer(nextProps.data);

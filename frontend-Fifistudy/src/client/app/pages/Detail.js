@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router'
 
 import FadeTransition from '../components/FadeTransition'
 import film1 from '../../static/images/HowIMetUrMother.jpg'

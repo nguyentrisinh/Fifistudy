@@ -1,6 +1,17 @@
-import {API_PATH} from '../constants/apiPath'
+import {API_PATH, MAX_PAGE, ORDER_BY} from '../constants/apiPath'
 import axios from '../config/axios'
 const tokenFormat = (token) => `Token ${token}`
+const makeConfig = (token, anotherConfig = null) => {
+    let config = {
+        headers: {
+            "Authorization": tokenFormat(token)
+        }
+    }
+    if (config) {
+        config = {...config, ...anotherConfig}
+    }
+    return config
+}
 
 export const postSignUpOne = (data) => {
     // data={
@@ -255,5 +266,38 @@ export const getUserSaveFilm = (token) => {
         .catch(err => {
             return err.response.data
         })
+}
+
+export const putEditVocabulary = (userSaveVocabularyId, data, token) => {
+    return axios.put(API_PATH.putEditVocabulary(userSaveVocabularyId), data, makeConfig(token))
+        .then(response => {
+            return response.data
+        })
+        .catch(err => {
+            return err.response.data
+        })
+}
+
+export const getSearch = (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE, token) => {
+    if (token) {
+        return axios.get(API_PATH.getSearchWithAuth(searchKey, orderBy, pageNumber, pageSize))
+            .then(response => {
+                return response.data
+            })
+            .catch(err => {
+                return err.response
+            })
+    }
+    else {
+        return axios.get(API_PATH.getSearch(searchKey, orderBy, pageNumber, pageSize))
+            .then(response => {
+                return response.data
+            })
+            .catch(err => {
+                return err.response
+            })
+    }
+
+
 }
 

@@ -11,7 +11,7 @@ class UserAvatar extends React.Component {
         this.state = {};
     }
 
-    onChange = e =>{
+    onChange = e => {
         // alert('change')
         // alert('cahange')
         var file = e.target.files[0];
@@ -70,4 +70,4 @@ class UserAvatar extends React.Component {
     }
 }
 
-export default connect(null,{getUserInfo})(withCookies(UserAvatar))
+export default connect(null, {getUserInfo})(withCookies(UserAvatar))

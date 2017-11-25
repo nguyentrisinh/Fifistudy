@@ -11,16 +11,16 @@ import {getUserInfo} from '../actions/app';
 class SectionUserInfo extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {...this.props.data,serverErrors:[]}
+        this.state = {...this.props.data, serverErrors: []}
     }
 
-    onTextInputChange = (evt)=>{
+    onTextInputChange = (evt) => {
         this.setState({
-            [evt.target.name]:evt.target.value
+            [evt.target.name]: evt.target.value
         })
     }
 
-    onClickSave = () =>{
+    onClickSave = () => {
         let {cookies} = this.props;
         let token = cookies.get("token")
         let data =
@@ -58,8 +58,8 @@ class SectionUserInfo extends React.Component {
             })
     }
 
-    renderErrors = () =>{
-        return this.state.serverErrors.map(item=>{
+    renderErrors = () => {
+        return this.state.serverErrors.map(item => {
             return <div className="section-user-info__err">
                 {item}
             </div>
@@ -76,10 +76,12 @@ class SectionUserInfo extends React.Component {
                 <div className="section-user-info">
                     <div className="section-user-info__row">
                         <div className="section-user-info__item section-user-info__item--first-name">
-                            <Input1 name="first_name" onChange={this.onTextInputChange} value={state.first_name} label="HỌ"/>
+                            <Input1 name="first_name" onChange={this.onTextInputChange} value={state.first_name}
+                                    label="HỌ"/>
                         </div>
                         <div className="section-user-info__item section-user-info__item--last-name">
-                            <Input1 name="last_name" onChange={this.onTextInputChange} value={state.last_name} label="TÊN"/>
+                            <Input1 name="last_name" onChange={this.onTextInputChange} value={state.last_name}
+                                    label="TÊN"/>
                         </div>
                     </div>
                     <div className="section-user-info__row">
@@ -93,19 +95,22 @@ class SectionUserInfo extends React.Component {
                             GIỚI TÍNH
                         </div>
 
-                        <label className="user-input__label user-input__label--radio"><input onChange={this.onTextInputChange} value="1" type="radio"
-                                                                                             className="radio" name="gender"
-                                                                                             checked={state.gender==1}/>Nam</label>
-                        <label className="user-input__label user-input__label--radio"><input onChange={this.onTextInputChange} value="0" type="radio"
-                                                                                             className="radio" name="gender"
-                                                                                             checked={state.gender==0}/>Nữ</label>
+                        <label className="user-input__label user-input__label--radio"><input
+                            onChange={this.onTextInputChange} value="1" type="radio"
+                            className="radio" name="gender"
+                            checked={state.gender == 1}/>Nam</label>
+                        <label className="user-input__label user-input__label--radio"><input
+                            onChange={this.onTextInputChange} value="0" type="radio"
+                            className="radio" name="gender"
+                            checked={state.gender == 0}/>Nữ</label>
 
                     </div>
                     <div className="section-user-info__row">
                         <Input1 name="phone" onChange={this.onTextInputChange} value={state.phone} label="SĐT"/>
                     </div>
                     <div className="section-user-info__row">
-                        <Input1 name="birthday" onChange={this.onTextInputChange} value={state.birthday} label="NGÀY SINH"/>
+                        <Input1 name="birthday" onChange={this.onTextInputChange} value={state.birthday}
+                                label="NGÀY SINH"/>
                     </div>
                     <div className="section-user-info__row">
                         <Input1 name="address" onChange={this.onTextInputChange} value={state.address} label="ĐỊA CHỈ"/>
@@ -129,4 +134,4 @@ class SectionUserInfo extends React.Component {
     }
 }
 
-export default connect(null,{getUserInfo})(withCookies(SectionUserInfo))
+export default connect(null, {getUserInfo})(withCookies(SectionUserInfo))

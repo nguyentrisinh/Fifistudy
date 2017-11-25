@@ -1,5 +1,6 @@
 import React from 'react';
 import Film1 from './Film1'
+import {withRouter} from 'react-router'
 
 class SectionRelatedFilm extends React.Component {
     constructor(props) {
@@ -9,6 +10,9 @@ class SectionRelatedFilm extends React.Component {
 
     renderFilm = () => {
         return this.props.data.map(item => {
+            if (item.slug === this.props.match.params.slug) {
+                return
+            }
             return <Film1 key={item.id} data={item}/>
         })
     }
@@ -24,4 +28,4 @@ class SectionRelatedFilm extends React.Component {
     }
 }
 
-export default SectionRelatedFilm
+export default withRouter(SectionRelatedFilm)
