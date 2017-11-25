@@ -5,7 +5,12 @@ const initialState = {
     userInfo: null,
     isOpenModalLogin: false,
     isLogin: false,
-    searchResult: null
+    searchResult: {
+        hasMore:false,
+        nextPage:1,
+        data:[],
+        isLoading:false
+    }
 }
 
 export default function index(state = initialState, action) {
@@ -19,9 +24,23 @@ export default function index(state = initialState, action) {
             return Object.assign({}, state, {isOpenModalLogin: !state.isOpenModalLogin})
 
         case Types.DO_LOGIN:
-            return Object.assign({}, state, {isLogin: action.isLogin})
+            return Object.assign({}, state, {isLogin: action.isLogin});
+        case Types.RESET_SEARCH:
+            return Object.assign({}, state, {searchResult:initialState.searchResult})
+        case Types.LOADING_SEARCH:
+            let newSearchResult = update(state.searchResult,{$merge:{isLoading:true,hasMore:false}})
+            return Object.assign({}, state, {searchResult: newSearchResult})
         case Types.GET_SEARCH:
-            return Object.assign({}, state, {searchResult: action.serverData})
+            if (action.serverData.errors===null){
+                return Object.assign({}, state, {searchResult: {
+                    hasMore:action.serverData.data.has_more,
+                    nextPage:state.searchResult.nextPage+1,
+                    data:[...state.searchResult.data.concat(action.serverData.data.films)],
+                    isLoading:false
+                }})
+            }
+            return state
+
         default:
             return state
     }

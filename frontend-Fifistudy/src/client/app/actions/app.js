@@ -44,6 +44,7 @@ export const doLogin = (isLogin) => {
 
 export const getSearch = (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE, token = null) => {
     return function (dispatch) {
+        dispatch(loadingSearch());
         Api.getSearch(searchKey, orderBy, pageNumber, pageSize, token).then(res => {
             dispatch({
                 type: Types.GET_SEARCH,
@@ -53,4 +54,20 @@ export const getSearch = (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE, t
         })
     }
 
+}
+
+export const resetSearch = () =>{
+    return function (dispatch){
+        dispatch({
+            type:Types.RESET_SEARCH
+        })
+    }
+}
+
+export const loadingSearch = () =>{
+    return function (dispatch){
+        dispatch({
+            type:Types.LOADING_SEARCH
+        })
+    }
 }

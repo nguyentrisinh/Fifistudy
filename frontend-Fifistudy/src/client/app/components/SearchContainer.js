@@ -3,6 +3,7 @@ import {getSearch} from '../actions/app';
 import {connect} from 'react-redux';
 import {ORDER_BY} from '../constants/apiPath';
 import SearchResult from './SearchResult';
+import {resetSearch,loadingSearch} from '../actions/app'
 
 class SearchContainer extends React.Component {
     constructor(props) {
@@ -19,22 +20,32 @@ class SearchContainer extends React.Component {
         })
     }
 
+
+    onClickSeeMore = ()=>{
+        this.props.getSearch(this.state.searchValue, ORDER_BY.createdAtIncrease, this.props.searchResult.nextPage, 5)
+    }
+
     renderSearchResult = () => {
-        if (this.props.searchResult) {
-            if (this.props.searchResult.errors == null) {
-                if (this.props.searchResult.data) {
+        // debugger
+        // if (this.props.searchResult) {
+        //     if (this.props.searchResult.errors == null) {
+        //         if (this.props.searchResult.data) {
                     return (
-                        <SearchResult closeSearchContainer={this.closeSearchContainer} isOpen={this.state.isOpen}
+                        <SearchResult onClickSeeMore={this.onClickSeeMore} closeSearchContainer={this.closeSearchContainer} isOpen={this.state.isOpen}
                                       outsideClickIgnoreClass="header__item--search"
-                                      data={this.props.searchResult.data}/>
+                                      data={this.props.searchResult}/>
                     )
-                }
-            }
-        }
-        return null
+        //         }
+        //     }
+        // }
+        // return null
     }
 
     onTextSearchChange = e => {
+        this.props.resetSearch();
+        if (!e.target.value){
+            return
+        }
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -68,4 +79,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {getSearch})(SearchContainer)
+export default connect(mapStateToProps, {getSearch,resetSearch,loadingSearch})(SearchContainer)
