@@ -1,7 +1,6 @@
 import * as Types from '../constants/dataListPage'
 import * as TypesApp from '../constants/app'
 import update from 'react-addons-update'
-// update(state, {$merge: {userInfo: res}})
 const initialState = {
     dataListPage: {
         hasMore: false,
@@ -10,18 +9,14 @@ const initialState = {
         isLoading: false
     }
 }
+import {makeNewDataSaveFilm} from '../actions/help'
 
 export default function index(state = initialState, action) {
 
     switch (action.type) {
-        case TypesApp.UPDATE_SAVED:
-            let filmId = action.filmId;
-            let indexFilm = state.dataListPage.data.findIndex(o => o.id == filmId);
-            let newFilm = update(state.dataListPage.data[indexFilm], {$merge: {is_saved: !state.dataListPage.data[indexFilm].is_saved}});
-            let newData = state.dataListPage.data;
-            if (indexFilm > -1) {
-                newData = update(state.dataListPage.data, {$splice: [[indexFilm, 1, newFilm]]})
-            }
+        case TypesApp.UPDATE_SAVED_LIST:
+            // debugger
+            let newData = makeNewDataSaveFilm(action.filmId,state.dataListPage.data);
             let newDataListPage = update(state.dataListPage, {$merge: {data: newData}});
             return Object.assign({}, state, {
                 dataListPage: newDataListPage

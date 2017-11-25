@@ -74,9 +74,24 @@ export const loadingSearch = () =>{
 
 
 export const updateSaved = (filmId) =>{
+    // debugger
+    // Vao reducer phai check null truoc, ham make thi chac chan oldData phai la mang
     return function (dispatch){
         dispatch({
-            type:Types.UPDATE_SAVED,
+            type:Types.UPDATE_SAVED_HOME,
+            filmId
+        })
+        dispatch({
+            type:Types.UPDATE_SAVED_LIST,
+            filmId
+        })
+    }
+}
+
+export const unSavedFilm = (filmId)=>{
+    return function (dispatch) {
+        dispatch({
+            type:Types.UPDATE_SAVED_USER,
             filmId
         })
     }

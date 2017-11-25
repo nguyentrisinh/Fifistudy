@@ -26,7 +26,7 @@ class ModalSaveVocabulary extends React.Component {
     }
 
     onClickSave = () => {
-        debugger
+        // debugger
         if (this.props.isLogin) {
             let {cookies} = this.props;
             let token = cookies.get("token");

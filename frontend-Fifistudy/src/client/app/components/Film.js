@@ -2,7 +2,7 @@ import React from 'react';
 import Level from './Level.jsx'
 import Star from './Star'
 import classNames from 'classnames';
-import {updateSaved} from '../actions/app'
+import {updateSaved,unSavedFilm} from '../actions/app'
 import {postUserSaveFilm} from '../actions/api';
 import {getMostView, getLastest} from '../actions/dataHomepage'
 import {getUserSaveFilm} from '../actions/dataUserpage'
@@ -37,16 +37,25 @@ class Film extends React.Component {
             isEnter: false
         })
     }
-    updateNewDataFromServer = () => {
-        let {cookies} = this.props;
+    updateNewDataFromServer = (filmId) => {
+        let {cookies,match} = this.props;
         let token = cookies.get("token");
-        this.props.getLastest(token);
-        this.props.getMostView(token);
-        this.props.getUserSaveFilm(token);
+        this.props.updateSaved(filmId);
+        // debugger
+        console.log(match)
+        if (match.path=="/user"){
+            // alert('route')
+            this.props.unSavedFilm(filmId)
+        }
+        // this.props.getLastest(token);
+        // this.props.getMostView(token);
+        // this.props.getUserSaveFilm(token);
     }
     onClickBookmark = (event) => {
         event.stopPropagation();
         event.preventDefault();
+
+        // console.log(this.props.updateSaved,"Function")
         if (this.props.isLogin) {
             let {cookies, data} = this.props;
             // console.log(this.props.data)
@@ -58,11 +67,18 @@ class Film extends React.Component {
                     "Authorization": `Token ${cookies.get("token")}`
                 }
             }
+            // this.props.updateSaved(1);
             postUserSaveFilm(sendData, config).then((response) => {
+
+                // const {updateSaved} = this.props;
                 if (response.data.errors == null) {
-                    alert('Thao tác thành công');
-                    this.props.updateSaved(film_id);
-                    this.updateNewDataFromServer();
+                    // alert('Thao tác thành công');
+                    // debugger
+
+                    // console.log(updateSaved,'updateFunction')
+                    // updateSaved(film_id);
+                    // alert(data.id)
+                    this.updateNewDataFromServer(data.id);
 
                     //Thanh cong
                     // this.props.updateHomepageSavedFilm(response.data.data.film_id);
@@ -132,4 +148,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, {toggleModalLogin, getLastest, getMostView, getUserSaveFilm,updateSaved})(withRouter(withCookies(Film)))
+export default connect(mapStateToProps, {toggleModalLogin, getLastest, getMostView, getUserSaveFilm,updateSaved,unSavedFilm})(withRouter(withCookies(Film)))

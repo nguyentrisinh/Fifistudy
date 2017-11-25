@@ -48,7 +48,7 @@ class VideoFilm extends React.Component {
     onClickSave = (evt, item) => {
         evt.preventDefault();
         evt.stopPropagation();
-        debugger
+        // debugger
         this.setState({
             currentClickSave: {...item, ...{episode_id: this.props.data.id}}
         })
