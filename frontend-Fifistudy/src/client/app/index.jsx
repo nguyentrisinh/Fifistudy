@@ -4,7 +4,7 @@ import SliderBanner from './components/SliderBanner.jsx';
 import {CookiesProvider} from 'react-cookie';
 import '../static/css/index.scss';
 import {Provider} from "react-redux";
-import ListPage from "./pages/ListPage"
+import ListPage from "./pages/ListPageContainer"
 
 import reducer from "./reducers/main";
 import {applyMiddleware, createStore} from "redux";

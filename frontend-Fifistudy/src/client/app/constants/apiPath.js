@@ -1,4 +1,6 @@
-export const MAX_PAGE = 24
+export const MAX_PAGE = 5
+
+export const MAX_PAGE_LIST = 4
 
 export const ORDER_BY = {
     updateAtIncrease: 'updated_at',

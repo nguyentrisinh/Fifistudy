@@ -1,10 +1,42 @@
 import * as Types from '../constants/dataListPage';
 import axios from '../config/axios';
-import {API_PATH,ORDER_BY} from '../constants/apiPath';
+import {API_PATH,ORDER_BY,MAX_PAGE_LIST} from '../constants/apiPath';
 import * as Api from '../actions/api'
 
-export function getListPage(orderBy,pageNumber,pageSize) {
-    return function(dispatch){
-        Api.getSearch("",ORDER_BY[orderBy],pageNumber,pageSize);
+export const getListPage = (orderBy, pageNumber, pageSize = MAX_PAGE_LIST, token = null) => {
+    // debugger
+    return function (dispatch) {
+        dispatch(loadingListFilm());
+        Api.getSearch("", orderBy, pageNumber, pageSize, token).then(res => {
+            dispatch({
+                type: Types.GET_LIST_FILM,
+                serverData: res
+            })
+
+        })
     }
+
+}
+
+export const loadingListFilm = () =>{
+    return function (dispatch){
+        dispatch({
+            type:Types.LOADING_LIST_FILM
+        })
+    }
+}
+
+export const resetListFilm = (orderBy, pageNumber, pageSize = MAX_PAGE_LIST, token = null) => {
+    // debugger
+    return function (dispatch) {
+        dispatch(loadingListFilm());
+        Api.getSearch("", orderBy, pageNumber, pageSize, token).then(res => {
+            dispatch({
+                type: Types.RESET_LIST_FILM,
+                serverData: res
+            })
+
+        })
+    }
+
 }

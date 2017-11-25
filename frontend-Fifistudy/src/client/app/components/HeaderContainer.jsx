@@ -123,17 +123,17 @@ class Header extends React.Component {
                         <Menu data={[
                             {
                                 name: "Phim mới nhất",
-                                link: "/",
+                                link: "/lastest",
                                 onClick: null,
                             },
                             {
                                 name: "Phim mới được quan tâm nhiều",
-                                link: "/",
+                                link: "/much-interest",
                                 onClick: null,
                             },
                             {
                                 name: "Phim được xem nhiều",
-                                link: "/",
+                                link: "/high-rating",
                                 onClick: null,
                             }
                         ]} closeMenu={this.closeMenu}

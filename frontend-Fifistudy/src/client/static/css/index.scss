@@ -370,15 +370,17 @@ body {
     flex-wrap: wrap;
   }
   &__item {
+    box-sizing: border-box;
+    border-left: solid 0.5px #0e151d;
+    display: block;
+    border-right: solid 0.5px #0e151d;
     width: 25%;
-    flex-grow: 1;
+    border-bottom: solid 0.5px #0e151d;
+    //flex-grow: 1;
   }
 }
 
 .film {
-  border-left: solid 0.5px $ColorBorder;
-  display: block;
-  border-right: solid 0.5px $ColorBorder;
   &__score {
     text-align: center;
   }
@@ -1715,6 +1717,8 @@ box-sizing: border-box;
   max-height: 60vh;
   overflow: hidden;
   &__more{
+
+    position: static;
     //padding: 10px 0;
     text-align: center;
     width: 100%;

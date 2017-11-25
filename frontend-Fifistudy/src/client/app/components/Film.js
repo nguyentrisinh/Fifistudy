@@ -129,4 +129,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, {toggleModalLogin, getLastest, getMostView, getUserSaveFilm})(withRouter(Film))
+export default connect(mapStateToProps, {toggleModalLogin, getLastest, getMostView, getUserSaveFilm})(withCookies(Film))
