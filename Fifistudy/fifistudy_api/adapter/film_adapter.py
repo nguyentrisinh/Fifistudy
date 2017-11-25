@@ -216,19 +216,41 @@ class FilmAdapter:
             films = Film.objects.filter(
                 Q(english_name__icontains=search_key) |
                 Q(vietnamese_name__icontains=search_key)
-            ).order_by(order_by)[begin_record:end_record]
+            ).order_by(order_by)
+
+            record_number = films.count()
+
+            films = films[begin_record:end_record]
+
+            # Check if has_more records
+            has_more = False
+
+            if end_record < record_number:
+                has_more = True
+            # End check if has more records
 
             for film in films:
                 film.is_saved = self.is_saved(user, film)
 
-            return films
+            return films, record_number, has_more
         else:
             films = Film.objects.filter(
                 Q(english_name__icontains=search_key) |
                 Q(vietnamese_name__icontains=search_key)
             ).annotate(
                 is_saved=Case(default=False, output_field=BooleanField()),
-            ).order_by(order_by)[begin_record:end_record]
+            ).order_by(order_by)
 
-            return films
+            record_number = films.count()
+
+            films = films[begin_record:end_record]
+
+            # Check if has_more records
+            has_more = False
+
+            if end_record < record_number:
+                has_more = True
+            # End check if has more records
+
+            return films, record_number, has_more
 

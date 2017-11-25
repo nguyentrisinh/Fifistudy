@@ -1,4 +1,5 @@
-from .film_serializer import BaseFilmSerializer, HomepageListFilmSerializer, FilmDetailSerializer, ListUserSaveFilm
+from .film_serializer import BaseFilmSerializer, HomepageListFilmSerializer, FilmDetailSerializer, ListUserSaveFilm, \
+    SearchListFilmSerializer
 from .promote_serializer import BasePromoteSerializer, ListPromoteSerializer
 
 # test serializer (NoneAttribute serializer)
