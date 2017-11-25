@@ -43,7 +43,7 @@ class ModalEditVocabulary extends React.Component {
     render() {
         return (
             <Modal isOpen={this.props.isOpen} onClickOutside={this.props.onClickOutside}>
-                <h1 className="modal-title">LƯU TỪ VỰNG</h1>
+                <h1 className="modal-title">SỬA TỪ VỰNG</h1>
                 <Input type="text" onChange={this.onChangeTextInput} name="vocabulary" placeholder="Từ vựng"
                        value={this.state.vocabulary}/>
                 <Input type="text" onChange={this.onChangeTextInput} name="meaning" placeholder="Nghĩa"

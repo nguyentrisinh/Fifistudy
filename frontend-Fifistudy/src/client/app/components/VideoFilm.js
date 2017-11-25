@@ -4,6 +4,7 @@ import parser from 'subtitles-parser';
 import axios from 'axios';
 const vttToJson = require("vtt-json");
 import $ from 'jquery';
+import ModalSaveVocabulary from './ModalSaveVocabulary';
 import {Scrollbars} from 'react-custom-scrollbars';
 import classNames from 'classnames';
 import {toggleModalLogin} from '../actions/app'
@@ -23,7 +24,14 @@ class VideoFilm extends React.Component {
             isPractice: false,
             valueTimeBack: 5,
             valueSpeed: 1.0,
+            currentClickSave: null
         };
+    }
+
+    onClickOutside = () => {
+        this.setState({
+            currentClickSave: null
+        })
     }
 
     timeString2ms(a, b) {// time(HH:MM:SS.mss) // optimized
@@ -40,30 +48,10 @@ class VideoFilm extends React.Component {
     onClickSave = (evt, item) => {
         evt.preventDefault();
         evt.stopPropagation();
-
-        if (this.props.isLogin) {
-            let {cookies, match} = this.props;
-            let token = cookies.get("token");
-            let data = {
-                current_time: item.start,
-                meaning: item.sub[1].replace(/<\/?[^>]+(>|$)/g, ""),
-                vocabulary: item.sub[0].replace(/<\/?[^>]+(>|$)/g, ""),
-                episode_id: this.props.data.id
-            }
-            postSaveVocabulary(data, token).then(
-                response => {
-                    if (response.data.errors === null) {
-                        alert("Save thanh cong")
-                    }
-                    else {
-                        alert('Save that bai')
-                    }
-                }
-            )
-        }
-        else {
-            this.props.toggleModalLogin();
-        }
+        debugger
+        this.setState({
+            currentClickSave: {...item, ...{episode_id: this.props.data.id}}
+        })
     }
 
     renderSub = () => {
@@ -164,6 +152,20 @@ class VideoFilm extends React.Component {
         if (nextProps.data !== this.props.data) {
             this.initPlayer(nextProps.data);
         }
+    }
+    renderModalSave = () => {
+        let {currentClickSave} = this.state
+        if (this.state.currentClickSave) return (
+
+            <div> hihi
+                <ModalSaveVocabulary data={currentClickSave} isOpen={true}
+                                     onClickOutside={this.onClickOutside}/>
+
+            </div>
+        )
+
+        return null
+
     }
     onClickBtnSwipe = () => {
         this.setState({
@@ -298,6 +300,10 @@ class VideoFilm extends React.Component {
 
                     </div>
                 </div>
+                {
+                    this.renderModalSave()
+                }
+
             </div>
         )
     }

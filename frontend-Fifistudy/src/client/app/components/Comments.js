@@ -64,7 +64,7 @@ class Comments extends React.Component {
     render() {
         return (
             <div>
-                <FlipMove>
+                <FlipMove enterAnimation="fade" leaveAnimation="fade">
                     {
                         this.renderComment()
                     }
