@@ -4,7 +4,7 @@ import FadeTransition from '../components/FadeTransition'
 import Section from '../components/SectionFilm'
 import {withCookies} from 'react-cookie'
 import {connect} from 'react-redux';
-import {getListPage, resetListFilm} from '../actions/dataListPage';
+import {getListPage, resetListFilm, deleteListFilm} from '../actions/dataListPage';
 import Film from '../components/Film';
 import {ORDER_BY, MAX_PAGE_LIST} from '../constants/apiPath'
 
@@ -23,6 +23,10 @@ const MAP_ROUTE_TO_TITLE = {
 }
 
 class ListPageContainer extends React.Component {
+    componentWillUnmount = () => {
+        this.props.deleteListFilm();
+    }
+
     constructor(props) {
         super(props);
         this.state = {};
@@ -129,4 +133,4 @@ const mapStateToProps = state => {
         isLogin: state.app.isLogin
     }
 }
-export default  connect(mapStateToProps, {getListPage, resetListFilm})(withCookies(ListPageContainer))
+export default  connect(mapStateToProps, {getListPage, resetListFilm, deleteListFilm})(withCookies(ListPageContainer))

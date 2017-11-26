@@ -27,6 +27,16 @@ export const loadingListFilm = () => {
     }
 }
 
+
+export const deleteListFilm = () => {
+    return function (dispatch) {
+        dispatch({
+            type: Types.DELETE_LIST_FILM
+        })
+    }
+}
+
+
 export const resetListFilm = (orderBy, pageNumber, pageSize = MAX_PAGE_LIST, token = null) => {
     // debugger
     return function (dispatch) {

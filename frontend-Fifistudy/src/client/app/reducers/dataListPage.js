@@ -38,6 +38,9 @@ export default function index(state = initialState, action) {
         case Types.LOADING_LIST_FILM:
             let newSearchResult = update(state.dataListPage, {$merge: {isLoading: true, hasMore: false}})
             return Object.assign({}, state, {dataListPage: newSearchResult})
+        case Types.DELETE_LIST_FILM:
+            // let newSearchResult = update(state.dataListPage, {$merge: {isLoading: true, hasMore: false}})
+            return Object.assign({}, state, {dataListPage: initialState.dataListPage})
         case Types.GET_LIST_FILM:
             if (action.serverData.errors === null) {
                 return Object.assign({}, state, {
