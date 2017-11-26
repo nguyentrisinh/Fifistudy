@@ -16,7 +16,7 @@ export default function index(state = initialState, action) {
     switch (action.type) {
         case TypesApp.UPDATE_SAVED_LIST:
             // debugger
-            let newData = makeNewDataSaveFilm(action.filmId,state.dataListPage.data);
+            let newData = makeNewDataSaveFilm(action.filmId, state.dataListPage.data);
             let newDataListPage = update(state.dataListPage, {$merge: {data: newData}});
             return Object.assign({}, state, {
                 dataListPage: newDataListPage

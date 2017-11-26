@@ -56,42 +56,42 @@ export const getSearch = (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE, t
 
 }
 
-export const resetSearch = () =>{
-    return function (dispatch){
-        dispatch({
-            type:Types.RESET_SEARCH
-        })
-    }
-}
-
-export const loadingSearch = () =>{
-    return function (dispatch){
-        dispatch({
-            type:Types.LOADING_SEARCH
-        })
-    }
-}
-
-
-export const updateSaved = (filmId) =>{
-    // debugger
-    // Vao reducer phai check null truoc, ham make thi chac chan oldData phai la mang
-    return function (dispatch){
-        dispatch({
-            type:Types.UPDATE_SAVED_HOME,
-            filmId
-        })
-        dispatch({
-            type:Types.UPDATE_SAVED_LIST,
-            filmId
-        })
-    }
-}
-
-export const unSavedFilm = (filmId)=>{
+export const resetSearch = () => {
     return function (dispatch) {
         dispatch({
-            type:Types.UPDATE_SAVED_USER,
+            type: Types.RESET_SEARCH
+        })
+    }
+}
+
+export const loadingSearch = () => {
+    return function (dispatch) {
+        dispatch({
+            type: Types.LOADING_SEARCH
+        })
+    }
+}
+
+
+export const updateSaved = (filmId) => {
+    // debugger
+    // Vao reducer phai check null truoc, ham make thi chac chan oldData phai la mang
+    return function (dispatch) {
+        dispatch({
+            type: Types.UPDATE_SAVED_HOME,
+            filmId
+        })
+        dispatch({
+            type: Types.UPDATE_SAVED_LIST,
+            filmId
+        })
+    }
+}
+
+export const unSavedFilm = (filmId) => {
+    return function (dispatch) {
+        dispatch({
+            type: Types.UPDATE_SAVED_USER,
             filmId
         })
     }

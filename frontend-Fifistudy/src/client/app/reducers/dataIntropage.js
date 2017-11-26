@@ -17,7 +17,8 @@ const initialState = {
     filmEqualDifficult: {
         isLoading: true,
         data: null
-    }
+    },
+    isReviewed: null,
 }
 
 export default function dataHomepage(state = initialState, action) {
@@ -30,6 +31,26 @@ export default function dataHomepage(state = initialState, action) {
 
                 })
             });
+            break;
+        case Types.LOADING_REVIEWD:
+            return Object.assign({}, state, {
+                isReviewed: null
+            });
+            break;
+        case Types.IS_REVIEWED:
+            if (action.serverData.errors === null) {
+                if (action.serverData.data === null) {
+                    return Object.assign({}, state, {
+                        isReviewed: 0
+                    })
+                }
+                else {
+                    return Object.assign({}, state, {
+                        isReviewed: action.serverData.data.score
+                    })
+                }
+            }
+            return state;
             break;
         case Types.GET_ACTOR_INTRO:
             return Object.assign({}, state, {

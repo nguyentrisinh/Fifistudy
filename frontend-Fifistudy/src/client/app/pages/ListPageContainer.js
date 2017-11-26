@@ -45,7 +45,7 @@ class ListPageContainer extends React.Component {
 
     getData = (slugList, nextPage) => {
         let {cookies} = this.props;
-        let token=cookies.get("token");
+        let token = cookies.get("token");
         // alert(token)
         this.props.getListPage(MAP_ROUTE_TO_ORDER_BY[slugList], nextPage, MAX_PAGE_LIST, token);
     }
@@ -83,7 +83,7 @@ class ListPageContainer extends React.Component {
 
 
         let {cookies} = this.props;
-        let token=cookies.get("token");
+        let token = cookies.get("token");
         if (nextProps.match.params.slugList !== this.props.match.params.slugList) {
             this.props.resetListFilm(MAP_ROUTE_TO_ORDER_BY[nextProps.match.params.slugList], 1, MAX_PAGE_LIST, token);
         }
@@ -126,7 +126,7 @@ class ListPageContainer extends React.Component {
 const mapStateToProps = state => {
     return {
         dataListPage: state.dataListPage.dataListPage,
-        isLogin:state.app.isLogin
+        isLogin: state.app.isLogin
     }
 }
 export default  connect(mapStateToProps, {getListPage, resetListFilm})(withCookies(ListPageContainer))

@@ -2,7 +2,7 @@ import React from 'react';
 import Level from './Level.jsx'
 import Star from './Star'
 import classNames from 'classnames';
-import {updateSaved,unSavedFilm} from '../actions/app'
+import {updateSaved, unSavedFilm} from '../actions/app'
 import {postUserSaveFilm} from '../actions/api';
 import {getMostView, getLastest} from '../actions/dataHomepage'
 import {getUserSaveFilm} from '../actions/dataUserpage'
@@ -38,12 +38,12 @@ class Film extends React.Component {
         })
     }
     updateNewDataFromServer = (filmId) => {
-        let {cookies,match} = this.props;
+        let {cookies, match} = this.props;
         let token = cookies.get("token");
         this.props.updateSaved(filmId);
         // debugger
         console.log(match)
-        if (match.path=="/user"){
+        if (match.path == "/user") {
             // alert('route')
             this.props.unSavedFilm(filmId)
         }
@@ -148,4 +148,11 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, {toggleModalLogin, getLastest, getMostView, getUserSaveFilm,updateSaved,unSavedFilm})(withRouter(withCookies(Film)))
+export default connect(mapStateToProps, {
+    toggleModalLogin,
+    getLastest,
+    getMostView,
+    getUserSaveFilm,
+    updateSaved,
+    unSavedFilm
+})(withRouter(withCookies(Film)))

@@ -1167,7 +1167,7 @@ body {
     font-size: 20px;
     color: $ColorTextGray;
     line-height: calc(28 / 20);
-    height: calc(20px * 5 * 28 / 20);
+    height: calc(20px * 6 * 28 / 20);
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
@@ -1176,8 +1176,8 @@ body {
     -moz-box-orient: vertical;
     -ms-box-orient: vertical;
     box-orient: vertical;
-    line-clamp: 5;
-    -webkit-line-clamp: 5;
+    line-clamp: 6;
+    -webkit-line-clamp: 6;
   }
 }
 
@@ -1189,6 +1189,11 @@ body {
     background-color: $ColorBackgroundDark;
     padding-top: 20px;
     padding-bottom: 40px;
+    &--loading{
+      text-align: center;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
   }
   &__wrap {
     background-color: $ColorBackgroundDark;
@@ -1705,7 +1710,9 @@ box-sizing: border-box;
 }
 .section-saved-film{
   &__item{
+    box-sizing: border-box;
     flex: 0 0 33.33%;
+    border:solid 0.5px $ColorBorder;
   }
 }
 
@@ -1725,4 +1732,18 @@ box-sizing: border-box;
     padding: 15px 0;
   }
   //overflow: hidden;
+}
+
+.star-rating-container{
+  position: relative;
+  &__loading{
+    text-align: center;
+  }
+
+}
+
+.tooltip{
+  //position: absolute;
+  font-style: italic;
+  color: $ColorGray1;
 }

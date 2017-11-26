@@ -25,6 +25,9 @@ export const API_PATH = {
     getFilm: (slug) => {
         return `/api/films/detail/slug/?film_slug=${slug}`
     },
+    getFilmWithAuth: (slug) => {
+        return `/api/films/detail_with_auth/slug/?film_slug=${slug}`
+    },
     getEpisode: (filmSlug, episodeId) => {
         return `/api/episodes/detail/?film_slug=${filmSlug}&episode_number=${episodeId}`
     },
@@ -54,6 +57,8 @@ export const API_PATH = {
     putEditVocabulary: (userSaveVocabularyId) => `/api/vocabularies/update_vocabulary/${userSaveVocabularyId}/`,
     getSearch: (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE) => `/api/films/search_film_by_key/?search_key=${searchKey}&order_by=${orderBy}&page_size=${pageSize}&page=${pageNumber}`,
     getSearchWithAuth: (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE) => `/api/films/search_film_by_key_with_auth/?search_key=${searchKey}&order_by=${orderBy}&page_size=${pageSize}&page=${pageNumber}`,
+    postReviewFilm: `/api/reviews/save/`,
+    getReviewFilm: (filmId) => `/api/reviews/film/${filmId}/`
 
 }
 

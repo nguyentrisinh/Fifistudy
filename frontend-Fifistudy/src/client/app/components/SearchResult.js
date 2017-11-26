@@ -1,5 +1,6 @@
 import React from 'react';
 import onClickOutside from 'react-onclickoutside';
+import Spinner from './Spinner'
 
 import Film1 from '../components/Film1';
 import {connect} from 'react-redux';
@@ -22,7 +23,7 @@ class SearchResult extends React.Component {
     calcHeight = (data) => {
         let height = 0;
         let domItem = document.querySelectorAll(".search-result__item");
-        if (domItem.length>0) {
+        if (domItem.length > 0) {
             console.log(domItem)
             Array.from(domItem).map(item =>
                 height += item.clientHeight
@@ -76,20 +77,15 @@ class SearchResult extends React.Component {
     renderLoadingAndSeeMore = () => {
         if (this.props.data.isLoading) {
             return (
-                <div id="spinner" className="search-result search-result__more">
-                    <div className="loader">
-                        <div className="inner one"></div>
-                        <div className="inner two"></div>
-                        <div className="inner three"></div>
-                    </div>
-                </div>
+                <Spinner className="search-result search-result__more"></Spinner>
             )
         }
         else {
             if (this.props.data.hasMore) {
                 return (
                     <div id="see-more" key="search" className="search-result search-result__more">
-                        <div onClick={this.props.onClickSeeMore} className="section-user-info__btn section-user-info__btn--search">Xem
+                        <div onClick={this.props.onClickSeeMore}
+                             className="section-user-info__btn section-user-info__btn--search">Xem
                             thêm <i
                                 className="fa fa-caret-down"></i></div>
                     </div>
@@ -105,15 +101,15 @@ class SearchResult extends React.Component {
                  ref="search">
                 <ScrollBar>
                     {/*<FlipMove enterAnimation="fade" leaveAnimation="fade">*/}
-                        {/*<div>*/}
+                    {/*<div>*/}
 
 
-                        {
-                            this.renderItem()
-                        }
-                        {
-                            this.renderLoadingAndSeeMore()
-                        }
+                    {
+                        this.renderItem()
+                    }
+                    {
+                        this.renderLoadingAndSeeMore()
+                    }
 
                     {/*</FlipMove>*/}
 

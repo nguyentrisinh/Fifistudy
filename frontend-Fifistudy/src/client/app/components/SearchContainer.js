@@ -3,7 +3,7 @@ import {getSearch} from '../actions/app';
 import {connect} from 'react-redux';
 import {ORDER_BY} from '../constants/apiPath';
 import SearchResult from './SearchResult';
-import {resetSearch,loadingSearch} from '../actions/app'
+import {resetSearch, loadingSearch} from '../actions/app'
 
 class SearchContainer extends React.Component {
     constructor(props) {
@@ -21,7 +21,7 @@ class SearchContainer extends React.Component {
     }
 
 
-    onClickSeeMore = ()=>{
+    onClickSeeMore = () => {
         this.props.getSearch(this.state.searchValue, ORDER_BY.createdAtIncrease, this.props.searchResult.nextPage, 5)
     }
 
@@ -30,11 +30,12 @@ class SearchContainer extends React.Component {
         // if (this.props.searchResult) {
         //     if (this.props.searchResult.errors == null) {
         //         if (this.props.searchResult.data) {
-                    return (
-                        <SearchResult onClickSeeMore={this.onClickSeeMore} closeSearchContainer={this.closeSearchContainer} isOpen={this.state.isOpen}
-                                      outsideClickIgnoreClass="header__item--search"
-                                      data={this.props.searchResult}/>
-                    )
+        return (
+            <SearchResult onClickSeeMore={this.onClickSeeMore} closeSearchContainer={this.closeSearchContainer}
+                          isOpen={this.state.isOpen}
+                          outsideClickIgnoreClass="header__item--search"
+                          data={this.props.searchResult}/>
+        )
         //         }
         //     }
         // }
@@ -43,7 +44,7 @@ class SearchContainer extends React.Component {
 
     onTextSearchChange = e => {
         this.props.resetSearch();
-        if (!e.target.value){
+        if (!e.target.value) {
             return
         }
         this.setState({
@@ -79,4 +80,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {getSearch,resetSearch,loadingSearch})(SearchContainer)
+export default connect(mapStateToProps, {getSearch, resetSearch, loadingSearch})(SearchContainer)

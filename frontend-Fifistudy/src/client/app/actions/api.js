@@ -264,7 +264,7 @@ export const getUserSaveFilm = (token) => {
             return response.data
         })
         .catch(err => {
-            return err.response.data
+            return err.response
         })
 }
 
@@ -274,15 +274,15 @@ export const putEditVocabulary = (userSaveVocabularyId, data, token) => {
             return response.data
         })
         .catch(err => {
-            return err.response.data
+            return err.response
         })
 }
 
-export const getSearch = (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE, token=null) => {
+export const getSearch = (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE, token = null) => {
     // debugger
     if (token) {
 // debugger
-        return axios.get(API_PATH.getSearchWithAuth(searchKey, orderBy, pageNumber, pageSize),makeConfig(token))
+        return axios.get(API_PATH.getSearchWithAuth(searchKey, orderBy, pageNumber, pageSize), makeConfig(token))
             .then(response => {
                 return response.data
             })
@@ -301,5 +301,47 @@ export const getSearch = (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE, t
     }
 
 
+}
+
+export const postReviewFilm = (data, token) => {
+    return axios.post(API_PATH.postReviewFilm, data, makeConfig(token))
+        .then(response => {
+            return response.data
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+export const getReviewFilm = (filmId, token) => {
+    return axios.get(API_PATH.getReviewFilm(filmId), makeConfig(token))
+        .then(response => {
+            return response.data
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+export const getFilm = (slug, token = null) => {
+    alert(token)
+    if (token) {
+        return axios.get(API_PATH.getFilmWithAuth(slug, makeConfig(token)))
+            .then(response => {
+                return response.data
+            })
+            .catch(err => {
+                return err.response.data
+            })
+    }
+    else {
+        return axios.get(API_PATH.getFilm(slug))
+            .then(response => {
+                return response.data
+            })
+            .catch(err => {
+                return err.response.data
+            })
+    }
 }
 

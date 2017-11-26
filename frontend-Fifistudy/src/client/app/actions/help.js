@@ -1,8 +1,8 @@
 import update from 'react-addons-update'
 
-export const makeNewDataSaveFilm = (filmId,oldData) =>{
+export const makeNewDataSaveFilm = (filmId, oldData) => {
     // debugger
-    if (oldData.length>0){
+    if (oldData.length > 0) {
         let indexFilm = oldData.findIndex(o => o.id == filmId);
         let newFilm = update(oldData[indexFilm], {$merge: {is_saved: !oldData[indexFilm].is_saved}});
         let newData = oldData;

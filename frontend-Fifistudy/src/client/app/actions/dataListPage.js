@@ -1,6 +1,6 @@
 import * as Types from '../constants/dataListPage';
 import axios from '../config/axios';
-import {API_PATH,ORDER_BY,MAX_PAGE_LIST} from '../constants/apiPath';
+import {API_PATH, ORDER_BY, MAX_PAGE_LIST} from '../constants/apiPath';
 import * as Api from '../actions/api'
 
 export const getListPage = (orderBy, pageNumber, pageSize = MAX_PAGE_LIST, token = null) => {
@@ -19,10 +19,10 @@ export const getListPage = (orderBy, pageNumber, pageSize = MAX_PAGE_LIST, token
 
 }
 
-export const loadingListFilm = () =>{
-    return function (dispatch){
+export const loadingListFilm = () => {
+    return function (dispatch) {
         dispatch({
-            type:Types.LOADING_LIST_FILM
+            type: Types.LOADING_LIST_FILM
         })
     }
 }
