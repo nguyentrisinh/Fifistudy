@@ -183,7 +183,8 @@ class FilmViewSet(ModelViewSet, ApiBase):
         page_size = request.GET.get('page_size')
         order_by = request.GET.get('order_by')
 
-        result = self.film_services.search_film_by_key(user, search_key, page, page_size)
+        result = self.film_services.search_film_by_key(user=user, search_key=search_key, page=page,
+                                                       page_size=page_size, order_by=order_by)
 
         return self.as_success(result)
 

@@ -8,7 +8,7 @@ from .fifi_user import FifiUser
 class Review(models.Model):
     objects = models.Manager()
 
-    score = models.PositiveSmallIntegerField(null=False, blank=False)
+    score = models.FloatField(null=False, blank=False)
 
     user_id = models.ForeignKey(FifiUser, on_delete=models.CASCADE)
     film_id = models.ForeignKey(Film, on_delete=models.CASCADE)
