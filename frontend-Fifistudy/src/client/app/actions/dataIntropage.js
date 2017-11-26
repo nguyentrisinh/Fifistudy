@@ -10,7 +10,7 @@ export function getFilm(slug, token) {
             serverData: null,
             isLoading: true
         })
-        alert(token)
+        // alert(token)
         Api.getFilm(slug, token).then(res => {
             dispatch({
                 type: Types.GET_FILM,
@@ -32,6 +32,34 @@ export function getFilm(slug, token) {
 
     }
 }
+
+
+export function updateFilm(slug, token) {
+    return function (dispatch) {
+        // alert(token)
+        Api.getFilm(slug, token).then(res => {
+            dispatch({
+                type: Types.GET_FILM,
+                serverData: res,
+                isLoading: false
+            })
+        })
+
+        // axios.get(API_PATH.getFilm(slug))
+        //     .then(response => {
+        //         dispatch({
+        //             type: Types.GET_FILM,
+        //             serverData: response.data,
+        //             isLoading: false
+        //         })
+        //
+        //     })
+        //     .catch(err => console.log(err));
+
+    }
+}
+
+
 export function getActorIntro(slug) {
     return function (dispatch) {
         dispatch({

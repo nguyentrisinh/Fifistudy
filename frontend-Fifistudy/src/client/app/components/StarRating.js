@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {postReviewFilm} from '../actions/api'
 import {withCookies} from 'react-cookie';
+import {connect} from 'react-redux';
+import {updateFilm} from '../actions/dataIntropage'
 
 class StarRating extends React.Component {
     constructor(props) {
@@ -34,6 +36,15 @@ class StarRating extends React.Component {
             currentValue: value
         })
     }
+    updateData = () => {
+        let {cookies} = this.props;
+        let token = cookies.get("token");
+        // alert(token)
+
+        // Token cho nay
+        this.props.updateFilm(this.props.data.slug, token);
+    }
+
 
     postReviewFilm = (score) => {
         let {data, cookies} = this.props;
@@ -42,7 +53,10 @@ class StarRating extends React.Component {
             "film_id": data.id
         }, cookies.get("token")).then(response => {
             console.log('resssssss', response);
-            if (response.errors == null) alert('Thanh cong')
+            if (response.errors == null) {
+                this.updateData();
+                // alert('Thanh cong')
+            }
         })
     }
 
@@ -85,7 +99,7 @@ class StarRating extends React.Component {
                 setHalfStarState(this)
             }
             $(this).closest('.rating').find('.js-score').text($(this).data('value'));
-            alert($(this).data('value'));
+            // alert($(this).data('value'));
             instance.postReviewFilm($(this).data('value'));
             $(this).closest('.rating').data('vote', $(this).data('value'));
             calculateAverage()
@@ -97,7 +111,7 @@ class StarRating extends React.Component {
             if (starClicked == true) {
                 setFullStarState(this)
             }
-            debugger
+            // debugger
             $(this).closest('.rating').find('.js-score').text($(this).data('value'));
             instance.postReviewFilm($(this).data('value'));
             // alert();
@@ -227,4 +241,4 @@ StarRating.propTypes = {
     initialValue: PropTypes.bool.isRequired
 }
 
-export default withCookies(StarRating)
+export default connect(null, {updateFilm})(withCookies(StarRating))

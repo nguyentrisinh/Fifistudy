@@ -43,7 +43,7 @@ class Header extends React.Component {
 
             getLogout(token).then(res => {
                 if (res.data.errors == null) {
-                    cookies.remove("token");
+                    cookies.remove("token", {path: "/"});
                     window.location.reload();
                 }
             })

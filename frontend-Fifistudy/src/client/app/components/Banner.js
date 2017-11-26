@@ -6,8 +6,9 @@ import classNames from 'classnames';
 import Star from '../components/Star'
 import {withRouter} from 'react-router';
 import {postUserSaveFilm} from '../actions/api'
+import {updateFilm} from '../actions/dataIntropage'
 import {connect} from 'react-redux';
-import {withCookies} from 'react-cookie'
+import {withCookies} from 'react-cookie';
 import {
     BrowserRouter as Router,
     Route,
@@ -56,6 +57,15 @@ class Banner extends React.Component {
         })
     }
 
+    updateData = () => {
+        let {cookies} = this.props;
+        let token = cookies.get("token");
+        // alert(token)
+
+        // Token cho nay
+        this.props.updateFilm(this.props.data.slug, token);
+    }
+
     onClickBookMark = () => {
         event.stopPropagation();
         event.preventDefault();
@@ -74,8 +84,9 @@ class Banner extends React.Component {
             }
             postUserSaveFilm(sendData, config).then((response) => {
                 if (response.data.errors == null) {
-                    // this.updateNewDataFromServer(data.id);
-                    alert('Thanh cong');
+                    // this.updateNewDataFromServer(this.props.data.id);
+                    this.updateData()
+                    // alert('Thanh cong');
                 }
                 else {
                     alert(SERVER_ERRORS[response.data.errors[0].errorCode])
@@ -108,7 +119,10 @@ class Banner extends React.Component {
                         </div>
                         <div className="banner__info">
                             <div className="banner__eng-name">
-                                <i className="fa fa-bookmark-o banner__bookmark" onClick={this.onClickBookMark}></i>
+                                <i className={classNames("fa banner__bookmark", {
+                                    "fa-bookmark": this.props.data.is_saved,
+                                    "fa-bookmark-o": !this.props.data.is_saved
+                                })} onClick={this.onClickBookMark}/>
                                 &nbsp;
                                 {
                                     data.english_name
@@ -177,4 +191,4 @@ const mapStateToProps = state => {
 }
 //
 //
-export default connect(mapStateToProps, {toggleModalLogin})(withRouter(withCookies(Banner)))
+export default connect(mapStateToProps, {toggleModalLogin, updateFilm})(withRouter(withCookies(Banner)))

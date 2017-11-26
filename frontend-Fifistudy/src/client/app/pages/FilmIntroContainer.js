@@ -1,7 +1,7 @@
 import React from 'react';
 import {getFilm, getActorIntro, getComment, getFilmByDifficult, getReviewFilm} from '../actions/dataIntropage'
 import {connect} from 'react-redux';
-import Loading from '../components/Loading'
+import Loading from '../components/Loading';
 import FilmIntro from './FilmIntro';
 import {withCookies} from 'react-cookie';
 import _ from 'lodash';
@@ -15,10 +15,10 @@ class FilmIntroContainer extends React.Component {
     initPage = (slug) => {
         let {cookies} = this.props;
         let token = cookies.get("token");
-        alert(token)
+        // alert(token)
 
         // Token cho nay
-        this.props.getFilm(slug);
+        this.props.getFilm(slug, token);
         this.props.getActorIntro(slug);
         this.props.getComment(slug, token);
     }
@@ -43,12 +43,16 @@ class FilmIntroContainer extends React.Component {
         }
         if (nextProps.isLogin !== this.props.isLogin) {
             if (nextProps.isLogin) {
-                this.props.getReviewFilm(nextProps.film.data.data.id, token);
+                this.initPage(nextProps.match.params.slug);
+                if (_.has(nextProps.film, "data.id")) {
+                    this.props.getReviewFilm(nextProps.film.data.id, token);
+                }
             }
         }
     }
 
     render() {
+        console.log('dataa', this.props.film)
         if (this.props.film.isLoading) {
             return <Loading/>
         }

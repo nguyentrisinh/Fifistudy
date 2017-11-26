@@ -324,9 +324,9 @@ export const getReviewFilm = (filmId, token) => {
 }
 
 export const getFilm = (slug, token = null) => {
-    alert(token)
+    // alert(token)
     if (token) {
-        return axios.get(API_PATH.getFilmWithAuth(slug, makeConfig(token)))
+        return axios.get(API_PATH.getFilmWithAuth(slug), makeConfig(token))
             .then(response => {
                 return response.data
             })
