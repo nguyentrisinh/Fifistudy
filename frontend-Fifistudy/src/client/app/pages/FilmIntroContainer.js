@@ -44,9 +44,6 @@ class FilmIntroContainer extends React.Component {
         if (nextProps.isLogin !== this.props.isLogin) {
             if (nextProps.isLogin) {
                 this.initPage(nextProps.match.params.slug);
-                if (_.has(nextProps.film, "data.id")) {
-                    this.props.getReviewFilm(nextProps.film.data.id, token);
-                }
             }
         }
     }

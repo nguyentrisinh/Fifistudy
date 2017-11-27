@@ -13,21 +13,17 @@ class StarRatingContainer extends React.Component {
         };
     }
 
-    // componentWillReceiveProps = (nextProps) => {
-    //     if (nextProps.isReviewed !== this.props.isReviewed) {
-    //         if (nextProps.isReviewed !== this.props.isReviewed) {
-    //             this.setState({
-    //                 disabled: false
-    //             })
-    //         } else {
-    //             this.setState({
-    //                 disabled: true
-    //             })
-    //         }
-    //
-    //     }
-    //
-    // }
+    componentWillReceiveProps = (nextProps) => {
+        let {cookies} = this.props;
+        let token = cookies.get("token");
+        if (nextProps.isLogin !== this.props.isLogin) {
+           if (nextProps.isLogin){
+               this.props.getReviewFilm(this.props.data.id, token);
+           }
+
+        }
+
+    }
 
     componentWillMount = () => {
         // if (nextProps.film !== this.props.film) {

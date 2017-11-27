@@ -6,10 +6,16 @@ import {withCookies} from 'react-cookie';
 import {connect} from 'react-redux';
 import {updateFilm,getReviewFilm} from '../actions/dataIntropage'
 
+function roundHalf(num) {
+    return Math.round(num*2)/2;
+}
+
 class StarRating extends React.Component {
     constructor(props) {
         super(props);
+        // alert(roundHalf(this.props.initialValue));
         this.state = {
+
             currentValue: this.props.initialValue,
             isClicked: false,
             currentClick: null,
@@ -94,12 +100,14 @@ class StarRating extends React.Component {
 
 
     initStar = (value) => {
-        if ((value / 0.5) % 2 === 0) {
-            this.setFullStarState($(`.full[data-value=${value}]`));
+        let roundValue= parseFloat(roundHalf(value));
+        // alert(roundValue)
+        if ((roundValue / 0.5) % 2 === 0) {
+            this.setFullStarState($(`.full[data-value=${roundValue}]`));
 
         }
         else {
-            this.setHalfStarState($(`.half[data-value="${value}"]`));
+            this.setHalfStarState($(`.half[data-value="${roundValue}"]`));
         }
     }
     componentDidMount = () => {
