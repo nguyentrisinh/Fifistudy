@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import {postReviewFilm} from '../actions/api'
 import {withCookies} from 'react-cookie';
 import {connect} from 'react-redux';
-import {updateFilm} from '../actions/dataIntropage'
+import {updateFilm,getReviewFilm} from '../actions/dataIntropage'
 
 class StarRating extends React.Component {
     constructor(props) {
@@ -43,6 +43,7 @@ class StarRating extends React.Component {
 
         // Token cho nay
         this.props.updateFilm(this.props.data.slug, token);
+        this.props.getReviewFilm(this.props.data.id, token);
     }
 
 
@@ -60,25 +61,94 @@ class StarRating extends React.Component {
         })
     }
 
-    componentDidMount = () => {
+    destroyAction = () => {
+        $('.star').off("click");
+        $('.half').off("click");
+        $('.half').unbind("hover");
+        $('.full').off("click");
+        $('.full').unbind("hover");
+        $('.rating').off("mouseleave");
+    }
 
-        var starClicked = false;
-        if ((this.props.initialValue / 0.5) % 2 === 0) {
-            setFullStarState($(`.full[data-value=${this.props.initialValue}]`));
+    componentWillUnmount = () => {
+        // alert('unmount')
+        this.destroyAction();
+    }
+
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.disabled !== this.props.disabled) {
+            if (nextProps.disabled) {
+                // alert('true')
+                this.destroyAction();
+
+            } else {
+                // alert('false')
+                this.initAction();
+            }
+
+        }
+        if (nextProps.initialValue!==this.initialValue){
+            this.initStar(nextProps.initialValue)
+        }
+    }
+
+
+    initStar = (value) => {
+        if ((value / 0.5) % 2 === 0) {
+            this.setFullStarState($(`.full[data-value=${value}]`));
 
         }
         else {
-            setHalfStarState($(`.half[data-value="${this.props.initialValue}"]`));
+            this.setHalfStarState($(`.half[data-value="${value}"]`));
         }
+    }
+    componentDidMount = () => {
+        this.initStar(this.props.initialValue);
         // let {data, cookies} = this.props;
         if (this.props.disabled === true) {
             return
         }
 
+        this.initAction();
+    };
+
+    updateStarState = (target) => {
+        $(target).parent().prevAll().addClass('animate');
+        $(target).parent().prevAll().children().addClass('star-colour');
+
+        $(target).parent().nextAll().removeClass('animate');
+        $(target).parent().nextAll().children().removeClass('star-colour');
+    };
+
+    setHalfStarState = (target) => {
+        $(target).addClass('star-colour');
+        $(target).siblings('.full').removeClass('star-colour');
+        this.updateStarState(target)
+    };
+
+    setFullStarState = (target) => {
+        $(target).addClass('star-colour');
+        $(target).parent().addClass('animate');
+        $(target).siblings('.half').addClass('star-colour');
+
+        this.updateStarState(target)
+    };
+
+    calculateAverage = () => {
+        var average = 0
+
+        $('.rating').each(function () {
+            average += $(this).data('vote')
+        })
+
+        $('.js-average').text((average / $('.rating').length).toFixed(1))
+    };
+
+    initAction = () => {
+        var starClicked = false;
         let instance = this;
 
-
-        $('.star').click(function () {
+        $('.star').on("click", function () {
             if (starClicked === false) {
                 $(this).children('.selected').addClass('is-animated');
                 $(this).children('.selected').addClass('pulse');
@@ -92,24 +162,24 @@ class StarRating extends React.Component {
 
                 starClicked = true;
             }
-        })
+        });
 
-        $('.half').click(function () {
+        $('.half').on("click", function () {
             if (starClicked == true) {
-                setHalfStarState(this)
+                instance.setHalfStarState(this)
             }
             $(this).closest('.rating').find('.js-score').text($(this).data('value'));
             // alert($(this).data('value'));
             instance.postReviewFilm($(this).data('value'));
             $(this).closest('.rating').data('vote', $(this).data('value'));
-            calculateAverage()
+            instance.calculateAverage()
             console.log(parseInt($(this).data('value')));
 
         })
 
-        $('.full').click(function () {
+        $('.full').on("click", function () {
             if (starClicked == true) {
-                setFullStarState(this)
+                instance.setFullStarState(this)
             }
             // debugger
             $(this).closest('.rating').find('.js-score').text($(this).data('value'));
@@ -118,69 +188,37 @@ class StarRating extends React.Component {
             $(this).find('js-average').text(parseInt($(this).data('value')));
 
             $(this).closest('.rating').data('vote', $(this).data('value'));
-            calculateAverage()
+            instance.calculateAverage()
 
             console.log(parseInt($(this).data('value')));
         })
 
         $('.half').hover(function () {
             if (starClicked == false) {
-                setHalfStarState(this)
+                instance.setHalfStarState(this)
             }
 
         })
 
         $('.full').hover(function () {
             if (starClicked == false) {
-                setFullStarState(this)
+                console.log(this, "Thisssssss")
+                instance.setFullStarState(this)
             }
         })
 
-        $('.rating').mouseleave(() => {
+        $('.rating').on("mouseleave", () => {
             if (starClicked === false) {
                 if ((this.props.initialValue / 0.5) % 2 === 0) {
-                    setFullStarState($(`.full[data-value=${this.props.initialValue}]`));
+                    instance.setFullStarState($(`.full[data-value=${this.props.initialValue}]`));
 
                 }
                 else {
-                    setHalfStarState($(`.half[data-value="${this.props.initialValue}"]`));
+                    instance.setHalfStarState($(`.half[data-value="${this.props.initialValue}"]`));
                 }
             }
 
         })
-
-
-        function updateStarState(target) {
-            $(target).parent().prevAll().addClass('animate');
-            $(target).parent().prevAll().children().addClass('star-colour');
-
-            $(target).parent().nextAll().removeClass('animate');
-            $(target).parent().nextAll().children().removeClass('star-colour');
-        }
-
-        function setHalfStarState(target) {
-            $(target).addClass('star-colour');
-            $(target).siblings('.full').removeClass('star-colour');
-            updateStarState(target)
-        }
-
-        function setFullStarState(target) {
-            $(target).addClass('star-colour');
-            $(target).parent().addClass('animate');
-            $(target).siblings('.half').addClass('star-colour');
-
-            updateStarState(target)
-        }
-
-        function calculateAverage() {
-            var average = 0
-
-            $('.rating').each(function () {
-                average += $(this).data('vote')
-            })
-
-            $('.js-average').text((average / $('.rating').length).toFixed(1))
-        }
     }
 
 
@@ -241,4 +279,4 @@ StarRating.propTypes = {
     initialValue: PropTypes.bool.isRequired
 }
 
-export default connect(null, {updateFilm})(withCookies(StarRating))
+export default connect(null, {updateFilm,getReviewFilm})(withCookies(StarRating))

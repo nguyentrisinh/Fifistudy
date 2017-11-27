@@ -31,8 +31,9 @@ class Banner extends React.Component {
             haveEpisode
 
         };
-
     }
+
+
 
     onClickBanner = (evt) => {
         let data = this.props.data;
@@ -63,7 +64,7 @@ class Banner extends React.Component {
         // alert(token)
 
         // Token cho nay
-        this.props.updateFilm(this.props.data.slug, token);
+        this.props.updateFilm(this.props.data.id, token);
     }
 
     onClickBookMark = () => {

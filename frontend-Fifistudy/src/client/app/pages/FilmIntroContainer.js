@@ -30,14 +30,14 @@ class FilmIntroContainer extends React.Component {
     componentWillReceiveProps = (nextProps) => {
         let {cookies} = this.props;
         let token = cookies.get("token");
-        if (nextProps.film !== this.props.film) {
-            if (_.has(nextProps.film, "data.data")) {
-                this.props.getFilmByDifficult(nextProps.film.data.data.difficult_level);
-                if (token) {
-                    this.props.getReviewFilm(nextProps.film.data.data.id, token);
-                }
-            }
-        }
+        // if (nextProps.film !== this.props.film) {
+        //     if (_.has(nextProps.film, "data.data")) {
+        //         this.props.getFilmByDifficult(nextProps.film.data.data.difficult_level);
+        //         if (token) {
+        //             this.props.getReviewFilm(nextProps.film.data.data.id, token);
+        //         }
+        //     }
+        // }
         if (nextProps.match.params.slug !== this.props.match.params.slug) {
             this.initPage(nextProps.match.params.slug)
         }

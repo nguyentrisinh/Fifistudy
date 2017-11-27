@@ -2,11 +2,44 @@ import React from 'react';
 import StarRating from './StarRating'
 import {connect} from 'react-redux';
 import Spinner from './Spinner'
+import {withCookies} from 'react-cookie';
+import {getReviewFilm} from '../actions/dataIntropage'
 
 class StarRatingContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            // disabled: true
+        };
+    }
+
+    // componentWillReceiveProps = (nextProps) => {
+    //     if (nextProps.isReviewed !== this.props.isReviewed) {
+    //         if (nextProps.isReviewed !== this.props.isReviewed) {
+    //             this.setState({
+    //                 disabled: false
+    //             })
+    //         } else {
+    //             this.setState({
+    //                 disabled: true
+    //             })
+    //         }
+    //
+    //     }
+    //
+    // }
+
+    componentWillMount = () => {
+        // if (nextProps.film !== this.props.film) {
+        //     if (_.has(nextProps.film, "data.data")) {
+        //         this.props.getFilmByDifficult(nextProps.film.data.data.difficult_level);
+        let {cookies} = this.props;
+        let token = cookies.get("token");
+        if (token) {
+            this.props.getReviewFilm(this.props.data.id, token);
+        }
+        //     }
+        // }
     }
 
     render() {
@@ -59,4 +92,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(StarRatingContainer)
+export default connect(mapStateToProps, {getReviewFilm})(withCookies(StarRatingContainer))
