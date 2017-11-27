@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {ORDER_BY} from '../constants/apiPath';
 import SearchResult from './SearchResult';
 import {resetSearch, loadingSearch} from '../actions/app'
-
+let timeout=null;
 class SearchContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -43,14 +43,24 @@ class SearchContainer extends React.Component {
     }
 
     onTextSearchChange = e => {
+        // debugger
         this.props.resetSearch();
         if (!e.target.value) {
             return
         }
+
         this.setState({
             [e.target.name]: e.target.value
         })
-        this.props.getSearch(e.target.value, ORDER_BY.createdAtIncrease, 1, 5)
+
+        if (timeout){
+            clearTimeout(timeout);
+        }
+        let value=e.target.value;
+        timeout = setTimeout(()=>{
+            this.props.getSearch(value, ORDER_BY.createdAtIncrease, 1, 5)
+        },500)
+
     }
 
     closeSearchContainer = () => {
