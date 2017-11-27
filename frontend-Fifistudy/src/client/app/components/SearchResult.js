@@ -40,9 +40,9 @@ class SearchResult extends React.Component {
         if (document.getElementById("spinner")) {
             height += document.getElementById("spinner").clientHeight;
         }
-        if (document.getElementById("see-more")) {
+        if (document.getElementById("see-more-search")) {
 
-            height += 40; //padding
+            // height += 40; //padding
             height += document.getElementById("see-more").clientHeight;
         }
 
@@ -83,7 +83,7 @@ class SearchResult extends React.Component {
         else {
             if (this.props.data.hasMore) {
                 return (
-                    <div id="see-more" key="search" className="search-result search-result__more">
+                    <div id="see-more-search" key="search" className="search-result search-result__more">
                         <div onClick={this.props.onClickSeeMore}
                              className="section-user-info__btn section-user-info__btn--search">Xem
                             thêm <i
