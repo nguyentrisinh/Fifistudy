@@ -64,7 +64,7 @@ class Banner extends React.Component {
         // alert(token)
 
         // Token cho nay
-        this.props.updateFilm(this.props.data.id, token);
+        this.props.updateFilm(this.props.data.slug, token);
     }
 
     onClickBookMark = () => {

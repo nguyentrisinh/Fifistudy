@@ -43,7 +43,7 @@ class SearchResult extends React.Component {
         if (document.getElementById("see-more-search")) {
 
             // height += 40; //padding
-            height += document.getElementById("see-more").clientHeight;
+            height += document.getElementById("see-more-search").clientHeight;
         }
 
         this.setState({height});
