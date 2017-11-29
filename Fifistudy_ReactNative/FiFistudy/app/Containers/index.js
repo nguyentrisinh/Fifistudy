@@ -4,6 +4,7 @@ import HistoryFilmsContainer from './HistoryFilmsContainer.js';
 import FilmCardContainer from './FilmCardContainer.js';
 import TipContainer from './TipContainer.js';
 import ToolbarContainer from './ToolbarContainer.js';
+import MediaSubPlayerContainer from './MediaSubPlayerContainer.js';
 
 export {
     Notes,
@@ -11,5 +12,6 @@ export {
     HistoryFilmsContainer,
     FilmCardContainer,
     TipContainer,
-    ToolbarContainer
+    ToolbarContainer,
+    MediaSubPlayerContainer,
 };

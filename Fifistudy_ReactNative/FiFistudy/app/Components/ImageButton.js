@@ -32,7 +32,7 @@ export default class ImageButton extends Component {
 
 ImageButton.defaultProps = {
     source: res.icons.error,
-    tintColor: '#616161',
+    tintColor: res.colors.red,
     size: 20,
 }
 

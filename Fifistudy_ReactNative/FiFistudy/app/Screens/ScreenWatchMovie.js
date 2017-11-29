@@ -10,10 +10,9 @@ import {
     FlatList,
     ListView
 } from 'react-native';
-import { EpisodeCircleView, ImageButton} from '../Components/index.js';
+import { EpisodeCircleView, ImageButton, MediaPlayer} from '../Components/index.js';
 import Resources from '../Resources/index.js';
-import Styles from '../Styles/ScreenWatchMovie';
-
+import Styles from '../Styles/ScreenWatchMovie.js';
 import ObjEpisode from '../Objects/ObjEpisode.js';
 import ObjFilm from '../Objects/ObjFilm.js';
 
@@ -30,12 +29,7 @@ export default class WatchScreen extends Component {
             <ScrollView style={{backgroundColor: Resources.colors.background}}
                         showsVerticalScrollIndicator={false}>
                 {/* MEDIA PLAYER SECTION */}
-                <View style={{
-                    backgroundColor: 'black',
-                    width: width,
-                    height: width * Resources.ratio,
-                    }}>
-                </View>
+                <MediaPlayer/>
                 {/* END MEDIA PLAYER SECTION */}
 
                 {/* SUB SECTION */}
