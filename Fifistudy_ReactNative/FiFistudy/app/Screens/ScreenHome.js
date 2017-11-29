@@ -16,9 +16,6 @@ import {
 
 import Obj from '../Objects/ObjTemp.js';
 
-
-
-
 export default class ScreenHome extends Component {
     constructor(props) {
         super(props);
@@ -86,7 +83,7 @@ export default class ScreenHome extends Component {
                     <Text style={Styles.subtitle}>Phim mới</Text>
                     <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}/>
                 </View>
-                <FilmCardContainer />
+                <FilmCardContainer navigation={this.props.navigation}/>
                 
                 {/* MOST VIEWED FILMS */}
                 {/* Title */}
