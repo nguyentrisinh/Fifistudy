@@ -9,6 +9,10 @@ import TipItem from './TipItem.js';
 import EpisodeCommentItem from './EpisodeCommentItem.js';
 import AvatarView from './AvatarView.js';
 import ImageSlider from './ImageSlider.js';
+import ProgressController from './ProgressController.js';
+import ListSub from './ListSub.js';
+import MediaPlayer from './MediaPlayer.js';
+
 
 
 export {
@@ -23,4 +27,7 @@ export {
     EpisodeCommentItem,
     AvatarView,
     ImageSlider,
+    ProgressController,
+    ListSub,
+    MediaPlayer,
 }

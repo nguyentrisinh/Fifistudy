@@ -26,12 +26,17 @@ const res = {
         comment: require('./Icons/ic_comment.png'),
         quiz: require('./Icons/ic_quiz.png'),
         volcabulary: require('./Icons/ic_volcabulary.png'),
-        btnPlay: require('./Icons/btn_play.png'),
+        play: require('./Icons/ic_play.png'),
+        pause: require('./Icons/ic_pause.png'),
         back: require('./Icons/ic_back.png'),
         favorite: require('./Icons/ic_favorite_empty.png'),
         favoriteFull: require('./Icons/ic_favorite_full.png'),
         rating: require('./Icons/ic_rating_empty.png'),
         ratingFull: require('./Icons/ic_rating_full.png'),
+        backSec: require('./Icons/ic_back_10_sec.png'),
+        forwardSec: require('./Icons/ic_forward_10_sec.png'),
+        volume: require('./Icons/ic_volume.png'),
+        expand: require('./Icons/ic_expand.png'),
     },
     images: {
         default: require('./Images/img_default.png'),
@@ -46,6 +51,7 @@ const res = {
         pink: '#E91E63',
         violet: '#AB47BC',
         yellow: '#FFC107',
+        red: '#f44336',
         line: '#E0E0E0',
 
         //level's colors
