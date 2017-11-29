@@ -5,6 +5,7 @@ import ScreenMovieComment from './ScreenMovieComment.js';
 import ScreenHome from './ScreenHome.js';
 import ScreenEpisodeComment from './ScreenEpisodeComment.js';
 import ScreenWatchMovie from './ScreenWatchMovie.js';
+import DrawerMenu from './DrawerMenu.js';
 
 export {
     ScreenNotes,
@@ -13,5 +14,6 @@ export {
     ScreenMovieComment,
     ScreenHome,
     ScreenEpisodeComment,
-    ScreenWatchMovie
+    ScreenWatchMovie,
+    DrawerMenu
 }

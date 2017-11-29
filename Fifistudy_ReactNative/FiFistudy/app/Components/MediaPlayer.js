@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {
-    StyleSheet,
     Text,
     View,
     Dimensions,
     FlatList,
-    Button,
     TextInput,
+    Image,
     TouchableWithoutFeedback
 } from 'react-native';
 import TimerMixin from 'react-timer-mixin';
@@ -14,9 +13,9 @@ import Video from 'react-native-video';
 import Slider from "react-native-slider";
 import ObjFilm from '../Objects/ObjFilm.js';
 import ObjEpisode from '../Objects/ObjEpisode.js';
-import {ImageButton} from '../Components/index.js';
+import {ImageButton, ListSub} from '../Components/index.js';
 import Res from '../Resources/index.js';
-import styles from '../Styles/MediaPlayer.js';
+import Styles from '../Styles/MediaPlayer.js';
 
 
 export default class MediaPlayer extends Component {
@@ -54,6 +53,28 @@ export default class MediaPlayer extends Component {
             onChangeVolume: this.onChangeVolume.bind(this),
             onToggleControls: this.toggleControls.bind(this),
         };
+
+        fetch("http://studymovie.net/Cms_Data/Contents/admin/Media/sub-e-v/2ptd-Friends.S01E24.mHD.BluRay.DD5.1.x264-EPiK.Vie_Syned-24-e-v.vtt")
+        .then(response => {
+            return response._bodyText
+        })
+        .then(response => {
+            let stringVTT = response.split(/\n\s*\n/);
+            stringVTT.shift();
+            let sub = stringVTT.map((item) => {
+                var parts = item.split("\n");
+                return {
+                    number: parts[0],
+                    start: this.timeString2s(parts[1].split('-->')[0].trim()) / 1000,
+                    end: this.timeString2s(parts[1].split('-->')[1].trim()) / 1000,
+                    sub: parts.slice(2, parts.length),
+                };
+            });
+            this.setState({
+                sub
+            })
+        })
+        .catch(err => console.log(err))
     }
 
 
@@ -160,8 +181,6 @@ export default class MediaPlayer extends Component {
         })
     }
 
-
-
     showVolumeSlider() {
         return (
             <Slider style={{
@@ -186,25 +205,9 @@ export default class MediaPlayer extends Component {
         const width = Dimensions.get('window').width;
         return (
             // Control mark
-            <View style={{
-                width: width,
-                height: width * Res.ratio,
-                justifyContent: 'center',
-                alignItems: 'center',
-                position: 'absolute',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)'
-            }}>
-                <View style={{
-                    flex: 1,
-                    backgroundColor: 'black',
-                    position: 'absolute'
-                }}/>
+            <View style={Styles.controlMask}>
                 {/* Play, Pause, Back, Forward controls */}
-                <View style={{
-                    flexDirection: 'row',
-                    width: width * 0.5,
-                    justifyContent: 'space-between'
-                }}>
+                <View style={Styles.playPauseBackForwardContainer}>
                     <ImageButton
                         onPress={this.controls.onClickBack}
                         source={Res.icons.backSec}
@@ -224,26 +227,17 @@ export default class MediaPlayer extends Component {
                 </View>
 
                 {/* Volume, slider, zoom controls */}
-                <View style={{
-                    flexDirection: 'row',
-                    position: 'absolute',
-                    alignItems: 'center',
-                    left: 8,
-                    bottom: 0
-                }}>
-                    <View style={styles.container}>
+                <View style={Styles.bottomControlsContainer}>
+                    <View style={Styles.container}>
                         <ImageButton
                             source={Res.icons.volume}
                             tintColor='white'
                         />
                     </View>
                     <Slider
-                        style={{
-                            width: width * 0.7,
-                            margin: 8,
-                        }}
-                        trackStyle={{backgroundColor: '#757575'}}
-                        thumbStyle={{backgroundColor: 'white',}}
+                        style={Styles.slider}
+                        trackStyle={Styles.track}
+                        thumbStyle={Styles.thumb}
                         minimumTrackTintColor='white'
                         minimumValue={0}
                         maximumValue={this.state.duration}
@@ -251,7 +245,6 @@ export default class MediaPlayer extends Component {
                         onSlidingComplete={this.controls.onDragSeekEnd}
                         onSlidingStart={this.controls.onDragSeekStart}
                         step={1}
-                        // onValueChange={value => this.setState({ currentTime:value })}
                     />
                     <ImageButton
                         source={Res.icons.expand}
@@ -259,13 +252,6 @@ export default class MediaPlayer extends Component {
                 </View>
             </View>
         );
-    }
-
-    hidePlayerControls(){
-        this.setState({
-            showControl: false,
-            //testText: 'toggle off',
-        })
     }
 
     toggleControls(){
@@ -289,46 +275,46 @@ export default class MediaPlayer extends Component {
             <View>
                 {/* MEDIA PLAYER SECTION */}
                 <TouchableWithoutFeedback onPress={this.controls.onToggleControls}>
-                <View style={{
-                    backgroundColor: 'black',
-                    width: width,
-                    height: width * Res.ratio,
-                }}>
-                    <Video style={{
-                        flex: 1
-                    }}
-                        source={{uri: ObjEpisode.link_video}}   // Can be a URL or a local file.
-                        ref={(ref) => this.player = ref}
-                        rate={0}                              // 0 is paused, 1 is normal.
-                        volume={this.state.volume}                            // 0 is muted, 1 is normal.
-                        muted={false}                           // Mutes the audio entirely.
-                        paused={!this.state.isPlay}
-                        resizeMode="cover"                      // Fill the whole screen at aspect ratio.*
-                        repeat={false}
-                        autoplay={true}
-                        onProgress={this.events.onProgress}
-                        onLoadStart={this.events.onLoadStart} // Callback when video starts to load
-                        onLoad={this.events.onLoad}
-                        onError={this.events.onError}
-                        onEnd={this.events.onEnd}
-                        onBuffer={this.events.onBuffer}
-                        onTimedMetadata={this.events.onBuffer}
-                    />
-                    {this.state.showControl && this.showPlayerControls()}
-                </View>
+                    <View style={Styles.videoContainer}>
+                        <Video style={{flex: 1}}
+                            source={{uri: ObjEpisode.link_video}}   // Can be a URL or a local file.
+                            ref={(ref) => this.player = ref}
+                            rate={0}                              // 0 is paused, 1 is normal.
+                            volume={this.state.volume}                            // 0 is muted, 1 is normal.
+                            muted={false}                           // Mutes the audio entirely.
+                            paused={!this.state.isPlay}
+                            resizeMode="cover"                      // Fill the whole screen at aspect ratio.*
+                            repeat={false}
+                            autoplay={true}
+                            onProgress={this.events.onProgress}
+                            onLoadStart={this.events.onLoadStart} // Callback when video starts to load
+                            onLoad={this.events.onLoad}
+                            onError={this.events.onError}
+                            onEnd={this.events.onEnd}
+                            onBuffer={this.events.onBuffer}
+                            onTimedMetadata={this.events.onBuffer}
+                        />
+                        {/* <Image source={Res.banner_film} /> */}
+                        {this.state.showControl && this.showPlayerControls()}
+                    </View>
                 </TouchableWithoutFeedback>
                 {/* <Text>{this.state.testText}</Text> */}
                 {/* END MEDIA PLAYER SECTION */}
                     
 
                 {/* SUB SECTION */}
-                {/* <View style={{
+                <View style={{
                     backgroundColor: 'lightgray',
                     width: width,
-                    height: width * Utils.RATIO,
+                    height: width * Res.ratio,
                 }}>
-                    {!!this.state.sub && <ListSub currentItem={this.state.currentItem} data={this.state.sub}/>}
-                </View> */}
+                    {!!this.state.sub && 
+                        <FlatList
+                            data={this.state.dataSource}
+                            renderItem={({ item }) => <ListSub currentItem={this.state.currentItem} data={this.state.sub}/>}
+                        />
+                    }
+                </View>
                 {/* END SUB SECTION */}
             </View>
         );

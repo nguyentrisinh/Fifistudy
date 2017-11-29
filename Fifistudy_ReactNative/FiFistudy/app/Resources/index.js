@@ -37,6 +37,15 @@ const res = {
         forwardSec: require('./Icons/ic_forward_10_sec.png'),
         volume: require('./Icons/ic_volume.png'),
         expand: require('./Icons/ic_expand.png'),
+        filmType: require('./Icons/ic_box.png'),
+        level: require('./Icons/ic_level.png'),
+        tip: require('./Icons/ic_tip.png'),
+        search: require('./Icons/ic_search.png'),
+        history: require('./Icons/ic_history.png'),
+        bookmarks: require('./Icons/ic_bookmarks.png'),
+        note: require('./Icons/ic_note.png'),
+        feedback: require('./Icons/ic_mail.png'),
+        setting: require('./Icons/ic_setting.png'),
     },
     images: {
         default: require('./Images/img_default.png'),
@@ -53,6 +62,7 @@ const res = {
         yellow: '#FFC107',
         red: '#f44336',
         line: '#E0E0E0',
+        gray: '#9E9E9E',
 
         //level's colors
         levelEasy: '#009688',

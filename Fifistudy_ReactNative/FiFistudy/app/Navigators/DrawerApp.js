@@ -1,16 +1,21 @@
+import React from 'react';
 import { DrawerNavigator } from 'react-navigation';
 import { 
     ScreenMovies,
     ScreenNotes,
     ScreenHome,
-    ScreenWatchMovie
+    ScreenWatchMovie,
+    DrawerMenu
 } from '../Screens/index.js';
 
 const DrawerApp = DrawerNavigator({
+    ScreenHome: { screen: ScreenHome },
     ScreenWatchMovie: {screen: ScreenWatchMovie},
-    //ScreenHome: { screen: ScreenHome },
     ScreenMovies: { screen: ScreenMovies },
     ScreenNotes: { screen: ScreenNotes }
-})
+}, {
+    headerMode: 'none',
+    contentComponent: props => <DrawerMenu/>
+});
 
 export default DrawerApp;

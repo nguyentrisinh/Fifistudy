@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { EpisodeCircleView, ImageButton, MediaPlayer} from '../Components/index.js';
 import Resources from '../Resources/index.js';
-import Styles from '../Styles/ScreenWatchMovie';
+import Styles from '../Styles/ScreenWatchMovie.js';
 import ObjEpisode from '../Objects/ObjEpisode.js';
 import ObjFilm from '../Objects/ObjFilm.js';
 
