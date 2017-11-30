@@ -33,12 +33,12 @@ export default class WatchScreen extends Component {
                 {/* END MEDIA PLAYER SECTION */}
 
                 {/* SUB SECTION */}
-                <View style={{
+                {/* <View style={{
                     backgroundColor: 'lightgray',
                     width: width,
                     height: width * Resources.ratio,
                     }}>
-                </View>
+                </View> */}
                 {/* END SUB SECTION */}
 
 

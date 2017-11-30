@@ -4,15 +4,16 @@ import {
     Image,
     Text,
     View,
+    TouchableOpacity
 } from 'react-native';
+import {NavigationActions} from 'react-navigation';
 import Styles from '../Styles/FilmCardItem';
 import Res from '../Resources/index';
 import ImageButton from '../Components/ImageButton';
 import EpisodeCircleView from '../Components/EpisodeCircleView';
 
 export default class FilmCard extends Component {
-
-    bookmark(film){
+    setBookmark(film){
         if (film.isBookmark)
             return (
                 <View style={[Styles.bookmark, {}]}>
@@ -32,30 +33,36 @@ export default class FilmCard extends Component {
         return color;
     }
 
+    navigateToWatchScreen(){
+        
+    }
+
     render() {
         const {data} = this.props;
         return(
-            <View style={Styles.container}>
-                {this.bookmark(data)}
-                {/* Episode Group */}
-                <View style={Styles.episodeGroup}>
-                    <EpisodeCircleView episodeNumber={data.newestEpisode} elevation={6}/>
-                </View>
+            <TouchableOpacity onPress={() => this.navigateToWatchScreen()}>
+                <View style={Styles.container}>
+                    {this.setBookmark(data)}
+                    {/* Episode Group */}
+                    <View style={Styles.episodeGroup}>
+                        <EpisodeCircleView episodeNumber={data.newestEpisode} elevation={6}/>
+                    </View>
 
-                {/* Film's image */}
-                <View style={Styles.groupFilmImgLevel}>
-                    <Image source={{uri: data.filmImage}}
-                            style={Styles.filmImg}/>
-                    {/* Level line */}
-                    <View style={[Styles.levelLine, {backgroundColor: this.getLevelColor(data)}]}/>
-                </View>
+                    {/* Film's image */}
+                    <View style={Styles.groupFilmImgLevel}>
+                        <Image source={{uri: data.filmImage}}
+                                style={Styles.filmImg}/>
+                        {/* Level line */}
+                        <View style={[Styles.levelLine, {backgroundColor: this.getLevelColor(data)}]}/>
+                    </View>
 
-                {/* Title group */}
-                <View style={Styles.titleGroup}>
-                    <Text style={Styles.titleEnglish}>{data.titleEnglish}</Text>
-                    <Text style={Styles.titleVietnamese}>{data.titleVietnamese}</Text>
-                </View>                        
-            </View>
+                    {/* Title group */}
+                    <View style={Styles.titleGroup}>
+                        <Text style={Styles.titleEnglish}>{data.titleEnglish}</Text>
+                        <Text style={Styles.titleVietnamese}>{data.titleVietnamese}</Text>
+                    </View>                        
+                </View>
+            </TouchableOpacity>
         ); 
     }
 }

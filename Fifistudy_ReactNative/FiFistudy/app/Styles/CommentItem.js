@@ -1,4 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { 
+    StyleSheet,
+    Dimensions
+ } from 'react-native';
+import Res from '../Resources/index.js';
+
+
 
 const styles = StyleSheet.create({
     container: {
@@ -19,8 +25,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     ava: {
-        width: 70,
-        height: 70,
+        width: 60,
+        height: 60,
         borderRadius: 35,
     },
     liked: {
@@ -32,23 +38,27 @@ const styles = StyleSheet.create({
         marginTop: 5
     },
     commentContainer: {
-        flexDirection: 'column',
-        //justifyContent: 'space-between',
-        //alignItems: 'center'
+        marginTop: 8,
+        marginLeft: 20,
+        width: '72%'
     },
-    txtCommentContainer: {
-        height: 40
+    comment: {
+        fontFamily: Res.fonts.common,
+        color: Res.colors.body,
+        marginRight: 16,
     },
-    ic_like: {
-        width: 20,
-        height: 20,
-        marginLeft: 15,
+    likedContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: 8,
+        marginBottom: 8,
     },
-    blackLine: {
-        flex: 1,
-        height: 2,
-        marginTop: 10,
-        backgroundColor: 'lavender',
+    likedNum: {
+        fontFamily: Res.fonts.common,
+    },
+    line: {
+        backgroundColor: Res.colors.line,
+        height: 1,
     }
 })
 

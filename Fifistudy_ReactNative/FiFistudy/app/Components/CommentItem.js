@@ -5,67 +5,36 @@ import {
     TouchableOpacity,
     Image
 } from 'react-native';
-import styles from '../Styles/CommentItem.js';
-import res from '../Resources/index.js';
+import {ImageButton} from '../Components/index.js';
+import Styles from '../Styles/CommentItem.js';
+import Res from '../Resources/index.js';
 
 class CommentItem extends Component {
-
-    constructor(props) {
-        super(props);
-        let ic_like = res.ic_like;
-        let number_liked = this.props.liked;
-        this.state = {
-            isLiked: false
-        }
-    }
-
-    clickToLike() {
-        this.setState({
-            isLiked: !this.state.isLiked
-        })
+    getColor(comment){
+        return comment.is_liked === true ? Res.colors.yellow : Res.colors.blue;
     }
 
     render() {
-
-        if (this.state.isLiked) {
-            ic_like = res.ic_like_blue;
-            number_liked = this.props.liked + 1;
-        }
-        else {
-            ic_like = res.ic_like;
-            number_liked = this.props.liked;
-        }
-
+        const {data} = this.props;
         return (
-            <View style={styles.container}>
-
-                <View style={styles.horizontal}>
-                    <View style={styles.ava}>
+            <View style={Styles.container}>
+                <View style={Styles.horizontal}>
+                    <View style={Styles.ava}>
                         <Image
-                            source={this.props.ava}
+                            source={{uri: data.avatar}}
                             //resizeMode='stretch'
-                            style={styles.ava}
+                            style={Styles.ava}
                         />
                     </View>
-                    <View style={styles.commentContainer}>
-                        <View style={styles.txtCommentContainer}>
-                            <Text style={styles.txtComment}> {this.props.comment} </Text>
-                        </View>
-                        <View style={styles.horizontal}>
-                            <TouchableOpacity
-                                onPress={() => this.clickToLike()}>
-                                <Image
-                                    source={ic_like}
-                                    style={styles.ic_like}
-                                />
-                            </TouchableOpacity>
-                            <Text style={styles.liked}>
-                                {number_liked}
-                            </Text>
+                    <View style={Styles.commentContainer}>
+                        <Text style={Styles.data}>{data.content}</Text>
+                        <View style={Styles.likedContainer}>
+                            <ImageButton source={Res.icons.like} tintColor={this.getColor(data)}/>
+                            <Text style={[Styles.like_number, {color: this.getColor(data)}]}>{data.like_number}</Text>
                         </View>
                     </View>
                 </View>
-                <View style={styles.blackLine}>
+                <View style={Styles.line}>
                 </View>
             </View>
         )

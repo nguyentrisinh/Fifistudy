@@ -18,11 +18,7 @@ class CommentContainer extends Component {
 
     renderCommentItem(item) {
         return (
-            <CommentItem
-                ava={item.avatar}
-                comment={item.comment}
-                liked={item.liked}
-            />
+            <CommentItem data={item}/>
         )
     }
 
@@ -31,6 +27,7 @@ class CommentContainer extends Component {
             <View style={styles.container}>
                 <FlatList
                     data={this.state.dataSource}
+                    keyExtractor={item => item.id}
                     renderItem={({ item }) => this.renderCommentItem(item)}
                 />
             </View>

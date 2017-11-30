@@ -11,7 +11,7 @@ import res from '../Resources/index';
 
 export default class ImageButton extends Component {
     render(){
-        console.log(typeof this.props.onPress);
+        // console.log(typeof this.props.onPress);
         return(    
             <TouchableHighlight
                 style={styles.container}

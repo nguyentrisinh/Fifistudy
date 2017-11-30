@@ -9,7 +9,7 @@ import Resources from '../Resources/index.js';
 
 export default class AvatarView extends Component {
     render(){
-        const imageObj = typeof this.props.source === 'string' ? {uri: image.url} : this.props.source;
+        const imageObj = typeof this.props.source === 'string' ? {uri: this.props.source} : this.props.source;
         return (
             <Image
                 style={[styles.image, {
@@ -32,7 +32,7 @@ AvatarView.defaultProps = {
 AvatarView.propTypes = {
     source:  PropTypes.oneOfType([
         PropTypes.number,
-        PropTypes.object,
+        PropTypes.string,
     ]).isRequired,
     size: PropTypes.number,
     showShadow: PropTypes.bool,

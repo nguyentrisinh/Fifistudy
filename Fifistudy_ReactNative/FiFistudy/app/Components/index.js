@@ -13,7 +13,7 @@ import ProgressController from './ProgressController.js';
 import ListSub from './ListSub.js';
 import MediaPlayer from './MediaPlayer.js';
 import DrawerMenuItem from './DrawerMenuItem.js';
-
+import LevelCard from './LevelCard.js';
 
 
 export {
@@ -32,4 +32,5 @@ export {
     ListSub,
     MediaPlayer,
     DrawerMenuItem,
+    LevelCard
 }

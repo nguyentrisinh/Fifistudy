@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
 export default class ListSub extends Component {
     constructor(props) {
         super(props);
+        this.state = {};
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
             dataSource: ds.cloneWithRows(this.props.data),

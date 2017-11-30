@@ -6,6 +6,8 @@ import ScreenHome from './ScreenHome.js';
 import ScreenEpisodeComment from './ScreenEpisodeComment.js';
 import ScreenWatchMovie from './ScreenWatchMovie.js';
 import DrawerMenu from './DrawerMenu.js';
+import ScreenVolcabulary from './ScreenVolcabulary.js';
+import ScreenLevels from './ScreenLevels.js';
 
 export {
     ScreenNotes,
@@ -15,5 +17,7 @@ export {
     ScreenHome,
     ScreenEpisodeComment,
     ScreenWatchMovie,
-    DrawerMenu
+    DrawerMenu,
+    ScreenVolcabulary,
+    ScreenLevels
 }

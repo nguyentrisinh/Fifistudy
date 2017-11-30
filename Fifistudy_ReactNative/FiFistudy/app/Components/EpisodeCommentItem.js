@@ -13,9 +13,9 @@ import {
 import Resources from '../Resources/index.js';
 import Styles from '../Styles/EpisodeCommentItem.js';
 
-export default class CommentItem extends Component {
+export default class EpisodeCommentItem extends Component {
     getColor(comment){
-        return comment.isLiked === true ? Resources.colors.yellow : Resources.colors.blue;
+        return comment.is_liked === true ? Resources.colors.yellow : Resources.colors.blue;
     }
 
     render(){
@@ -25,15 +25,15 @@ export default class CommentItem extends Component {
             <View style={Styles.container}>
                 {/* Account's Avatar */}
                 <View>
-                    <AvatarView source={{uri: data.userAvatar}}/>
+                    <AvatarView source={data.avatar}/>
                 </View>
 
                 <View style={Styles.contentContainer}>
                     <View style={Styles.headerContainer}>
                         {/* Account's first_name last_name */}                        
-                        <Text style={Styles.accountName}>{data.firstName} {data.lastName}</Text>
+                        <Text style={Styles.accountName}>{data.first_name} {data.last_name}</Text>
                         {/* Created date */}
-                        <Text style={Styles.dateTime}>{data.dateTime}</Text>
+                        <Text style={Styles.dateTime}>{data.createdAt}</Text>
                     </View>
 
                     {/* Comment content */}
@@ -42,7 +42,7 @@ export default class CommentItem extends Component {
                     {/* Liked view */}
                     <View style={Styles.likedContainer}>
                         <ImageButton source={Resources.icons.like} tintColor={this.getColor(data)}/>
-                        <Text style={[Styles.likedNum, {color: this.getColor(data)}]}>{data.likedNum}</Text>
+                        <Text style={[Styles.like_number, {color: this.getColor(data)}]}>{data.like_number}</Text>
                     </View>
 
                     {/* Line */}
