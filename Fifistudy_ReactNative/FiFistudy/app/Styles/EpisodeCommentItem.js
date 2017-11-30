@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
     },
     accountName: {
         fontFamily: Resources.fonts.common,
-        color: Resources.colors.blue,
+        fontWeight: 'bold'
+        // color: Resources.colors.blue,
     },
     dateTime: {
         fontFamily: Resources.fonts.light,

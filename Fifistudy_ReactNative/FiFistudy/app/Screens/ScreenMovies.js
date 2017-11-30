@@ -19,7 +19,19 @@ class ScreenMovies extends Component {
         return (
             <View style={styles.container}>
                 {/* Toolbar */}
-                <ToolbarContainer/>
+                {/* <ToolbarContainer/> */}
+                <View style={styles.toolbar}>
+                <ImageButton
+                    source={res.icons.back}
+                    tintColor='white'
+                    onPress={() => this.props.navigation.navigate('ScreenHome')}/>
+
+                <View style={{flexDirection: 'row'}}>
+                    <ImageButton source={res.icons.rating} tintColor='white'/>
+                    <ImageButton source={res.icons.bookmark} tintColor='white'/>
+                    <ImageButton source={res.icons.favorite} tintColor='white'/>
+                </View>
+            </View>    
                 
                 <Image
                     source={{uri: ObjFilm.thumbnail}}

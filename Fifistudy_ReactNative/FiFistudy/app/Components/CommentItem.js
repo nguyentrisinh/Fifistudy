@@ -1,44 +1,54 @@
-import React, { Component } from 'react';
+// comment item for ScreenEpisodeComment
+import React, {Component} from 'react';
 import {
     Text,
+    Image,
     View,
-    TouchableOpacity,
-    Image
+    FlatList,
 } from 'react-native';
-import {ImageButton} from '../Components/index.js';
+import {
+    AvatarView,
+    ImageButton,
+} from '../Components/index.js';
+import Resources from '../Resources/index.js';
 import Styles from '../Styles/CommentItem.js';
-import Res from '../Resources/index.js';
 
-class CommentItem extends Component {
+export default class CommentItem extends Component {
     getColor(comment){
-        return comment.is_liked === true ? Res.colors.yellow : Res.colors.blue;
+        return comment.is_liked === true ? Resources.colors.yellow : Resources.colors.blue;
     }
 
-    render() {
+    render(){
         const {data} = this.props;
+        
         return (
             <View style={Styles.container}>
-                <View style={Styles.horizontal}>
-                    <View style={Styles.ava}>
-                        <Image
-                            source={{uri: data.avatar}}
-                            //resizeMode='stretch'
-                            style={Styles.ava}
-                        />
-                    </View>
-                    <View style={Styles.commentContainer}>
-                        <Text style={Styles.data}>{data.content}</Text>
-                        <View style={Styles.likedContainer}>
-                            <ImageButton source={Res.icons.like} tintColor={this.getColor(data)}/>
-                            <Text style={[Styles.like_number, {color: this.getColor(data)}]}>{data.like_number}</Text>
-                        </View>
-                    </View>
+                {/* Account's Avatar */}
+                <View>
+                    <AvatarView source={data.avatar}/>
                 </View>
-                <View style={Styles.line}>
+
+                <View style={Styles.contentContainer}>
+                    <View style={Styles.headerContainer}>
+                        {/* Account's first_name last_name */}                        
+                        <Text style={Styles.accountName}>{data.first_name} {data.last_name}</Text>
+                        {/* Created date */}
+                        <Text style={Styles.dateTime}>{data.createdAt}</Text>
+                    </View>
+
+                    {/* Comment content */}
+                    <Text style={Styles.data}>{data.content}</Text>
+
+                    {/* Liked view */}
+                    <View style={Styles.likedContainer}>
+                        <ImageButton source={Resources.icons.like} tintColor={this.getColor(data)}/>
+                        <Text style={[Styles.like_number, {color: this.getColor(data)}]}>{data.like_number}</Text>
+                    </View>
+
+                    {/* Line */}
+                    <View style={Styles.line}/>
                 </View>
             </View>
-        )
+        );
     }
 }
-
-export default CommentItem;

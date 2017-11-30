@@ -214,15 +214,6 @@ export default class MediaPlayer extends Component {
         return (
             // Control mark
             <View style={Styles.controlMask}>
-                {/* Button back to home screen */}
-                <View style={Styles.btnBackToHome}>
-                    <ImageButton
-                        onPress={this.controls.onClickBack}
-                        source={Res.icons.close}
-                        tintColor={Res.colors.blue}
-                    />
-                </View>
-
                 {/* Play, Pause, Back, Forward controls */}
                 <View style={Styles.playPauseBackForwardContainer}>
                     <ImageButton

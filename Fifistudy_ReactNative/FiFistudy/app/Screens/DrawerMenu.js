@@ -32,9 +32,9 @@ export default class DrawerMenu extends Component {
 
                 {/* SECTION MENU'S ITEM */}
                 <View>
-                    <DrawerMenuItem image={Res.icons.filmType} lable='Thể loại'
+                    <DrawerMenuItem image={Res.icons.filmType} lable='Thể loại'/>
+                    <DrawerMenuItem image={Res.icons.level} lable='Độ khó'
                         onPress={() => this.navigateToScreen('ScreenLevels')}/>
-                    <DrawerMenuItem image={Res.icons.level} lable='Độ khó'/>
                     <DrawerMenuItem image={Res.icons.tip} lable='Tip'/>
                     <DrawerMenuItem image={Res.icons.search} lable='Tìm kiếm'/>
 
