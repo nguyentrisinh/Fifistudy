@@ -19,6 +19,14 @@ import Styles from '../Styles/MediaPlayer.js';
 
 
 export default class MediaPlayer extends Component {
+    timeString2s = (a, b) => {// time(HH:MM:SS.mss) // optimized
+        // Chuyen dinh dang thoi gian cua sub thanh ms
+        return a = a.split('.'), // optimized
+            b = a[1] * 1 || 0, // optimized
+            a = a[0].split(':'),
+        b + (a[2] ? a[0] * 3600 + a[1] * 60 + a[2] * 1 : a[1] ? a[0] * 60 + a[1] * 1 : a[0] * 1) * 1e3 // optimized
+    }
+
     constructor(props){
         super(props);
         this.state = {
@@ -27,7 +35,7 @@ export default class MediaPlayer extends Component {
             text: 10,
             currentTime: 0, 
             duration: 0,
-            volume: 1,
+            volume: 80,
             testText: '',
             isDragging: false, // xác định người dùng có đang kéo thanh tua video k,
             currentItem: null, // dòng sub hiện tại đang chạy.
@@ -83,7 +91,7 @@ export default class MediaPlayer extends Component {
         if (this.state.sub) {
             let {currentTime} = value;
             //lay dong sub dang chay
-            let currentItem = this.state.sub.find(o => (((o.start <= currentTime) && (o.end >= currentTime))));
+            let currentItem = this.state.sub.find(o => ((o.start <= currentTime) && (o.end >= currentTime)));
             if (currentItem) {
                 if (this.state.currentItem == null) {
                     this.setState({
@@ -308,12 +316,7 @@ export default class MediaPlayer extends Component {
                     width: width,
                     height: width * Res.ratio,
                 }}>
-                    {!!this.state.sub && 
-                        <FlatList
-                            data={this.state.dataSource}
-                            renderItem={({ item }) => <ListSub currentItem={this.state.currentItem} data={this.state.sub}/>}
-                        />
-                    }
+                    {!!this.state.sub && <ListSub currentItem={this.state.currentItem} data={this.state.sub}/>}
                 </View>
                 {/* END SUB SECTION */}
             </View>

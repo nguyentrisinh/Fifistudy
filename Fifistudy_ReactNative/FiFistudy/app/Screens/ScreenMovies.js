@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    Image
+    Image,
+    TouchableOpacity
 } from 'react-native';
 
 import styles from '../Styles/ScreenMovies.js';
@@ -18,7 +19,19 @@ class ScreenMovies extends Component {
         return (
             <View style={styles.container}>
                 {/* Toolbar */}
-                <ToolbarContainer/>
+                {/* <ToolbarContainer/> */}
+                <View style={styles.toolbar}>
+                <ImageButton
+                    source={res.icons.back}
+                    tintColor='white'
+                    onPress={() => this.props.navigation.navigate('ScreenHome')}/>
+
+                <View style={{flexDirection: 'row'}}>
+                    <ImageButton source={res.icons.rating} tintColor='white'/>
+                    <ImageButton source={res.icons.bookmark} tintColor='white'/>
+                    <ImageButton source={res.icons.favorite} tintColor='white'/>
+                </View>
+            </View>    
                 
                 <Image
                     source={{uri: ObjFilm.thumbnail}}
@@ -39,8 +52,11 @@ class ScreenMovies extends Component {
                     <TabMovies /> 
                 </View>
 
-                <Image source={res.icons.btnPlay}
+                <TouchableOpacity style={styles.buttonFloatContainer}
+                    onPress={() => this.props.navigation.navigate('ScreenWatchMovie')}>
+                    <Image source={res.icons.floatingBtn}
                             style={styles.buttonFloat}/>
+                </TouchableOpacity>
             </View>
         )
     }

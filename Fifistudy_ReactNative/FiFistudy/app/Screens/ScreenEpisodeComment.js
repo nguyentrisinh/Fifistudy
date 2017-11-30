@@ -7,14 +7,9 @@ import {
     View,
     ScrollView,
     TextInput,
-    FlatList,
 } from 'react-native';
-import ObjComment from '../Objects/ObjComment.js';
-import {
-    ImageButton,
-    EpisodeCircleView,
-    EpisodeCommentItem
-} from '../Components/index.js';
+import { ImageButton, } from '../Components/index.js';
+import {EpisodeCommentContainer} from '../Containers/index.js';
 import Resources from '../Resources/index.js';
 import Styles from '../Styles/ScreenEpisodeComment.js';
 
@@ -39,7 +34,8 @@ export default class ScreenComment extends Component {
                         }}>
                         Bình luận</Text>
                     <View>
-                        <ImageButton source={Resources.icons.close} tintColor={Resources.colors.blue}/>
+                        <ImageButton source={Resources.icons.close} tintColor={Resources.colors.blue}
+                            onPress={() => this.props.navigation.navigate('ScreenWatchMovie')}/>
                     </View>
                 </View>
 
@@ -66,16 +62,8 @@ export default class ScreenComment extends Component {
                     </View>
                 </View>
                 {/* <View style={Styles.line}/> */}
-
-
-                {/* List comment */}
-                <FlatList
-                    style={{flex: 1}}
-                    data={ObjComment}
-                    keyExtractor={item => item.ID}
-                    renderItem={({item}) => (
-                    <EpisodeCommentItem data={item}/>
-                )}/>
+                
+                <EpisodeCommentContainer/>
             </View>
         );
     }

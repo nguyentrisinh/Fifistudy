@@ -16,7 +16,7 @@ export default class DrawerMenuItem extends Component {
 
     render() {
         return(
-            <TouchableHighlight>
+            <TouchableHighlight onPress={this.props.onPress}>
                 <View style={Styles.container}>
                     {/* ICON */}
                     <ImageButton source={this.props.image} tintColor={Res.colors.gray}/>

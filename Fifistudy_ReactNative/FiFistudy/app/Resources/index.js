@@ -46,6 +46,7 @@ const res = {
         note: require('./Icons/ic_note.png'),
         feedback: require('./Icons/ic_mail.png'),
         setting: require('./Icons/ic_setting.png'),
+        floatingBtn: require('./Icons/btn_play.png'),
     },
     images: {
         default: require('./Images/img_default.png'),

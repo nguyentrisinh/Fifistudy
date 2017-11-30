@@ -1,75 +1,54 @@
-import React, { Component } from 'react';
+// comment item for ScreenEpisodeComment
+import React, {Component} from 'react';
 import {
     Text,
+    Image,
     View,
-    TouchableOpacity,
-    Image
+    FlatList,
 } from 'react-native';
-import styles from '../Styles/CommentItem.js';
-import res from '../Resources/index.js';
+import {
+    AvatarView,
+    ImageButton,
+} from '../Components/index.js';
+import Resources from '../Resources/index.js';
+import Styles from '../Styles/CommentItem.js';
 
-class CommentItem extends Component {
-
-    constructor(props) {
-        super(props);
-        let ic_like = res.ic_like;
-        let number_liked = this.props.liked;
-        this.state = {
-            isLiked: false
-        }
+export default class CommentItem extends Component {
+    getColor(comment){
+        return comment.is_liked === true ? Resources.colors.yellow : Resources.colors.blue;
     }
 
-    clickToLike() {
-        this.setState({
-            isLiked: !this.state.isLiked
-        })
-    }
-
-    render() {
-
-        if (this.state.isLiked) {
-            ic_like = res.ic_like_blue;
-            number_liked = this.props.liked + 1;
-        }
-        else {
-            ic_like = res.ic_like;
-            number_liked = this.props.liked;
-        }
-
+    render(){
+        const {data} = this.props;
+        
         return (
-            <View style={styles.container}>
-
-                <View style={styles.horizontal}>
-                    <View style={styles.ava}>
-                        <Image
-                            source={this.props.ava}
-                            //resizeMode='stretch'
-                            style={styles.ava}
-                        />
-                    </View>
-                    <View style={styles.commentContainer}>
-                        <View style={styles.txtCommentContainer}>
-                            <Text style={styles.txtComment}> {this.props.comment} </Text>
-                        </View>
-                        <View style={styles.horizontal}>
-                            <TouchableOpacity
-                                onPress={() => this.clickToLike()}>
-                                <Image
-                                    source={ic_like}
-                                    style={styles.ic_like}
-                                />
-                            </TouchableOpacity>
-                            <Text style={styles.liked}>
-                                {number_liked}
-                            </Text>
-                        </View>
-                    </View>
+            <View style={Styles.container}>
+                {/* Account's Avatar */}
+                <View>
+                    <AvatarView source={data.avatar}/>
                 </View>
-                <View style={styles.blackLine}>
+
+                <View style={Styles.contentContainer}>
+                    <View style={Styles.headerContainer}>
+                        {/* Account's first_name last_name */}                        
+                        <Text style={Styles.accountName}>{data.first_name} {data.last_name}</Text>
+                        {/* Created date */}
+                        <Text style={Styles.dateTime}>{data.createdAt}</Text>
+                    </View>
+
+                    {/* Comment content */}
+                    <Text style={Styles.data}>{data.content}</Text>
+
+                    {/* Liked view */}
+                    <View style={Styles.likedContainer}>
+                        <ImageButton source={Resources.icons.like} tintColor={this.getColor(data)}/>
+                        <Text style={[Styles.like_number, {color: this.getColor(data)}]}>{data.like_number}</Text>
+                    </View>
+
+                    {/* Line */}
+                    <View style={Styles.line}/>
                 </View>
             </View>
-        )
+        );
     }
 }
-
-export default CommentItem;

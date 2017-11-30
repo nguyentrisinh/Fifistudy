@@ -29,16 +29,16 @@ export default class WatchScreen extends Component {
             <ScrollView style={{backgroundColor: Resources.colors.background}}
                         showsVerticalScrollIndicator={false}>
                 {/* MEDIA PLAYER SECTION */}
-                <MediaPlayer/>
+                <MediaPlayer />
                 {/* END MEDIA PLAYER SECTION */}
 
                 {/* SUB SECTION */}
-                <View style={{
+                {/* <View style={{
                     backgroundColor: 'lightgray',
                     width: width,
                     height: width * Resources.ratio,
                     }}>
-                </View>
+                </View> */}
                 {/* END SUB SECTION */}
 
 
@@ -69,7 +69,10 @@ export default class WatchScreen extends Component {
             </ScrollView>
                 {/* TOOLBAR SECTION */}
                 <View style={Styles.toolbar}>
-                    <ImageButton source={Resources.icons.comment} tintColor={Resources.colors.pink}/>
+                    <ImageButton source={Resources.icons.back} tintColor={Resources.colors.pink}
+                        onPress={() => this.props.navigation.navigate('ScreenMovies')}/>   
+                    <ImageButton source={Resources.icons.comment} tintColor={Resources.colors.pink}
+                        onPress={() => this.props.navigation.navigate('ScreenEpisodeComment')}/>
                     <ImageButton source={Resources.icons.quiz} tintColor={Resources.colors.pink}/>
                     <ImageButton source={Resources.icons.volcabulary} tintColor={Resources.colors.pink}/>
                 </View>

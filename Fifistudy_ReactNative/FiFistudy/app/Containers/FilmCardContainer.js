@@ -16,9 +16,13 @@ export default class FilmCardContainer extends Component {
 
     renderItem(item) {
         return (
+<<<<<<< HEAD
             <FilmCard data={item} 
             navigation={this.props.navigation}
             />
+=======
+            <FilmCard data={item} navigation={this.props.navigation}/>
+>>>>>>> phuong
         );
     }
 

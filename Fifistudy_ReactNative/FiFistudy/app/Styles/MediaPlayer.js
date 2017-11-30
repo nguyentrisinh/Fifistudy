@@ -78,6 +78,13 @@ const styles = StyleSheet.create({
     listEpisode: {
         marginBottom: 48,
         alignSelf: 'center'
+    },
+    btnBackToHome: {
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        marginTop: 8,
+        marginRight: 12
     }
 });
 export default styles;

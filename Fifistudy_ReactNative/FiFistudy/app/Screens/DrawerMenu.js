@@ -6,11 +6,18 @@ import {
   ScrollView,
   View,
 } from 'react-native';
+import {NavigationActions} from 'react-navigation';
 import Res from '../Resources/index.js';
 import Styles from '../Styles/DrawerMenu.js';
 import {DrawerMenuItem} from '../Components/index.js';
 
 export default class DrawerMenu extends Component {
+    navigateToScreen(route){
+        this.setState({route: route});
+        let navigationAction = NavigationActions.navigate({routeName: route});
+        this.props.navigation.dispatch(navigationAction);
+    }
+
     render() {
         return (
             <ScrollView style={Styles.container} showsVerticalScrollIndicator={false}>
@@ -26,7 +33,8 @@ export default class DrawerMenu extends Component {
                 {/* SECTION MENU'S ITEM */}
                 <View>
                     <DrawerMenuItem image={Res.icons.filmType} lable='Thể loại'/>
-                    <DrawerMenuItem image={Res.icons.level} lable='Độ khó'/>
+                    <DrawerMenuItem image={Res.icons.level} lable='Độ khó'
+                        onPress={() => this.navigateToScreen('ScreenLevels')}/>
                     <DrawerMenuItem image={Res.icons.tip} lable='Tip'/>
                     <DrawerMenuItem image={Res.icons.search} lable='Tìm kiếm'/>
 

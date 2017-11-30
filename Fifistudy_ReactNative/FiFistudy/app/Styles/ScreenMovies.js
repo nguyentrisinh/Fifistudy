@@ -41,14 +41,17 @@ const styles = StyleSheet.create({
         position: 'absolute',
         elevation: 6,
     },
-    buttonFloat: {
+    buttonFloatContainer: {
         position: 'absolute',
         right: 36,
         top: width * Res.ratio - 85,
+        elevation: 6
+    },
+    buttonFloat: {
+        resizeMode: 'cover',
         width: 70,
         height: 70,
-        elevation: 6,
-    },
+    }
 })
 
 export default styles;

@@ -1,55 +1,58 @@
-import { StyleSheet } from 'react-native';
+import {
+    StyleSheet,
+    Dimensions,
+} from 'react-native';
+import Resources from '../Resources/index.js';
+
+const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column',
-        margin: 10,
-
+        paddingLeft: 16,
+        paddingRight: 16,
+        paddingTop: 8,
+        paddingBottom: 8,
+        flexDirection: 'row'
     },
-    horizontal: {
-        flexDirection: 'row',
-    },
-
-    containerIconLike: {
-        flexDirection: 'row',
-    },
-
-    vertical: {
-        flexDirection: 'column',
-    },
-    ava: {
-        width: 70,
-        height: 70,
-        borderRadius: 35,
-    },
-    liked: {
-        marginLeft: 10,
-        textAlign: 'center'
-    },
-    txtComment: {
-        marginLeft: 10,
-        marginTop: 5
-    },
-    commentContainer: {
-        flexDirection: 'column',
-        //justifyContent: 'space-between',
-        //alignItems: 'center'
-    },
-    txtCommentContainer: {
-        height: 40
-    },
-    ic_like: {
-        width: 20,
-        height: 20,
-        marginLeft: 15,
-    },
-    blackLine: {
+    contentContainer: {
         flex: 1,
-        height: 2,
-        marginTop: 10,
-        backgroundColor: 'lavender',
+        marginLeft: 16
+    },
+    headerContainer: {
+        flexDirection: 'row',
+        marginBottom: 8,
+        marginRight: 16,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    accountName: {
+        fontFamily: Resources.fonts.common,
+        fontWeight: 'bold'
+        // color: Resources.colors.blue,
+    },
+    dateTime: {
+        fontFamily: Resources.fonts.light,
+        color: Resources.colors.body,
+    },
+    comment: {
+        fontFamily: Resources.fonts.common,
+        color: Resources.colors.body,
+        marginRight: 16,
+    },
+    likedContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: 8,
+        marginBottom: 8,
+    },
+    likedNum: {
+        fontFamily: Resources.fonts.common,
+    },
+    line: {
+        backgroundColor: Resources.colors.line,
+        height: 1,
     }
-})
+});
 
 export default styles;
