@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    Image
+    Image,
+    TouchableOpacity
 } from 'react-native';
 
 import styles from '../Styles/ScreenMovies.js';
@@ -39,8 +40,11 @@ class ScreenMovies extends Component {
                     <TabMovies /> 
                 </View>
 
-                <Image source={res.icons.btnPlay}
+                <TouchableOpacity style={styles.buttonFloatContainer}
+                    onPress={() => this.props.navigation.navigate('ScreenWatchMovie')}>
+                    <Image source={res.icons.floatingBtn}
                             style={styles.buttonFloat}/>
+                </TouchableOpacity>
             </View>
         )
     }

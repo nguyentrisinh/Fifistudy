@@ -16,7 +16,7 @@ export default class FilmCardContainer extends Component {
 
     renderItem(item) {
         return (
-            <FilmCard data={item}/>
+            <FilmCard data={item} navigation={this.props.navigation}/>
         );
     }
 

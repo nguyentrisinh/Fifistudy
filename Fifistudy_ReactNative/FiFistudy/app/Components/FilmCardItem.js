@@ -6,7 +6,6 @@ import {
     View,
     TouchableOpacity
 } from 'react-native';
-import {NavigationActions} from 'react-navigation';
 import Styles from '../Styles/FilmCardItem';
 import Res from '../Resources/index';
 import ImageButton from '../Components/ImageButton';
@@ -33,14 +32,10 @@ export default class FilmCard extends Component {
         return color;
     }
 
-    navigateToWatchScreen(){
-        
-    }
-
     render() {
         const {data} = this.props;
         return(
-            <TouchableOpacity onPress={() => this.navigateToWatchScreen()}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenMovies')}>
                 <View style={Styles.container}>
                     {this.setBookmark(data)}
                     {/* Episode Group */}

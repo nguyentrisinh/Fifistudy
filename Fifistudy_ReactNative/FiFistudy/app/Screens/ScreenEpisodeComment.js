@@ -34,7 +34,8 @@ export default class ScreenComment extends Component {
                         }}>
                         Bình luận</Text>
                     <View>
-                        <ImageButton source={Resources.icons.close} tintColor={Resources.colors.blue}/>
+                        <ImageButton source={Resources.icons.close} tintColor={Resources.colors.blue}
+                            onPress={() => this.props.navigation.navigate('ScreenWatchMovie')}/>
                     </View>
                 </View>
 
