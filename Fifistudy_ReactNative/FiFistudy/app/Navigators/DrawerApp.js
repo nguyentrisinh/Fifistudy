@@ -1,8 +1,8 @@
 import React from 'react';
 import { DrawerNavigator } from 'react-navigation';
 import { 
-    ScreenHome,
     ScreenNotes,
+    ScreenHome,
     ScreenLevels,
     ScreenWatchMovie,
     ScreenEpisodeComment,
@@ -12,9 +12,10 @@ import {
     DrawerMenu,
 } from '../Screens/index.js';
 
+
 const DrawerApp = DrawerNavigator({
-    ScreenHome: { screen: ScreenHome },
     ScreenNotes: { screen: ScreenNotes },
+    ScreenHome: { screen: ScreenHome },
     ScreenLevels: {screen: ScreenLevels},
     ScreenWatchMovie: {screen: ScreenWatchMovie},
     ScreenEpisodeComment: {screen: ScreenEpisodeComment},
