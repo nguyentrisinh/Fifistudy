@@ -9,6 +9,7 @@ import DrawerMenu from './DrawerMenu.js';
 import ScreenVolcabulary from './ScreenVolcabulary.js';
 import ScreenLevels from './ScreenLevels.js';
 import ScreenListFilm from './ScreenListFilm.js';
+import ScreenSearchFilm from './ScreenSearchFilm.js';
 
 export {
     ScreenNotes,
@@ -21,5 +22,6 @@ export {
     DrawerMenu,
     ScreenVolcabulary,
     ScreenLevels,
-    ScreenListFilm
+    ScreenListFilm,
+    ScreenSearchFilm
 }

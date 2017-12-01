@@ -10,12 +10,14 @@ import {
     ScreenMovieComment,
     ScreenVolcabulary,
     ScreenMovies,
-    ScreenListFilm
+    ScreenListFilm,
+    ScreenSearchFilm
 } from '../Screens/index.js';
 
 import PopupListEpisode from '../Components/PopupListEpisode.js';
 
 const DrawerApp = DrawerNavigator({
+    ScreenSearchFilm: { screen: ScreenSearchFilm },
     ScreenListFilm: { screen: ScreenListFilm },
     PopupListEmpisode: { screen: PopupListEpisode },
     ScreenLevels: { screen: ScreenLevels },

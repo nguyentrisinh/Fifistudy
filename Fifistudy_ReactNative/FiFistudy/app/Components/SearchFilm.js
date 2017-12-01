@@ -96,7 +96,7 @@ export default class SearchFilm extends Component {
                     <View style={styles.searchContainer}>
                         {this.renderInputSearch()}
                         <TouchableOpacity
-                            onPress={() => this.toggleInput()}>
+                            onPress={() => this.props.navigation.navigate('ScreenSearchFilm')}>
                             <Image
                                 source={res.icons.search}
                                 resizeMode='cover'
