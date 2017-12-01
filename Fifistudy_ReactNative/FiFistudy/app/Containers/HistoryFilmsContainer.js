@@ -17,7 +17,7 @@ class HistoryFilmsContainer extends Component {
 
     renderItem(item) {
         return (
-            <Image source={{uri: item.url}} style={styles.historyFilmImg}/>
+            <Image source={{uri: item.url}} style={styles.historyFilmImg} resizeMode='stretch'/>
         );
     }
 
