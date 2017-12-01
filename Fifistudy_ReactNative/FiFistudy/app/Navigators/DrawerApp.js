@@ -28,7 +28,7 @@ const DrawerApp = DrawerNavigator({
     ScreenNotes: { screen: ScreenNotes }
 }, {
         headerMode: 'none',
-        //initialRouteName: 'ScreenHome',
+        initialRouteName: 'ScreenHome',
         contentComponent: DrawerMenu,
     });
 
