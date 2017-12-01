@@ -2,22 +2,20 @@ import React, {Component} from 'react';
 import{
     FlatList,
 } from 'react-native';
-import ObjComment from '../Objects/ObjComment.js';
-import {
-    EpisodeCommentItem
-} from '../Components/index.js';
+import ObjVocabularies from '../Objects/ObjVocabularies.js';
+import { VocabularyItem } from '../Components/index.js';
 
-export default class EpisodeCommentContainer extends Component {
+export default class VocabulariesContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataSource: ObjComment,
+            dataSource: ObjVocabularies,
         }
     }
 
     renderCommentItem(item) {
         return (
-            <EpisodeCommentItem data={item}/>
+            <VocabularyItem data={item}/>
         )
     }
 
@@ -25,7 +23,9 @@ export default class EpisodeCommentContainer extends Component {
         return (
             <FlatList
                 style={{flex: 1}}
-                data={ObjComment}
+                contentContainerStyle={{alignItems: 'center'}}
+                showsVerticalScrollIndicator={false}
+                data={ObjVocabularies}
                 keyExtractor={item => item.id}
                 renderItem={({item}) => this.renderCommentItem(item)}/>
         );

@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import {
   Text,
-  Image,
   View,
-  ScrollView,
+  FlatList,
 } from 'react-native';
 import Res from '../Resources/index';
 import {ImageButton} from '../Components/index.js';
-import Obj from '../Objects/ObjVocabularies.js';
+import {VocabulariesContainer} from '../Containers/index.js';
 import Styles from '../Styles/ScreenVocabulary.js'
 
 export default class ScreenVolcabulary extends Component {
@@ -20,13 +19,8 @@ export default class ScreenVolcabulary extends Component {
                     <Text style={Styles.title}>Từ vựng</Text>
                 </View>
                 <View style={Styles.line}/>
-
-                <View style={{
-                    flex: 1,
-                    alignItems: 'center'
-                }}>
-                    
-                </View>
+                
+                <VocabulariesContainer/>
             </View>
         )
     }

@@ -70,6 +70,14 @@ const res = {
         levelEasy: '#009688',
         levelMedium: '#AB47BC',
         levelHard: '#E91E63',
+
+        volcabularyColors: [
+            '#64B5F6',
+            '#E91E63',
+            '#AB47BC',
+            '#FFC107',
+            '#9E9E9E'
+        ]
     },
     fonts: {
         common: 'sans-serif',
