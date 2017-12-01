@@ -9,7 +9,6 @@ import {
 import styles from '../Styles/ScreenMovies.js';
 import res from '../Resources/index.js';
 import TabMovies from '../Navigators/TabMovies.js';
-//import LinearGradient from 'react-native-linear-gradient';
 import {ImageButton} from '../Components/index.js';
 import {ToolbarContainer} from '../Containers/index.js';
 import ObjFilm from '../Objects/ObjFilm.js';
