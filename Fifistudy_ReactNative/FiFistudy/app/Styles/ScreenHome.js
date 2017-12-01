@@ -7,6 +7,13 @@ import Res from '../Resources/index';
 const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
+    searchContainer: {
+        flexDirection: 'row',
+        marginRight: 0
+    },
+    inputSearch: {
+        width: 270,
+    },
     container: {
         backgroundColor: Res.colors.homePageBackground,
         flexGrow: 1,
@@ -26,7 +33,7 @@ const styles = StyleSheet.create({
     },
     bannerSlider: {
         width: width,
-        height: width/2,
+        height: width / 2,
         backgroundColor: 'lightgray',
         zIndex: 0
     },

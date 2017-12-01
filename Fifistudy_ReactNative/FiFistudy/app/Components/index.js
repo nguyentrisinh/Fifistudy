@@ -14,7 +14,7 @@ import ListSub from './ListSub.js';
 import MediaPlayer from './MediaPlayer.js';
 import DrawerMenuItem from './DrawerMenuItem.js';
 import LevelCard from './LevelCard.js';
-
+import SearchFilm from './SearchFilm.js';
 
 export {
     DailyNoteItem,
@@ -32,5 +32,6 @@ export {
     ListSub,
     MediaPlayer,
     DrawerMenuItem,
-    LevelCard
+    LevelCard,
+    SearchFilm
 }

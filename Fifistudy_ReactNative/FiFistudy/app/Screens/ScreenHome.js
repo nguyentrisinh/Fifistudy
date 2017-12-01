@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import {
-  Text,
-  Image,
-  View,
-  ScrollView,
+    Text,
+    Image,
+    View,
+    ScrollView,
+    TextInput,
+    TouchableOpacity,
 } from 'react-native';
 import Styles from '../Styles/ScreenHome';
-import Res from '../Resources/index';
-import {ImageButton, ImageSlider} from '../Components/index.js';
+import res from '../Resources/index';
+import { ImageButton, ImageSlider } from '../Components/index.js';
 import {
     HistoryFilmsContainer,
     FilmCardContainer,
     TipContainer,
 } from '../Containers/index.js';
-
 import Obj from '../Objects/ObjTemp.js';
+import { SearchFilm } from '../Components/index.js';
 
 export default class ScreenHome extends Component {
     constructor(props) {
@@ -23,7 +25,7 @@ export default class ScreenHome extends Component {
         this.state = {
             position: 1,
             interval: null,
-          };
+        };
     }
 
     componentWillMount() {
@@ -42,28 +44,19 @@ export default class ScreenHome extends Component {
 
     render() {
         return (
-            <ScrollView 
+            <ScrollView
                 contentContainerStyle={Styles.container}
                 showsVerticalScrollIndicator={false}>
 
                 {/* TOOLBAR SECCTION */}
-                <View style={Styles.toolbar}>
-                    <ImageButton
-                        onPress={() => this.props.navigation.navigate('DrawerToggle')}
-                        source={Res.icons.menu}
-                        tintColor='white'/>
-                    <ImageButton source={Res.icons.search} tintColor='white'/>
-                </View>
-
-                
-                
+                <SearchFilm navigation={this.props.navigation} />
                 {/* SECTION BANNER SLIDER */}
-                <View 
+                <View
                     style={Styles.bannerSlider}>
                     <ImageSlider
                         dataSource={Obj.sliderSource}
                         position={this.state.position}
-                        onPostionChange={position => this.setState({position})}/>
+                        onPostionChange={position => this.setState({ position })} />
                 </View>
 
 
@@ -73,33 +66,33 @@ export default class ScreenHome extends Component {
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>Phim đã xem</Text>
-                    <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}/>
+                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue} />
                 </View>
-                <HistoryFilmsContainer/>
+                <HistoryFilmsContainer />
 
                 {/* NEWEST FILMS */}
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>Phim mới</Text>
-                    <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}/>
+                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue} />
                 </View>
-                <FilmCardContainer navigation={this.props.navigation}/>
-                
+                <FilmCardContainer navigation={this.props.navigation} />
+
                 {/* MOST VIEWED FILMS */}
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>Xem nhiều</Text>
-                    <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}/>
+                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue} />
                 </View>
-                <FilmCardContainer/>
+                <FilmCardContainer />
 
                 {/* TIPS */}
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>Tips</Text>
-                    <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}/>
+                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue} />
                 </View>
-                <TipContainer/>
+                <TipContainer />
             </ScrollView>
         );
     }

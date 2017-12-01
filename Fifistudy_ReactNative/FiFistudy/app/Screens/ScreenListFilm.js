@@ -11,30 +11,7 @@ import res from '../Resources/index.js';
 
 import styles from '../Styles/ScreenListFilm.js';
 
-const lsFilm = [
-    {
-        key: 0,
-        banner: res.banner_film,
-        title_english: 'When I met your mother',
-        title_vn: 'Khi bố gặp mẹ mi ý',
-        color: 'red'
-
-    },
-    {
-        key: 1,
-        banner: res.banner_film,
-        title_english: 'When I met your mother',
-        title_vn: 'Khi bố gặp mẹ mi ý',
-        color: 'green'
-    },
-    {
-        key: 2,
-        banner: res.banner_film,
-        title_english: 'When I met your mother',
-        title_vn: 'Khi bố gặp mẹ mi ý',
-        color: 'blue'
-    },
-]
+import lsFilm from '../Objects/ObjFilms.js';
 
 export default class ScreenListFilm extends Component {
     constructor(props) {
