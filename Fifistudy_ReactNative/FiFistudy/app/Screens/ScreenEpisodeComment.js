@@ -18,25 +18,12 @@ export default class ScreenComment extends Component {
         return (
             <View style={Styles.commentContainer}>
                 {/* Title section */}
-                <View style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        paddingLeft: 72,
-                        paddingRight: 16,
-                        paddingTop: 8,
-                        paddingBottom: 8
-                    }}>
-                    <Text style={{
-                            fontFamily: Resources.fonts.common,
-                            fontSize: 21,
-                            color: Resources.colors.blue,
-                        }}>
-                        Bình luận</Text>
-                    <View>
-                        <ImageButton source={Resources.icons.close} tintColor={Resources.colors.blue}
+                <View style={Styles.toolbarContainer}>
+                    <ImageButton source={Resources.icons.close} tintColor={Resources.colors.blue}
                             onPress={() => this.props.navigation.navigate('ScreenWatchMovie')}/>
-                    </View>
+
+                    <Text style={Styles.title}>
+                        Bình luận</Text>
                 </View>
 
 
@@ -44,24 +31,16 @@ export default class ScreenComment extends Component {
 
                 {/* Enter comment section */}
                 <View style={Styles.enterCommentContainer}>
-                    <TextInput style={{
-                        flex: 1,
-                        backgroundColor: '#E0E0E0'
-                        }}
+                    <TextInput style={Styles.textInput}
                         autoGrow={true}
                         underlineColorAndroid='rgba(0,0,0,0)'
                         multiline={true}
                         blurOnSubmit={false}/>
-                    <View style={{
-                        backgroundColor: Resources.colors.blue,
-                        borderTopRightRadius: 6,
-                        borderBottomRightRadius: 6,
-                        height: 40
-                        }}>
+                    <View style={Styles.btnSend}>
                         <ImageButton source={Resources.icons.send} tintColor='white'/>
                     </View>
                 </View>
-                {/* <View style={Styles.line}/> */}
+                <View style={[Styles.line, {opacity: 0.5, elevation: 3}]}/>
                 
                 <EpisodeCommentContainer/>
             </View>

@@ -79,7 +79,7 @@ export default class MediaPlayer extends Component {
                 };
             });
             this.setState({
-                sub
+                sub: sub,
             })
         })
         .catch(err => console.log(err))
@@ -95,14 +95,14 @@ export default class MediaPlayer extends Component {
             if (currentItem) {
                 if (this.state.currentItem == null) {
                     this.setState({
-                        currentItem
+                        currentItem: currentItem,
                         // .replace(/<\/?[^>]+(>|$)/g, "") bo tag
                     });
                 }
                 else {
                     if (currentItem.number != this.state.currentItem.number) {
                         this.setState({
-                            currentItem
+                            currentItem: currentItem,
                             // .replace(/<\/?[^>]+(>|$)/g, "") bo tag
                         });
                     }
@@ -312,7 +312,7 @@ export default class MediaPlayer extends Component {
 
                 {/* SUB SECTION */}
                 <View style={{
-                    backgroundColor: 'lightgray',
+                    backgroundColor: Res.colors.filmSubBackground,
                     width: width,
                     height: width * Res.ratio,
                 }}>

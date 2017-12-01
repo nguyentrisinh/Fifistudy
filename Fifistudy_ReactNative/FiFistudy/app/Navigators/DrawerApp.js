@@ -1,32 +1,31 @@
 import React from 'react';
 import { DrawerNavigator } from 'react-navigation';
 import { 
-    ScreenNotes,
     ScreenHome,
-    DrawerMenu,
-
-
+    ScreenNotes,
     ScreenLevels,
     ScreenWatchMovie,
     ScreenEpisodeComment,
     ScreenMovieComment,
-    ScreenVolcabulary,
+    ScreenVocabulary,
     ScreenMovies,
+    DrawerMenu,
 } from '../Screens/index.js';
 
 const DrawerApp = DrawerNavigator({
-    ScreenLevels: {screen: ScreenLevels},
-    ScreenMovieComment: {screen: ScreenMovieComment},
-    ScreenEpisodeComment: {screen: ScreenEpisodeComment},
-    ScreenVolcabulary: {screen: ScreenVolcabulary},
     ScreenHome: { screen: ScreenHome },
+    ScreenNotes: { screen: ScreenNotes },
+    ScreenLevels: {screen: ScreenLevels},
     ScreenWatchMovie: {screen: ScreenWatchMovie},
+    ScreenEpisodeComment: {screen: ScreenEpisodeComment},
+    ScreenMovieComment: {screen: ScreenMovieComment},
+    ScreenVocabulary: {screen: ScreenVocabulary},
     ScreenMovies: { screen: ScreenMovies },
-    ScreenNotes: { screen: ScreenNotes }
+    
 }, {
     headerMode: 'none',
     // initialRouteName: 'ScreenHome',
-    initialRouteName: 'ScreenHome',
+    initialRouteName: 'ScreenVocabulary',
     contentComponent: DrawerMenu,
 });
 

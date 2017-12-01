@@ -14,8 +14,10 @@ import Styles from '../Styles/TipItem.js'
 export default class TipItem extends Component {
     render(){
         const {data} = this.props;
-        const width = Dimensions.get('window').width;
+        const {isActive} = this.props;
+
         return (
+            // <View style={isActive?styles.activeContainer:styles.container}>
             <View style={Styles.container}>
                 <Image
                     style={Styles.image}

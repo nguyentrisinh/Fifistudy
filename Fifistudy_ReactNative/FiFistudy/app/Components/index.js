@@ -14,6 +14,8 @@ import ListSub from './ListSub.js';
 import MediaPlayer from './MediaPlayer.js';
 import DrawerMenuItem from './DrawerMenuItem.js';
 import LevelCard from './LevelCard.js';
+import ToolBar from './ToolBar.js';
+import SubItem from './SubItem.js';
 
 
 export {
@@ -32,5 +34,7 @@ export {
     ListSub,
     MediaPlayer,
     DrawerMenuItem,
-    LevelCard
+    LevelCard,
+    ToolBar,
+    SubItem,
 }

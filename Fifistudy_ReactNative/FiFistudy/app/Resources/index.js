@@ -64,6 +64,7 @@ const res = {
         red: '#f44336',
         line: '#E0E0E0',
         gray: '#9E9E9E',
+        filmSubBackground: '#424242',
 
         //level's colors
         levelEasy: '#009688',
