@@ -2,6 +2,14 @@ import { StyleSheet } from 'react-native';
 import windows from '../Themes/Window.js';
 
 export default styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        flexDirection: 'column'
+    },
+    headerContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
     itemContainer: {
         flexDirection: 'row',
         backgroundColor: 'transparent'

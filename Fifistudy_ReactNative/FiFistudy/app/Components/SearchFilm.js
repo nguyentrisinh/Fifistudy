@@ -3,7 +3,6 @@ import { View, Text, TextInput, TouchableOpacity, TouchableHighlight, Image, Fla
 import styles from '../Styles/SearchFilm.js';
 import res from '../Resources/index.js';
 import ImageButton from './ImageButton.js';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import lsFilm from '../Objects/ObjFilms.js';
 import windows from '../Themes/Window.js';
 

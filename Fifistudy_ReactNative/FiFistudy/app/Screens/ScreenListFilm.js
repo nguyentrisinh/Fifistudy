@@ -5,12 +5,8 @@ import {
     TouchableOpacity,
     Image
 } from 'react-native';
-import { Container, Header, Left, Body, Title, Content, Button, Icon } from 'native-base';
-import { OptimizedFlatList } from 'react-native-optimized-flatlist';
 import res from '../Resources/index.js';
-
 import styles from '../Styles/ScreenListFilm.js';
-
 import lsFilm from '../Objects/ObjFilms.js';
 
 export default class ScreenListFilm extends Component {
@@ -60,25 +56,23 @@ export default class ScreenListFilm extends Component {
     }
     render() {
         return (
-            <Container>
-                <Header style={{ backgroundColor: 'lightsteelblue' }}>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='arrow-back' />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title> Danh sách </Title>
-                    </Body>
-                </Header>
-                <Content>
-                    <OptimizedFlatList
-                        style={{ margin: 15 }}
-                        data={this.state.ds}
-                        renderItem={({ item }) => this.renderItemFilm(item)}>
-                    </OptimizedFlatList>
-                </Content>
-            </Container>
+            <View style={styles.container}>
+                <View style={styles.headerContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate('ScreenHome')}>
+                        <Image
+                            source={res.icons.back}
+                            style={{width: 30, heigth: 30}}
+                        />
+                    </TouchableOpacity>
+                    <Text> Danh sách </Text>
+                </View>
+                <FlatList
+                    style={{ margin: 15 }}
+                    data={this.state.ds}
+                    renderItem={({ item }) => this.renderItemFilm(item)}>
+                </FlatList>
+            </View>
         )
     }
 }

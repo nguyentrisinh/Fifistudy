@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FlatList, Image, TouchableOpacity, Text, View, TextInput } from 'react-native';
 import styles from '../Styles/ScreenSearchFilm.js';
 import lsFilm from '../Objects/ObjFilms.js';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import res from '../Resources/index.js';
 
 export default class ScreenSearchFilm extends Component {
     constructor(props) {
@@ -19,18 +19,17 @@ export default class ScreenSearchFilm extends Component {
     renderSearchBar() {
         return (
             <View style={styles.searchContainer}>
-                <Icon
-                    name='arrow-left'
-                    size={30}
+                <Image
+                    source={res.icons.back}
+                    style={{width: 30, height: 30}}
                 />
                 <TextInput
                     style={styles.textInput}
                     placeholder='Nhập tên phim cần tìm...'
                 />
-                <Icon
-                    style={{ marginLeft: 5 }}
-                    name='magnify'
-                    size={30}
+                <Image
+                    style={{ width: 30, height: 30, marginLeft: 5 }}
+                    source={res.icons.search}
                 />
             </View>
         )
