@@ -6,23 +6,22 @@ import {
 } from 'react-native';
 import Res from '../Resources/index';
 import {ImageButton} from '../Components/index.js';
-import {VocabulariesContainer} from '../Containers/index.js';
-import Styles from '../Styles/ScreenVocabulary.js';
-import {NavigationActions} from 'react-navigation';
+import {TipContainer} from '../Containers/index.js';
+import Styles from '../Styles/ScreenTips.js';
 
-export default class ScreenVolcabulary extends Component {
+export default class ScreenTips extends Component {
     render() {
         return(
             <View style={Styles.container}>
                 {/* Title section */}
                 <View style={Styles.titleContainer}>
-                    <ImageButton source={Res.icons.close} tintColor={Res.colors.blue}
-                        onPress={() =>  this.props.navigation.dispatch(NavigationActions.back())}/>
+                    <ImageButton source={Res.icons.back} tintColor={Res.colors.blue}
+                        onPress={() =>  this.props.navigation.navigate('ScreenHome')}/>
                     <Text style={Styles.title}>Từ vựng</Text>
                 </View>
                 <View style={Styles.line}/>
                 
-                <VocabulariesContainer/>
+                <TipContainer/>
             </View>
         )
     }

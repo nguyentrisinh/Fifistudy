@@ -13,7 +13,8 @@ export default class ScreenLevels extends Component {
             <View style={styles.container}>
                 {/* Title section */}
                 <View style={styles.titleContainer}>
-                    <ImageButton source={Res.icons.back} tintColor={Res.colors.blue}/>
+                    <ImageButton source={Res.icons.back} tintColor={Res.colors.blue}
+                        onPress={() => this.props.navigation.navigate('ScreenHome')}/>
                     <Text style={styles.title}>Độ khó</Text>
                 </View>
 

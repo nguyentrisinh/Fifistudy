@@ -7,8 +7,10 @@ const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     container: {
-        width: width - 32,
-        margin: 16,
+        marginLeft: 16,
+        marginRight: 16,
+        marginTop: 8,
+        marginBottom: 8,
         flexDirection: 'row',
         backgroundColor: Res.colors.background,
         borderTopRightRadius: 5,
@@ -17,8 +19,6 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     image: {
-        marginTop: 3,
-        marginRight: 3,
         marginLeft: 6,
         marginRight: 6,
         resizeMode: 'cover',
@@ -36,9 +36,11 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: Res.fonts.common,
         fontWeight: 'bold',
+        width: width*0.6,
         marginBottom: 6
     },
     content: {
+        width: width*0.6,
         fontFamily: Res.fonts.common,
     }
 });

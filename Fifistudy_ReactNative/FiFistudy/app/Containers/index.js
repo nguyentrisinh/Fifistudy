@@ -6,6 +6,7 @@ import TipContainer from './TipContainer.js';
 import ToolbarContainer from './ToolbarContainer.js';
 import MediaSubPlayerContainer from './MediaSubPlayerContainer.js';
 import EpisodeCommentContainer from './EpisodeCommentContainer.js';
+import VocabulariesContainer from './VocabulariesContainer.js';
 
 export {
     Notes,
@@ -15,5 +16,6 @@ export {
     TipContainer,
     ToolbarContainer,
     MediaSubPlayerContainer,
-    EpisodeCommentContainer
+    EpisodeCommentContainer,
+    VocabulariesContainer
 };

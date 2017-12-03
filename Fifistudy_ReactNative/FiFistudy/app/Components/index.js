@@ -16,6 +16,7 @@ import DrawerMenuItem from './DrawerMenuItem.js';
 import LevelCard from './LevelCard.js';
 import ToolBar from './ToolBar.js';
 import SubItem from './SubItem.js';
+import VocabularyItem from './VocabularyItem.js';
 
 
 export {
@@ -37,4 +38,5 @@ export {
     LevelCard,
     ToolBar,
     SubItem,
+    VocabularyItem
 }

@@ -7,33 +7,19 @@ import {
 } from 'react-native';
 import Res from '../Resources/index';
 import {ImageButton} from '../Components/index.js';
+import Styles from '../Styles/VocabularyItem.js';
 
 export default class VocabularyItem extends Component {
   render() {
+    const {data} = this.props;
     return(
-      <View style={{
-        flexDirection: 'row',
-        width: '80%',
-        borderTopLeftRadius: 6,
-        borderBottomLeftRadius: 6,
-        paddingTop: 8,
-        paddingBottom: 8,
-        paddingLeft: 16,
-        paddingRight: 8,
-        elevation: 6,
-        backgroundColor: Res.colors.violet
-      }}>
-        <View style={{
-            flex: 1,
-            alignItems: 'center',
-            marginLeft: 8
-        }}>
-            <Text style={{fontWeight: 'bold', marginBottom: 4}}>qriwyofu</Text>
-            <Text style={{fontFamily: Res.fonts.common}}>afhw;hwejwfyahdhfslk wjfw hsh fk l/ afjksd fjlsj el fskdf kkkkkkkkkkkkkfjw</Text>
+      <View style={[Styles.container, {backgroundColor: Res.colors.volcabularyColors[Math.floor(Math.random() * 4)]}]}>
+        <View style={Styles.contentContainer}>
+            <Text style={Styles.vocabulary}>{data.vocabulary}</Text>
+            <Text style={Styles.meaning}>{data.meaning}</Text>
         </View>
-        <View style={{top: 0, bottom: 0}}>
-            <ImageButton source={Res.icons.close} tintColor='white'/>
-        </View>
+        
+        <ImageButton source={Res.icons.close} tintColor='white' size={20}/>
       </View>
     );
   }

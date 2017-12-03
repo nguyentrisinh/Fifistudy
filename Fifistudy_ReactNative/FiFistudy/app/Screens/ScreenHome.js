@@ -26,6 +26,12 @@ export default class ScreenHome extends Component {
           };
     }
 
+    navigateToScreen(route){
+        this.setState({route: route});
+        let navigationAction = NavigationActions.navigate({routeName: route});
+        this.props.navigation.dispatch(navigationAction);
+    }
+
     componentWillMount() {
         this.setState({
             interval: setInterval(() => {
@@ -61,6 +67,7 @@ export default class ScreenHome extends Component {
                 <View 
                     style={Styles.bannerSlider}>
                     <ImageSlider
+                        navigation={this.props.navigation}
                         dataSource={Obj.sliderSource}
                         position={this.state.position}
                         onPostionChange={position => this.setState({position})}/>
@@ -75,7 +82,7 @@ export default class ScreenHome extends Component {
                     <Text style={Styles.subtitle}>Phim đã xem</Text>
                     <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}/>
                 </View>
-                <HistoryFilmsContainer/>
+                <HistoryFilmsContainer navigation={this.props.navigation}/>
 
                 {/* NEWEST FILMS */}
                 {/* Title */}
@@ -91,15 +98,16 @@ export default class ScreenHome extends Component {
                     <Text style={Styles.subtitle}>Xem nhiều</Text>
                     <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}/>
                 </View>
-                <FilmCardContainer/>
+                <FilmCardContainer navigation={this.props.navigation}/>
 
                 {/* TIPS */}
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>Tips</Text>
-                    <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}/>
+                    <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}
+                        onPress={() => this.navigateToScreen('ScreenTips')}/>
                 </View>
-                <TipContainer/>
+                <TipContainer navigation={this.props.navigation} numRender={4}/>
             </ScrollView>
         );
     }
