@@ -3,14 +3,14 @@ import {
   FlatList
 } from 'react-native';
 import TipItem from '../Components/TipItem.js';
-import Obj from '../Objects/ObjTemp.js';
+import Obj from '../Objects/ObjTips.js';
 
 
 export default class TipItemContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataSource: Obj.tips
+            dataSource: Obj
         }
     }
 
@@ -24,11 +24,10 @@ export default class TipItemContainer extends Component {
         return (
             <FlatList
             horizontal={false}
-            numColumns={2}
             scrollEnabled={false}
             showsVerticalScrollIndicator={false}
-            data={Obj.tips}
-            keyExtractor={ID => ID}
+            data={Obj}
+            keyExtractor={item => item.id}
             renderItem={({item}) => this.renderItem(item)}/>
         );
     }

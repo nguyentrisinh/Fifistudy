@@ -107,7 +107,7 @@ export default class ScreenHome extends Component {
                     <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}
                         onPress={() => this.navigateToScreen('ScreenTips')}/>
                 </View>
-                <TipContainer navigation={this.props.navigation}/>
+                <TipContainer navigation={this.props.navigation} numRender={4}/>
             </ScrollView>
         );
     }
