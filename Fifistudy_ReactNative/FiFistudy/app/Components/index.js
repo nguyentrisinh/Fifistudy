@@ -38,6 +38,6 @@ export {
     LevelCard,
     ToolBar,
     SubItem,
-    VocabularyItem
+    VocabularyItem,
     SearchFilm
 }

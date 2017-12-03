@@ -13,7 +13,7 @@ import {
     ScreenVocabulary,
     ScreenMovies,
     ScreenListFilm,
-    ScreenSearchFilm
+    ScreenSearchFilm,
     ScreenTips,
 } from '../Screens/index.js';
 
