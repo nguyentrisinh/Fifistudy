@@ -489,6 +489,7 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* FiFistudyTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
+				099613F7EC584079979487CA /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -513,6 +514,14 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		099613F7EC584079979487CA /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 

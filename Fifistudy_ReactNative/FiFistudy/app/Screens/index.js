@@ -9,6 +9,8 @@ import DrawerMenu from './DrawerMenu.js';
 import ScreenVocabulary from './ScreenVocabulary.js';
 import ScreenLevels from './ScreenLevels.js';
 import ScreenTips from './ScreenTips.js';
+import ScreenListFilm from './ScreenListFilm.js';
+import ScreenSearchFilm from './ScreenSearchFilm.js';
 
 export {
     ScreenNotes,
@@ -22,4 +24,6 @@ export {
     ScreenVocabulary,
     ScreenLevels,
     ScreenTips
+    ScreenListFilm,
+    ScreenSearchFilm
 }
