@@ -151,7 +151,7 @@ body {
   height: 65px;
   position: fixed;
   z-index: 99999999;
-  width: 100%;
+  min-width: 100%;
   top: 0;
   &__signup {
     color: white;
@@ -183,6 +183,7 @@ body {
       flex-grow: 1;
       font-size: 18px;
       font-weight: 400;
+      position: relative;
     }
     &--open {
       background-color: #cc3333;
@@ -369,15 +370,17 @@ body {
     flex-wrap: wrap;
   }
   &__item {
+    box-sizing: border-box;
+    border-left: solid 0.5px #0e151d;
+    display: block;
+    border-right: solid 0.5px #0e151d;
     width: 25%;
-    flex-grow: 1;
+    border-bottom: solid 0.5px #0e151d;
+    //flex-grow: 1;
   }
 }
 
 .film {
-  border-left: solid 0.5px $ColorBorder;
-  display: block;
-  border-right: solid 0.5px $ColorBorder;
   &__score {
     text-align: center;
   }
@@ -924,7 +927,7 @@ body {
   display: flex;
   flex-direction: row;
   &__level {
-    margin-top: 15px;
+    margin-top: 6px;
   }
   &__wrap-image {
     flex: 0 0 40%;
@@ -940,8 +943,12 @@ body {
     left: 0;
   }
   &__info {
+
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    padding: 20px;
+    padding: 8px 20px 0 20px;
+    justify-content: center;
   }
   &__eng-name {
     overflow: hidden;
@@ -1160,7 +1167,7 @@ body {
     font-size: 20px;
     color: $ColorTextGray;
     line-height: calc(28 / 20);
-    height: calc(20px * 5 * 28 / 20);
+    height: calc(20px * 6 * 28 / 20);
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
@@ -1169,8 +1176,8 @@ body {
     -moz-box-orient: vertical;
     -ms-box-orient: vertical;
     box-orient: vertical;
-    line-clamp: 5;
-    -webkit-line-clamp: 5;
+    line-clamp: 6;
+    -webkit-line-clamp: 6;
   }
 }
 
@@ -1182,6 +1189,11 @@ body {
     background-color: $ColorBackgroundDark;
     padding-top: 20px;
     padding-bottom: 40px;
+    &--loading{
+      text-align: center;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
   }
   &__wrap {
     background-color: $ColorBackgroundDark;
@@ -1353,12 +1365,6 @@ body {
   padding: 10px 5px;
   margin: 10px 5px;
   min-width: 100px;
-  &[disabled] {
-    background: $ColorDarkGray;
-  }
-  &__cancel {
-    background: $ColorLightGray;
-  }
   &:hover, &:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
     outline: none;
@@ -1368,6 +1374,17 @@ body {
       cursor: initial;
     }
   }
+  &[disabled] {
+    background: $ColorDarkGray;
+  }
+  &__cancel {
+    background: $ColorLightGray;
+    &:hover{
+      box-shadow: 0 0 0 2px white, 0 0 0 3px $ColorLightGray;
+      outline: none;
+    }
+  }
+
 }
 
 .user-page {
@@ -1592,6 +1609,7 @@ body {
     justify-content: flex-end;
   }
   &__icon {
+    color: white;
     padding: 5px 5px;
     font-size: 20px;
     font-weight: 100;
@@ -1608,6 +1626,30 @@ body {
   padding-right: 50px;
   display: flex;
   flex-direction: column;
+  &__btn{
+    color: white;
+    background-color: $ColorDarkRed;
+box-sizing: border-box;
+    min-width: 100px;
+    padding: 15px 20px;
+    text-align: center;
+    //min-height: 40px;
+    cursor: pointer;
+    display: inline-block;
+    align-self: flex-end;
+    justify-self: flex-end;
+    border-radius: 5px;
+
+    &:hover{
+      background-color: $ColorRed;
+      //border:solid 1px $ColorDarkRed;
+    }
+  }
+  &__err{
+    color: $ColorRed;
+    //margin-bottom: 10px;
+    margin:0;
+  }
   &__item {
     &--first-name {
       flex: 0 0 50%;
@@ -1628,6 +1670,9 @@ body {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
+    &--end{
+      justify-content: flex-end;
+    }
   }
 
 }
@@ -1665,6 +1710,40 @@ body {
 }
 .section-saved-film{
   &__item{
+    box-sizing: border-box;
     flex: 0 0 33.33%;
+    border:solid 0.5px $ColorBorder;
   }
+}
+
+.search-result{
+  transition: all 0.4s ease-in-out;
+  width: calc(100% - 40px);
+  position: absolute;
+  background-color: rgba($ColorBackgroundDark,0.95);
+  max-height: 60vh;
+  overflow: hidden;
+  &__more{
+
+    position: static;
+    //padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    padding: 15px 0;
+  }
+  //overflow: hidden;
+}
+
+.star-rating-container{
+  position: relative;
+  &__loading{
+    text-align: center;
+  }
+
+}
+
+.tooltip{
+  //position: absolute;
+  font-style: italic;
+  color: $ColorGray1;
 }

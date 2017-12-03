@@ -1,12 +1,23 @@
 import React from 'react';
 import Vocabulary from './Vocabulary'
 import {connect} from 'react-redux';
-import FlipMove from 'react-flip-move'
+import FlipMove from 'react-flip-move';
+import ModalEditVocabulary from './ModalEditVocabulary'
 
 class SectionVocabulary extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            isOpen: false,
+            data: null
+        };
+    }
+
+    toggleModal = (data) => {
+        this.setState({
+            isOpen: !this.state.isOpen,
+            data
+        })
     }
 
     renderVocabulary = () => {
@@ -14,7 +25,7 @@ class SectionVocabulary extends React.Component {
             return (
                 <div key={item.id} className="section-vocabulary__item">
 
-                    <Vocabulary data={item}/>
+                    <Vocabulary toggleModal={this.toggleModal} data={item}/>
 
                 </div>
 
@@ -33,6 +44,11 @@ class SectionVocabulary extends React.Component {
                         this.renderVocabulary()
                     }
                 </FlipMove>
+                {
+                    !!this.state.data ? <ModalEditVocabulary onClickOutside={this.toggleModal} data={this.state.data}
+                                                             isOpen={this.state.isOpen}/> : null
+                }
+
             </div>
 
         )

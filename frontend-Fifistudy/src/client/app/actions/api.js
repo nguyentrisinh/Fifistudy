@@ -1,6 +1,17 @@
-import {API_PATH} from '../constants/apiPath'
+import {API_PATH, MAX_PAGE, ORDER_BY} from '../constants/apiPath'
 import axios from '../config/axios'
 const tokenFormat = (token) => `Token ${token}`
+const makeConfig = (token, anotherConfig = null) => {
+    let config = {
+        headers: {
+            "Authorization": tokenFormat(token)
+        }
+    }
+    if (config) {
+        config = {...config, ...anotherConfig}
+    }
+    return config
+}
 
 export const postSignUpOne = (data) => {
     // data={
@@ -253,7 +264,84 @@ export const getUserSaveFilm = (token) => {
             return response.data
         })
         .catch(err => {
-            return err.response.data
+            return err.response
         })
+}
+
+export const putEditVocabulary = (userSaveVocabularyId, data, token) => {
+    return axios.put(API_PATH.putEditVocabulary(userSaveVocabularyId), data, makeConfig(token))
+        .then(response => {
+            return response.data
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+export const getSearch = (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE, token = null) => {
+    // debugger
+    if (token) {
+// debugger
+        return axios.get(API_PATH.getSearchWithAuth(searchKey, orderBy, pageNumber, pageSize), makeConfig(token))
+            .then(response => {
+                return response.data
+            })
+            .catch(err => {
+                return err.response
+            })
+    }
+    else {
+        return axios.get(API_PATH.getSearch(searchKey, orderBy, pageNumber, pageSize))
+            .then(response => {
+                return response.data
+            })
+            .catch(err => {
+                return err.response
+            })
+    }
+
+
+}
+
+export const postReviewFilm = (data, token) => {
+    return axios.post(API_PATH.postReviewFilm, data, makeConfig(token))
+        .then(response => {
+            return response.data
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+export const getReviewFilm = (filmId, token) => {
+    return axios.get(API_PATH.getReviewFilm(filmId), makeConfig(token))
+        .then(response => {
+            return response.data
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+
+export const getFilm = (slug, token = null) => {
+    // alert(token)
+    if (token) {
+        return axios.get(API_PATH.getFilmWithAuth(slug), makeConfig(token))
+            .then(response => {
+                return response.data
+            })
+            .catch(err => {
+                return err.response.data
+            })
+    }
+    else {
+        return axios.get(API_PATH.getFilm(slug))
+            .then(response => {
+                return response.data
+            })
+            .catch(err => {
+                return err.response.data
+            })
+    }
 }
 

@@ -22,7 +22,7 @@ class SectionDetailExtra extends React.Component {
                         <div className="detail-extra__title">
                             PHIM CÙNG CẤP ĐỘ
                         </div>
-                        <RelatedFilmContainer/>
+                        <RelatedFilmContainer data={this.props.data}/>
                     </div>
 
                 </div>

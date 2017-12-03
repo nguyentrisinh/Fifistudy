@@ -33,7 +33,7 @@ class SectionSavedFilm extends React.Component {
                     {
                         this.renderVocabulary()
                     }
-                    <div className="divider"></div>
+                    {/*<div className="divider"></div>*/}
                 </FlipMove>
             </div>
 

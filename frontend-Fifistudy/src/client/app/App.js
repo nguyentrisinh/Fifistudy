@@ -11,6 +11,7 @@ import FilmIntroContainer from './pages/FilmIntroContainer';
 import {connect} from 'react-redux';
 import SignUp from './pages/SignUp';
 import Userpage from './pages/UserPage'
+import ListPage from './pages/ListPageContainer'
 import App from './App'
 import {
     BrowserRouter as Router,
@@ -92,6 +93,7 @@ class AppContainer extends React.Component {
                             <Route exact path="/film/:slug" component={FilmIntroContainer}/>
                             <Route exact path="/signup" component={SignUp}/>
                             <Route exact path="/user" component={Userpage}/>
+                            <Route exact path="/:slugList" component={ListPage}/>
                         </Switch>
                     </TransitionGroup>
 

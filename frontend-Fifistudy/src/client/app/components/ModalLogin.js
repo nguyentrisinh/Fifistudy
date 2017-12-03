@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
  */
 import {postLogin} from '../actions/api';
 import {getUserInfo} from '../actions/app'
-import Modal from '../components/Modal';
+import Modal from './customComponents/Modal';
 import {doLogin} from '../actions/app'
 
 class ModalLogin extends React.Component {
@@ -29,8 +29,10 @@ class ModalLogin extends React.Component {
                 let date = new Date();
                 date = date.setDate(date.getDate() + 1);
                 date = new Date(date);
+                // debugger
                 cookies.set("token", res.data.data.token, {
-                    expires: date
+                    expires: date,
+                    path: "/"
                 });
                 this.props.getUserInfo(res.data.data.token);
                 this.props.doLogin(true);

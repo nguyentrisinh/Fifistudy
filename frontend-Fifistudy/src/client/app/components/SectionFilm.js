@@ -1,6 +1,7 @@
 import React from 'react';
 import Film from './Film';
 
+import FlipMove from 'react-flip-move'
 class SectionFilm extends React.Component {
     constructor(props) {
         super(props);
@@ -16,9 +17,10 @@ class SectionFilm extends React.Component {
                     }
                 </div>
                 <div className="divider"></div>
-                <div className="container section__body">
+                <FlipMove className="container section__body" enterAnimation="fade" leaveAnimation="fade">
+
                     {this.props.children}
-                </div>
+                </FlipMove>
                 <div className="divider"></div>
             </div>
         )

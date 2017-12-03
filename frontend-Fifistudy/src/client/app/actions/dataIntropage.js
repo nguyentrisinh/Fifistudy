@@ -1,27 +1,65 @@
 import * as Types from '../constants/dataIntropage';
 import axios from '../config/axios';
-import {API_PATH} from '../constants/apiPath'
+import {API_PATH} from '../constants/apiPath';
+import * as Api from '../actions/api'
 
-export function getFilm(slug) {
+export function getFilm(slug, token) {
     return function (dispatch) {
         dispatch({
             type: Types.GET_FILM,
             serverData: null,
             isLoading: true
         })
-        axios.get(API_PATH.getFilm(slug))
-            .then(response => {
-                dispatch({
-                    type: Types.GET_FILM,
-                    serverData: response.data,
-                    isLoading: false
-                })
-
+        // alert(token)
+        Api.getFilm(slug, token).then(res => {
+            dispatch({
+                type: Types.GET_FILM,
+                serverData: res,
+                isLoading: false
             })
-            .catch(err => console.log(err));
+        })
+
+        // axios.get(API_PATH.getFilm(slug))
+        //     .then(response => {
+        //         dispatch({
+        //             type: Types.GET_FILM,
+        //             serverData: response.data,
+        //             isLoading: false
+        //         })
+        //
+        //     })
+        //     .catch(err => console.log(err));
 
     }
 }
+
+
+export function updateFilm(slug, token) {
+    return function (dispatch) {
+        // alert(token)
+        Api.getFilm(slug, token).then(res => {
+            dispatch({
+                type: Types.GET_FILM,
+                serverData: res,
+                isLoading: false
+            })
+        })
+
+        // axios.get(API_PATH.getFilm(slug))
+        //     .then(response => {
+        //         dispatch({
+        //             type: Types.GET_FILM,
+        //             serverData: response.data,
+        //             isLoading: false
+        //         })
+        //
+        //     })
+        //     .catch(err => console.log(err));
+
+    }
+}
+
+
 export function getActorIntro(slug) {
     return function (dispatch) {
         dispatch({
@@ -106,6 +144,29 @@ export function getFilmByDifficult(difficultLevel) {
             })
             .catch(err => console.log(err));
 
+
+    }
+}
+
+export function getReviewFilm(filmId, token) {
+    return function (dispatch) {
+        dispatch(loadingReviewed())
+        Api.getReviewFilm(filmId, token).then(
+            res => {
+                dispatch({
+                    type: Types.IS_REVIEWED,
+                    serverData: res
+                })
+            }
+        )
+    }
+}
+
+export function loadingReviewed() {
+    return function (dispatch) {
+        dispatch({
+            type: Types.LOADING_REVIEWD
+        })
 
     }
 }

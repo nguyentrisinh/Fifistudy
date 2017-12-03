@@ -4,3 +4,13 @@ export const TOGGLE_MODAL_LOGIN = "TOGGLE_MODAL_LOGIN";
 
 export const DO_LOGIN = "DO_LOGIN";
 
+export const GET_SEARCH = "GET_SEARCH";
+
+export const RESET_SEARCH = "RESET_SEARCH";
+
+export const LOADING_SEARCH = "LOADING_SEARCH";
+
+export const UPDATE_SAVED_HOME = "UPDATE_SAVED_HOME";
+export const UPDATE_SAVED_LIST = "UPDATE_SAVED_LIST";
+export const UPDATE_SAVED_USER = "UPDATE_SAVED_USER";
+
