@@ -64,45 +64,32 @@ class ScreenMovies extends Component {
                     {/* Toolbar */}
                     {/* <ToolbarContainer/> */}
                     <View style={styles.toolbar}>
-
-                <View style={{flexDirection: 'row'}}>
-                    <ImageButton source={res.icons.rating} tintColor='white'/>
-                    <ImageButton source={res.icons.bookmark} tintColor='white'/>
-                    <ImageButton source={res.icons.favorite} tintColor='white'/>
-                </View>
-            </View>    
-                
-                <Image
-                    source={{uri: ObjFilm.thumbnail}}
-                    style={styles.image}>
-                    <LinearGradient
-                        colors={['rgba(0, 0, 0, 0.5)', 'transparent']}
-                        locations={[0.3, 1]}
-                        style={styles.imgGradient}>
-                    </LinearGradient>
-                    <LinearGradient
-                        colors={['transparent', res.colors.background]}
-                        locations={[0.7, 1]}
-                        style={styles.imgGradient}>
-                    </LinearGradient>
-                </Image>
                         <ImageButton
-                            source={res.icons.back}
-                            tintColor='white'
-                            onPress={() => this.props.navigation.navigate('ScreenHome')} />
-
-                        <View style={{ flexDirection: 'row' }}>
-                            <ImageButton source={res.icons.rating} tintColor='white' />
-                            <ImageButton source={res.icons.bookmark} tintColor='white' />
-                            <ImageButton source={res.icons.favorite} tintColor='white' />
+                                source={res.icons.back}
+                                tintColor='white'
+                                onPress={() => this.props.navigation.navigate('ScreenHome')} />
+                        <View style={{flexDirection: 'row'}}>
+                            <ImageButton source={res.icons.rating} tintColor='white'/>
+                            <ImageButton source={res.icons.bookmark} tintColor='white'/>
+                            <ImageButton source={res.icons.favorite} tintColor='white'/>
                         </View>
-                    </View>
-
+                    </View>    
+                
                     <Image
-                        source={{ uri: ObjFilm.thumbnail }}
+                        source={{uri: ObjFilm.thumbnail}}
                         style={styles.image}>
+                        <LinearGradient
+                            colors={['rgba(0, 0, 0, 0.5)', 'transparent']}
+                            locations={[0.3, 1]}
+                            style={styles.imgGradient}>
+                        </LinearGradient>
+                        <LinearGradient
+                            colors={['transparent', res.colors.background]}
+                            locations={[0.7, 1]}
+                            style={styles.imgGradient}>
+                        </LinearGradient>
                     </Image>
-
+                    
                     <View style={styles.tabContainer}>
                         <TabMovies />
                     </View>

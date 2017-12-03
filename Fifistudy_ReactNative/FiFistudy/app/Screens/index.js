@@ -23,7 +23,7 @@ export {
     DrawerMenu,
     ScreenVocabulary,
     ScreenLevels,
-    ScreenTips
+    ScreenTips,
     ScreenListFilm,
     ScreenSearchFilm
 }

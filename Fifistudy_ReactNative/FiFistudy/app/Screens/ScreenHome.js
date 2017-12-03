@@ -97,7 +97,7 @@ export default class ScreenHome extends Component {
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>Tips</Text>
-                    <ImageButton source={Res.icons.moreArrow} tintColor={Res.colors.blue}
+                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue}
                         onPress={() => this.navigateToScreen('ScreenTips')}/>
                 </View>
                 <TipContainer navigation={this.props.navigation} numRender={4}/>

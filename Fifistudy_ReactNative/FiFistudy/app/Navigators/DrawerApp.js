@@ -3,9 +3,6 @@ import { DrawerNavigator } from 'react-navigation';
 import {
     ScreenNotes,
     ScreenHome,
-    DrawerMenu,
-
-
     ScreenLevels,
     ScreenWatchMovie,
     ScreenEpisodeComment,
@@ -13,8 +10,9 @@ import {
     ScreenVocabulary,
     ScreenMovies,
     ScreenListFilm,
-    ScreenSearchFilm
+    ScreenSearchFilm,
     ScreenTips,
+    DrawerMenu,
 } from '../Screens/index.js';
 
 import PopupListEpisode from '../Components/PopupListEpisode.js';
@@ -27,10 +25,10 @@ const DrawerApp = DrawerNavigator({
     ScreenEpisodeComment: {screen: ScreenEpisodeComment},
     ScreenMovieComment: {screen: ScreenMovieComment},
     ScreenVocabulary: {screen: ScreenVocabulary},
-    ScreenSearchFilm: { screen: ScreenSearchFilm },
-    ScreenListFilm: { screen: ScreenListFilm },
     PopupListEmpisode: { screen: PopupListEpisode },
     ScreenMovies: { screen: ScreenMovies },
+    ScreenSearchFilm: { screen: ScreenSearchFilm },
+    ScreenListFilm: { screen: ScreenListFilm },
     ScreenTips: {screen: ScreenTips},
     
 }, {

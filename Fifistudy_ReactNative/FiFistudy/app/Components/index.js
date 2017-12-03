@@ -14,10 +14,10 @@ import ListSub from './ListSub.js';
 import MediaPlayer from './MediaPlayer.js';
 import DrawerMenuItem from './DrawerMenuItem.js';
 import LevelCard from './LevelCard.js';
-import SearchFilm from './SearchFilm.js';
 import ToolBar from './ToolBar.js';
 import SubItem from './SubItem.js';
 import VocabularyItem from './VocabularyItem.js';
+import SearchFilm from './SearchFilm.js';
 
 export {
     DailyNoteItem,
@@ -38,6 +38,6 @@ export {
     LevelCard,
     ToolBar,
     SubItem,
-    VocabularyItem
+    VocabularyItem,
     SearchFilm
 }
