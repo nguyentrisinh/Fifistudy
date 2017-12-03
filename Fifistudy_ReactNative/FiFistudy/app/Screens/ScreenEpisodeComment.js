@@ -8,6 +8,7 @@ import {
     ScrollView,
     TextInput,
 } from 'react-native';
+import {NavigationActions} from 'react-navigation';
 import { ImageButton, } from '../Components/index.js';
 import {EpisodeCommentContainer} from '../Containers/index.js';
 import Resources from '../Resources/index.js';
@@ -20,7 +21,7 @@ export default class ScreenComment extends Component {
                 {/* Title section */}
                 <View style={Styles.toolbarContainer}>
                     <ImageButton source={Resources.icons.close} tintColor={Resources.colors.blue}
-                            onPress={() => this.props.navigation.navigate('ScreenWatchMovie')}/>
+                            onPress={() => this.props.navigation.dispatch(NavigationActions.back())}/>
 
                     <Text style={Styles.title}>
                         Bình luận</Text>

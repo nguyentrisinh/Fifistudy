@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     View,
     FlatList,
-    Image
+    Image,
+    TouchableWithoutFeedback
 } from 'react-native';
 import styles from '../Styles/HistoryFilmsContainer.js';
 import Obj from '../Objects/ObjTemp.js';
@@ -17,7 +18,9 @@ class HistoryFilmsContainer extends Component {
 
     renderItem(item) {
         return (
-            <Image source={{uri: item.url}} style={styles.historyFilmImg}/>
+            <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('ScreenMovies')}>
+                <Image source={{uri: item.url}} style={styles.historyFilmImg}/>
+            </TouchableWithoutFeedback>
         );
     }
 

@@ -9,6 +9,7 @@ import {
     ScreenMovieComment,
     ScreenVocabulary,
     ScreenMovies,
+    ScreenTips,
     DrawerMenu,
 } from '../Screens/index.js';
 
@@ -22,11 +23,12 @@ const DrawerApp = DrawerNavigator({
     ScreenMovieComment: {screen: ScreenMovieComment},
     ScreenVocabulary: {screen: ScreenVocabulary},
     ScreenMovies: { screen: ScreenMovies },
+    ScreenTips: {screen: ScreenTips},
     
 }, {
     headerMode: 'none',
     // initialRouteName: 'ScreenHome',
-    initialRouteName: 'ScreenVocabulary',
+    initialRouteName: 'ScreenHome',
     contentComponent: DrawerMenu,
 });
 
