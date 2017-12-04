@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 36,
         top: width * Res.ratio - 85,
-        elevation: 6
     },
     buttonFloat: {
         resizeMode: 'cover',

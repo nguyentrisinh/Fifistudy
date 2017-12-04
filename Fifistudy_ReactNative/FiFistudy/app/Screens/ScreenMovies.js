@@ -114,11 +114,13 @@ class ScreenMovies extends Component {
                     <Image source={res.icons.floatingBtn}
                            style={styles.buttonFloat}/>
                 </TouchableOpacity>
-                 <PopupDialog width={windows.width * (2 / 3)}
-                     dialogTitle={<DialogTitle title="Danh sách các tập" />}
-                     ref={(popupDialog) => { this.popupDialog = popupDialog }}
-                     dialogAnimation={slideAnimation}
-                     overlayOpacity={0.5}>
+                
+                 <PopupDialog 
+                    width={windows.width * (2 / 3)}
+                    dialogTitle={<DialogTitle title="Danh sách các tập" />}
+                    ref={(popupDialog) => { this.popupDialog = popupDialog }}
+                    dialogAnimation={slideAnimation}
+                    overlayOpacity={0.5}>
                      {/* --- Component popup show --- */}
                      <FlatList
                          data={this.state.ds}
