@@ -1,6 +1,6 @@
 import React from 'react';
 import onClickOutside from 'react-onclickoutside';
-import Input from '../components/Input'
+import Input from '../Input'
 class ModalContent extends React.Component {
     handleClickOutside = () => {
         this.props.onClickOutside();

@@ -3,6 +3,7 @@ import SliderBannerContainer from '../containers/SliderBannerContainer';
 import Intro from '../components/Intro';
 import Section from '../components/SectionFilm'
 import FadeTransition from '../components/FadeTransition';
+import $ from 'jquery';
 import SectionBlog from '../components/SectionBlog'
 import Footer from '../components/Footer';
 import Film from '../components/Film'
@@ -11,12 +12,14 @@ import LatestContainer from '../containers/LatestContainer'
 import {connect} from 'react-redux';
 import {getPromotes, getLastest, getMostView} from '../actions/dataHomepage';
 import {withCookies} from 'react-cookie';
+import StarRating from '../components/StarRating'
 
 import {Scrollbars} from 'react-custom-scrollbars';
 
 class Index extends React.Component {
     componentWillMount = () => {
-        this.initPage()
+        this.initPage();
+
     }
 
     initPage = () => {
@@ -61,6 +64,8 @@ class Index extends React.Component {
                         autoHeightMin="100%"
                         autoHeightMax="100%"
                     >
+
+
                         <SliderBannerContainer/>
                         <Intro/>
                         <MostViewContainer/>

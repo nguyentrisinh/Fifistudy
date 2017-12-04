@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     View,
     Text,
@@ -7,12 +7,12 @@ import {
     TouchableOpacity
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import PopupDialog, { SlideAnimation, DialogTitle } from 'react-native-popup-dialog';
+import PopupDialog, {SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 import styles from '../Styles/ScreenMovies.js';
 import res from '../Resources/index.js';
 import TabMovies from '../Navigators/TabMovies.js';
-import { ImageButton } from '../Components/index.js';
-import { ToolbarContainer } from '../Containers/index.js';
+import {ImageButton} from '../Components/index.js';
+import {ToolbarContainer} from '../Containers/index.js';
 import ObjFilm from '../Objects/ObjFilm.js';
 import stylesPopup from '../Styles/PopupListEpisode.js';
 import windows from '../Themes/Window.js';
@@ -29,6 +29,7 @@ class ScreenMovies extends Component {
             ds: lsEpisodes
         }
     }
+
     renderItemEpisode(item) {
         return (
             <View style={stylesPopup.itemEpisode}>
@@ -40,26 +41,30 @@ class ScreenMovies extends Component {
             </View>
         )
     }
+
     renderPopup() {
         return (
             <PopupDialog
                 width={windows.width * (2 / 3)}
-                dialogTitle={<DialogTitle title="Danh sách các tập" />}
-                ref={(popupDialog) => { this.popupDialog = popupDialog }}
+                dialogTitle={<DialogTitle title="Danh sách các tập"/>}
+                ref={(popupDialog) => {
+                    this.popupDialog = popupDialog
+                }}
                 dialogAnimation={slideAnimation}
                 overlayOpacity={0.5}>
                 {/* --- Component popup show --- */}
                 <FlatList
                     data={this.state.ds}
-                    renderItem={({ item }) => this.renderItemEpisode(item)}
+                    renderItem={({item}) => this.renderItemEpisode(item)}
                 >
                 </FlatList>
             </PopupDialog>
         )
     }
+
     render() {
         return (
-            <View style={{ flex: 1 }}>
+            <View style={{flex: 1}}>
                 <View style={styles.container}>
                     {/* Toolbar */}
                     {/* <ToolbarContainer/> */}
@@ -93,28 +98,37 @@ class ScreenMovies extends Component {
                     <View style={styles.tabContainer}>
                         <TabMovies />
                     </View>
-
-                    <TouchableOpacity style={styles.buttonFloatContainer}
-                        onPress={() => this.popupDialog.show()}>
-                        <Image source={res.icons.floatingBtn}
-                            style={styles.buttonFloat} />
-                    </TouchableOpacity>
                 </View>
-                    <PopupDialog
-                        width={windows.width * (2 / 3)}
-                        dialogTitle={<DialogTitle title="Danh sách các tập" />}
-                        ref={(popupDialog) => { this.popupDialog = popupDialog }}
-                        dialogAnimation={slideAnimation}
-                        overlayOpacity={0.5}>
-                        {/* --- Component popup show --- */}
-                        <FlatList
-                            data={this.state.ds}
-                            renderItem={({ item }) => this.renderItemEpisode(item)}
-                        >
-                        </FlatList>
-                    </PopupDialog>
 
+                <Image
+                    source={{uri: ObjFilm.thumbnail}}
+                    style={styles.image}>
+                </Image>
+
+                <View style={styles.tabContainer}>
+                    <TabMovies />
+                </View>
+
+                <TouchableOpacity style={styles.buttonFloatContainer}
+                                  onPress={() => this.popupDialog.show()}>
+                    <Image source={res.icons.floatingBtn}
+                           style={styles.buttonFloat}/>
+                </TouchableOpacity>
+                 <PopupDialog width={windows.width * (2 / 3)}
+                     dialogTitle={<DialogTitle title="Danh sách các tập" />}
+                     ref={(popupDialog) => { this.popupDialog = popupDialog }}
+                     dialogAnimation={slideAnimation}
+                     overlayOpacity={0.5}>
+                     {/* --- Component popup show --- */}
+                     <FlatList
+                         data={this.state.ds}
+                         renderItem={({ item }) => this.renderItemEpisode(item)}
+                     >
+                     </FlatList>
+                 </PopupDialog>
             </View>
+
+
         )
     }
 }

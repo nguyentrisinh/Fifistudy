@@ -4,13 +4,16 @@ import {deleteVocabulary} from '../actions/api';
 import {getVocabulary} from '../actions/dataUserpage';
 import {connect} from 'react-redux';
 import {withCookies} from 'react-cookie';
+import {Link} from 'react-router-dom';
 
 
 class Vocabulary extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
-    }
+
+
+    };
+
 
     onClickDelete = () => {
         let {vocabulary, episode, film} = this.props.data;
@@ -24,6 +27,10 @@ class Vocabulary extends React.Component {
                 alert("Xóa thất bại")
             }
         })
+    }
+
+    onClickEdit = () => {
+        this.props.toggleModal(this.props.data);
     }
 
     render() {
@@ -46,8 +53,12 @@ class Vocabulary extends React.Component {
                     </div>
                 </div>
                 <div className="vocabulary__control">
-                    <i className="material-icons vocabulary__icon">ondemand_video</i>
-                    <i className="material-icons vocabulary__icon">edit</i>
+                    <Link to={{
+                        pathname: `/film/${film.slug}/${episode.number}`,
+                        myParams: {ahihi: "ahihi"},
+                        state: {currentTime: this.props.data.current_time}
+                    }} className="material-icons vocabulary__icon">ondemand_video</Link>
+                    <i onClick={this.onClickEdit} className="material-icons vocabulary__icon">edit</i>
                     <i onClick={this.onClickDelete} className="material-icons vocabulary__icon">
                         delete
                     </i>

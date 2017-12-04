@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {getPromotes} from '../Redux/actions/screenHome'
 import {
     Text,
     Image,
@@ -7,6 +8,8 @@ import {
     TextInput,
     TouchableOpacity,
 } from 'react-native';
+import {bindAc} from 'redux';
+import {connect} from 'react-redux';
 import Styles from '../Styles/ScreenHome';
 import res from '../Resources/index';
 import { ImageButton, ImageSlider } from '../Components/index.js';
@@ -18,7 +21,7 @@ import {
 import Obj from '../Objects/ObjTemp.js';
 import { SearchFilm } from '../Components/index.js';
 
-export default class ScreenHome extends Component {
+ class ScreenHome extends Component {
     constructor(props) {
         super(props);
 
@@ -35,6 +38,7 @@ export default class ScreenHome extends Component {
     }
 
     componentWillMount() {
+        this.props.getPromotes();
         this.setState({
             interval: setInterval(() => {
                 this.setState({
@@ -49,6 +53,7 @@ export default class ScreenHome extends Component {
     }
 
     render() {
+        console.log(this.props,"propssssss");
         return (
             <ScrollView
                 contentContainerStyle={Styles.container}
@@ -72,7 +77,12 @@ export default class ScreenHome extends Component {
                 {/* SECTION HISTORY SLIDER */}
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
-                    <Text style={Styles.subtitle}>Phim đã xem</Text>
+                    <Text style={Styles.subtitle}>
+                        Phim đã xem
+                        {
+                            this.props.name
+                        }
+                    </Text>
                     <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue} />
                 </View>
                 <HistoryFilmsContainer navigation={this.props.navigation}/>
@@ -106,5 +116,17 @@ export default class ScreenHome extends Component {
     }
 
 }
+
+const mapStateToProps = state =>    {
+    return {
+        promotes:state.screenHome.promotes
+    }
+}
+
+const dispatchActionsCreator = {
+     getPromotes
+}
+
+export default connect(mapStateToProps,dispatchActionsCreator)(ScreenHome)
 
 

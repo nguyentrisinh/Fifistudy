@@ -1,5 +1,7 @@
-import * as Types from '../constants/dataHomepage'
-import update from 'react-addons-update'
+import * as Types from '../constants/dataHomepage';
+import * as TypesApp from '../constants/app'
+import update from 'react-addons-update';
+import {makeNewDataSaveFilm} from '../actions/help'
 
 const initialState = {
     promotes: null,
@@ -9,6 +11,23 @@ const initialState = {
 
 export default function dataHomepage(state = initialState, action) {
     switch (action.type) {
+        case TypesApp.UPDATE_SAVED_HOME:
+            let newStateMostView = state.mostView;
+            if (newStateMostView) {
+                let newDataMostView = makeNewDataSaveFilm(action.filmId, state.mostView.data);
+
+                newStateMostView = update(state.mostView, {$merge: {data: newDataMostView}})
+            }
+
+            let newStateLastest = state.mostLastest;
+            if (newStateLastest) {
+                let newDataLastest = makeNewDataSaveFilm(action.filmId, state.mostLastest.data);
+                newStateLastest = update(state.mostView, {$merge: {data: newDataLastest}})
+            }
+            return Object.assign({}, state, {
+                mostView: newStateMostView,
+                mostLastest: newStateLastest
+            })
         case Types.GET_PROMOTE:
             return Object.assign({}, state, {
                 promotes: action.serverData

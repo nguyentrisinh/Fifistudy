@@ -1,14 +1,25 @@
 import React from 'react';
 import Actor from './Actor'
 import Slider from 'react-slick';
+import {withCookies} from 'react-cookie';
 import {connect} from 'react-redux';
 import ListActor from './ListActor'
 import SectionRelatedFilm from './SectionRelatedFilm';
+import {getFilmByDifficult} from '../actions/dataIntropage'
 
 class RelatedFilmContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+    }
+    componentWillMount = () => {
+        this.props.getFilmByDifficult(this.props.data.difficult_level);
+    }
+
+    componentWillReceiveProps = (nextProps) =>{
+        if (nextProps.data.difficult_level!==this.props.data.difficult_level){
+            this.props.getFilmByDifficult(nextProps.data.difficult_level);
+        }
     }
 
     renderContent = () => {
@@ -53,4 +64,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(RelatedFilmContainer)
+export default connect(mapStateToProps,{getFilmByDifficult})(withCookies(RelatedFilmContainer))

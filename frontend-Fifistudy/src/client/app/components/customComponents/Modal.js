@@ -1,6 +1,7 @@
 import React from 'react';
 import InitialModal from 'react-modal';
-import ModalContent from './ModalContent'
+import ModalContent from './ModalContent';
+import PropTypes from 'prop-types';
 
 export default class Modal extends React.Component {
     constructor(props) {
@@ -54,4 +55,9 @@ export default class Modal extends React.Component {
             </InitialModal>
         )
     }
+}
+
+Modal.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onClickOutside: PropTypes.func.isRequired
 }

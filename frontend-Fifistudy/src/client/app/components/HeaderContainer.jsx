@@ -7,6 +7,7 @@ import {
     Route,
     Link
 } from 'react-router-dom';
+import SearchContainer from './SearchContainer'
 import {toggleModalLogin} from '../actions/app'
 import ReactImageFallback from "react-image-fallback";
 import classNames from 'classnames';
@@ -42,7 +43,7 @@ class Header extends React.Component {
 
             getLogout(token).then(res => {
                 if (res.data.errors == null) {
-                    cookies.remove("token");
+                    cookies.remove("token", {path: "/"});
                     window.location.reload();
                 }
             })
@@ -110,7 +111,7 @@ class Header extends React.Component {
     render() {
         return (
             <div className="header">
-                <div className="container header__container">
+                <div className=" container header__container">
                     <Link to="/" className="header__item">
                         <Logo/>
                     </Link>
@@ -122,17 +123,17 @@ class Header extends React.Component {
                         <Menu data={[
                             {
                                 name: "Phim mới nhất",
-                                link: "/",
+                                link: "/lastest",
                                 onClick: null,
                             },
                             {
                                 name: "Phim mới được quan tâm nhiều",
-                                link: "/",
+                                link: "/much-interest",
                                 onClick: null,
                             },
                             {
                                 name: "Phim được xem nhiều",
-                                link: "/",
+                                link: "/high-rating",
                                 onClick: null,
                             }
                         ]} closeMenu={this.closeMenu}
@@ -164,10 +165,8 @@ class Header extends React.Component {
                               outsideClickIgnoreClass="header__item--has-children"
                               isOpen={this.state.open === "blog"}/>
                     </div>
-                    <div className="header__item header__item--search">
-                        <input className="header__search" type="text" placeholder="search"/>
+                    <SearchContainer/>
 
-                    </div>
                     {this.renderAccountSection()}
                 </div>
             </div>

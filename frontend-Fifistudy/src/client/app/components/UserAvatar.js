@@ -1,10 +1,53 @@
 import React from 'react';
-import {serverDomain} from '../config/server'
+import {serverDomain} from '../config/server';
+import {withCookies} from 'react-cookie';
+import {postUpdateAvatar} from '../actions/api';
+import {getUserInfo} from '../actions/app';
+import {connect} from 'react-redux';
 
-export default class UserAvatar extends React.Component {
+class UserAvatar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+    }
+
+    onChange = e => {
+        // alert('change')
+        // alert('cahange')
+        var file = e.target.files[0];
+        if (!file) {
+            return;
+        }
+        // alert('hi')
+        let {cookies} = this.props;
+        let token = cookies.get("token")
+        let data = new FormData();
+        data.append("avatar", file);
+        let headers = {headers: {Authorization: `Token ${token}`}}
+        // debugger
+        postUpdateAvatar(data, headers)
+            .then(res => {
+                if (res.data.errors) {
+                    // let errors = res.data.errors.map(item => {
+                    //     return SERVER_ERRORS[item.errorCode]
+                    // });
+                    alert(SERVER_ERRORS[res.data.errors[0].errorCode])
+                    // this.setState({
+                    //     serverErrors: errors,
+                    //     disableNextFour: true,
+                    // })
+                }
+                else {
+                    // Thanh cong
+                    alert('Upload Thành công');
+                    this.props.getUserInfo(token);
+                    // this.setState({
+                    //     disableNextFour: false,
+                    //     serverErrors: [],
+                    // })
+                    // this.animateNext(el);
+                }
+            })
     }
 
     render() {
@@ -16,7 +59,7 @@ export default class UserAvatar extends React.Component {
                     <label className="user-avatar__edit" htmlFor="avatar">
                         <i className="fa fa-plus-circle user-avatar__icon"></i>
                     </label>
-                    <input id="avatar" type="file" hidden={true}/>
+                    <input onChange={this.onChange} id="avatar" type="file" hidden={true}/>
 
                 </div>
                 <div className="user-avatar__name">
@@ -26,3 +69,5 @@ export default class UserAvatar extends React.Component {
         )
     }
 }
+
+export default connect(null, {getUserInfo})(withCookies(UserAvatar))

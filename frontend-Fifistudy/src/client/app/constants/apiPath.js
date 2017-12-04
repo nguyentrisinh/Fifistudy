@@ -1,3 +1,19 @@
+export const MAX_PAGE = 5
+
+export const MAX_PAGE_LIST = 4
+
+export const ORDER_BY = {
+    updateAtIncrease: 'updated_at',
+    updateAtReduce: '-updated_at',
+    saveNumberIncrease: 'save_number',
+    saveNumberReduce: '-save_number',
+    createdAtIncrease: 'created_at',
+    createdAtReduce: '-created_at',
+    averageScoreIncrease: 'average_score',
+    averageScoreReduce: '-average_score',
+    reviewNumberIncrease: 'review_number',
+    reviewNumberReduce: '-review_number'
+}
 export const API_PATH = {
     getPromote: `/api/promotes/get_all/`,
     getLastest: `/api/films/get_all_order_by_updated/`,
@@ -8,6 +24,9 @@ export const API_PATH = {
 
     getFilm: (slug) => {
         return `/api/films/detail/slug/?film_slug=${slug}`
+    },
+    getFilmWithAuth: (slug) => {
+        return `/api/films/detail_with_auth/slug/?film_slug=${slug}`
     },
     getEpisode: (filmSlug, episodeId) => {
         return `/api/episodes/detail/?film_slug=${filmSlug}&episode_number=${episodeId}`
@@ -34,7 +53,13 @@ export const API_PATH = {
     getFilmByDifficult: (difficultLevel) => `/api/films/get_list_by_difficult_level/${difficultLevel}`,
     postSaveVocabulary: `/api/vocabularies/save_vocabulary/`,
     getVocabulary: `/api/vocabularies/list_vocabulary/`,
-    deleteVocabulary: (vocabularyId) => `/api/vocabularies/delete_vocabulary/${vocabularyId}/`
+    deleteVocabulary: (vocabularyId) => `/api/vocabularies/delete_vocabulary/${vocabularyId}/`,
+    putEditVocabulary: (userSaveVocabularyId) => `/api/vocabularies/update_vocabulary/${userSaveVocabularyId}/`,
+    getSearch: (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE) => `/api/films/search_film_by_key/?search_key=${searchKey}&order_by=${orderBy}&page_size=${pageSize}&page=${pageNumber}`,
+    getSearchWithAuth: (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE) => `/api/films/search_film_by_key_with_auth/?search_key=${searchKey}&order_by=${orderBy}&page_size=${pageSize}&page=${pageNumber}`,
+    postReviewFilm: `/api/reviews/save/`,
+    getReviewFilm: (filmId) => `/api/reviews/film/${filmId}/`
+
 }
 
 // slug/?film_slug=<slug></slug>

@@ -3,6 +3,7 @@ import Level from './Level'
 import {serverDomain} from '../config/server';
 import Star from '../components/Star';
 import {Link} from 'react-router-dom'
+import PropTypes from 'prop-types';
 
 class Film1 extends React.Component {
     constructor(props) {
@@ -25,12 +26,25 @@ class Film1 extends React.Component {
                         {data.vietnamese_name}
                     </div>
                     <div className="related-film__level">
-                        <Star score={data.average_score}></Star>
+                        <Level level={data.difficult_level}/>
                     </div>
+                    <div className="related-film__level">
+                        <Star score={data.average_score}/>
+                    </div>
+
+
                 </div>
             </Link>
         )
     }
+}
+
+Film1.propTypes = {
+    isLevel: PropTypes.bool
+}
+
+Film1.defaultProps = {
+    isLevel: false
 }
 
 export default Film1

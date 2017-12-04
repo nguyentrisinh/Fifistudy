@@ -9,7 +9,7 @@ import SectionSavedFilmContainer from '../components/SectionSavedFilmContainer';
 import SectionVocabularyContainer from '../components/SectionVocabularyContainer'
 import _ from 'lodash';
 import {connect} from 'react-redux';
-import SectionUserInfo from '../components/SectionUserInfo';
+import SectionUserInfoContainer from '../components/SectionUserInfoContainer';
 
 
 class UserPage extends React.Component {
@@ -70,7 +70,7 @@ class UserPage extends React.Component {
                                 <ScrollBar>
                                     <div className="user-page__content">
                                         <TabPanel>
-                                            <SectionUserInfo/>
+                                            <SectionUserInfoContainer/>
                                         </TabPanel>
                                         <TabPanel>
                                             <SectionSavedFilmContainer/>

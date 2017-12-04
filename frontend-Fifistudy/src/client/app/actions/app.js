@@ -1,6 +1,7 @@
 import * as Types from '../constants/app';
 import axios from '../config/axios';
-import * as Api from '../actions/api'
+import * as Api from '../actions/api';
+import {MAX_PAGE} from '../constants/apiPath'
 
 
 export const getUserInfo = (token) => {
@@ -40,3 +41,59 @@ export const doLogin = (isLogin) => {
     }
 
 }
+
+export const getSearch = (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE, token = null) => {
+    return function (dispatch) {
+        dispatch(loadingSearch());
+        Api.getSearch(searchKey, orderBy, pageNumber, pageSize, token).then(res => {
+            dispatch({
+                type: Types.GET_SEARCH,
+                serverData: res
+            })
+
+        })
+    }
+
+}
+
+export const resetSearch = () => {
+    return function (dispatch) {
+        dispatch({
+            type: Types.RESET_SEARCH
+        })
+    }
+}
+
+export const loadingSearch = () => {
+    return function (dispatch) {
+        dispatch({
+            type: Types.LOADING_SEARCH
+        })
+    }
+}
+
+
+export const updateSaved = (filmId) => {
+    // debugger
+    // Vao reducer phai check null truoc, ham make thi chac chan oldData phai la mang
+    return function (dispatch) {
+        dispatch({
+            type: Types.UPDATE_SAVED_HOME,
+            filmId
+        })
+        dispatch({
+            type: Types.UPDATE_SAVED_LIST,
+            filmId
+        })
+    }
+}
+
+export const unSavedFilm = (filmId) => {
+    return function (dispatch) {
+        dispatch({
+            type: Types.UPDATE_SAVED_USER,
+            filmId
+        })
+    }
+}
+

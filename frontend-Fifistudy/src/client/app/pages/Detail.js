@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router'
 
 import FadeTransition from '../components/FadeTransition'
 import film1 from '../../static/images/HowIMetUrMother.jpg'
@@ -46,7 +47,7 @@ class Detail extends React.Component {
                         <FilmTitle enName={filmDetail.english_name} viName={filmDetail.vietnamese_name}/>
                         <VideoFilm data={episode}/>
                         <Episode data={filmDetail}/>
-                        <SectionDetailExtra/>
+                        <SectionDetailExtra data={filmDetail}/>
 
                         <Footer/>
                     </Scrollbars>
