@@ -13,6 +13,7 @@ import {
     ScreenSearchFilm,
     ScreenTips,
     DrawerMenu,
+    FullScreenWatch,
 } from '../Screens/index.js';
 
 import PopupListEpisode from '../Components/PopupListEpisode.js';
@@ -30,10 +31,9 @@ const DrawerApp = DrawerNavigator({
     ScreenSearchFilm: { screen: ScreenSearchFilm },
     ScreenListFilm: { screen: ScreenListFilm },
     ScreenTips: {screen: ScreenTips},
-    
+    FullScreenWatch: {screen: FullScreenWatch}
 }, {
         headerMode: 'none',
-        //initialRouteName: 'ScreenHome',
         initialRouteName: 'ScreenHome',
         contentComponent: DrawerMenu,
     });
