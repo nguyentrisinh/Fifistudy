@@ -59,7 +59,7 @@ class ScreenHome extends Component {
             <ScrollView
                 contentContainerStyle={Styles.container}
                 showsVerticalScrollIndicator={false}>
-                <StatusBar hidden />
+                {/* <StatusBar hidden /> */}
                 {/* TOOLBAR SECCTION */}
                 {/* <SearchFilm navigation={this.props.navigation} /> */}
                 <View style={Styles.toolbar}>

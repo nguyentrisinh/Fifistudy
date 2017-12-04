@@ -34,7 +34,7 @@ const DrawerApp = DrawerNavigator({
 }, {
         headerMode: 'none',
         //initialRouteName: 'ScreenHome',
-        initialRouteName: 'ScreenMovies',
+        initialRouteName: 'ScreenHome',
         contentComponent: DrawerMenu,
     });
 
