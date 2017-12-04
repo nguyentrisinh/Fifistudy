@@ -26,6 +26,7 @@ class CommentContainer extends Component {
         return (
             <View style={styles.container}>
                 <FlatList
+                    showsVerticalScrollIndicator={false}
                     data={this.state.dataSource}
                     keyExtractor={item => item.id}
                     renderItem={({ item }) => this.renderCommentItem(item)}
