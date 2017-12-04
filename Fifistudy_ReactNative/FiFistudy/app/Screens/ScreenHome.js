@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {getPromotes} from '../Redux/actions/screenHome'
+import { getPromotes } from '../Redux/actions/screenHome'
 import {
     Text,
     Image,
@@ -7,9 +7,10 @@ import {
     ScrollView,
     TextInput,
     TouchableOpacity,
+    StatusBar
 } from 'react-native';
-import {bindAc} from 'redux';
-import {connect} from 'react-redux';
+import { bindAc } from 'redux';
+import { connect } from 'react-redux';
 import Styles from '../Styles/ScreenHome';
 import res from '../Resources/index';
 import { ImageButton, ImageSlider } from '../Components/index.js';
@@ -22,7 +23,7 @@ import {NavigationActions} from 'react-navigation';
 import Obj from '../Objects/ObjTemp.js';
 import { SearchFilm } from '../Components/index.js';
 
- class ScreenHome extends Component {
+class ScreenHome extends Component {
     constructor(props) {
         super(props);
 
@@ -32,9 +33,9 @@ import { SearchFilm } from '../Components/index.js';
         };
     }
 
-    navigateToScreen(route){
-        this.setState({route: route});
-        let navigationAction = NavigationActions.navigate({routeName: route});
+    navigateToScreen(route) {
+        this.setState({ route: route });
+        let navigationAction = NavigationActions.navigate({ routeName: route });
         this.props.navigation.dispatch(navigationAction);
     }
 
@@ -54,12 +55,11 @@ import { SearchFilm } from '../Components/index.js';
     }
 
     render() {
-        console.log(this.props,"propssssss");
         return (
             <ScrollView
                 contentContainerStyle={Styles.container}
                 showsVerticalScrollIndicator={false}>
-
+                <StatusBar hidden />
                 {/* TOOLBAR SECCTION */}
                 {/* <SearchFilm navigation={this.props.navigation} /> */}
                 <View style={Styles.toolbar}>
@@ -98,7 +98,7 @@ import { SearchFilm } from '../Components/index.js';
                     </Text>
                     <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue} />
                 </View>
-                <HistoryFilmsContainer navigation={this.props.navigation}/>
+                <HistoryFilmsContainer navigation={this.props.navigation} />
 
                 {/* NEWEST FILMS */}
                 {/* Title */}
@@ -114,32 +114,32 @@ import { SearchFilm } from '../Components/index.js';
                     <Text style={Styles.subtitle}>Xem nhiều</Text>
                     <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue} />
                 </View>
-                <FilmCardContainer navigation={this.props.navigation}/>
+                <FilmCardContainer navigation={this.props.navigation} />
 
                 {/* TIPS */}
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>Tips</Text>
                     <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue}
-                        onPress={() => this.navigateToScreen('ScreenTips')}/>
+                        onPress={() => this.navigateToScreen('ScreenTips')} />
                 </View>
-                <TipContainer navigation={this.props.navigation} numRender={4}/>
+                <TipContainer navigation={this.props.navigation} numRender={4} />
             </ScrollView>
         );
     }
 
 }
 
-const mapStateToProps = state =>    {
+const mapStateToProps = state => {
     return {
-        promotes:state.screenHome.promotes
+        promotes: state.screenHome.promotes
     }
 }
 
 const dispatchActionsCreator = {
-     getPromotes
+    getPromotes
 }
 
-export default connect(mapStateToProps,dispatchActionsCreator)(ScreenHome)
+export default connect(mapStateToProps, dispatchActionsCreator)(ScreenHome)
 
 
