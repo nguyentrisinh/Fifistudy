@@ -34,7 +34,7 @@ const DrawerApp = DrawerNavigator({
     FullScreenWatch: {screen: FullScreenWatch}
 }, {
         headerMode: 'none',
-        initialRouteName: 'ScreenWatchMovie',
+        initialRouteName: 'ScreenHome',
         contentComponent: DrawerMenu,
     });
 

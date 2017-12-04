@@ -19,6 +19,7 @@ import {
     FilmCardContainer,
     TipContainer,
 } from '../Containers/index.js';
+import {NavigationActions} from 'react-navigation';
 import Obj from '../Objects/ObjTemp.js';
 import { SearchFilm } from '../Components/index.js';
 
@@ -58,9 +59,21 @@ class ScreenHome extends Component {
             <ScrollView
                 contentContainerStyle={Styles.container}
                 showsVerticalScrollIndicator={false}>
-                <StatusBar hidden />
+                {/* <StatusBar hidden /> */}
                 {/* TOOLBAR SECCTION */}
-                <SearchFilm navigation={this.props.navigation} />
+                {/* <SearchFilm navigation={this.props.navigation} /> */}
+                <View style={Styles.toolbar}>
+                    <ImageButton
+                        onPress={() => this.navigateToScreen('DrawerToggle')}
+                        source={res.icons.menu}
+                        tintColor='white' />
+                    <View style={Styles.searchContainer}>
+                        <ImageButton
+                            onPress={() => this.navigateToScreen('ScreenSearchFilm')}
+                            source={res.icons.search}
+                            tintColor='white' />
+                    </View>
+                </View>
                 {/* SECTION BANNER SLIDER */}
                 <View
                     style={Styles.bannerSlider}>

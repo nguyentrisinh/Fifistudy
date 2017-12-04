@@ -70,7 +70,7 @@ export default class WatchScreen extends Component {
                 {/* TOOLBAR SECTION */}
                 <View style={Styles.toolbar}>
                     <ImageButton source={Resources.icons.back} tintColor={Resources.colors.pink}
-                        onPress={() => this.props.navigation.dispatch('ScreenMovies')} />
+                        onPress={() => this.props.navigation.navigate('ScreenMovies')}/>
                     <ImageButton source={Resources.icons.comment} tintColor={Resources.colors.pink}
                         onPress={() => this.props.navigation.navigate('ScreenEpisodeComment')} />
                     {/* <ImageButton source={Resources.icons.quiz} tintColor={Resources.colors.pink}/> */}

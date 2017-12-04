@@ -28,17 +28,26 @@ class ScreenMovies extends Component {
         this.state = {
             ds: lsEpisodes
         }
+
+        // fetch("http://192.168.56.100:8000/api/films/detail/slug/?film_slug=how-i-met-your-mother")
+        // .then(response => {
+        //     console.log('response: ', response.json());
+        // })
+        // .catch(err => {
+        //     console.log('error');
+        // });
     }
 
     renderItemEpisode(item) {
         return (
-            <View style={stylesPopup.itemEpisode}>
+            <TouchableOpacity style={stylesPopup.itemEpisode}
+                onPress={() => this.props.navigation.navigate('ScreenWatchMovie')}>
                 <Text style={stylesPopup.textEpisode}>
                     {item.name}
                 </Text>
                 <View style={stylesPopup.blackLine}>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 
@@ -100,25 +109,18 @@ class ScreenMovies extends Component {
                     </View>
                 </View>
 
-                <Image
-                    source={{uri: ObjFilm.thumbnail}}
-                    style={styles.image}>
-                </Image>
-
-                <View style={styles.tabContainer}>
-                    <TabMovies />
-                </View>
-
                 <TouchableOpacity style={styles.buttonFloatContainer}
                                   onPress={() => this.popupDialog.show()}>
                     <Image source={res.icons.floatingBtn}
                            style={styles.buttonFloat}/>
                 </TouchableOpacity>
-                 <PopupDialog width={windows.width * (2 / 3)}
-                     dialogTitle={<DialogTitle title="Danh sách các tập" />}
-                     ref={(popupDialog) => { this.popupDialog = popupDialog }}
-                     dialogAnimation={slideAnimation}
-                     overlayOpacity={0.5}>
+                
+                 <PopupDialog 
+                    width={windows.width * (2 / 3)}
+                    dialogTitle={<DialogTitle title="Danh sách các tập" />}
+                    ref={(popupDialog) => { this.popupDialog = popupDialog }}
+                    dialogAnimation={slideAnimation}
+                    overlayOpacity={0.5}>
                      {/* --- Component popup show --- */}
                      <FlatList
                          data={this.state.ds}
