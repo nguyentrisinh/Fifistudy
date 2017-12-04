@@ -318,13 +318,21 @@ export default class MediaPlayerWithoutSub extends Component {
         const width = Dimensions.get('window').width;
         return (
             <View style={{ flex: 1 }}>
-                {this.renderSubSideBar()}
                 {/* MEDIA PLAYER SECTION */}
-
-                {/* <TouchableWithoutFeedback
+                <TouchableWithoutFeedback
                     style={{ zIndex: 1 }} 
                     onPress={this.controls.onToggleControls}>
                     <View style={Styles.fullscreenContainer}>
+                        <View style={{
+                            position: 'absolute',
+                            top: 0,
+                            right: 0,
+                            marginTop: 8,
+                            marginRight: 16,
+                            zIndex: 3
+                        }}>
+                            <ImageButton source={Res.icons.openSubPanel} tintColor='white'/>
+                        </View>
                         <Video style={{ flex: 1, zIndex: 1 }}
                             source={{ uri: ObjEpisode.link_video }}   // Can be a URL or a local file.
                             ref={(ref) => this.player = ref}
@@ -345,12 +353,13 @@ export default class MediaPlayerWithoutSub extends Component {
                         />
                         {this.state.showControl && this.showPlayerControls()}
                     </View>
-                </TouchableWithoutFeedback> */}
+                </TouchableWithoutFeedback>
                 {/* <Text>{this.state.testText}</Text> */}
                 {/* END MEDIA PLAYER SECTION */}
 
-
                 {/* SUB SECTION */}
+                {this.renderSubSideBar()}
+
                 {/* <View style={{
                     backgroundColor: Res.colors.filmSubBackground,
                     width: width,
