@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     StyleSheet,
     Text,
@@ -10,72 +10,72 @@ import {
     FlatList,
     ListView
 } from 'react-native';
-import { EpisodeCircleView, ImageButton, MediaPlayer} from '../Components/index.js';
+import { EpisodeCircleView, ImageButton, MediaPlayer } from '../Components/index.js';
 import Resources from '../Resources/index.js';
 import Styles from '../Styles/ScreenWatchMovie.js';
 import ObjEpisode from '../Objects/ObjEpisode.js';
 import ObjFilm from '../Objects/ObjFilm.js';
 
 export default class WatchScreen extends Component {
-    setEpisodeColor(item){
+    setEpisodeColor(item) {
         // Cai object item se sua sau
         return item == ObjEpisode.number ? Resources.colors.violet : Resources.colors.blue;
     }
 
-    render(){
+    render() {
         const width = Dimensions.get('window').width;
         return (
-            <View style={{flex: 1}}>
-            <ScrollView style={{backgroundColor: Resources.colors.background}}
-                        showsVerticalScrollIndicator={false}>
-                {/* MEDIA PLAYER SECTION */}
-                <MediaPlayer />
-                {/* END MEDIA PLAYER SECTION */}
+            <View style={{ flex: 1 }}>
+                <ScrollView style={{ backgroundColor: Resources.colors.background }}
+                    showsVerticalScrollIndicator={false}>
+                    {/* MEDIA PLAYER SECTION */}
+                    <MediaPlayer navigation={this.props.navigation} />
+                    {/* END MEDIA PLAYER SECTION */}
 
-                {/* SUB SECTION */}
-                {/* <View style={{
+                    {/* SUB SECTION */}
+                    {/* <View style={{
                     backgroundColor: 'lightgray',
                     width: width,
                     height: width * Resources.ratio,
                     }}>
                 </View> */}
-                {/* END SUB SECTION */}
+                    {/* END SUB SECTION */}
 
 
-                {/* TITLE SECTION */}
-                <View style={Styles.titleContainer}>
-                    <Text style={Styles.title}>{ObjFilm.english_name}</Text>
-                    <Text style={Styles.subtitle}>{ObjEpisode.name}</Text>
-                </View>
+                    {/* TITLE SECTION */}
+                    <View style={Styles.titleContainer}>
+                        <Text style={Styles.title}>{ObjFilm.english_name}</Text>
+                        <Text style={Styles.subtitle}>{ObjEpisode.name}</Text>
+                    </View>
 
 
-                {/* LIST EPISODE */}
-                <FlatList 
-                    contentContainerStyle={Styles.listEpisode}
-                    horizontal={false}
-                    numColumns={6}
-                    showsHorizontalScrollIndicator={false}
-                    data={ObjFilm.episodes}
-                    keyExtractor={item => item}
-                    renderItem={({item}) => (
-                        <EpisodeCircleView
-                            episodeNumber={item}
-                            size={42}
-                            color={this.setEpisodeColor(item)}
-                        />
-                    )}                
-                />
-               
-            </ScrollView>
+                    {/* LIST EPISODE */}
+                    <FlatList
+                        contentContainerStyle={Styles.listEpisode}
+                        horizontal={false}
+                        numColumns={6}
+                        showsHorizontalScrollIndicator={false}
+                        data={ObjFilm.episodes}
+                        keyExtractor={item => item}
+                        renderItem={({ item }) => (
+                            <EpisodeCircleView
+                                episodeNumber={item}
+                                size={42}
+                                color={this.setEpisodeColor(item)}
+                            />
+                        )}
+                    />
+
+                </ScrollView>
                 {/* TOOLBAR SECTION */}
                 <View style={Styles.toolbar}>
                     <ImageButton source={Resources.icons.back} tintColor={Resources.colors.pink}
-                        onPress={() => this.props.navigation.dispatch('ScreenMovies')}/>   
+                        onPress={() => this.props.navigation.dispatch('ScreenMovies')} />
                     <ImageButton source={Resources.icons.comment} tintColor={Resources.colors.pink}
-                        onPress={() => this.props.navigation.navigate('ScreenEpisodeComment')}/>
+                        onPress={() => this.props.navigation.navigate('ScreenEpisodeComment')} />
                     {/* <ImageButton source={Resources.icons.quiz} tintColor={Resources.colors.pink}/> */}
                     <ImageButton source={Resources.icons.volcabulary} tintColor={Resources.colors.pink}
-                        onPress={() => this.props.navigation.navigate('ScreenVocabulary')}/>
+                        onPress={() => this.props.navigation.navigate('ScreenVocabulary')} />
                 </View>
             </View>
         );

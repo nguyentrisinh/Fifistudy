@@ -11,6 +11,7 @@ import ScreenLevels from './ScreenLevels.js';
 import ScreenTips from './ScreenTips.js';
 import ScreenListFilm from './ScreenListFilm.js';
 import ScreenSearchFilm from './ScreenSearchFilm.js';
+import FullScreenWatch from './FullScreenWatch.js';
 
 export {
     ScreenNotes,
@@ -25,5 +26,6 @@ export {
     ScreenLevels,
     ScreenTips,
     ScreenListFilm,
-    ScreenSearchFilm
+    ScreenSearchFilm,
+    FullScreenWatch
 }

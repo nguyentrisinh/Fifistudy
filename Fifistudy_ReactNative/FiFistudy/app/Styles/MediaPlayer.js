@@ -5,12 +5,25 @@ import {
 import Res from '../Resources/index.js';
 
 const width = Dimensions.get('window').width;
-
+const height = Dimensions.get('window').height;
 const styles = StyleSheet.create({
+    fullscreenContainer: {
+        backgroundColor: 'black',
+        width: width,
+        height: height
+    },
     videoContainer: {
         backgroundColor: 'black',
         width: width,
         height: width * Res.ratio,
+    },
+    fullscreenMask: {
+        width: width,
+        height: height,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
     },
     controlMask: {
         width: width,
@@ -31,6 +44,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         left: 8,
         bottom: 0
+    },
+    fullscreenSlider: {
+        width: width * 0.8,
+        margin: 8
     },
     slider: {
         width: width * 0.7,

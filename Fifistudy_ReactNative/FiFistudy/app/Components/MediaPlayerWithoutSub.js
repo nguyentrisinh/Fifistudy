@@ -18,7 +18,7 @@ import Res from '../Resources/index.js';
 import Styles from '../Styles/MediaPlayer.js';
 
 
-export default class MediaPlayer extends Component {
+export default class MediaPlayerWithoutSub extends Component {
     timeString2s = (a, b) => {// time(HH:MM:SS.mss) // optimized
         // Chuyen dinh dang thoi gian cua sub thanh ms
         return a = a.split('.'), // optimized
@@ -213,7 +213,7 @@ export default class MediaPlayer extends Component {
         const width = Dimensions.get('window').width;
         return (
             // Control mark
-            <View style={Styles.controlMask}>
+            <View style={Styles.fullscreenMask}>
                 {/* Play, Pause, Back, Forward controls */}
                 <View style={Styles.playPauseBackForwardContainer}>
                     <ImageButton
@@ -243,7 +243,7 @@ export default class MediaPlayer extends Component {
                         />
                     </View>
                     <Slider
-                        style={Styles.slider}
+                        style={Styles.fullscreenSlider}
                         trackStyle={Styles.track}
                         thumbStyle={Styles.thumb}
                         minimumTrackTintColor='white'
@@ -284,7 +284,7 @@ export default class MediaPlayer extends Component {
             <View>
                 {/* MEDIA PLAYER SECTION */}
                 <TouchableWithoutFeedback onPress={this.controls.onToggleControls}>
-                    <View style={Styles.videoContainer}>
+                    <View style={Styles.fullscreenContainer}>
                         <Video style={{flex: 1}}
                             source={{uri: ObjEpisode.link_video}}   // Can be a URL or a local file.
                             ref={(ref) => this.player = ref}

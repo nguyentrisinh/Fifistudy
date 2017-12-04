@@ -18,6 +18,7 @@ import ToolBar from './ToolBar.js';
 import SubItem from './SubItem.js';
 import VocabularyItem from './VocabularyItem.js';
 import SearchFilm from './SearchFilm.js';
+import MediaPlayerWithoutSub from './MediaPlayerWithoutSub.js';
 
 export {
     DailyNoteItem,
@@ -39,5 +40,6 @@ export {
     ToolBar,
     SubItem,
     VocabularyItem,
-    SearchFilm
+    SearchFilm,
+    MediaPlayerWithoutSub
 }
