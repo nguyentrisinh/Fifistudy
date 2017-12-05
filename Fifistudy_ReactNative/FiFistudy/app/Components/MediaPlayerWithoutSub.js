@@ -301,18 +301,6 @@ export default class MediaPlayerWithoutSub extends Component {
             icon_src = Res.icons.moreArrow
 
         return (
-            // <View style={Styles.header}>
-            //     <TouchableOpacity
-            //         onPress={() => this.setState({
-            //             isShowSub: !this.state.isShowSub
-            //         })}>
-            //         <Image
-            //             style={{ marginRight: 10, alignSelf: 'flex-end' }}
-            //             source={icon_src}
-            //         />
-            //     </TouchableOpacity>
-            //     {this.renderListSub()}
-            // </View>
             <View style={{
                 position: 'absolute',
                 top: 0,
@@ -343,19 +331,10 @@ export default class MediaPlayerWithoutSub extends Component {
                     style={{ zIndex: 1 }}
                     onPress={this.controls.onToggleControls}>
                     <View style={Styles.fullscreenContainer}>
-                        {/* <View style={{
-                            position: 'absolute',
-                            top: 0,
-                            right: 0,
-                            marginTop: 8,
-                            marginRight: 16,
-                            zIndex: 3
-                        }}>
-                            <ImageButton
-                                source={Res.icons.openSubPanel}
-                                tintColor='white' />
-                        </View> */}
+                        {/* Render su side bar */}
                         {this.renderSubSideBar()}
+
+                        {/* Video section */}
                         <Video style={{ flex: 1, zIndex: 1 }}
                             source={{ uri: ObjEpisode.link_video }}   // Can be a URL or a local file.
                             ref={(ref) => this.player = ref}
