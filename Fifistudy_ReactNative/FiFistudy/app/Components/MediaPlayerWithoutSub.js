@@ -285,6 +285,7 @@ export default class MediaPlayerWithoutSub extends Component {
             return (
                 <ScrollView style={{
                     backgroundColor: Res.colors.filmSubBackground,
+                    width: 400
                 }}>
                     {!!this.state.sub && <ListSub currentItem={this.state.currentItem} data={this.state.sub} />}
                 </ScrollView>
@@ -300,16 +301,23 @@ export default class MediaPlayerWithoutSub extends Component {
             icon_src = Res.icons.moreArrow
 
         return (
-            <View style={Styles.header}>
-                <TouchableOpacity
+            <View style={{
+                position: 'absolute',
+                top: 0,
+                width: 400,
+                right: 0,
+                marginTop: 8,
+                marginRight: 16,
+                zIndex: 3,
+                flexDirection: 'column',
+                alignItems: 'flex-end'
+            }}>
+                <ImageButton
                     onPress={() => this.setState({
                         isShowSub: !this.state.isShowSub
-                    })}>
-                    <Image
-                        style={{ marginRight: 10, alignSelf: 'flex-end' }}
-                        source={icon_src}
-                    />
-                </TouchableOpacity>
+                    })}
+                    source={Res.icons.openSubPanel}
+                    tintColor='white' />
                 {this.renderListSub()}
             </View>
         )
@@ -320,19 +328,13 @@ export default class MediaPlayerWithoutSub extends Component {
             <View style={{ flex: 1 }}>
                 {/* MEDIA PLAYER SECTION */}
                 <TouchableWithoutFeedback
-                    style={{ zIndex: 1 }} 
+                    style={{ zIndex: 1 }}
                     onPress={this.controls.onToggleControls}>
                     <View style={Styles.fullscreenContainer}>
-                        <View style={{
-                            position: 'absolute',
-                            top: 0,
-                            right: 0,
-                            marginTop: 8,
-                            marginRight: 16,
-                            zIndex: 3
-                        }}>
-                            <ImageButton source={Res.icons.openSubPanel} tintColor='white'/>
-                        </View>
+                        {/* Render su side bar */}
+                        {this.renderSubSideBar()}
+
+                        {/* Video section */}
                         <Video style={{ flex: 1, zIndex: 1 }}
                             source={{ uri: ObjEpisode.link_video }}   // Can be a URL or a local file.
                             ref={(ref) => this.player = ref}
@@ -354,20 +356,6 @@ export default class MediaPlayerWithoutSub extends Component {
                         {this.state.showControl && this.showPlayerControls()}
                     </View>
                 </TouchableWithoutFeedback>
-                {/* <Text>{this.state.testText}</Text> */}
-                {/* END MEDIA PLAYER SECTION */}
-
-                {/* SUB SECTION */}
-                {this.renderSubSideBar()}
-
-                {/* <View style={{
-                    backgroundColor: Res.colors.filmSubBackground,
-                    width: width,
-                    height: width * Res.ratio,
-                }}>
-                    {!!this.state.sub && <ListSub currentItem={this.state.currentItem} data={this.state.sub}/>}
-                </View> */}
-                {/* END SUB SECTION */}
             </View>
         );
     }
