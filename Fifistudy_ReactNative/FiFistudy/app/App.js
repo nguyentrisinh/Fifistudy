@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import TestScreen from './Test/TestScreen.js';
 console.disableYellowBox = true;
 
-const isTest = true;
+const isTest = false;
 
 class App extends Component {
     render() {

@@ -9,6 +9,7 @@ import {
     TouchableOpacity,
     StatusBar
 } from 'react-native';
+import Orientation from 'react-native-orientation';
 import { bindAc } from 'redux';
 import { connect } from 'react-redux';
 import Styles from '../Styles/ScreenHome';
@@ -38,8 +39,12 @@ class ScreenHome extends Component {
         let navigationAction = NavigationActions.navigate({ routeName: route });
         this.props.navigation.dispatch(navigationAction);
     }
-
+    // componentWillMount() {
+    //     Orientation.lockToLandscape();
+    // }
     componentWillMount() {
+        // Orientation.lockToPortrait();
+
         this.props.getPromotes();
         this.setState({
             interval: setInterval(() => {
