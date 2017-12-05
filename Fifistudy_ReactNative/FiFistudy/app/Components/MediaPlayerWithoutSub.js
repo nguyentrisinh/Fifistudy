@@ -28,6 +28,10 @@ export default class MediaPlayerWithoutSub extends Component {
             b + (a[2] ? a[0] * 3600 + a[1] * 60 + a[2] * 1 : a[1] ? a[0] * 60 + a[1] * 1 : a[0] * 1) * 1e3 // optimized
     }
 
+    componentWillMount() {
+        Orientation.lockToLandscape();
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -86,7 +90,6 @@ export default class MediaPlayerWithoutSub extends Component {
             })
             .catch(err => console.log(err))
     }
-
 
     // ===================== Events ============================
     onProgress(value) {
@@ -257,8 +260,8 @@ export default class MediaPlayerWithoutSub extends Component {
                         step={1}
                     />
                     <ImageButton
-                        onPress={() => this.props.navigation.navigate('FullScreenWatch')}
-                        source={Res.icons.expand}
+                        onPress={() => this.props.navigation.navigate('ScreenWatchMovie')}
+                        source={Res.icons.collapse}
                         tintColor='white' />
                 </View>
             </View>
@@ -281,17 +284,37 @@ export default class MediaPlayerWithoutSub extends Component {
     }
 
     renderListSub() {
-        if (this.state.isShowSub)
-            return (
-                <ScrollView style={{
-                    backgroundColor: Res.colors.filmSubBackground,
-                    width: 400
-                }}>
-                    {!!this.state.sub && <ListSub currentItem={this.state.currentItem} data={this.state.sub} />}
-                </ScrollView>
-            )
-        else
-            return null
+        return (
+            <View style={{
+                position: 'absolute',
+                right: 0,
+                top: 0,
+                width: '36%',
+                backgroundColor: 'rgba(0, 0, 0, 0.5)'
+            }}> 
+                {/* Title */}
+                <Text style={{
+                    minHeight: 44,
+                    marginTop: 8,
+                    marginBottom: 8,
+                    marginLeft: 16, 
+                    marginRight: 76,
+                    textAlignVertical: 'center',
+                    fontFamily: Res.fonts.common,
+                    color: 'white',
+                    fontSize: 17,
+                }}>{ObjEpisode.number}. {ObjEpisode.name}</Text>
+                <View style={{
+                    height: 1,
+                    marginLeft: 8,
+                    marginRight: 8,
+                    backgroundColor: Res.colors.line,
+                }}/>
+
+                {/* List sub */}
+                {!!this.state.sub && <ListSub currentItem={this.state.currentItem} data={this.state.sub} />}
+            </View>
+        )
     }
 
     renderSubSideBar() {
@@ -303,25 +326,34 @@ export default class MediaPlayerWithoutSub extends Component {
         return (
             <View style={{
                 position: 'absolute',
-                top: 0,
-                width: 400,
                 right: 0,
-                marginTop: 8,
-                marginRight: 16,
+                top: 0,
+                width: '36%',
                 zIndex: 3,
-                flexDirection: 'column',
-                alignItems: 'flex-end'
-            }}>
-                <ImageButton
-                    onPress={() => this.setState({
-                        isShowSub: !this.state.isShowSub
-                    })}
-                    source={Res.icons.openSubPanel}
-                    tintColor='white' />
+            }}> 
+                <View style={{
+                    marginTop: 8,
+                    marginRight: 16,
+                    zIndex: 3,
+                }}>
+                    <ImageButton
+                        onPress={() => this.setState({
+                            isShowSub: !this.state.isShowSub
+                        })}
+                        source={Res.icons.openSubPanel}
+                        tintColor='white' />
+                </View>
                 {this.renderListSub()}
             </View>
         )
     }
+
+    toggleSubPanel(){
+        this.setState({
+            isShowSub: !this.state.isShowSub
+        });
+    }
+
     render() {
         const width = Dimensions.get('window').width;
         return (
@@ -332,7 +364,7 @@ export default class MediaPlayerWithoutSub extends Component {
                     onPress={this.controls.onToggleControls}>
                     <View style={Styles.fullscreenContainer}>
                         {/* Render su side bar */}
-                        {this.renderSubSideBar()}
+                        {/* {this.renderSubSideBar()} */}
 
                         {/* Video section */}
                         <Video style={{ flex: 1, zIndex: 1 }}
@@ -353,9 +385,27 @@ export default class MediaPlayerWithoutSub extends Component {
                             onBuffer={this.events.onBuffer}
                             onTimedMetadata={this.events.onBuffer}
                         />
+                        {/* <Image source={Res.banner_film} style={{flex: 1, zIndex: 1, resizeMode: 'cover'}}/> */}
                         {this.state.showControl && this.showPlayerControls()}
                     </View>
                 </TouchableWithoutFeedback>
+
+                {/* SUB PANEL SECTION */}
+                {this.state.isShowSub && this.renderListSub()}
+                <View style={{
+                    marginTop: 8,
+                    marginRight: 16,
+                    position: 'absolute',
+                    zIndex: 4,
+                    right: 0,
+                    top: 0,
+                }}>
+                    <ImageButton
+                        onPress={() => this.toggleSubPanel()}
+                        source={this.state.isShowSub ? Res.icons.moreArrow : Res.icons.openSubPanel}
+                        tintColor='white' />
+                </View>
+                {/* END SUB PANEL SECTION */}
             </View>
         );
     }

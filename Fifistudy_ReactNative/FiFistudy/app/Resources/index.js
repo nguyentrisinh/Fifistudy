@@ -37,6 +37,7 @@ const res = {
         forwardSec: require('./Icons/ic_forward_10_sec.png'),
         volume: require('./Icons/ic_volume.png'),
         expand: require('./Icons/ic_expand.png'),
+        collapse: require('./Icons/ic_collapse.png'),
         filmType: require('./Icons/ic_box.png'),
         level: require('./Icons/ic_level.png'),
         tip: require('./Icons/ic_tip.png'),
