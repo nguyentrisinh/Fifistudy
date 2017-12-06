@@ -26,20 +26,20 @@ export default class ScreenLevels extends Component {
                 
                 <View style={styles.levelsContainer}>
                     <View style={[styles.levelCardcontainer, {
-                        backgroundColor: Res.colors.red,
+                        backgroundColor: Res.colors.levelHard,
                         transform: [{ rotate: '-30deg'}],
                         }]}>
                         <Text style={styles.label}>Khó</Text>
                     </View>
                     <View style={[styles.levelCardcontainer, {
-                        backgroundColor: Res.colors.violet,
+                        backgroundColor: Res.colors.levelMedium,
                         transform: [{ rotate: '-5deg'}],
                         marginTop: -118
                         }]}>
                         <Text style={styles.label}>Trung bình</Text>
                     </View>
                     <View style={[styles.levelCardcontainer, {
-                        backgroundColor: Res.colors.blue,
+                        backgroundColor: Res.colors.levelEasy,
                         transform: [{ rotate: '10deg'}],
                         marginTop: -120,
                         }]}>

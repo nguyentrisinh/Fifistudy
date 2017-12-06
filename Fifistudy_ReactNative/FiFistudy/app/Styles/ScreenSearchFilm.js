@@ -1,22 +1,31 @@
-import { StyleSheet } from 'react-native';
-import windows from '../Themes/Window.js';
+import { 
+    StyleSheet,
+    Dimensions,
+} from 'react-native';
+import Res from '../Resources/index.js';
 
+const width = Dimensions.get('window').width;
 export default styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: 'white'
+        backgroundColor: Res.colors.background,
     },
     textInput: {
-        width: 250,
-        height: 40
+        flex: 1,
+        color: Res.colors.blue,
+        fontSize: 21,
+        marginLeft: 12,
+        paddingTop: 0,
+        paddingBottom: 0
     },
 
-    searchContainer: {
-        marginTop: 10,
+    searchBarContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingLeft: 16,
+        paddingTop: 8,
+        paddingBottom: 8
     },
 
     itemContainer: {
@@ -24,8 +33,8 @@ export default styles = StyleSheet.create({
         backgroundColor: 'transparent'
     },
     bannerFilm: {
-        width: windows.width * 1 / 3,
-        height: windows.width * 1 / 4,
+        width: width * 1 / 3,
+        height: width * 1 / 4,
         margin: 10,
         borderRadius: 10,
     },
@@ -47,9 +56,12 @@ export default styles = StyleSheet.create({
         height: 1,
         backgroundColor: 'grey'
     },
-    blackLine:{
-        height: 2,
-        margin: 10,
-        backgroundColor: 'black'
+    line: {
+        backgroundColor: Res.colors.line,
+        marginLeft: 16,
+        marginRight: 16,
+        height: 1,
+        opacity: 0.5,
+        elevation: 3
     }
 })

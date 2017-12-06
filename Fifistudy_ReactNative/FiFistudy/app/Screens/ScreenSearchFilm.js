@@ -1,39 +1,35 @@
 import React, { Component } from 'react';
-import { FlatList, Image, TouchableOpacity, Text, View, TextInput } from 'react-native';
+import {
+    Text,
+    View,
+    TextInput,
+} from 'react-native';
+import {
+    ImageButton,
+} from '../Components/index.js';
+import {FilmListContainer} from '../Containers/index.js';
 import styles from '../Styles/ScreenSearchFilm.js';
-import lsFilm from '../Objects/ObjFilms.js';
-import res from '../Resources/index.js';
+import Res from '../Resources/index.js';
 
 export default class ScreenSearchFilm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            ds: lsFilm
-        }
-    }
-
-    clickItemFilm() {
-        console.log('Clicked item film!')
-    }
-    
-    renderSearchBar() {
-        return (
-            <View style={styles.searchContainer}>
-                <Image
-                    source={res.icons.back}
-                    style={{width: 30, height: 30}}
-                />
-                <TextInput
-                    style={styles.textInput}
-                    placeholder='Nhập tên phim cần tìm...'
-                />
-                <Image
-                    style={{ width: 30, height: 30, marginLeft: 5 }}
-                    source={res.icons.search}
-                />
-            </View>
-        )
-    }
+    // renderSearchBar() {
+    //     return (
+    //         <View style={styles.searchContainer}>
+    //             <Image
+    //                 source={Res.icons.back}
+    //                 style={{width: 30, height: 30}}
+    //             />
+    //             <TextInput
+    //                 style={styles.textInput}
+    //                 placeholder='Nhập tên phim cần tìm...'
+    //             />
+    //             <Image
+    //                 style={{ width: 30, height: 30, marginLeft: 5 }}
+    //                 source={Res.icons.search}
+    //             />
+    //         </View>
+    //     )
+    // }
     renderItemFilm(item) {
         return (
             <View style={{ flexDirection: 'column' }}>
@@ -68,17 +64,24 @@ export default class ScreenSearchFilm extends Component {
         )
     }
     render() {
+        const {navigation} = this.props;
         return (
             <View style={styles.container}>
-                {this.renderSearchBar()}
-                {/* render black line */}
-                <View style={styles.blackLine}>
+                {/* {this.renderSearchBar()} */}
+                {/* Search bar */}
+                <View style={styles.searchBarContainer}>
+                    <ImageButton source={Res.icons.back} tintColor={Res.colors.blue}
+                        onPress={() => navigation.navigate('ScreenHome')}/>
+                    <TextInput
+                        style={styles.textInput}
+                        placeholderTextColor={Res.colors.blue}
+                        underlineColorAndroid='transparent'
+                        placeholder='Nhập tên phim cần tìm...'
+                    />
                 </View>
-                <FlatList
-                    style={{ margin: 15 }}
-                    data={this.state.ds}
-                    renderItem={({ item }) => this.renderItemFilm(item)}>
-                </FlatList>
+                <View style={styles.line}/>
+
+                <FilmListContainer navigation={navigation}/>                
             </View>
         )
     }

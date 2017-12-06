@@ -7,6 +7,7 @@ import ToolbarContainer from './ToolbarContainer.js';
 import MediaSubPlayerContainer from './MediaSubPlayerContainer.js';
 import EpisodeCommentContainer from './EpisodeCommentContainer.js';
 import VocabulariesContainer from './VocabulariesContainer.js';
+import FilmListContainer from './FilmListContainer.js';
 
 export {
     Notes,
@@ -17,5 +18,6 @@ export {
     ToolbarContainer,
     MediaSubPlayerContainer,
     EpisodeCommentContainer,
-    VocabulariesContainer
+    VocabulariesContainer,
+    FilmListContainer
 };

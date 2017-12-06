@@ -19,6 +19,7 @@ import SubItem from './SubItem.js';
 import VocabularyItem from './VocabularyItem.js';
 import SearchFilm from './SearchFilm.js';
 import MediaPlayerWithoutSub from './MediaPlayerWithoutSub.js';
+import FilmListItem from './FilmListItem.js'
 
 export {
     DailyNoteItem,
@@ -41,5 +42,6 @@ export {
     SubItem,
     VocabularyItem,
     SearchFilm,
-    MediaPlayerWithoutSub
+    MediaPlayerWithoutSub,
+    FilmListItem
 }

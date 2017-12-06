@@ -39,9 +39,7 @@ class ScreenHome extends Component {
         let navigationAction = NavigationActions.navigate({ routeName: route });
         this.props.navigation.dispatch(navigationAction);
     }
-    // componentWillMount() {
-    //     Orientation.lockToLandscape();
-    // }
+    
     componentWillMount() {
         // Orientation.lockToPortrait();
 
