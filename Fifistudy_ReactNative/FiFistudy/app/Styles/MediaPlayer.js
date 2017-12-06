@@ -21,8 +21,7 @@ const styles = StyleSheet.create({
     },
     fullscreenContainer: {
         backgroundColor: 'black',
-        width: width,
-        height: height,
+        flex: 1,
         zIndex: 1
     },
     videoContainer: {
@@ -32,8 +31,7 @@ const styles = StyleSheet.create({
         zIndex: 1
     },
     fullscreenMask: {
-        width: width,
-        height: height,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
