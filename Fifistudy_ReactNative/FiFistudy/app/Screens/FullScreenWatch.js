@@ -319,37 +319,6 @@ export default class MediaPlayerWithoutSub extends Component {
         )
     }
 
-    // renderSubSideBar() {
-    //     if (!this.state.isShowSub)
-    //         icon_src = Res.icons.menu
-    //     else
-    //         icon_src = Res.icons.moreArrow
-
-    //     return (
-    //         <View style={{
-    //             position: 'absolute',
-    //             right: 0,
-    //             top: 0,
-    //             width: '36%',
-    //             zIndex: 3,
-    //         }}> 
-    //             <View style={{
-    //                 marginTop: 8,
-    //                 marginRight: 16,
-    //                 zIndex: 3,
-    //             }}>
-    //                 <ImageButton
-    //                     onPress={() => this.setState({
-    //                         isShowSub: !this.state.isShowSub
-    //                     })}
-    //                     source={Res.icons.openSubPanel}
-    //                     tintColor='white' />
-    //             </View>
-    //             {this.renderListSub()}
-    //         </View>
-    //     )
-    // }
-
     toggleSubPanel(){
         this.setState({
             isShowSub: !this.state.isShowSub
@@ -361,6 +330,7 @@ export default class MediaPlayerWithoutSub extends Component {
             <View style={{ flex: 1 }}>
                 {/* MEDIA PLAYER SECTION */}
                 <TouchableWithoutFeedback
+                style={{flex: 1}}
                     onPress={this.controls.onToggleControls}>
                     <View style={Styles.fullscreenContainer}>
                         {/* Render su side bar */}
