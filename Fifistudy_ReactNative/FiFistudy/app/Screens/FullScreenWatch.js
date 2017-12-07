@@ -219,8 +219,8 @@ export default class MediaPlayerWithoutSub extends Component {
     showPlayerControls() {
         const width = Dimensions.get('window').width;
         return (
-            // Control mark
-            <View style={Styles.fullscreenMask}>
+            // Control mask
+            <View style={[Styles.fullscreenMask, {height: Dimensions.get('window').height, width: width}]}>
                 {/* Play, Pause, Back, Forward controls */}
                 <View style={Styles.playPauseBackForwardContainer}>
                     <ImageButton
@@ -250,7 +250,7 @@ export default class MediaPlayerWithoutSub extends Component {
                         />
                     </View>
                     <Slider
-                        style={Styles.fullscreenSlider}
+                        style={[Styles.fullscreenSlider, {width: width*0.8}]}
                         trackStyle={Styles.track}
                         thumbStyle={Styles.thumb}
                         minimumTrackTintColor='white'
@@ -262,7 +262,8 @@ export default class MediaPlayerWithoutSub extends Component {
                         step={1}
                     />
                     <ImageButton
-                        onPress={() => this.props.navigation.navigate('ScreenWatchMovie')}
+                        onPress={() => {
+                            this.props.navigation.navigate('ScreenWatchMovie')}}
                         source={Res.icons.collapse}
                         tintColor='white' />
                 </View>

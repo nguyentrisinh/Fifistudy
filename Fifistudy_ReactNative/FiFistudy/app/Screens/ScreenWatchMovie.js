@@ -10,6 +10,7 @@ import {
     FlatList,
     ListView
 } from 'react-native';
+import Orientation from 'react-native-orientation';
 import { EpisodeCircleView, ImageButton, MediaPlayer } from '../Components/index.js';
 import Resources from '../Resources/index.js';
 import Styles from '../Styles/ScreenWatchMovie.js';
@@ -20,6 +21,10 @@ export default class WatchScreen extends Component {
     setEpisodeColor(item) {
         // Cai object item se sua sau
         return item == ObjEpisode.number ? Resources.colors.violet : Resources.colors.blue;
+    }
+
+    componentWillMount() {
+        Orientation.lockToPortrait();
     }
 
     render() {

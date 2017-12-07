@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         zIndex: 1
     },
     fullscreenSlider: {
-        width: width * 0.8,
+        // width: width * 0.8,
         margin: 8,
         zIndex: 1
     },

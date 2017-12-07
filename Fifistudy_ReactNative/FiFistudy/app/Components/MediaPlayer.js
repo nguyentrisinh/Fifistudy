@@ -212,7 +212,7 @@ export default class MediaPlayer extends Component {
     showPlayerControls() {
         const width = Dimensions.get('window').width;
         return (
-            // Control mark
+            // Control mask
             <View style={Styles.controlMask}>
                 {/* Play, Pause, Back, Forward controls */}
                 <View style={Styles.playPauseBackForwardContainer}>
@@ -312,13 +312,13 @@ export default class MediaPlayer extends Component {
                     
 
                 {/* SUB SECTION */}
-                {/* <View style={{
+                <View style={{
                     backgroundColor: Res.colors.filmSubBackground,
                     width: width,
                     height: width * Res.ratio,
                 }}>
                     {!!this.state.sub && <ListSub currentItem={this.state.currentItem} data={this.state.sub}/>}
-                </View> */}
+                </View>
                 {/* END SUB SECTION */}
             </View>
         );
