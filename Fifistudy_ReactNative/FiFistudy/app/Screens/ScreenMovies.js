@@ -4,6 +4,7 @@ import {
     Text,
     Image,
     FlatList,
+    Animated,
     TouchableOpacity
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
@@ -28,6 +29,7 @@ class ScreenMovies extends Component {
         this.state = {
             ds: lsEpisodes
         }
+        this.animatedValue = new Animated.Value(0.6);
 
         // fetch("http://192.168.56.100:8000/api/films/detail/slug/?film_slug=how-i-met-your-mother")
         // .then(response => {
@@ -36,6 +38,21 @@ class ScreenMovies extends Component {
         // .catch(err => {
         //     console.log('error');
         // });
+    }
+
+    componentWillMount() {
+        this.animate();
+    }
+
+    animate() {
+        this.animatedValue.setValue(0.3);
+        Animated.spring(
+            this.animatedValue,
+            {
+                toValue: 1,
+                friction: 0.5,
+            }
+        ).start(() => this.animate());
     }
 
     renderItemEpisode(item) {
@@ -109,10 +126,12 @@ class ScreenMovies extends Component {
                     </View>
                 </View>
 
-                <TouchableOpacity style={styles.buttonFloatContainer}
-                                  onPress={() => this.popupDialog.show()}>
-                    <Image source={res.icons.floatingBtn}
-                           style={styles.buttonFloat}/>
+                <TouchableOpacity 
+                    style={styles.buttonFloatContainer}
+                    onPress={() => this.popupDialog.show()}>
+                    <Animated.View style={[styles.animatedButtonFloat, { transform: [{scale: this.animatedValue}]}]}/>
+                    <Animated.Image source={res.icons.floatingBtn}
+                        style={styles.buttonFloat}/>
                 </TouchableOpacity>
                 
                  <PopupDialog 
