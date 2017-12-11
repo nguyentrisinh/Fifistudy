@@ -87,9 +87,6 @@ class ScreenHome extends Component {
                         onPostionChange={position => this.setState({ position })} />
                 </View>
 
-
-
-
                 {/* SECTION HISTORY SLIDER */}
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
@@ -127,6 +124,15 @@ class ScreenHome extends Component {
                         onPress={() => this.navigateToScreen('ScreenTips')} />
                 </View>
                 <TipContainer navigation={this.props.navigation} numRender={4} />
+
+
+                {/* FOOTER */}
+                {/* About section */}
+                <View style={Styles.footer}>
+                    <View style={Styles.line}/>
+                    <Text style={Styles.devTeam}>Developer team: 2NSLP</Text>
+                </View>
+
             </ScrollView>
         );
     }
