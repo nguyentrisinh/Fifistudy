@@ -59,6 +59,7 @@ class ScreenMovies extends Component {
         return (
             <TouchableOpacity style={stylesPopup.itemEpisode}
                 onPress={() => this.props.navigation.navigate('ScreenWatchMovie')}>
+                {/* onPress={() => this.props.navigation.dispatch(NavigationActions.back())}> */}
                 <Text style={stylesPopup.textEpisode}>
                     {item.name}
                 </Text>
@@ -130,7 +131,7 @@ class ScreenMovies extends Component {
                     style={styles.buttonFloatContainer}
                     onPress={() => this.popupDialog.show()}>
                     <Animated.View style={[styles.animatedButtonFloat, { transform: [{scale: this.animatedValue}]}]}/>
-                    <Animated.Image source={res.icons.floatingBtn}
+                    <Image source={res.icons.floatingBtn}
                         style={styles.buttonFloat}/>
                 </TouchableOpacity>
                 

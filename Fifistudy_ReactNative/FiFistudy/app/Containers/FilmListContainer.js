@@ -18,6 +18,10 @@ export default class FilmListContainer extends Component {
     }
 
     render() {
+        const {
+            navigation,
+            searchString,
+        } = this.props;
         return (
             <FlatList
                 style={{
@@ -27,7 +31,7 @@ export default class FilmListContainer extends Component {
                 }}
                 data={this.state.dataSource}
                 keyExtractor={item => item.id}
-                renderItem={({item}) => <FilmListItem data={item} navigation={this.props.navigation}/>}>
+                renderItem={({item}) => <FilmListItem data={item} navigation={navigation}/>}>
             </FlatList>
         );
     }

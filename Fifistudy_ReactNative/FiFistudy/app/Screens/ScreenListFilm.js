@@ -3,75 +3,29 @@ import {
     View,
     Text,
     TouchableOpacity,
-    Image
+    Image,
+    FlatList
 } from 'react-native';
-import res from '../Resources/index.js';
-import styles from '../Styles/ScreenListFilm.js';
-import lsFilm from '../Objects/ObjFilms.js';
+import {ImageButton} from '../Components/index.js';
+import {FilmListContainer} from '../Containers/index.js';
+import Res from '../Resources/index.js';
+import Styles from '../Styles/ScreenListFilm.js';
 
 export default class ScreenListFilm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            ds: lsFilm
-        }
-    }
-
-    clickItemFilm() {
-        console.log('Clicked item film!')
-    }
-
-    renderItemFilm(item) {
-        return (
-            <View style={{ flexDirection: 'column' }}>
-                <TouchableOpacity
-                    onPress={() => this.clickItemFilm()}
-                    style={styles.itemContainer}>
-                    <Image
-                        source={item.banner}
-                        style={styles.bannerFilm}
-                        resizeMod='stretch'
-                    />
-                    <View style={styles.textContainer}>
-                        <Text
-                            numberOfLines={2}
-                            ellipsizeMode='tail'
-                            style={styles.titleEng}>
-                            {item.title_english}
-                        </Text>
-                        <Text
-                            numberOfLines={2}
-                            ellipsizeMode='tail'
-                            style={styles.titleVn}>
-                            {item.title_vn}
-                        </Text>
-                        <View style={{ marginTop: 10, marginLeft: 4, height: 2, width: 200, backgroundColor: item.color, }}>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-                <View style={styles.lineColor}>
-                </View>
-            </View>
-        )
-    }
     render() {
+        const {navigation} = this.props;
+        const {params} = this.props.navigation.state;
         return (
-            <View style={styles.container}>
-                <View style={styles.headerContainer}>
-                    <TouchableOpacity
-                        onPress={() => this.props.navigation.navigate('ScreenHome')}>
-                        <Image
-                            source={res.icons.back}
-                            style={{width: 30, heigth: 30}}
-                        />
-                    </TouchableOpacity>
-                    <Text> Danh sách </Text>
+            <View style={{flex: 1}}>
+                <View style={Styles.titleContainer}>
+                    <ImageButton source={Res.icons.back} tintColor={Res.colors.blue}
+                        onPress={() => navigation.navigate('ScreenHome')}/>
+                    <Text style={Styles.title}>{params.title}</Text>
                 </View>
-                <FlatList
-                    style={{ margin: 15 }}
-                    data={this.state.ds}
-                    renderItem={({ item }) => this.renderItemFilm(item)}>
-                </FlatList>
+
+                <View style={Styles.line}/>
+
+                <FilmListContainer navigation={navigation}/>   
             </View>
         )
     }

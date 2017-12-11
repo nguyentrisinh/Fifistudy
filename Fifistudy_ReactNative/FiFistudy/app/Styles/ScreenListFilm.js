@@ -1,41 +1,32 @@
 import { StyleSheet } from 'react-native';
-import windows from '../Themes/Window.js';
+import Res from '../Resources/index.js';
 
 export default styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column'
+        backgroundColor: Res.colors.background,
     },
-    headerContainer: {
+    titleContainer: {
         flexDirection: 'row',
-        alignItems: 'center'
+        paddingLeft: 16,
+        paddingRight: 16,
+        alignItems: 'center',
+        height: 56,
+        zIndex: 3,
     },
-    itemContainer: {
-        flexDirection: 'row',
-        backgroundColor: 'transparent'
+    title: {
+        fontFamily: Res.fonts.common,
+        left: 72,
+        fontSize: 21,
+        color: Res.colors.blue,
+        position: 'absolute'
     },
-    bannerFilm: {
-        width: windows.width * 1 / 3,
-        height: windows.width * 1 / 4,
-        margin: 10,
-        borderRadius: 10,
-    },
-    textContainer: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-    },
-    titleEng: {
-        fontSize: 18,
-        color: 'cornflowerblue'
-    },
-    titleVn: {
-        fontSize: 16,
-        color: 'grey'
-    },
-
-    lineColor: {
-        margin: 10,
+    line: {
+        backgroundColor: Res.colors.line,
+        marginLeft: 16,
+        marginRight: 16,
         height: 1,
-        backgroundColor: 'grey'
+        opacity: 0.5,
+        elevation: 3
     }
 })
