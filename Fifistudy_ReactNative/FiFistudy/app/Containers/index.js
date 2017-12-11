@@ -8,6 +8,7 @@ import MediaSubPlayerContainer from './MediaSubPlayerContainer.js';
 import EpisodeCommentContainer from './EpisodeCommentContainer.js';
 import VocabulariesContainer from './VocabulariesContainer.js';
 import FilmListContainer from './FilmListContainer.js';
+import CategoryContainer from './CategoryContainer.js';
 
 export {
     Notes,
@@ -19,5 +20,6 @@ export {
     MediaSubPlayerContainer,
     EpisodeCommentContainer,
     VocabulariesContainer,
-    FilmListContainer
+    FilmListContainer,
+    CategoryContainer,
 };
