@@ -56,6 +56,8 @@ const res = {
         default: require('./Images/img_default.png'),
         avatar: require('./Images/img_avatar.png'),
         notFound: require('./Images/img_not_found.png'),
+        login_1: require('./Images/login_1.png'),
+        logo_full: require('./Images/logo_full.png'),
     },
     colors: {
         background: '#fafafa',

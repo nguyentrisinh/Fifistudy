@@ -13,6 +13,7 @@ import ScreenListFilm from './ScreenListFilm.js';
 import ScreenSearchFilm from './ScreenSearchFilm.js';
 import FullScreenWatch from './FullScreenWatch.js';
 import ScreenCategories from './ScreenCategories.js';
+import ScreenLogin from './ScreenLogin.js';
 
 export {
     ScreenNotes,
@@ -29,5 +30,6 @@ export {
     ScreenListFilm,
     ScreenSearchFilm,
     FullScreenWatch,
-    ScreenCategories
+    ScreenCategories,
+    ScreenLogin,
 }
