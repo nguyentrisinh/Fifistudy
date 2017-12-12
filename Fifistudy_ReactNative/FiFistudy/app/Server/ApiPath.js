@@ -1,5 +1,6 @@
 export const API_PATH = {
-    getPromote: `/api/promotes/get_all/`,
+    // getPromote: `/api/promotes/get_all/`,
+    getPromote: `/search/movie?api_key=9e6a1314bf676a83bdabc4938078e5d6&query=batman`,
     getLastest: `/api/films/get_all_order_by_updated/`,
     getLastestWithAuth: `/api/films/get_all_order_by_updated_with_auth/`,
     // get
