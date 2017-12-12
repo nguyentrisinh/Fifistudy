@@ -14,10 +14,13 @@ import ListSub from './ListSub.js';
 import MediaPlayer from './MediaPlayer.js';
 import DrawerMenuItem from './DrawerMenuItem.js';
 import LevelCard from './LevelCard.js';
-import SearchFilm from './SearchFilm.js';
 import ToolBar from './ToolBar.js';
 import SubItem from './SubItem.js';
 import VocabularyItem from './VocabularyItem.js';
+import SearchFilm from './SearchFilm.js';
+import MediaPlayerWithoutSub from './MediaPlayerWithoutSub.js';
+import FilmListItem from './FilmListItem.js';
+import CategoryItem from './CategoryItem.js';
 
 export {
     DailyNoteItem,
@@ -39,5 +42,8 @@ export {
     ToolBar,
     SubItem,
     VocabularyItem,
-    SearchFilm
+    SearchFilm,
+    MediaPlayerWithoutSub,
+    FilmListItem,
+    CategoryItem
 }

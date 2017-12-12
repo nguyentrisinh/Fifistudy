@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     },
     subContainer: {
         flex: 1,
-        marginRight: 16
+        marginRight: 8
     },
     subEnglish: {   
         fontFamily: Res.fonts.common,

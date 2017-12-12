@@ -1,14 +1,14 @@
 const res = {
-    ic_more: require('./Icons/ic_more.png'),
-    green_star: require('./Icons/green-star.png'),
-    purple_chart: require('./Icons/purple-chart.png'),
-    ic_like: require('./Icons/ic_like.png'),
-    ic_like_blue: require('./Icons/ic_like_blue.png'),
-    banner_film: require('./Images/ghost_in_shell.png'),
-    //avatars
-    ava1: require('./Avatars/ava1.png'),
-    ava2: require('./Avatars/ava2.png'),
-    ava3: require('./Avatars/ava3.png'),
+    // ic_more: require('./Icons/ic_more.png'),
+    // green_star: require('./Icons/green-star.png'),
+    // purple_chart: require('./Icons/purple-chart.png'),
+    // ic_like: require('./Icons/ic_like.png'),
+    // ic_like_blue: require('./Icons/ic_like_blue.png'),
+    // banner_film: require('./Images/ghost_in_shell.png'),
+    // //avatars
+    // ava1: require('./Avatars/ava1.png'),
+    // ava2: require('./Avatars/ava2.png'),
+    // ava3: require('./Avatars/ava3.png'),
 
 
 
@@ -37,6 +37,7 @@ const res = {
         forwardSec: require('./Icons/ic_forward_10_sec.png'),
         volume: require('./Icons/ic_volume.png'),
         expand: require('./Icons/ic_expand.png'),
+        collapse: require('./Icons/ic_collapse.png'),
         filmType: require('./Icons/ic_box.png'),
         level: require('./Icons/ic_level.png'),
         tip: require('./Icons/ic_tip.png'),
@@ -47,10 +48,14 @@ const res = {
         feedback: require('./Icons/ic_mail.png'),
         setting: require('./Icons/ic_setting.png'),
         floatingBtn: require('./Icons/btn_play.png'),
+        openSubPanel: require('./Icons/ic_sub_panel_close.png'),
+        circle: require('./Icons/ic_circle.png'),
+        circleFull: require('./Icons/ic_circle_full.png'),
     },
     images: {
         default: require('./Images/img_default.png'),
         avatar: require('./Images/img_avatar.png'),
+        notFound: require('./Images/img_not_found.png'),
     },
     colors: {
         background: '#fafafa',

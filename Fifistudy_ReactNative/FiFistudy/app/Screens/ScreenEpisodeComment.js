@@ -21,7 +21,8 @@ export default class ScreenComment extends Component {
                 {/* Title section */}
                 <View style={Styles.toolbarContainer}>
                     <ImageButton source={Resources.icons.close} tintColor={Resources.colors.blue}
-                            onPress={() => this.props.navigation.dispatch(NavigationActions.back())}/>
+                            // onPress={() => this.props.navigation.dispatch(NavigationActions.back())}
+                            onPress={() => this.props.navigation.navigate('ScreenWatchMovie')}/>
 
                     <Text style={Styles.title}>
                         Bình luận</Text>

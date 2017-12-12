@@ -51,6 +51,25 @@ const styles = StyleSheet.create({
         color: Res.colors.blue,
         fontSize: 17,
     },
+    line: {
+        backgroundColor: Res.colors.line,
+        marginLeft: 16,
+        marginRight: 16,
+        height: 1,
+        opacity: 0.5,
+        elevation: 3
+    },
+    footer: {
+        width: width,
+        marginTop: 16,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    devTeam: {
+        fontFamily: Res.fonts.light,
+        margin: 8,
+        opacity: 0.6
+    }
 });
 
 export default styles;

@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native';
 import {LevelCard, ImageButton} from '../Components/index.js';
 import Res from '../Resources/index';
 
 export default class ScreenLevels extends Component {
     render() {
+        const {navigate} = this.props.navigation;
         return(
             <View style={styles.container}>
                 {/* Title section */}
@@ -26,24 +28,33 @@ export default class ScreenLevels extends Component {
                 
                 <View style={styles.levelsContainer}>
                     <View style={[styles.levelCardcontainer, {
-                        backgroundColor: Res.colors.red,
+                        backgroundColor: Res.colors.levelHard,
                         transform: [{ rotate: '-30deg'}],
                         }]}>
-                        <Text style={styles.label}>Khó</Text>
+                        <TouchableOpacity
+                            onPress={() => navigate('ScreenListFilm', {title: 'Độ khó: Khó'})}>
+                            <Text style={styles.label}>Khó</Text>
+                        </TouchableOpacity>
                     </View>
                     <View style={[styles.levelCardcontainer, {
-                        backgroundColor: Res.colors.violet,
+                        backgroundColor: Res.colors.levelMedium,
                         transform: [{ rotate: '-5deg'}],
                         marginTop: -118
                         }]}>
-                        <Text style={styles.label}>Trung bình</Text>
+                        <TouchableOpacity
+                            onPress={() => navigate('ScreenListFilm', {title: 'Độ khó: Trung bình'})}>
+                            <Text style={styles.label}>Trung bình</Text>
+                        </TouchableOpacity>
                     </View>
                     <View style={[styles.levelCardcontainer, {
-                        backgroundColor: Res.colors.blue,
+                        backgroundColor: Res.colors.levelEasy,
                         transform: [{ rotate: '10deg'}],
                         marginTop: -120,
                         }]}>
-                        <Text style={styles.label}>Dễ</Text>
+                        <TouchableOpacity
+                            onPress={() => navigate('ScreenListFilm', {title: 'Độ khó: Dễ'})}>
+                            <Text style={styles.label}>Dễ</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>

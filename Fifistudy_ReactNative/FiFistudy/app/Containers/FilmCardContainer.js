@@ -10,7 +10,8 @@ export default class FilmCardContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataSource: Obj.newestFilms
+            //dataSource: Obj.newestFilms.splice(0, 4),
+            dataSource: Obj.newestFilms,
         }
     }
 
@@ -27,7 +28,7 @@ export default class FilmCardContainer extends Component {
                 numColumns={2}
                 scrollEnabled={false}
                 showsVerticalScrollIndicator={false}
-                data={Obj.newestFilms}
+                data={this.state.dataSource}
                 keyExtractor={ID => ID}
                 renderItem={({item}) => this.renderItem(item)}/>
         );

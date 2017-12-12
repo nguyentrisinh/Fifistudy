@@ -43,12 +43,22 @@ const styles = StyleSheet.create({
     },
     buttonFloatContainer: {
         position: 'absolute',
-        right: 36,
-        top: width * Res.ratio - 85,
-        elevation: 6
+        padding: 20,
+        right: 16,
+        top: width * Res.ratio - 105,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    animatedButtonFloat: {
+        width: 76,
+        height: 76,
+        borderRadius: 50,
+        backgroundColor: '#FC6568',
+        opacity: 0.3,
     },
     buttonFloat: {
         resizeMode: 'cover',
+        position: 'absolute',
         width: 70,
         height: 70,
     }

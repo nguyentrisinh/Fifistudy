@@ -17,7 +17,7 @@ export default class ScreenTips extends Component {
                 <View style={Styles.titleContainer}>
                     <ImageButton source={Res.icons.back} tintColor={Res.colors.blue}
                         onPress={() =>  this.props.navigation.navigate('ScreenHome')}/>
-                    <Text style={Styles.title}>Từ vựng</Text>
+                    <Text style={Styles.title}>Tip</Text>
                 </View>
                 <View style={Styles.line}/>
                 

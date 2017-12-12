@@ -1,45 +1,53 @@
-import React, {Component} from 'react';
+import Orientation from 'react-native-orientation';
+import styles from '../Styles/FullScreenWatch.js';
+import React, { Component } from 'react';
 import {
     Text,
     View,
+    ScrollView,
     Dimensions,
     FlatList,
     TextInput,
     Image,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    TouchableOpacity
 } from 'react-native';
 import TimerMixin from 'react-timer-mixin';
 import Video from 'react-native-video';
 import Slider from "react-native-slider";
 import ObjFilm from '../Objects/ObjFilm.js';
 import ObjEpisode from '../Objects/ObjEpisode.js';
-import {ImageButton, ListSub} from '../Components/index.js';
+import { ImageButton, ListSub } from '../Components/index.js';
 import Res from '../Resources/index.js';
 import Styles from '../Styles/MediaPlayer.js';
 
-
-export default class MediaPlayer extends Component {
+export default class MediaPlayerWithoutSub extends Component {
     timeString2s = (a, b) => {// time(HH:MM:SS.mss) // optimized
         // Chuyen dinh dang thoi gian cua sub thanh ms
         return a = a.split('.'), // optimized
             b = a[1] * 1 || 0, // optimized
             a = a[0].split(':'),
-        b + (a[2] ? a[0] * 3600 + a[1] * 60 + a[2] * 1 : a[1] ? a[0] * 60 + a[1] * 1 : a[0] * 1) * 1e3 // optimized
+            b + (a[2] ? a[0] * 3600 + a[1] * 60 + a[2] * 1 : a[1] ? a[0] * 60 + a[1] * 1 : a[0] * 1) * 1e3 // optimized
     }
 
-    constructor(props){
+    componentWillMount() {
+        Orientation.lockToLandscape();
+    }
+
+    constructor(props) {
         super(props);
         this.state = {
             sub: null,
             isPlay: true,
             text: 10,
-            currentTime: 0, 
+            currentTime: 0,
             duration: 0,
             volume: 80,
             testText: '',
             isDragging: false, // xác định người dùng có đang kéo thanh tua video k,
             currentItem: null, // dòng sub hiện tại đang chạy.
             showControl: false, // xác định có hiển thị control mark hay không
+            isShowSub: false
         };
 
         this.events = {
@@ -63,33 +71,32 @@ export default class MediaPlayer extends Component {
         };
 
         fetch("http://studymovie.net/Cms_Data/Contents/admin/Media/sub-e-v/2ptd-Friends.S01E24.mHD.BluRay.DD5.1.x264-EPiK.Vie_Syned-24-e-v.vtt")
-        .then(response => {
-            return response._bodyText
-        })
-        .then(response => {
-            let stringVTT = response.split(/\n\s*\n/);
-            stringVTT.shift();
-            let sub = stringVTT.map((item) => {
-                var parts = item.split("\n");
-                return {
-                    number: parts[0],
-                    start: this.timeString2s(parts[1].split('-->')[0].trim()) / 1000,
-                    end: this.timeString2s(parts[1].split('-->')[1].trim()) / 1000,
-                    sub: parts.slice(2, parts.length),
-                };
-            });
-            this.setState({
-                sub: sub,
+            .then(response => {
+                return response._bodyText
             })
-        })
-        .catch(err => console.log(err))
+            .then(response => {
+                let stringVTT = response.split(/\n\s*\n/);
+                stringVTT.shift();
+                let sub = stringVTT.map((item) => {
+                    var parts = item.split("\n");
+                    return {
+                        number: parts[0],
+                        start: this.timeString2s(parts[1].split('-->')[0].trim()) / 1000,
+                        end: this.timeString2s(parts[1].split('-->')[1].trim()) / 1000,
+                        sub: parts.slice(2, parts.length),
+                    };
+                });
+                this.setState({
+                    sub: sub,
+                })
+            })
+            .catch(err => console.log(err))
     }
-
 
     // ===================== Events ============================
     onProgress(value) {
         if (this.state.sub) {
-            let {currentTime} = value;
+            let { currentTime } = value;
             //lay dong sub dang chay
             let currentItem = this.state.sub.find(o => ((o.start <= currentTime) && (o.end >= currentTime)));
             if (currentItem) {
@@ -111,8 +118,8 @@ export default class MediaPlayer extends Component {
         }
         // Neu nguoi dung dang keo thanh tua video thi return ko set State
         if (!this.state.isDragging) {
-            this.setState({  
-                currentTime : value.currentTime
+            this.setState({
+                currentTime: value.currentTime
             })
         }
     }
@@ -192,13 +199,13 @@ export default class MediaPlayer extends Component {
     showVolumeSlider() {
         return (
             <Slider style={{
-                    position: 'absolute',
-                    left: -20,
-                    transform: [{rotate: '-90deg'}],
-                    width: 100,
-                }}
-                trackStyle={{backgroundColor: '#757575'}}
-                thumbStyle={{backgroundColor: 'white',}}
+                position: 'absolute',
+                left: -20,
+                transform: [{ rotate: '-90deg' }],
+                width: 100,
+            }}
+                trackStyle={{ backgroundColor: '#757575' }}
+                thumbStyle={{ backgroundColor: 'white', }}
                 minimumTrackTintColor='white'
                 minimumValue={0}
                 maximumValue={1}
@@ -213,7 +220,7 @@ export default class MediaPlayer extends Component {
         const width = Dimensions.get('window').width;
         return (
             // Control mask
-            <View style={Styles.controlMask}>
+            <View style={[Styles.fullscreenMask, {height: Dimensions.get('window').height, width: width}]}>
                 {/* Play, Pause, Back, Forward controls */}
                 <View style={Styles.playPauseBackForwardContainer}>
                     <ImageButton
@@ -243,7 +250,7 @@ export default class MediaPlayer extends Component {
                         />
                     </View>
                     <Slider
-                        style={Styles.slider}
+                        style={[Styles.fullscreenSlider, {width: width*0.8}]}
                         trackStyle={Styles.track}
                         thumbStyle={Styles.thumb}
                         minimumTrackTintColor='white'
@@ -255,15 +262,16 @@ export default class MediaPlayer extends Component {
                         step={1}
                     />
                     <ImageButton
-                        onPress={() => this.props.navigation.navigate('FullScreenWatch')}
-                        source={Res.icons.expand}
-                        tintColor='white'/>
+                        onPress={() => {
+                            this.props.navigation.navigate('ScreenWatchMovie')}}
+                        source={Res.icons.collapse}
+                        tintColor='white' />
                 </View>
             </View>
         );
     }
 
-    toggleControls(){
+    toggleControls() {
         if (this.showControl) return;
 
         setTimeout(() => {
@@ -278,15 +286,60 @@ export default class MediaPlayer extends Component {
         })
     }
 
-    render() {
-        const width = Dimensions.get('window').width;
+    renderListSub() {
         return (
-            <View>
+            <View style={{
+                position: 'absolute',
+                right: 0,
+                top: 0,
+                width: '36%',
+                backgroundColor: 'rgba(0, 0, 0, 0.5)'
+            }}> 
+                {/* Title */}
+                <Text style={{
+                    minHeight: 44,
+                    marginTop: 8,
+                    marginBottom: 8,
+                    marginLeft: 16, 
+                    marginRight: 76,
+                    textAlignVertical: 'center',
+                    fontFamily: Res.fonts.common,
+                    color: 'white',
+                    fontSize: 17,
+                }}>{ObjEpisode.number}. {ObjEpisode.name}</Text>
+                <View style={{
+                    height: 1,
+                    marginLeft: 8,
+                    marginRight: 8,
+                    backgroundColor: Res.colors.line,
+                }}/>
+
+                {/* List sub */}
+                {!!this.state.sub && <ListSub currentItem={this.state.currentItem} data={this.state.sub} />}
+            </View>
+        )
+    }
+
+    toggleSubPanel(){
+        this.setState({
+            isShowSub: !this.state.isShowSub
+        });
+    }
+
+    render() {
+        return (
+            <View style={{ flex: 1 }}>
                 {/* MEDIA PLAYER SECTION */}
-                <TouchableWithoutFeedback onPress={this.controls.onToggleControls}>
-                    <View style={Styles.videoContainer}>
-                        <Video style={{flex: 1}}
-                            source={{uri: ObjEpisode.link_video}}   // Can be a URL or a local file.
+                <TouchableWithoutFeedback
+                style={{flex: 1}}
+                    onPress={this.controls.onToggleControls}>
+                    <View style={Styles.fullscreenContainer}>
+                        {/* Render su side bar */}
+                        {/* {this.renderSubSideBar()} */}
+
+                        {/* Video section */}
+                        <Video style={{ flex: 1, zIndex: 1 }}
+                            source={{ uri: ObjEpisode.link_video }}   // Can be a URL or a local file.
                             ref={(ref) => this.player = ref}
                             rate={0}                              // 0 is paused, 1 is normal.
                             volume={this.state.volume}                            // 0 is muted, 1 is normal.
@@ -303,23 +356,27 @@ export default class MediaPlayer extends Component {
                             onBuffer={this.events.onBuffer}
                             onTimedMetadata={this.events.onBuffer}
                         />
-                        {/* <Image source={Res.banner_film} /> */}
+                        {/* <Image source={Res.banner_film} style={{flex: 1, zIndex: 1, resizeMode: 'cover'}}/> */}
                         {this.state.showControl && this.showPlayerControls()}
                     </View>
                 </TouchableWithoutFeedback>
-                {/* <Text>{this.state.testText}</Text> */}
-                {/* END MEDIA PLAYER SECTION */}
-                    
 
-                {/* SUB SECTION */}
+                {/* SUB PANEL SECTION */}
+                {this.state.isShowSub && this.renderListSub()}
                 <View style={{
-                    backgroundColor: Res.colors.filmSubBackground,
-                    width: width,
-                    height: width * Res.ratio,
+                    marginTop: 8,
+                    marginRight: 16,
+                    position: 'absolute',
+                    zIndex: 4,
+                    right: 0,
+                    top: 0,
                 }}>
-                    {!!this.state.sub && <ListSub currentItem={this.state.currentItem} data={this.state.sub}/>}
+                    <ImageButton
+                        onPress={() => this.toggleSubPanel()}
+                        source={this.state.isShowSub ? Res.icons.moreArrow : Res.icons.openSubPanel}
+                        tintColor='white' />
                 </View>
-                {/* END SUB SECTION */}
+                {/* END SUB PANEL SECTION */}
             </View>
         );
     }
