@@ -10,10 +10,10 @@ const initialState = {
 export default screenHome = (state = initialState, action) => {
     switch (action.type) {
         case Types.GET_PROMOTE:
-            return update(state.promotes,{$merge:{
+            return update(state,{promotes:{$merge:{
                 isLoading:false,
                 data:action.data
-            }});
+            }}});
             break;
         default :
             return state;

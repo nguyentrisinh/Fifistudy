@@ -9,8 +9,10 @@ import EpisodeCommentContainer from './EpisodeCommentContainer.js';
 import VocabulariesContainer from './VocabulariesContainer.js';
 import FilmListContainer from './FilmListContainer.js';
 import CategoryContainer from './CategoryContainer.js';
+import BannerContainer from './BannerContainer'
 
 export {
+    BannerContainer,
     Notes,
     CommentContainer,
     HistoryFilmsContainer,

@@ -21,8 +21,10 @@ import SearchFilm from './SearchFilm.js';
 import MediaPlayerWithoutSub from './MediaPlayerWithoutSub.js';
 import FilmListItem from './FilmListItem.js';
 import CategoryItem from './CategoryItem.js';
+import Banner from './Banner';
 
 export {
+    Banner,
     DailyNoteItem,
     MonthItem,
     DialogNoteItem,

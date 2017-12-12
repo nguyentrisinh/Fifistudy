@@ -14,8 +14,9 @@ import { bindAc } from 'redux';
 import { connect } from 'react-redux';
 import Styles from '../Styles/ScreenHome';
 import res from '../Resources/index';
-import { ImageButton, ImageSlider } from '../Components/index.js';
+import { ImageButton, ImageSlider,Banner } from '../Components/index.js';
 import {
+    BannerContainer,
     HistoryFilmsContainer,
     FilmCardContainer,
     TipContainer,
@@ -29,7 +30,7 @@ class ScreenHome extends Component {
         super(props);
 
         this.state = {
-            position: 1,
+            // position: 1,
             interval: null,
         };
     }
@@ -42,8 +43,6 @@ class ScreenHome extends Component {
     
     componentWillMount() {
         // Orientation.lockToPortrait();
-
-        this.props.getPromotes();
         this.setState({
             interval: setInterval(() => {
                 this.setState({
@@ -80,11 +79,12 @@ class ScreenHome extends Component {
                 {/* SECTION BANNER SLIDER */}
                 <View
                     style={Styles.bannerSlider}>
-                    <ImageSlider
-                        navigation={this.props.navigation}
-                        dataSource={Obj.sliderSource}
-                        position={this.state.position}
-                        onPostionChange={position => this.setState({ position })} />
+                    {/*<ImageSlider*/}
+                        {/*navigation={this.props.navigation}*/}
+                        {/*dataSource={Obj.sliderSource}*/}
+                        {/*position={this.state.position}*/}
+                        {/*onPostionChange={position => this.setState({ position })} />*/}
+                        <BannerContainer/>
                 </View>
 
                 {/* SECTION HISTORY SLIDER */}
@@ -139,16 +139,7 @@ class ScreenHome extends Component {
 
 }
 
-const mapStateToProps = state => {
-    return {
-        promotes: state.screenHome.promotes
-    }
-}
 
-const dispatchActionsCreator = {
-    getPromotes
-}
-
-export default connect(mapStateToProps, dispatchActionsCreator)(ScreenHome)
+export default ScreenHome
 
 
