@@ -51,13 +51,18 @@ const res = {
         openSubPanel: require('./Icons/ic_sub_panel_close.png'),
         circle: require('./Icons/ic_circle.png'),
         circleFull: require('./Icons/ic_circle_full.png'),
+        profile: require('./Icons/ic_profile.png'),
+        password: require('./Icons/ic_password.png'),
     },
     images: {
         default: require('./Images/img_default.png'),
         avatar: require('./Images/img_avatar.png'),
         notFound: require('./Images/img_not_found.png'),
-        login_1: require('./Images/login_1.png'),
         logo_full: require('./Images/logo_full.png'),
+        login_background: [
+            require('./Images/login_1.png'),
+            require('./Images/login_2.png'),
+        ]
     },
     colors: {
         background: '#fafafa',
