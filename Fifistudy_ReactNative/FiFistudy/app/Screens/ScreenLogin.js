@@ -10,11 +10,16 @@ import Res from '../Resources/index.js';
 import Styles from "../Styles/ScreenLogin.js";
 
 export default class ScreenLogin extends Component{
+    getImagebackground(){
+        let index = Math.floor(Math.random() * (Res.images.login_background.length));
+        return Res.images.login_background[index];
+    }
+
     render() {
         return (
             <View style={{flex: 1}}>
                 <Image style={Styles.imgBackground} blurRadius={2}
-                    source={Res.images.login_background[1]}/>
+                    source={this.getImagebackground()}/>
                 <View style={Styles.blackMask}>
                     {/* Header */}
                     <View style={Styles.header}>
@@ -40,6 +45,7 @@ export default class ScreenLogin extends Component{
                         <View style={Styles.box}>
                             <Image style={Styles.icon} source={Res.icons.password}/>
                             <TextInput style={Styles.textInput}
+                                secureTextEntry={true}
                                 placeholderTextColor='rgba(255,255,255, 0.6)'
                                 underlineColorAndroid='rgba(255,255,255, 0.6)'
                                 placeholder='Mật khẩu'

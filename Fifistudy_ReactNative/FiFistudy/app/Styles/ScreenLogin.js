@@ -4,7 +4,7 @@ const width = Dimensions.get('window').width;
 const Styles = StyleSheet.create({
     header: {
         alignItems: 'center',
-        opacity: 0.8,
+        opacity: 0.7,
         marginTop: -20
     },
     welcomeContainer: {
