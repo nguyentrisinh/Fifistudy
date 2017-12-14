@@ -9,8 +9,13 @@ import EpisodeCommentContainer from './EpisodeCommentContainer.js';
 import VocabulariesContainer from './VocabulariesContainer.js';
 import FilmListContainer from './FilmListContainer.js';
 import CategoryContainer from './CategoryContainer.js';
-
+import BannerContainer from './BannerContainer'
+import NewFilmsContainer from './NewFilmsContainer';
+import MostViewContainer from './MostViewContainer'
 export {
+    MostViewContainer,
+    NewFilmsContainer,
+    BannerContainer,
     Notes,
     CommentContainer,
     HistoryFilmsContainer,

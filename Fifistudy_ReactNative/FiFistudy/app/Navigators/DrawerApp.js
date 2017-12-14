@@ -16,7 +16,9 @@ import {
     FullScreenWatch,
     ScreenCategories,
     ScreenLogin,
-    ScreenRegister
+    ScreenRegister,
+    ScreenMovieContainer,
+    ScreenWatchMovieContainer
 } from '../Screens/index.js';
 
 import PopupListEpisode from '../Components/PopupListEpisode.js';
@@ -25,12 +27,12 @@ const DrawerApp = DrawerNavigator({
     ScreenNotes: { screen: ScreenNotes },
     ScreenHome: { screen: ScreenHome },
     ScreenLevels: {screen: ScreenLevels},
-    ScreenWatchMovie: {screen: ScreenWatchMovie},
+    ScreenWatchMovie: {screen: ScreenWatchMovieContainer},
     ScreenEpisodeComment: {screen: ScreenEpisodeComment},
     ScreenMovieComment: {screen: ScreenMovieComment},
     ScreenVocabulary: {screen: ScreenVocabulary},
     PopupListEmpisode: { screen: PopupListEpisode },
-    ScreenMovies: { screen: ScreenMovies },
+    ScreenMovies: { screen: ScreenMovieContainer },
     ScreenSearchFilm: { screen: ScreenSearchFilm },
     ScreenListFilm: { screen: ScreenListFilm },
     ScreenTips: {screen: ScreenTips},
@@ -40,7 +42,7 @@ const DrawerApp = DrawerNavigator({
     ScreenRegister: {screen: ScreenRegister}
 }, {
         headerMode: 'none',
-        initialRouteName: 'ScreenRegister',
+        initialRouteName: 'ScreenHome',
         contentComponent: DrawerMenu,
     });
 

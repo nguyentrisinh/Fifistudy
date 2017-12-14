@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { getPromotes } from '../Redux/actions/screenHome'
+import React, {Component} from 'react';
+import {getPromotes, getLastest, getMostView} from '../Redux/actions/screenHome'
 import {
     Text,
     Image,
@@ -10,40 +10,44 @@ import {
     StatusBar
 } from 'react-native';
 import Orientation from 'react-native-orientation';
-import { bindAc } from 'redux';
-import { connect } from 'react-redux';
+import {bindAc} from 'redux';
+import {connect} from 'react-redux';
 import Styles from '../Styles/ScreenHome';
 import res from '../Resources/index';
-import { ImageButton, ImageSlider } from '../Components/index.js';
+import {ImageButton, ImageSlider, Banner, FilmCategory} from '../Components/index.js';
 import {
+    BannerContainer,
     HistoryFilmsContainer,
     FilmCardContainer,
     TipContainer,
+    NewFilmsContainer,
+    MostViewContainer
 } from '../Containers/index.js';
 import {NavigationActions} from 'react-navigation';
 import Obj from '../Objects/ObjTemp.js';
-import { SearchFilm } from '../Components/index.js';
+import {SearchFilm} from '../Components/index.js';
 
 class ScreenHome extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            position: 1,
+            // position: 1,
             interval: null,
         };
     }
 
     navigateToScreen(route) {
-        this.setState({ route: route });
-        let navigationAction = NavigationActions.navigate({ routeName: route });
+        this.setState({route: route});
+        let navigationAction = NavigationActions.navigate({routeName: route});
         this.props.navigation.dispatch(navigationAction);
     }
-    
-    componentWillMount() {
-        // Orientation.lockToPortrait();
 
+    componentWillMount() {
         this.props.getPromotes();
+        this.props.getLastest();
+        this.props.getMostView();
+        // Orientation.lockToPortrait();
         this.setState({
             interval: setInterval(() => {
                 this.setState({
@@ -58,6 +62,7 @@ class ScreenHome extends Component {
     }
 
     render() {
+        console.log('dataaaaaa',)
         return (
             <ScrollView
                 contentContainerStyle={Styles.container}
@@ -69,22 +74,23 @@ class ScreenHome extends Component {
                     <ImageButton
                         onPress={() => this.navigateToScreen('DrawerToggle')}
                         source={res.icons.menu}
-                        tintColor='white' />
+                        tintColor='white'/>
                     <View style={Styles.searchContainer}>
                         <ImageButton
                             onPress={() => this.navigateToScreen('ScreenSearchFilm')}
                             source={res.icons.search}
-                            tintColor='white' />
+                            tintColor='white'/>
                     </View>
                 </View>
                 {/* SECTION BANNER SLIDER */}
                 <View
                     style={Styles.bannerSlider}>
-                    <ImageSlider
-                        navigation={this.props.navigation}
-                        dataSource={Obj.sliderSource}
-                        position={this.state.position}
-                        onPostionChange={position => this.setState({ position })} />
+                    {/*<ImageSlider*/}
+                    {/*navigation={this.props.navigation}*/}
+                    {/*dataSource={Obj.sliderSource}*/}
+                    {/*position={this.state.position}*/}
+                    {/*onPostionChange={position => this.setState({ position })} />*/}
+                    <BannerContainer/>
                 </View>
 
                 {/* SECTION HISTORY SLIDER */}
@@ -96,34 +102,34 @@ class ScreenHome extends Component {
                             this.props.name
                         }
                     </Text>
-                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue} />
+                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue}/>
                 </View>
-                <HistoryFilmsContainer navigation={this.props.navigation} />
+                <HistoryFilmsContainer navigation={this.props.navigation}/>
 
                 {/* NEWEST FILMS */}
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>Phim mới</Text>
-                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue} />
+                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue}/>
                 </View>
-                <FilmCardContainer navigation={this.props.navigation} />
-
+                {/*<FilmCardContainer navigation={this.props.navigation} />*/}
+                <NewFilmsContainer/>
                 {/* MOST VIEWED FILMS */}
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>Xem nhiều</Text>
-                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue} />
+                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue}/>
                 </View>
-                <FilmCardContainer navigation={this.props.navigation} />
-
+                {/*<FilmCardContainer navigation={this.props.navigation} />*/}
+                <MostViewContainer/>
                 {/* TIPS */}
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>Tips</Text>
                     <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue}
-                        onPress={() => this.navigateToScreen('ScreenTips')} />
+                                 onPress={() => this.navigateToScreen('ScreenTips')}/>
                 </View>
-                <TipContainer navigation={this.props.navigation} numRender={4} />
+                <TipContainer navigation={this.props.navigation} numRender={4}/>
 
 
                 {/* FOOTER */}
@@ -139,16 +145,7 @@ class ScreenHome extends Component {
 
 }
 
-const mapStateToProps = state => {
-    return {
-        promotes: state.screenHome.promotes
-    }
-}
 
-const dispatchActionsCreator = {
-    getPromotes
-}
-
-export default connect(mapStateToProps, dispatchActionsCreator)(ScreenHome)
+export default connect(null, {getPromotes, getLastest, getMostView})(ScreenHome)
 
 

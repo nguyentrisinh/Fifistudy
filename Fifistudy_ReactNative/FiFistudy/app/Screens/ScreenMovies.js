@@ -7,6 +7,8 @@ import {
     Animated,
     TouchableOpacity
 } from 'react-native';
+import {withNavigation} from 'react-navigation'
+import {baseUrl} from '../Server/config'
 import LinearGradient from 'react-native-linear-gradient';
 import PopupDialog, {SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 import styles from '../Styles/ScreenMovies.js';
@@ -41,6 +43,7 @@ class ScreenMovies extends Component {
     }
 
     componentWillMount() {
+        console.log('dataaaaa',this.props.data)
         this.animate();
     }
 
@@ -58,10 +61,10 @@ class ScreenMovies extends Component {
     renderItemEpisode(item) {
         return (
             <TouchableOpacity style={stylesPopup.itemEpisode}
-                onPress={() => this.props.navigation.navigate('ScreenWatchMovie')}>
+                onPress={() => this.props.navigation.navigate('ScreenWatchMovie',{film:this.props.data,filmSlug:this.props.data.slug,episodeId:item.number})}>
                 {/* onPress={() => this.props.navigation.dispatch(NavigationActions.back())}> */}
                 <Text style={stylesPopup.textEpisode}>
-                    {item.name}
+                    {item.number}
                 </Text>
                 <View style={stylesPopup.blackLine}>
                 </View>
@@ -108,7 +111,7 @@ class ScreenMovies extends Component {
                     </View>    
                 
                     <Image
-                        source={{uri: ObjFilm.thumbnail}}
+                        source={{uri: baseUrl+ this.props.data.thumbnail}}
                         style={styles.image}>
                         <LinearGradient
                             colors={['rgba(0, 0, 0, 0.5)', 'transparent']}
@@ -123,7 +126,7 @@ class ScreenMovies extends Component {
                     </Image>
                     
                     <View style={styles.tabContainer}>
-                        <TabMovies />
+                        <TabMovies screenProps={this.props.data} />
                     </View>
                 </View>
 
@@ -143,7 +146,7 @@ class ScreenMovies extends Component {
                     overlayOpacity={0.5}>
                      {/* --- Component popup show --- */}
                      <FlatList
-                         data={this.state.ds}
+                         data={this.props.data.episodes.sort((a,b)=>a.number>b.number)}
                          renderItem={({ item }) => this.renderItemEpisode(item)}
                      >
                      </FlatList>
@@ -155,4 +158,4 @@ class ScreenMovies extends Component {
     }
 }
 
-export default ScreenMovies;
+export default withNavigation(ScreenMovies);

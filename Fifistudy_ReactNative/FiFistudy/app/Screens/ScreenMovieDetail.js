@@ -6,6 +6,8 @@ import {
     ScrollView
 } from 'react-native';
 
+import {withNavigation} from 'react-navigation';
+
 import styles from '../Styles/ScreenMovieDetail.js';
 import res from '../Resources/index.js';
 import ObjFilm from '../Objects/ObjFilm.js';
@@ -21,13 +23,14 @@ class ScreenMovieDetail extends Component {
     }
 
     render() {
+        const data=this.props.screenProps;
         return (
             <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
                 <Text style={styles.txtHeader}>
-                    {ObjFilm.english_name}
+                    {data.english_name}
                 </Text>
                 <Text style={styles.txtFilm}>
-                    {ObjFilm.vietnamese_name}
+                    {data.vietnamese_name}
                 </Text>
 
                 <View style={styles.rateContainer}>
@@ -38,7 +41,7 @@ class ScreenMovieDetail extends Component {
                             style={styles.icon}
                         />
                         <Text style={styles.greentxt}>
-                            {ObjFilm.average_score}
+                            {data.average_score}
                         </Text>
                     </View>
                     <View style={styles.iconWithText}>
@@ -48,7 +51,7 @@ class ScreenMovieDetail extends Component {
                             style={styles.icon}
                         />
                         <Text style={styles.purpletxt}>
-                            {this.getDificultLevel(ObjFilm)}
+                            {this.getDificultLevel(data)}
                         </Text>
                     </View>
                 </View>
@@ -60,7 +63,7 @@ class ScreenMovieDetail extends Component {
                         Số tập
                     </Text>
                     <Text style={styles.spacetxt}>
-                        {ObjFilm.episodes.length}
+                        {data.episode_number}
                     </Text>
                 </View>
                 <View style={styles.horiContainer}>
@@ -90,7 +93,7 @@ class ScreenMovieDetail extends Component {
                     showsVerticalScrollIndicator={false}
                     scrollEnabled={false}>
                     <Text>
-                        {ObjFilm.description}
+                        {data.description}
                     </Text>
                 </ScrollView>
             </ScrollView>
@@ -98,4 +101,4 @@ class ScreenMovieDetail extends Component {
     }
 }
 
-export default ScreenMovieDetail;
+export default withNavigation(ScreenMovieDetail);

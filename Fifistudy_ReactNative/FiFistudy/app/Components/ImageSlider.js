@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {baseUrl} from '../Server/config'
 import {
     View,
     Text,
@@ -112,6 +113,7 @@ export default class ImageSlider extends Component {
     }
 
     render(){
+        console.log('dataaaaa',this.props.dataSource);
         const width = this.state.width;
         const height = this.props.height || this.state.height;
         const position = this.getPosition();
@@ -133,11 +135,12 @@ export default class ImageSlider extends Component {
                             { height: height, }
                     ]}>
                     {this.props.dataSource.map((image, index) => {
-                        const imageObject = typeof image.url === 'string' ? {uri: image.url} : image.url;
+                        const imageObject = typeof image.film_detail.thumbnail === 'string' ? {uri: baseUrl+ image.film_detail.thumbnail} : image.film_detail.thumbnail;
+                        console.log('imO',image);
                         const textComponent = (
                             <View style={styles.layoutText}>
-                                {image.title === undefined ? null : <Text style={styles.textTitle}>{image.title}</Text>}
-                                {image.caption === undefined? null : <Text style={styles.textCaption}>{image.caption}</Text>}
+                                {image.film_detail.english_name === undefined ? null : <Text style={styles.textTitle}>{image.film_detail.english_name}</Text>}
+                                {image.film_detail.vietnamese_name === undefined? null : <Text style={styles.textCaption}>{image.film_detail.vietnamese_name}</Text>}
                             </View>
                         );
                         const imageComponent = (
@@ -208,11 +211,11 @@ ImageSlider.defaultProps= {
 }
 
 ImageSlider.propTypes = {
-    dataSource: PropTypes.arrayOf(PropTypes.shape({
-	    title: PropTypes.string,
-	    caption: PropTypes.string,
-	    url: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    })).isRequired, 
+    // dataSource: PropTypes.arrayOf(PropTypes.shape({
+	 //    title: PropTypes.string,
+	 //    caption: PropTypes.string,
+	 //    url: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    // })).isRequired,
     indicatorSize: PropTypes.number,
     indicatorColor: PropTypes.string,
     height: PropTypes.number,
