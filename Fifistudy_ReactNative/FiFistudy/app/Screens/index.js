@@ -14,6 +14,7 @@ import ScreenSearchFilm from './ScreenSearchFilm.js';
 import FullScreenWatch from './FullScreenWatch.js';
 import ScreenCategories from './ScreenCategories.js';
 import ScreenLogin from './ScreenLogin.js';
+import ScreenRegister from './ScreenRegister.js';
 
 export {
     ScreenNotes,
@@ -32,4 +33,5 @@ export {
     FullScreenWatch,
     ScreenCategories,
     ScreenLogin,
+    ScreenRegister
 }

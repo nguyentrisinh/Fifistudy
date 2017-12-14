@@ -1,4 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
+import Res from '../Resources/index.js';
 
 const width = Dimensions.get('window').width;
 const Styles = StyleSheet.create({
@@ -14,6 +15,7 @@ const Styles = StyleSheet.create({
     welcomeContent: {
         color: 'white',
         fontSize: 20,
+        // fontFamily: Res.fonts.light,
     },
     imgBackground: {
         resizeMode: 'cover',

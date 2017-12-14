@@ -16,6 +16,7 @@ export default class ScreenLogin extends Component{
     }
 
     render() {
+        const {navigate} = this.props.navigation;
         return (
             <View style={{flex: 1}}>
                 <Image style={Styles.imgBackground} blurRadius={2}
@@ -71,7 +72,8 @@ export default class ScreenLogin extends Component{
                             <Text style={Styles.btnContent}>Đăng nhập</Text>
                         </TouchableOpacity>
                         {/* Resigter btn */}
-                        <TouchableOpacity style={[Styles.button, {backgroundColor: 'rgba(255,255,255, 0.38)'}]}>
+                        <TouchableOpacity style={[Styles.button, {backgroundColor: 'rgba(255,255,255, 0.38)'}]}
+                            onPress={() => navigate('ScreenRegister')}>
                             <Text style={Styles.btnContent}>Đăng kí</Text>
                         </TouchableOpacity>
                     </View>

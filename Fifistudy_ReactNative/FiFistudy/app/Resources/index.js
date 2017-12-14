@@ -53,6 +53,7 @@ const res = {
         circleFull: require('./Icons/ic_circle_full.png'),
         profile: require('./Icons/ic_profile.png'),
         password: require('./Icons/ic_password.png'),
+        add: require('./Icons/ic_add.png'),
     },
     images: {
         default: require('./Images/img_default.png'),
@@ -76,6 +77,7 @@ const res = {
         red: '#f44336',
         line: '#E0E0E0',
         gray: '#9E9E9E',
+        lightgray: '#E0E0E0',
         filmSubBackground: '#424242',
 
         //level's colors
