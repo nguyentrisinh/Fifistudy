@@ -146,7 +146,7 @@ class ScreenMovies extends Component {
                     overlayOpacity={0.5}>
                      {/* --- Component popup show --- */}
                      <FlatList
-                         data={this.props.data.episodes.sort((a,b)=>a.number>b.number)}
+                         data={this.props.data.episodes.sort((a,b)=>parseInt(a.number)-parseInt(b.number))}
                          renderItem={({ item }) => this.renderItemEpisode(item)}
                      >
                      </FlatList>
