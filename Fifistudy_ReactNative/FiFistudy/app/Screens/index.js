@@ -16,6 +16,7 @@ import ScreenCategories from './ScreenCategories.js';
 import ScreenLogin from './ScreenLogin.js';
 import ScreenRegister from './ScreenRegister.js';
 import ScreenRegister_Step1 from './ScreenRegister_Step1.js';
+import ScreenRegister_Step2 from './ScreenRegister_Step2.js';
 
 export {
     ScreenNotes,
@@ -36,4 +37,5 @@ export {
     ScreenLogin,
     ScreenRegister,
     ScreenRegister_Step1,
+    ScreenRegister_Step2,
 }

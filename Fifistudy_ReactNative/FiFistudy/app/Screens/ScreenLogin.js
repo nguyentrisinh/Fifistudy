@@ -68,7 +68,8 @@ export default class ScreenLogin extends Component{
                         marginTop: 30,
                     }}>
                         {/* Login btn */}
-                        <TouchableOpacity style={[Styles.button, {backgroundColor: Res.colors.blue}]}>
+                        <TouchableOpacity style={[Styles.button, {backgroundColor: Res.colors.blue}]}
+                            onPress={() => navigate('ScreenHome')}>
                             <Text style={Styles.btnContent}>Đăng nhập</Text>
                         </TouchableOpacity>
                         {/* Resigter btn */}

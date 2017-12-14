@@ -6,7 +6,10 @@ import {
     TextInput,
     TouchableOpacity,
 } from 'react-native';
-import {ScreenRegister_Step1} from './index.js';
+import {
+    ScreenRegister_Step1,
+    ScreenRegister_Step2,
+} from './index.js';
 import Res from '../Resources/index.js';
 import Styles from '../Styles/ScreenRegister.js';
 
@@ -74,6 +77,7 @@ export default class ScreenRegister extends Component{
                     flex: 1
                 }}>
                     <ScreenRegister_Step1/>
+                    {/* <ScreenRegister_Step2/> */}
                 </View>
 
                 {/* Footer */}

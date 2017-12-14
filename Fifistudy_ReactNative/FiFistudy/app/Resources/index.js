@@ -97,6 +97,9 @@ const res = {
         common: 'sans-serif',
         light: 'sans-serif-light',
     },
+    animations: {
+        check: require('./Animations/check.gif'),
+    },
 
     ratio: 9 / 16,
 }
