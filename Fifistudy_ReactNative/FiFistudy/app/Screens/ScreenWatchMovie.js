@@ -16,8 +16,9 @@ import Resources from '../Resources/index.js';
 import Styles from '../Styles/ScreenWatchMovie.js';
 import ObjEpisode from '../Objects/ObjEpisode.js';
 import ObjFilm from '../Objects/ObjFilm.js';
+import {withNavigation} from 'react-navigation';
 
-export default class WatchScreen extends Component {
+class WatchScreen extends Component {
     setEpisodeColor(item) {
         // Cai object item se sua sau
         return item == ObjEpisode.number ? Resources.colors.violet : Resources.colors.blue;
@@ -64,7 +65,7 @@ export default class WatchScreen extends Component {
                         horizontal={false}
                         numColumns={6}
                         showsHorizontalScrollIndicator={false}
-                        data={this.props.film.episodes}
+                        data={this.props.film.episodes.sort((a,b)=>parseInt(a.number)-parseInt(b.number))}
                         keyExtractor={item => item}
                         renderItem={({ item }) => (
                             <EpisodeCircleView
@@ -90,3 +91,4 @@ export default class WatchScreen extends Component {
         );
     }
 }
+export default withNavigation(WatchScreen)
