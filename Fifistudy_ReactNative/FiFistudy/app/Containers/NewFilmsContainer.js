@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-import { getPromotes } from '../Redux/actions/screenHome'
 import {
     Text,
     Image,
@@ -9,62 +7,65 @@ import {
     TouchableOpacity,
     StatusBar
 } from 'react-native';
+
+
+import {
+    BannerContainer,
+    HistoryFilmsContainer,
+    FilmCardContainer,
+    TipContainer,
+} from '../Containers/index.js';
 import {connect} from 'react-redux';
-import {Banner} from '../Components/index'
+import React from 'react';
 
-class BannerContainer extends Component {
+// import {FilmCardContainer} from '../Containers/FilmCardContainer';
 
-    constructor(props){
+class NewFilmsContainer extends React.Component {
+    constructor(props) {
         super(props);
+        this.state = {};
     }
 
-    componentWillMount = () =>{
-        // this.props.getPromotes();
-    }
-    render(){
-        if (this.props.promotes.isLoading==true){
+    render() {
+        if (this.props.lastest.isLoading) {
             return (
                 <View>
                     <Text>
-
-                        Dang tai
+                        Loading
                     </Text>
                 </View>
             )
         }
-        if (this.props.promotes.data==null){
+        if (this.props.lastest.data.errors) {
             return (
                 <View>
                     <Text>
-
                         Loi
                     </Text>
                 </View>
             )
-
         }
-        if (this.props.promotes.data.errors!=null){
+        if (this.props.lastest.data.data == null) {
+
             return (
                 <View>
                     <Text>
-
                         Loi
                     </Text>
                 </View>
             )
         }
         return (
-           <Banner data={this.props.promotes.data.data}/>
+            <FilmCardContainer data={this.props.lastest.data.data}/>
         )
     }
-
 }
-
 
 const mapStateToProps = state => {
     return {
-        promotes: state.screenHome.promotes
+        lastest: state.screenHome.lastest
     }
 }
 
-export default connect(mapStateToProps)(BannerContainer)
+
+export default connect(mapStateToProps)(NewFilmsContainer)

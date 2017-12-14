@@ -24,17 +24,21 @@ export default class WatchScreen extends Component {
     }
 
     componentWillMount() {
+
+
+        console.log('screenWatchMoviehihi',this.props.data);
         Orientation.lockToPortrait();
     }
 
     render() {
         const width = Dimensions.get('window').width;
+        const {film} = this.props;
         return (
             <View style={{ flex: 1 }}>
                 <ScrollView style={{ backgroundColor: Resources.colors.background }}
                     showsVerticalScrollIndicator={false}>
                     {/* MEDIA PLAYER SECTION */}
-                    <MediaPlayer navigation={this.props.navigation} />
+                    <MediaPlayer data={this.props.data} navigation={this.props.navigation} />
                     {/* END MEDIA PLAYER SECTION */}
 
                     {/* SUB SECTION */}
@@ -49,8 +53,8 @@ export default class WatchScreen extends Component {
 
                     {/* TITLE SECTION */}
                     <View style={Styles.titleContainer}>
-                        <Text style={Styles.title}>{ObjFilm.english_name}</Text>
-                        <Text style={Styles.subtitle}>{ObjEpisode.name}</Text>
+                        <Text style={Styles.title}>{film.english_name}</Text>
+                        <Text style={Styles.subtitle}>{film.vietnamese_name}</Text>
                     </View>
 
 
@@ -60,11 +64,11 @@ export default class WatchScreen extends Component {
                         horizontal={false}
                         numColumns={6}
                         showsHorizontalScrollIndicator={false}
-                        data={ObjFilm.episodes}
+                        data={this.props.film.episodes}
                         keyExtractor={item => item}
                         renderItem={({ item }) => (
                             <EpisodeCircleView
-                                episodeNumber={item}
+                                episodeNumber={item.number}
                                 size={42}
                                 color={this.setEpisodeColor(item)}
                             />

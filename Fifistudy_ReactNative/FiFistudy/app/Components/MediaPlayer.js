@@ -8,6 +8,7 @@ import {
     Image,
     TouchableWithoutFeedback
 } from 'react-native';
+import {baseUrl} from '../Server/config'
 import TimerMixin from 'react-timer-mixin';
 import Video from 'react-native-video';
 import Slider from "react-native-slider";
@@ -62,7 +63,7 @@ export default class MediaPlayer extends Component {
             onToggleControls: this.toggleControls.bind(this),
         };
 
-        fetch("http://studymovie.net/Cms_Data/Contents/admin/Media/sub-e-v/2ptd-Friends.S01E24.mHD.BluRay.DD5.1.x264-EPiK.Vie_Syned-24-e-v.vtt")
+        fetch(baseUrl+this.props.data.sub)
         .then(response => {
             return response._bodyText
         })
@@ -279,6 +280,8 @@ export default class MediaPlayer extends Component {
     }
 
     render() {
+
+        console.log("link video", this.props.data.link_video)
         const width = Dimensions.get('window').width;
         return (
             <View>
@@ -286,7 +289,7 @@ export default class MediaPlayer extends Component {
                 <TouchableWithoutFeedback onPress={this.controls.onToggleControls}>
                     <View style={Styles.videoContainer}>
                         <Video style={{flex: 1}}
-                            source={{uri: ObjEpisode.link_video}}   // Can be a URL or a local file.
+                            source={{uri: this.props.data.link_video}}   // Can be a URL or a local file.
                             ref={(ref) => this.player = ref}
                             rate={0}                              // 0 is paused, 1 is normal.
                             volume={this.state.volume}                            // 0 is muted, 1 is normal.

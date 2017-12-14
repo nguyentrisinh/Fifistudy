@@ -4,9 +4,10 @@ import {
 } from 'react-native';
 import FilmCard from '../Components/FilmCardItem.js';
 import Obj from '../Objects/ObjTemp.js';
+import {withNavigation} from 'react-navigation';
 
 
-export default class FilmCardContainer extends Component {
+class FilmCardContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,9 +29,12 @@ export default class FilmCardContainer extends Component {
                 numColumns={2}
                 scrollEnabled={false}
                 showsVerticalScrollIndicator={false}
-                data={this.state.dataSource}
+                data={this.props.data}
                 keyExtractor={ID => ID}
                 renderItem={({item}) => this.renderItem(item)}/>
         );
     }
 }
+
+export default withNavigation(FilmCardContainer)
+

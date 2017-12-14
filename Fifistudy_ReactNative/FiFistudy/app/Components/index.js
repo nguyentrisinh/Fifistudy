@@ -22,8 +22,10 @@ import MediaPlayerWithoutSub from './MediaPlayerWithoutSub.js';
 import FilmListItem from './FilmListItem.js';
 import CategoryItem from './CategoryItem.js';
 import Banner from './Banner';
+import FilmCategory from './FilmCategory';
 
 export {
+    FilmCategory,
     Banner,
     DailyNoteItem,
     MonthItem,

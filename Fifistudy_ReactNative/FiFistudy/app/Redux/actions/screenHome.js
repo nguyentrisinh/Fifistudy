@@ -11,3 +11,25 @@ export const getPromotes = ()=>{
        })
     }
 }
+
+export const getLastest = ()=>{
+    return (dispatch)=>{
+        ApiAction.getLastest().then(response=>{
+            dispatch({
+                type:Types.GET_LASTEST,
+                data:response
+            })
+        })
+    }
+}
+
+export const getMostView = ()=>{
+    return (dispatch)=>{
+        ApiAction.getMostView().then(response=>{
+            dispatch({
+                type:Types.GET_MOST_VIEW,
+                data:response
+            })
+        })
+    }
+}
