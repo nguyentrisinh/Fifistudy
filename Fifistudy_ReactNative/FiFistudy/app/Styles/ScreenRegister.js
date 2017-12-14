@@ -13,8 +13,10 @@ const Styles = StyleSheet.create({
     stepsContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
-        top: 30,
-        margin: 4
+        marginTop: 30,
+        marginLeft: 4,
+        marginRight: 4,
+        marginBottom: 8,
     },
     stepContainer: {
         flex: 1,
@@ -79,6 +81,7 @@ const Styles = StyleSheet.create({
         width: width,
         flexDirection: 'row',
         bottom: 8,
+        paddingTop: 16,
         paddingLeft: 8,
         paddingRight: 8,
         justifyContent: 'space-between',
