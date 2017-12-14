@@ -9,6 +9,7 @@ import {
 import {
     ScreenRegister_Step1,
     ScreenRegister_Step2,
+    ScreenRegister_Step3,
 } from './index.js';
 import Res from '../Resources/index.js';
 import Styles from '../Styles/ScreenRegister.js';
@@ -76,8 +77,9 @@ export default class ScreenRegister extends Component{
                 <View style={{
                     flex: 1
                 }}>
-                    <ScreenRegister_Step1/>
-                    {/* <ScreenRegister_Step2/> */}
+                    {/* <ScreenRegister_Step1/> */}
+                    <ScreenRegister_Step2/>
+                    {/* <ScreenRegister_Step3/> */}
                 </View>
 
                 {/* Footer */}

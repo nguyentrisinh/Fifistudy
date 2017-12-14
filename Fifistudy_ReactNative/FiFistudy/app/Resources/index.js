@@ -60,6 +60,7 @@ const res = {
         avatar: require('./Images/img_avatar.png'),
         notFound: require('./Images/img_not_found.png'),
         logo_full: require('./Images/logo_full.png'),
+        success: require('./Images/img_success.png'),
         login_background: [
             require('./Images/login_1.png'),
             require('./Images/login_2.png'),

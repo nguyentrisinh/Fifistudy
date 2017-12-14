@@ -11,6 +11,10 @@ const Styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    inputContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     title: {
         textAlign: 'center',
         width: width*0.6,
@@ -34,6 +38,26 @@ const Styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 6,
         borderColor: Res.colors.blue
-    }
+    },
+    resultContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    animationCircle: {
+        height: 140,
+        width: 140,
+        borderRadius: 80,
+        opacity: 0.3,
+        position: 'absolute'
+    },
+    resultImage: {
+        resizeMode: 'cover',
+        width: 120,
+        height: 120,
+    },
+    resultText: {
+        marginTop: 32,
+        fontSize: 17,
+    },
 });
 export default Styles;
