@@ -42,8 +42,8 @@ const DrawerApp = DrawerNavigator({
     ScreenRegister: {screen: ScreenRegister}
 }, {
         headerMode: 'none',
-        initialRouteName: 'ScreenRegister',
+        initialRouteName: 'ScreenLogin',
         contentComponent: DrawerMenu,
-    });
+});
 
 export default DrawerApp;

@@ -46,9 +46,11 @@ const styles = StyleSheet.create({
     titleEnglish: {
         fontFamily: res.fonts.common,
         fontWeight: 'bold',
+        width: groupWidth - 10,
         marginBottom: 3,
     },
     titleVietnamese: {
+        width: groupWidth - 10,
         fontFamily: res.fonts.common,
     }
 });

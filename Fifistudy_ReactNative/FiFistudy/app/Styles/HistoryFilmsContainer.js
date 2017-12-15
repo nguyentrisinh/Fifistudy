@@ -8,7 +8,7 @@ const width = Dimensions.get('window').width;
 const styles = {
     listHistoryFilm: {
         width: width,
-        //elevation: 3,
+        elevation: 3,
         backgroundColor: 'white',
         zIndex: 1
     },

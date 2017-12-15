@@ -24,7 +24,7 @@ export default class ScreenRegister_Step4 extends Component{
                  <View style={Styles.footer}>
                     <TouchableOpacity>
                         <View style={Styles.btnContainer}>
-                            <Text style={Styles.btnContent}>Tiếp theo</Text>
+                            <Text style={Styles.btnContent}>Khám phá ngay</Text>
                             <Image style={Styles.icon} source={Res.icons.moreArrow}/>
                         </View>
                     </TouchableOpacity>

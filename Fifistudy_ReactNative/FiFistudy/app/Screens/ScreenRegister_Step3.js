@@ -61,8 +61,8 @@ export default class ScreenRegister_Step3 extends Component{
                 <View style={Styles.footer}>
                     <TouchableOpacity onPress={() => navigate('ScreenLogin')}>
                         <View style={Styles.btnContainer}>
-                            <Image style={Styles.icon} source={Res.icons.back}/>
-                            <Text style={Styles.btnContent}>Quay lại</Text>
+                            <Image style={Styles.icon} source={Res.icons.close}/>
+                            <Text style={Styles.btnContent}>Bỏ qua</Text>
                         </View>
                     </TouchableOpacity>
 

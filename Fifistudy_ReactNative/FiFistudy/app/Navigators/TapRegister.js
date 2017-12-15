@@ -19,5 +19,6 @@ const TabRegister = StackNavigator({
     Step4: { screen: ScreenRegister_Step4 },
 },{
     navigationOptions: { header: null },
+    cardStyle: {backgroundColor: Res.colors.background}
 });
 export default TabRegister;
