@@ -1,27 +1,19 @@
-import { TabNavigator } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 import Res from '../Resources/index.js';
-import ScreenMovieDetail from '../Screens/ScreenMovieDetail.js';
-import ScreenMovieComment from '../Screens/ScreenMovieComment.js';
+// import {
+//     ScreenRegister_Step1,
+//     ScreenRegister_Step2,
+//     ScreenRegister_Step3,
+//     ScreenRegister_Step4,
+// } from '../Screens/index.js';
 
-const TabMovies = TabNavigator({
-    'Thông tin': { screen: ScreenMovieDetail },
-    'Bình luận': { screen: ScreenMovieComment }
-}
-// , {
-//         tabBarPosition: 'bottom',
-//         tabBarOptions: {
-//             activeTintColor: Res.colors.blue,
-//             inactiveTintColor: 'white',
-//             labelStyle: {
-//                 color: Res.colors.blue,
-//                 fontSize: 14,
-//                 fontWeight: 'bold',
-//             },
-//             style: {
-//                 backgroundColor: Res.colors.background,
-//             }
-//         }
-//     }
-);
+import ScreenRegister_Step1 from '../Screens/ScreenRegister_Step1';
+import ScreenRegister_Step2 from '../Screens/ScreenRegister_Step2';
 
-export default TabMovies;
+const TabRegister = StackNavigator({
+    Step1: { screen: ScreenRegister_Step1 },
+    Step2: { screen: ScreenRegister_Step2 }
+},{
+    navigationOptions: { header: null }
+});
+export default TabRegister;

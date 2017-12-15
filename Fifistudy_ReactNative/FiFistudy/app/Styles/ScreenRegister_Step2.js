@@ -11,6 +11,11 @@ const Styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    body:{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     inputContainer: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -59,5 +64,30 @@ const Styles = StyleSheet.create({
         marginTop: 32,
         fontSize: 17,
     },
+    btnContainer: {
+        padding: 8,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    icon: {
+        tintColor: Res.colors.blue,
+        width: 20,
+        height: 20,
+    },
+    btnContent: {
+        color: Res.colors.blue,
+        fontSize: 17,
+        marginLeft: 8,
+        marginRight: 8
+    },
+    footer: {
+        width: width,
+        flexDirection: 'row',
+        bottom: 8,
+        paddingTop: 16,
+        paddingLeft: 8,
+        paddingRight: 8,
+        justifyContent: 'space-between',
+    }
 });
 export default Styles;

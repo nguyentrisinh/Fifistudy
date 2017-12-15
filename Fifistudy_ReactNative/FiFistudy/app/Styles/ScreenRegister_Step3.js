@@ -8,33 +8,43 @@ const width = Dimensions.get('window').width;
 const Styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     body: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    subContainer: {
-        width: width*0.82,
-        alignItems: 'center',
-        justifyContent: 'center'
+    cameraBtnContainer: {
+        backgroundColor: 'rgba(0,0,0,0.3)',
+        borderRadius: 30,
+        position: 'absolute',
+        bottom: -20,
+        right: -20
     },
-    row: {
+    avatar: {
+        height: 82,
+        width: 82,
+        borderRadius: 6,
+    },
+    infoContainer: {
+        width: width*0.8,
+        marginTop: 50,
+    },
+    nameContainer: {
         flexDirection: 'row',
-        alignItems: 'center',
-        margin: 8
     },
-    label: {
-        minWidth: 90,
-        fontWeight: 'bold',
-        textAlign: 'right',
-        marginRight: 8,
-        color: 'rgba(0, 0, 0, 0.5)'
+    lastNameTextInput: {
+        flex: 3,
+        color: Res.colors.gray,
+    },
+    firstNameTextInput: {
+        flex: 2,
+        color: Res.colors.gray,
     },
     textInput: {
-        flex: 1,
+        marginTop: 8,
         color: 'rgba(0, 0, 0, 0.6)',
     },
     btnContainer: {

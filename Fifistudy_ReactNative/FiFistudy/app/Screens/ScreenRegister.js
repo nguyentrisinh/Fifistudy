@@ -6,13 +6,9 @@ import {
     TextInput,
     TouchableOpacity,
 } from 'react-native';
-import {
-    ScreenRegister_Step1,
-    ScreenRegister_Step2,
-    ScreenRegister_Step3,
-} from './index.js';
 import Res from '../Resources/index.js';
 import Styles from '../Styles/ScreenRegister.js';
+import TapRegister from '../Navigators/TapRegister.js';
 
 export default class ScreenRegister extends Component{
     render() {
@@ -78,12 +74,14 @@ export default class ScreenRegister extends Component{
                     flex: 1
                 }}>
                     {/* <ScreenRegister_Step1/> */}
-                    <ScreenRegister_Step2/>
+                    {/* <ScreenRegister_Step2/> */}
                     {/* <ScreenRegister_Step3/> */}
+                    {/* <ScreenRegister_Step4/> */}
+                    <TapRegister/>
                 </View>
 
                 {/* Footer */}
-                <View style={Styles.footer}>
+                {/* <View style={Styles.footer}>
                     <TouchableOpacity onPress={() => navigate('ScreenLogin')}>
                         <View style={Styles.btnContainer}>
                             <Image style={Styles.icon} source={Res.icons.back}/>
@@ -97,7 +95,7 @@ export default class ScreenRegister extends Component{
                             <Image style={Styles.icon} source={Res.icons.moreArrow}/>
                         </View>
                     </TouchableOpacity>
-                </View>
+                </View> */}
             </View>
         );
     }

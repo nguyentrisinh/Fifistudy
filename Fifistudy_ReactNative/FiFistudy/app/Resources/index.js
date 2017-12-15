@@ -54,6 +54,7 @@ const res = {
         profile: require('./Icons/ic_profile.png'),
         password: require('./Icons/ic_password.png'),
         add: require('./Icons/ic_add.png'),
+        camera: require('./Icons/ic_camera.png'),
     },
     images: {
         default: require('./Images/img_default.png'),
@@ -61,6 +62,7 @@ const res = {
         notFound: require('./Images/img_not_found.png'),
         logo_full: require('./Images/logo_full.png'),
         success: require('./Images/img_success.png'),
+        congrats: require('./Images/img_congrats.png'),
         login_background: [
             require('./Images/login_1.png'),
             require('./Images/login_2.png'),

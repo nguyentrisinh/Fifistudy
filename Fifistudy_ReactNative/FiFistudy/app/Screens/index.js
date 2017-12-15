@@ -20,6 +20,7 @@ import ScreenRegister from './ScreenRegister.js';
 import ScreenRegister_Step1 from './ScreenRegister_Step1.js';
 import ScreenRegister_Step2 from './ScreenRegister_Step2.js';
 import ScreenRegister_Step3 from './ScreenRegister_Step3.js';
+import ScreenRegister_Step4 from './ScreenRegister_Step4.js';
 
 export {
     ScreenWatchMovieContainer,
@@ -44,4 +45,5 @@ export {
     ScreenRegister_Step1,
     ScreenRegister_Step2,
     ScreenRegister_Step3,
+    ScreenRegister_Step4,
 }
