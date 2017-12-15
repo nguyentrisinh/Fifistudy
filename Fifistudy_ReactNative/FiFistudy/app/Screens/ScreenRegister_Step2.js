@@ -12,6 +12,7 @@ import Styles from '../Styles/ScreenRegister_Step2.js';
 
 export default class ScreenRegister_Step2 extends Component{
     render() {
+        const {navigate} = this.props.navigation;
         return (
             <View style={Styles.container}>
                 <View style={Styles.body}>
@@ -39,14 +40,14 @@ export default class ScreenRegister_Step2 extends Component{
                 </View>
 
                 <View style={Styles.footer}>
-                    <TouchableOpacity onPress={() => navigate('ScreenLogin')}>
+                    <TouchableOpacity onPress={() => navigate('Step1')}>
                         <View style={Styles.btnContainer}>
                             <Image style={Styles.icon} source={Res.icons.back}/>
                             <Text style={Styles.btnContent}>Quay lại</Text>
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigate('Step3')}>
                         <View style={Styles.btnContainer}>
                             <Text style={Styles.btnContent}>Tiếp theo</Text>
                             <Image style={Styles.icon} source={Res.icons.moreArrow}/>

@@ -12,6 +12,7 @@ import Styles from '../Styles/ScreenRegister_Step3.js';
 
 export default class ScreenRegister_Step3 extends Component{
     render() {
+        const {navigate} = this.props.navigation;
         return (
             <View style={Styles.container}>
                 <View style={Styles.body}>
@@ -65,7 +66,7 @@ export default class ScreenRegister_Step3 extends Component{
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigate('Step4')}>
                         <View style={Styles.btnContainer}>
                             <Text style={Styles.btnContent}>Tiếp theo</Text>
                             <Image style={Styles.icon} source={Res.icons.moreArrow}/>

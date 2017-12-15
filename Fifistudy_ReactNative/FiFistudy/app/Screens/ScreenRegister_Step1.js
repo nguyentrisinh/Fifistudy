@@ -49,7 +49,7 @@ export default class ScreenRegister_Step1 extends Component{
                 </View>
 
                 <View style={Styles.footer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.props.mainNavigation.navigate('ScreenHome')}>
                         <View style={Styles.btnContainer}>
                             <Image style={Styles.icon} source={Res.icons.back}/>
                             <Text style={Styles.btnContent}>Quay lại</Text>

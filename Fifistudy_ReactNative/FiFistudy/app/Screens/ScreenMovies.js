@@ -32,14 +32,6 @@ class ScreenMovies extends Component {
             ds: lsEpisodes
         }
         this.animatedValue = new Animated.Value(0.6);
-
-        // fetch("http://192.168.56.100:8000/api/films/detail/slug/?film_slug=how-i-met-your-mother")
-        // .then(response => {
-        //     console.log('response: ', response.json());
-        // })
-        // .catch(err => {
-        //     console.log('error');
-        // });
     }
 
     componentWillMount() {

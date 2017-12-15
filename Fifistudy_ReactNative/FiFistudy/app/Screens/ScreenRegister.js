@@ -71,13 +71,13 @@ export default class ScreenRegister extends Component{
 
                 {/* Body */}
                 <View style={{
-                    flex: 1
+                    flex: 1,
                 }}>
                     {/* <ScreenRegister_Step1/> */}
                     {/* <ScreenRegister_Step2/> */}
                     {/* <ScreenRegister_Step3/> */}
                     {/* <ScreenRegister_Step4/> */}
-                    <TapRegister/>
+                    <TapRegister mainNavigation={this.props.navigation}/>
                 </View>
 
                 {/* Footer */}
