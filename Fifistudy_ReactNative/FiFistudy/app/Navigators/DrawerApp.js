@@ -23,9 +23,7 @@ import {
     ScreenRegister_Step3,
     ScreenRegister_Step4
 } from '../Screens/index.js';
-
 import PopupListEpisode from '../Components/PopupListEpisode.js';
-import TabRegister from './TapRegister.js';
 import ScreenRegister_Step1 from '../Screens/ScreenRegister_Step1';
 
 const DrawerApp = DrawerNavigator({

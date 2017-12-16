@@ -8,9 +8,7 @@ import {
 } from 'react-native';
 import Res from '../Resources/index.js';
 import Styles from '../Styles/ScreenRegister.js';
-import TapRegister from '../Navigators/TapRegister.js';
 import { ScreenRegister_Step1 } from './index';
-import { TabNavigator } from './C:/Users/nhan/AppData/Local/Microsoft/TypeScript/2.6/node_modules/@types/react-navigation';
 
 export default class ScreenRegister extends Component{
     render() {

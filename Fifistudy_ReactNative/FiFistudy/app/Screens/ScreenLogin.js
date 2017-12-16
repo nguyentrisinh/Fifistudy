@@ -75,7 +75,7 @@ ScreenLogin extends Component{
                         </TouchableOpacity>
                         {/* Resigter btn */}
                         <TouchableOpacity style={[Styles.button, {backgroundColor: 'rgba(255,255,255, 0.38)'}]}
-                            onPress={() => navigate('ScreenRegister')}>
+                            onPress={() => navigate('Step1')}>
                             <Text style={Styles.btnContent}>Đăng kí</Text>
                         </TouchableOpacity>
                     </View>

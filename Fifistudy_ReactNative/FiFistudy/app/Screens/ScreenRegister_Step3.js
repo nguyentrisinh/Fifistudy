@@ -59,7 +59,7 @@ export default class ScreenRegister_Step3 extends Component{
 
                 {/* Footer */}
                 <View style={Styles.footer}>
-                    <TouchableOpacity onPress={() => navigate('ScreenLogin')}>
+                    <TouchableOpacity onPress={() => navigate('ScreenHome')}>
                         <View style={Styles.btnContainer}>
                             <Image style={Styles.icon} source={Res.icons.close}/>
                             <Text style={Styles.btnContent}>Bỏ qua</Text>
