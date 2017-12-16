@@ -9,7 +9,8 @@ import {
 import Res from '../Resources/index.js';
 import Styles from "../Styles/ScreenLogin.js";
 
-export default class ScreenLogin extends Component{
+export default class 
+ScreenLogin extends Component{
     getImagebackground(){
         let index = Math.floor(Math.random() * (Res.images.login_background.length));
         return Res.images.login_background[index];
