@@ -415,7 +415,7 @@ class SignUp extends React.Component {
                         </ul>
                         <fieldset>
                             <h2 className="fs-title">Tạo tài khoản</h2>
-                            <h3 className="fs-subtitle">Để lại nơi đây 1 chút thông tin tài khoản nào</h3>
+                            <h3 className="fs-subtitle">Nhập thông tin tài khoản</h3>
                             {/*<input onBlur={this.onBlurTextInput} type="text" onChange={this.onChangeTextInput}*/}
                             {/*name="username" placeholder="Tên tài khoản"*/}
                             {/*value={this.state.username}/>*/}
@@ -449,7 +449,7 @@ class SignUp extends React.Component {
                         </fieldset>
                         <fieldset>
                             <h2 className="fs-title">Xác nhận tài khoản</h2>
-                            <h3 className="fs-subtitle">Nhập mã xác nhận vào cho vui nhà vui cửa nòe</h3>
+                            <h3 className="fs-subtitle">Nhập mã xác nhận</h3>
                             <Input type="text" onChange={this.onChangeTextInput} name="pin" placeholder="Mã xác nhận"
                                    value={this.state.pin} error={this.state.errors.pin}/>
                             {
@@ -464,8 +464,7 @@ class SignUp extends React.Component {
                         </fieldset>
                         <fieldset>
                             <h2 className="fs-title">Nhập thông tin tài khoản</h2>
-                            <h3 className="fs-subtitle">Bạn đã tạo tài khoản thành công. Thêm một ít thông tin về bạn
-                                nhóe</h3>
+                            <h3 className="fs-subtitle">Thêm thông tin cá nhân</h3>
                             <Input type="text" onChange={this.onChangeTextInput} name="firstName"
                                    placeholder="Họ và tên lót" value={this.state.firstName}/>
                             <Input type="text" onChange={this.onChangeTextInput} name="lastName" placeholder="Tên"
@@ -507,7 +506,7 @@ class SignUp extends React.Component {
                         </fieldset>
                         <fieldset>
                             <h2 className="fs-title">Cập nhật ảnh đại diện</h2>
-                            <h3 className="fs-subtitle">Thêm cái bản mặt vô để cân bằng giao diện nào</h3>
+                            <h3 className="fs-subtitle">Thêm ảnh đại diện</h3>
                             <div className="wrap-input wrap-input--center">
                                 <label htmlFor="avatar" className="action-button">
                                     Upload Avatar

@@ -52,20 +52,15 @@ export default class ListActor extends React.Component {
         };
         return (
 
-            <div className="list-actor__wrap">
-                <div className="list-actor__title">
-                    DIỄN VIÊN
-                </div>
-                <div className="divider"></div>
-                <div className="list-actor__actors">
 
-                    <Slider {...settings}>
-                        {
-                            this.renderActor()
-                        }
-                    </Slider>
+            <div className="list-actor__actors">
 
-                </div>
+                <Slider {...settings}>
+                    {
+                        this.renderActor()
+                    }
+                </Slider>
+
             </div>
         )
     }

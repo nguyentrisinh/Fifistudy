@@ -1,24 +1,44 @@
 import React from 'react';
 import classNames from 'classnames'
-import onClickOutside from 'react-onclickoutside'
+import onClickOutside from 'react-onclickoutside';
+import {Link} from 'react-router-dom'
 
 class Logo extends React.Component {
     handleClickOutside = evt => {
         this.props.closeMenu();
     }
+    onClickMenuItem = (item) => {
+        if (item.onClick) {
+            item.onClick();
+        }
+    }
+
+    renderMenu = () => {
+        return this.props.data.map(item => {
+            if (item.link) {
+                return (
+                    <Link className="menu__item" to={item.link}>
+                        {item.name}
+                    </Link>
+                )
+            }
+            else {
+                return (
+                    <div onClick={this.onClickMenuItem.bind(this, item)} className="menu__item">
+                        {item.name}
+                    </div>
+
+                )
+            }
+        })
+    }
 
     render() {
         return (
             <div className={classNames("menu", {"menu--open": this.props.isOpen})}>
-                <div className="menu__item">
-                    Phim theo cấp
-                </div>
-                <div className="menu__item">
-                    Phim mới nhất
-                </div>
-                <div className="menu__item">
-                    Phim quan tâm nhiều
-                </div>
+                {
+                    this.renderMenu()
+                }
             </div>
         )
     }

@@ -4,9 +4,15 @@ import parser from 'subtitles-parser';
 import axios from 'axios';
 const vttToJson = require("vtt-json");
 import $ from 'jquery';
+import ModalSaveVocabulary from './ModalSaveVocabulary';
 import {Scrollbars} from 'react-custom-scrollbars';
 import classNames from 'classnames';
-import ReactDOM from 'react-dom'
+import {toggleModalLogin} from '../actions/app'
+import ReactDOM from 'react-dom';
+import {connect} from 'react-redux';
+import {postSaveVocabulary} from '../actions/api'
+import {withCookies} from 'react-cookie';
+import {withRouter} from 'react-router'
 
 
 class VideoFilm extends React.Component {
@@ -18,7 +24,14 @@ class VideoFilm extends React.Component {
             isPractice: false,
             valueTimeBack: 5,
             valueSpeed: 1.0,
+            currentClickSave: null
         };
+    }
+
+    onClickOutside = () => {
+        this.setState({
+            currentClickSave: null
+        })
     }
 
     timeString2ms(a, b) {// time(HH:MM:SS.mss) // optimized
@@ -28,9 +41,61 @@ class VideoFilm extends React.Component {
         b + (a[2] ? a[0] * 3600 + a[1] * 60 + a[2] * 1 : a[1] ? a[0] * 60 + a[1] * 1 : a[0] * 1) * 1e3 // optimized
     }
 
-    componentWillMount = () => {
-        let {data} = this.props;
-        // axios.get("../static/media/sub.vtt")
+    onClickSub = (item) => {
+        this.player.seek(item.start);
+    }
+
+    onClickSave = (evt, item) => {
+        evt.preventDefault();
+        evt.stopPropagation();
+        // debugger
+        this.setState({
+            currentClickSave: {...item, ...{episode_id: this.props.data.id}}
+        })
+    }
+
+    renderSub = () => {
+        if (this.state.sub) {
+            return this.state.sub.map(item => {
+                return (
+                    <div onClick={this.onClickSub.bind(this, item)} ref={item.number} key={item.number}
+                         className={classNames("video-film__sub-item", {"video-film__sub-item--current": this.state.currentLine.number === item.number})}>
+                        <div className="video-film__subline">
+                            <div className="video-film__eng">
+                                {
+                                    item.sub[0].replace(/<\/?[^>]+(>|$)/g, "")
+                                }
+                            </div>
+                            <div className="video-film__vi">
+                                {
+                                    item.sub[1].replace(/<\/?[^>]+(>|$)/g, "")
+                                }
+                            </div>
+                        </div>
+
+                        <div className="video-film__bookmark" onClick={(evt) => this.onClickSave(evt, item)}>
+                            <i className="fa fa-bookmark-o"></i>
+                        </div>
+                    </div>
+                )
+            })
+        }
+    }
+    initPlayer = (data) => {
+        this.player = window.jwplayer('player').setup({
+            // file: '../static/media/video.mp4',
+            file: 'http://media.studyphim.vn/VIPN5/Extra/01_Extra_English_-_Hectors_arrival.mp4',
+            // file: `http://localhost:8000${data.video}`,
+            // file: `http://localhost:8000/media/episode/video/How_i_met_your_mother1_01.mp4`,
+
+            tracks: [{
+                file: `http://localhost:8000${data.sub}`,
+                label: "Eng-Vie",
+                kind: "captions",
+                "default": true
+            }],
+            aspectratio: "16:9"
+        })
         axios.get(`http://localhost:8000${data.sub}`)
             .then(response => {
                 let stringVTT = response.data.split(/\n\s*\n/);
@@ -49,55 +114,6 @@ class VideoFilm extends React.Component {
                 })
             })
             .catch(err => console.log(err));
-    }
-    onClickSub = (item) => {
-        this.player.seek(item.start);
-    }
-
-    renderSub = () => {
-        if (this.state.sub) {
-            return this.state.sub.map(item => {
-                console.log(item);
-                return (
-                    <div onClick={this.onClickSub.bind(this, item)} ref={item.number} key={item.number}
-                         className={classNames("video-film__sub-item", {"video-film__sub-item--current": this.state.currentLine.number === item.number})}>
-                        <div className="video-film__subline">
-                            <div className="video-film__eng">
-                                {
-                                    item.sub[0].replace(/<\/?[^>]+(>|$)/g, "")
-                                }
-                            </div>
-                            <div className="video-film__vi">
-                                {
-                                    item.sub[1].replace(/<\/?[^>]+(>|$)/g, "")
-                                }
-                            </div>
-                        </div>
-
-                        <div className="video-film__bookmark">
-                            <i className="fa fa-bookmark-o"></i>
-                        </div>
-                    </div>
-                )
-            })
-        }
-    }
-
-    componentDidMount = () => {
-        let {data} = this.props;
-        this.player = window.jwplayer('player').setup({
-            // file: '../static/media/video.mp4',
-            file: `http://localhost:8000${data.video}`,
-            // file: `http://localhost:8000/media/episode/video/How_i_met_your_mother1_01.mp4`,
-
-            tracks: [{
-                file: `http://localhost:8000${data.sub}`,
-                label: "Eng-Vie",
-                kind: "captions",
-                "default": true
-            }],
-            aspectratio: "16:9"
-        })
         this.player.on('time', (data) => {
             if (this.state.sub) {
                 let currentLine = this.state.sub.find(o => (o.start <= data.position && o.end >= data.position));
@@ -111,7 +127,45 @@ class VideoFilm extends React.Component {
                     }
                 }
             }
+        });
+        this.player.on('ready', () => {
+            if (this.props.location.state) {
+                if (this.props.location.state.currentTime) {
+                    console.log('propsroute', this.props);
+                    this.player.seek(this.props.location.state.currentTime);
+                }
+            }
         })
+    }
+    componentDidMount = () => {
+        let {data} = this.props;
+        this.initPlayer(data);
+    }
+
+    componentWillUnmount = () => {
+        this.props.history.replace(
+            this.props.history.location.pathname,
+            undefined,
+        )
+    }
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.data !== this.props.data) {
+            this.initPlayer(nextProps.data);
+        }
+    }
+    renderModalSave = () => {
+        let {currentClickSave} = this.state
+        if (this.state.currentClickSave) return (
+
+            <div> hihi
+                <ModalSaveVocabulary data={currentClickSave} isOpen={true}
+                                     onClickOutside={this.onClickOutside}/>
+
+            </div>
+        )
+
+        return null
+
     }
     onClickBtnSwipe = () => {
         this.setState({
@@ -161,7 +215,6 @@ class VideoFilm extends React.Component {
     };
 
     applySpeed = (valueSpeed) => {
-        console.log(valueSpeed)
         document.getElementById('player').querySelector('video').playbackRate = valueSpeed;
         // document.getElementById('player').querySelector('video').play();
 
@@ -247,8 +300,18 @@ class VideoFilm extends React.Component {
 
                     </div>
                 </div>
+                {
+                    this.renderModalSave()
+                }
+
             </div>
         )
     }
 }
-export default VideoFilm
+
+const mapStateToProps = state => {
+    return {
+        isLogin: state.app.isLogin
+    }
+}
+export default connect(mapStateToProps, {toggleModalLogin})(withRouter(withCookies(VideoFilm)))

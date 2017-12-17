@@ -8,7 +8,8 @@ import {connect} from 'react-redux';
  */
 import {postLogin} from '../actions/api';
 import {getUserInfo} from '../actions/app'
-import Modal from '../components/Modal'
+import Modal from './customComponents/Modal';
+import {doLogin} from '../actions/app'
 
 class ModalLogin extends React.Component {
     constructor(props) {
@@ -25,9 +26,16 @@ class ModalLogin extends React.Component {
         let {cookies} = this.props;
         postLogin(data).then(res => {
             if (res.data.errors == null) {
-
-                cookies.set("token", res.data.data.token);
+                let date = new Date();
+                date = date.setDate(date.getDate() + 1);
+                date = new Date(date);
+                // debugger
+                cookies.set("token", res.data.data.token, {
+                    expires: date,
+                    path: "/"
+                });
                 this.props.getUserInfo(res.data.data.token);
+                this.props.doLogin(true);
                 this.props.onClickOutside();
             }
         })
@@ -45,7 +53,7 @@ class ModalLogin extends React.Component {
                 <h1 className="modal-title">Đăng nhập</h1>
                 <Input type="text" onChange={this.onChangeTextInput} name="username" placeholder="Tên đăng nhập"
                        value={this.state.username}/>
-                <Input type="text" onChange={this.onChangeTextInput} name="password" placeholder="Mật khẩu"
+                <Input type="password" onChange={this.onChangeTextInput} name="password" placeholder="Mật khẩu"
                        value={this.state.password}/>
                 <button onClick={this.onClickLogin} type="button"
                         className="action-button"
@@ -56,4 +64,4 @@ class ModalLogin extends React.Component {
         )
     }
 }
-export default connect(null, {getUserInfo})(withCookies(ModalLogin))
+export default connect(null, {getUserInfo, doLogin})(withCookies(ModalLogin))
