@@ -23,6 +23,7 @@ import FilmListItem from './FilmListItem.js';
 import CategoryItem from './CategoryItem.js';
 import Banner from './Banner';
 import FilmCategory from './FilmCategory';
+import StepLine from './StepLine';
 
 export {
     FilmCategory,
@@ -49,5 +50,6 @@ export {
     SearchFilm,
     MediaPlayerWithoutSub,
     FilmListItem,
-    CategoryItem
+    CategoryItem,
+    StepLine,
 }
