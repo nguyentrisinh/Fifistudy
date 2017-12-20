@@ -53,13 +53,13 @@ class CommentContainer extends React.Component {
 
                     }
                     else {
-                        alert('Comment that bai')
+                        alert('Bình luận thất bại')
                     }
                 });
 
             }
             else {
-                alert('Vui lòng nhạp nội dung')
+                alert('Vui lòng nhập nội dung')
             }
 
         }
@@ -79,7 +79,7 @@ class CommentContainer extends React.Component {
         let {comment} = this.props;
         if (comment.isLoading) {
             return (
-                <div className="list-actor__info"> Đang tải ... </div>
+                <div className="list-actor__no-data"> Đang tải ... </div>
             )
         }
         else {
@@ -91,7 +91,7 @@ class CommentContainer extends React.Component {
                 }
                 else {
                     return (
-                        <div className="list-actor__info">Chưa có bình luận nào</div>
+                        <div className="list-actor__no-data">Chưa có bình luận nào</div>
                     )
                 }
             }

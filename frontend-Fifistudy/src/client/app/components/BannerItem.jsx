@@ -1,12 +1,13 @@
 import Level from './Level';
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import {serverDomain} from '../config/server'
 
 function BannerItem({data}) {
     let filmDetail = data.film_detail
     return (
         <Link to={`/film/${filmDetail.slug}`} className="banner-item">
-            <img className="banner-item__img" src={"http://localhost:8000" + filmDetail.thumbnail} alt=""/>
+            <img className="banner-item__img" src={serverDomain + filmDetail.thumbnail} alt=""/>
             <div className="banner-item__info">
                 <div className="banner-item__eng-title">
                     {

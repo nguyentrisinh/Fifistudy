@@ -14,6 +14,7 @@ import classNames from 'classnames';
 import {getLogout} from '../actions/api'
 import {connect} from 'react-redux';
 import {withCookies} from 'react-cookie'
+import {serverDomain} from '../config/server'
 
 class Header extends React.Component {
     constructor(props) {
@@ -63,7 +64,7 @@ class Header extends React.Component {
                     >
                         <div className="header__profile">
                             <div className="header__wrap-avatar"
-                                 style={{backgroundImage: userInfo.avatar ? `url(http://localhost:8000${userInfo.avatar})` : `url(http://placehold.it/50x50)`}}>
+                                 style={{backgroundImage: userInfo.avatar ? `url(${serverDomain+userInfo.avatar})` : `url(http://placehold.it/50x50)`}}>
                                 {/*<ReactImageFallback*/}
                                 {/*src={`http://localhost:8000${userInfo.avatar}`}*/}
                                 {/*fallbackImage="http://placehold.it/50x50"*/}

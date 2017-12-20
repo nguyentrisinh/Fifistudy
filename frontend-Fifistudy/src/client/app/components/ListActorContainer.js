@@ -30,7 +30,7 @@ class ListActorContainer extends React.Component {
                 }
                 else {
                     return (
-                        <div className="list-actor__actors list-actor__info">
+                        <div className="list-actor__actors list-actor__no-data">
                             Chưa cập nhật diễn viên
                         </div>
                     )

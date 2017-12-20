@@ -25,7 +25,7 @@ class SectionVocabularyContainer extends React.Component {
         let {savedFilm} = this.props;
         if (savedFilm.isLoading) {
             return (
-                <div className="list-actor__info"> Đang tải ... </div>
+                <div className="list-actor__no-data"> Đang tải ... </div>
             )
         }
         else {
@@ -39,7 +39,7 @@ class SectionVocabularyContainer extends React.Component {
                 }
                 else {
                     return (
-                        <div className="list-actor__info">Chưa có từ vựng</div>
+                        <div className="list-actor__no-data">Chưa có từ vựng</div>
                     )
                 }
             }

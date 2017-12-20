@@ -26,7 +26,7 @@ class RelatedFilmContainer extends React.Component {
         let {filmEqualDifficult} = this.props;
         if (filmEqualDifficult.isLoading) {
             return (
-                <div className="list-actor__info"> Đang tải ... </div>
+                <div className="list-actor__no-data"> Đang tải ... </div>
             )
         }
         else {
@@ -38,7 +38,7 @@ class RelatedFilmContainer extends React.Component {
                 }
                 else {
                     return (
-                        <div className="list-actor__info">Ko có phim cùng cấp độ</div>
+                        <div className="list-actor__no-data">Ko có phim cùng cấp độ</div>
                     )
                 }
             }
