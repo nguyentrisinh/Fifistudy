@@ -1185,7 +1185,6 @@ body {
   &__info {
     color: $ColorDarkGray;
     font-style: italic;
-    padding-left: 20px;
     background-color: $ColorBackgroundDark;
     padding-top: 20px;
     padding-bottom: 40px;
@@ -1194,6 +1193,14 @@ body {
       padding-top: 20px;
       padding-bottom: 20px;
     }
+  }
+  &__no-data{
+    color: $ColorDarkGray;
+    font-style: italic;
+    background-color: $ColorBackgroundDark;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    padding-left: 20px;
   }
   &__wrap {
     background-color: $ColorBackgroundDark;

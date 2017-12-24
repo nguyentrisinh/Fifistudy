@@ -9,9 +9,12 @@ import update from 'react-addons-update';
 import {instanceOf} from 'prop-types';
 import validator from 'validator';
 
+import 'react-datepicker/dist/react-datepicker.css';
 import FadeTransition from '../components/FadeTransition'
 import {SERVER_ERRORS} from '../constants/serverErrors';
 import {Link} from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 
 class SignUp extends React.Component {
@@ -33,7 +36,7 @@ class SignUp extends React.Component {
             lastName: '',
             sex: 1,
             phone: '',
-            birthday: '',
+            birthday: moment(),
             address: '',
             disableNextOne: true,
             errors: {},
@@ -77,7 +80,7 @@ class SignUp extends React.Component {
                 disableNextTwo: true
             })
         }
-        if (!validator.isEmpty(objToCheck.firstName) && !validator.isEmpty(objToCheck.lastName) && validator.isNumeric(objToCheck.phone) && !validator.isEmpty(objToCheck.birthday) && !validator.isEmpty(objToCheck.address)) {
+        if (!validator.isEmpty(objToCheck.firstName) && !validator.isEmpty(objToCheck.lastName) && validator.isNumeric(objToCheck.phone) && !validator.isEmpty(objToCheck.address)) {
             this.setState({
                 disableNextThree: false
             })
@@ -261,13 +264,14 @@ class SignUp extends React.Component {
 
     onClickStepThree = (evt) => {
         let {cookies} = this.props;
+        let birthday = `${this.state.birthday.year()}-${this.state.birthday.month()+1}-${this.state.birthday.date()}`;
         let data =
             {
                 "first_name": this.state.firstName,
                 "last_name": this.state.lastName,
                 "gender": parseInt(this.state.sex),
                 "phone": this.state.phone,
-                "birthday": this.state.birthday,
+                "birthday": birthday,
                 "address": this.state.address
             }
         let el = evt.target;
@@ -305,6 +309,7 @@ class SignUp extends React.Component {
         var animating; //flag to prevent quick multi-click glitches
         // if (animating) return false;
         // if (disable) return false;
+        animating = true;
         animating = true;
 
         current_fs = $(el).parent();
@@ -400,6 +405,13 @@ class SignUp extends React.Component {
         })
     }
 
+    handleChange = (value) => {
+        this.setState({
+                birthday: value
+            }
+        );
+    }
+
     render() {
         return (
             <FadeTransition>
@@ -485,8 +497,18 @@ class SignUp extends React.Component {
                             <Input type="text" onChange={this.onChangeTextInput} name="phone"
                                    placeholder="Số điện thoại" err={this.state.errors.phone}
                                    value={this.state.phone}/>
-                            <Input type="text" onChange={this.onChangeTextInput} name="birthday" placeholder="Ngày sinh"
-                                   value={this.state.birthday}/>
+                            <DatePicker
+                                className="input-com__input"
+                                selected={this.state.birthday}
+                                onChange={this.handleChange}
+                                dateFormat="DD-MM-YYYY"
+                                peekNextMonth
+                                showMonthDropdown
+                                showYearDropdown
+                                dropdownMode="select"
+                            />
+                            {/*<Input type="text" onChange={this.onChangeTextInput} name="birthday" placeholder="Ngày sinh"*/}
+                                   {/*value={this.state.birthday}/>*/}
                             <textarea className="input-com__input" onChange={this.onChangeTextInput} type="text"
                                       name="address" placeholder="Địa chỉ"
                                       value={this.state.address}/>

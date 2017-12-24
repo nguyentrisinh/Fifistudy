@@ -946,7 +946,6 @@ body {
 .list-actor__info {
   color: #626b74;
   font-style: italic;
-  padding-left: 20px;
   background-color: #060b11;
   padding-top: 20px;
   padding-bottom: 40px; }
@@ -954,6 +953,13 @@ body {
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px; }
+.list-actor__no-data {
+  color: #626b74;
+  font-style: italic;
+  background-color: #060b11;
+  padding-top: 20px;
+  padding-bottom: 40px;
+  padding-left: 20px; }
 .list-actor__wrap {
   background-color: #060b11; }
 .list-actor__title {

@@ -1,6 +1,7 @@
 import React from 'react';
 import Level from './Level.jsx'
 import Star from './Star'
+import {serverDomain} from '../config/server'
 import classNames from 'classnames';
 import {updateSaved, unSavedFilm} from '../actions/app'
 import {postUserSaveFilm} from '../actions/api';
@@ -102,7 +103,7 @@ class Film extends React.Component {
         return (
             <Link to={`/film/${data.slug}`} className="film">
                 <div className="film__thumnail">
-                    <img src={"http://localhost:8000" + data.thumbnail} alt="" className="film__image"/>
+                    <img src={serverDomain + data.thumbnail} alt="" className="film__image"/>
                     <div className="film__overlay">
                     </div>
                     <div className="film__bookmark">

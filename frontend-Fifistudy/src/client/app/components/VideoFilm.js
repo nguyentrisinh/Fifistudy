@@ -13,6 +13,7 @@ import {connect} from 'react-redux';
 import {postSaveVocabulary} from '../actions/api'
 import {withCookies} from 'react-cookie';
 import {withRouter} from 'react-router'
+import {serverDomain} from '../config/server'
 
 
 class VideoFilm extends React.Component {
@@ -84,19 +85,19 @@ class VideoFilm extends React.Component {
     initPlayer = (data) => {
         this.player = window.jwplayer('player').setup({
             // file: '../static/media/video.mp4',
-            file: 'http://media.studyphim.vn/VIPN5/Extra/01_Extra_English_-_Hectors_arrival.mp4',
-            // file: `http://localhost:8000${data.video}`,
+            // file: 'http://media.studyphim.vn/VIPN5/Extra/01_Extra_English_-_Hectors_arrival.mp4',
+            file: `${data.link_video}`,
             // file: `http://localhost:8000/media/episode/video/How_i_met_your_mother1_01.mp4`,
 
             tracks: [{
-                file: `http://localhost:8000${data.sub}`,
+                file: `${serverDomain+data.sub}`,
                 label: "Eng-Vie",
                 kind: "captions",
                 "default": true
             }],
             aspectratio: "16:9"
         })
-        axios.get(`http://localhost:8000${data.sub}`)
+        axios.get(`${serverDomain+data.sub}`)
             .then(response => {
                 let stringVTT = response.data.split(/\n\s*\n/);
                 stringVTT.shift();

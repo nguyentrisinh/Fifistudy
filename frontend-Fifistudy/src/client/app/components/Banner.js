@@ -3,6 +3,7 @@ import film from '../../static/images/HowIMetUrMother.jpg'
 import StarRatingContainer from './StarRatingContainer'
 import Level from '../components/Level';
 import classNames from 'classnames';
+import {serverDomain} from '../config/server'
 import Star from '../components/Star'
 import {withRouter} from 'react-router';
 import {postUserSaveFilm} from '../actions/api'
@@ -104,8 +105,6 @@ class Banner extends React.Component {
 
     render() {
         let data = this.props.data;
-
-        console.log('dataaaaaaaaa', data)
         return (
             <div
                 // to={`/${data.slug}/${data.episodes[data.episodes.length - 1].id}`}
@@ -115,7 +114,7 @@ class Banner extends React.Component {
                     <div
                         className="banner__wrap" onMouseEnter={this.onMouseEnterBanner}
                         onMouseLeave={this.onMouseLeaveBanner}>
-                        <img src={`http://localhost:8000${data.thumbnail}`} alt="" className="banner__image"/>
+                        <img src={`${serverDomain+data.thumbnail}`} alt="" className="banner__image"/>
                         <div className="banner__overlay">
                         </div>
                         <div className="banner__info">

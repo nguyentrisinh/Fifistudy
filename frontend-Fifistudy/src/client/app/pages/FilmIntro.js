@@ -10,6 +10,7 @@ import ListActorContainer from '../components/ListActorContainer'
 
 import SectionDetailExtra from '../components/SectionDetailExtra'
 import Footer from '../components/Footer'
+import {serverDomain} from '../config/server'
 
 export default class FilmIntro extends React.Component {
     constructor(props) {
@@ -22,7 +23,7 @@ export default class FilmIntro extends React.Component {
                 <div className="film-intro-page">
 
                     <div className="detail-page__overlay"
-                         style={{backgroundImage: `url(http://localhost:8000${this.props.data.thumbnail})`}}>
+                         style={{backgroundImage: `url(${serverDomain+this.props.data.thumbnail})`}}>
                     </div>
                     <Scrollbars
                         autoHide={true}

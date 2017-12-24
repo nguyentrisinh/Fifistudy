@@ -1,5 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router'
+import {serverDomain} from '../config/server'
 
 import FadeTransition from '../components/FadeTransition'
 import film1 from '../../static/images/HowIMetUrMother.jpg'
@@ -32,7 +33,7 @@ class Detail extends React.Component {
                 <div className="detail-page">
 
                     <div className="detail-page__overlay"
-                         style={{backgroundImage: `url(http://localhost:8000${filmDetail.thumbnail})`}}>
+                         style={{backgroundImage: `url(${serverDomain+filmDetail.thumbnail})`}}>
                     </div>
                     <Scrollbars
                         autoHide={true}

@@ -2,6 +2,8 @@ import React from 'react';
 import Vocabulary from './Vocabulary'
 import {connect} from 'react-redux';
 import FlipMove from 'react-flip-move';
+import DatePicker from 'react-datepicker'
+import moment from 'moment';
 import Input1 from './Input1';
 import {withCookies} from 'react-cookie';
 import {SERVER_ERRORS} from '../constants/serverErrors';
@@ -11,7 +13,7 @@ import {getUserInfo} from '../actions/app';
 class SectionUserInfo extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {...this.props.data, serverErrors: []}
+        this.state = {...this.props.data,...{birthday:this.props.birthday?moment(this.props.data.birthday,"YYYY-MM-DD"):moment()}, serverErrors: []}
     }
 
     onTextInputChange = (evt) => {
@@ -29,7 +31,7 @@ class SectionUserInfo extends React.Component {
                 "last_name": this.state.last_name,
                 "gender": parseInt(this.state.gender),
                 "phone": this.state.phone,
-                "birthday": this.state.birthday,
+                "birthday": `${this.state.birthday.year()}-${this.state.birthday.month()+1}-${this.state.birthday.date()}`,
                 "address": this.state.address
             }
         // let el = evt.target;
@@ -63,6 +65,12 @@ class SectionUserInfo extends React.Component {
             return <div className="section-user-info__err">
                 {item}
             </div>
+        })
+    }
+
+    handleChange = value =>{
+        this.setState({
+            birthday:value
         })
     }
 
@@ -109,7 +117,23 @@ class SectionUserInfo extends React.Component {
                         <Input1 name="phone" onChange={this.onTextInputChange} value={state.phone} label="SĐT"/>
                     </div>
                     <div className="section-user-info__row">
-                        <Input1 name="birthday" onChange={this.onTextInputChange} value={state.birthday}
+                        <div className="user-input">
+
+                            <label className="user-input__label">SINH NHẬT</label>
+                            <DatePicker
+                                className="user-input__input"
+                                selected={this.state.birthday}
+                                onChange={this.handleChange}
+                                dateFormat="DD-MM-YYYY"
+                                peekNextMonth
+                                showMonthDropdown
+                                showYearDropdown
+                                dropdownMode="select"
+                            />
+
+                        </div>
+
+                        {/*<Input1 name="birthday" onChange={this.onTextInputChange} value={state.birthday}*/}
                                 label="NGÀY SINH"/>
                     </div>
                     <div className="section-user-info__row">
