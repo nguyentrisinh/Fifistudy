@@ -4,12 +4,14 @@ import reducer from './Reducer';
 import screenHome from './ScreenHome';
 import screenMovie from './screenMovie';
 import screenWatchMovie from './screenWatchMovie';
+import auth from './authorization';
 
 const rootReducer = combineReducers({
     reducer,
     screenHome,
     screenMovie,
-    screenWatchMovie
+    screenWatchMovie,
+    auth
 })
 
 export default rootReducer

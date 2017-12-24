@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import {
     Text,
     Image,
@@ -8,12 +9,28 @@ import {
 } from 'react-native';
 import Res from '../Resources/index.js';
 import Styles from "../Styles/ScreenLogin.js";
+import {login} from '../Redux/actions/authorization';
 
-export default class 
-ScreenLogin extends Component{
+class ScreenLogin extends Component{
+    constructor(props){
+        super(props);
+
+        this.state = {
+            username: '',
+            password: '',
+            imageBackgroundIndex: Math.floor(Math.random() * (Res.images.login_background.length))
+        }
+    }
+
     getImagebackground(){
-        let index = Math.floor(Math.random() * (Res.images.login_background.length));
+        //let index = Math.floor(Math.random() * (Res.images.login_background.length));
+        let index = this.state.imageBackgroundIndex;
         return Res.images.login_background[index];
+    }
+
+    onUserLogin(e){
+        this.props.onLogin(this.state.username, this.state.password);
+        e.preventDefault();
     }
 
     render() {
@@ -41,6 +58,7 @@ ScreenLogin extends Component{
                                 placeholderTextColor='rgba(255,255,255, 0.6)'
                                 underlineColorAndroid='rgba(255,255,255, 0.6)'
                                 placeholder='Tài khoản'
+                                onChangeText={(text) => {this.setState({username: text})}}
                             />
                         </View>
                         {/* Password box */}
@@ -51,6 +69,7 @@ ScreenLogin extends Component{
                                 placeholderTextColor='rgba(255,255,255, 0.6)'
                                 underlineColorAndroid='rgba(255,255,255, 0.6)'
                                 placeholder='Mật khẩu'
+                                onChangeText={(text) => {this.setState({password: text})}}
                             />
                         </View>
 
@@ -70,7 +89,7 @@ ScreenLogin extends Component{
                     }}>
                         {/* Login btn */}
                         <TouchableOpacity style={[Styles.button, {backgroundColor: Res.colors.blue}]}
-                            onPress={() => navigate('ScreenHome')}>
+                            onPress={(e) => this.onUserLogin(e)}>
                             <Text style={Styles.btnContent}>Đăng nhập</Text>
                         </TouchableOpacity>
                         {/* Resigter btn */}
@@ -84,3 +103,17 @@ ScreenLogin extends Component{
         );
     }
 }
+
+mapStateToProps = (state, ownProps) => {
+    return {
+        isLoggedIn: state.auth.isLoggedIn,
+    };
+}
+
+mapDispatchToProps = (dispatch) => {
+    return {
+        onLogin: (username, password) => {dispatch(login(username, password));}
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScreenLogin);
