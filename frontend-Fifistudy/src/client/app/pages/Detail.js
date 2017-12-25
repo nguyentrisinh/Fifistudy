@@ -46,7 +46,7 @@ class Detail extends React.Component {
 
 
                         <FilmTitle enName={filmDetail.english_name} viName={filmDetail.vietnamese_name}/>
-                        <VideoFilm data={episode}/>
+                        <VideoFilm filmDetail={filmDetail} data={episode}/>
                         <Episode data={filmDetail}/>
                         <SectionDetailExtra data={filmDetail}/>
 

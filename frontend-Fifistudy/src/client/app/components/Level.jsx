@@ -8,12 +8,12 @@ function Level({level}) {
         for (let i = 0; i < 3; i++) {
             if (i < level) {
                 arr.push(
-                    <div className={classNames(`level__item level__item--${level}`)}/>
+                    <div key={i} className={classNames(`level__item level__item--${level}`)}/>
                 )
             }
             else {
                 arr.push(
-                    <div className="level__item"/>
+                    <div key={i} className="level__item"/>
                 )
             }
         }

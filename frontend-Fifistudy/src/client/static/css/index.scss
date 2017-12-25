@@ -232,7 +232,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-
+    min-width: 150px;
     padding-right: 20px;
     color: #fffafa;
   }
@@ -271,7 +271,7 @@ body {
 
 .menu {
   left: 0;
-  min-width:100%;
+  min-width: 100%;
   position: absolute;
   bottom: 0;
   transform: translateY(100%);
@@ -1188,13 +1188,13 @@ body {
     background-color: $ColorBackgroundDark;
     padding-top: 20px;
     padding-bottom: 40px;
-    &--loading{
+    &--loading {
       text-align: center;
       padding-top: 20px;
       padding-bottom: 20px;
     }
   }
-  &__no-data{
+  &__no-data {
     color: $ColorDarkGray;
     font-style: italic;
     background-color: $ColorBackgroundDark;
@@ -1386,7 +1386,7 @@ body {
   }
   &__cancel {
     background: $ColorLightGray;
-    &:hover{
+    &:hover {
       box-shadow: 0 0 0 2px white, 0 0 0 3px $ColorLightGray;
       outline: none;
     }
@@ -1418,7 +1418,6 @@ body {
   &__content {
 
     padding-top: calc(#{$MenuHeight} + 40px);
-
 
     box-sizing: border-box;
     padding-left: 25px;
@@ -1536,16 +1535,15 @@ body {
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
-  &:hover{
-    .vocabulary{
+  &:hover {
+    .vocabulary {
       &__control-overlay {
         height: 30%;
       }
-      &__control{
+      &__control {
         height: 32px;
       }
     }
-
 
   }
   &__control-overlay {
@@ -1633,10 +1631,10 @@ body {
   padding-right: 50px;
   display: flex;
   flex-direction: column;
-  &__btn{
+  &__btn {
     color: white;
     background-color: $ColorDarkRed;
-box-sizing: border-box;
+    box-sizing: border-box;
     min-width: 100px;
     padding: 15px 20px;
     text-align: center;
@@ -1647,15 +1645,15 @@ box-sizing: border-box;
     justify-self: flex-end;
     border-radius: 5px;
 
-    &:hover{
+    &:hover {
       background-color: $ColorRed;
       //border:solid 1px $ColorDarkRed;
     }
   }
-  &__err{
+  &__err {
     color: $ColorRed;
     //margin-bottom: 10px;
-    margin:0;
+    margin: 0;
   }
   &__item {
     &--first-name {
@@ -1677,7 +1675,7 @@ box-sizing: border-box;
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
-    &--end{
+    &--end {
       justify-content: flex-end;
     }
   }
@@ -1695,14 +1693,14 @@ box-sizing: border-box;
     height: 50px;
     background-color: #313a3d;
     text-transform: uppercase;
-    flex:  0 0 100px;
+    flex: 0 0 100px;
     display: flex;
     align-items: center;
     padding-left: 20px;
     color: #fdfdfd;
     white-space: nowrap;
     padding-right: 20px;
-    &--radio{
+    &--radio {
       background-color: transparent;
     }
   }
@@ -1715,22 +1713,23 @@ box-sizing: border-box;
     flex-grow: 1;
   }
 }
-.section-saved-film{
-  &__item{
+
+.section-saved-film {
+  &__item {
     box-sizing: border-box;
     flex: 0 0 33.33%;
-    border:solid 0.5px $ColorBorder;
+    border: solid 0.5px $ColorBorder;
   }
 }
 
-.search-result{
+.search-result {
   transition: all 0.4s ease-in-out;
   width: calc(100% - 40px);
   position: absolute;
-  background-color: rgba($ColorBackgroundDark,0.95);
+  background-color: rgba($ColorBackgroundDark, 0.95);
   max-height: 60vh;
   overflow: hidden;
-  &__more{
+  &__more {
 
     position: static;
     //padding: 10px 0;
@@ -1741,15 +1740,15 @@ box-sizing: border-box;
   //overflow: hidden;
 }
 
-.star-rating-container{
+.star-rating-container {
   position: relative;
-  &__loading{
+  &__loading {
     text-align: center;
   }
 
 }
 
-.tooltip{
+.tooltip {
   //position: absolute;
   font-style: italic;
   color: $ColorGray1;

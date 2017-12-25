@@ -14,7 +14,7 @@ class SearchResult extends React.Component {
     }
     renderItem = () => {
         return this.props.data.data.map(item => {
-            return <div id={`item${item.id}`} key={item.id} className="search-result__item">
+            return <div onClick={()=>{ this.props.closeSearchContainer();}} id={`item${item.id}`} key={item.id} className="search-result__item">
                 <Film1 data={item}/>
             </div>
         });
@@ -28,13 +28,6 @@ class SearchResult extends React.Component {
             Array.from(domItem).map(item =>
                 height += item.clientHeight
             )
-            console.log(domItem.length)
-            // document.getElementsByClassName("search-result__item").map(item => {
-            //     // console.log(this.refs['item' + item.id])
-            //     // document.getElementById('item' + item.id).clientHeight;
-            //     // console.log()
-            //     height += document.getElementById('item' + item.id).clientHeight;
-            // });
         }
 
         if (document.getElementById("spinner")) {

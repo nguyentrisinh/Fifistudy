@@ -83,6 +83,10 @@ class VideoFilm extends React.Component {
         }
     }
     initPlayer = (data) => {
+        this.setState({
+            currentLine:""
+        })
+        this.refs.scroll.scrollTop();
         this.player = window.jwplayer('player').setup({
             // file: '../static/media/video.mp4',
             // file: 'http://media.studyphim.vn/VIPN5/Extra/01_Extra_English_-_Hectors_arrival.mp4',
@@ -124,7 +128,7 @@ class VideoFilm extends React.Component {
                             currentLine: currentLine
                             // .replace(/<\/?[^>]+(>|$)/g, "") bo tag
                         });
-                        $(this.refs.scroll.view).animate({scrollTop: this.refs[currentLine.number].offsetTop - 150}, 500, 'linear');
+                        $(this.refs.scroll.view).animate({scrollTop: this.refs[currentLine.number].offsetTop - 150}, 300, 'linear');
                     }
                 }
             }
@@ -221,6 +225,15 @@ class VideoFilm extends React.Component {
 
     }
 
+    onClickNext=()=>{
+        let {episodes} = this.props.filmDetail;
+        episodes.sort((a,b)=>parseInt(a.number)-parseInt(b.number));
+        let index = episodes.findIndex((a)=>a.number==this.props.data.number);
+        if (episodes[index+1]){
+            this.props.history.push(`/film/${this.props.filmDetail.slug}/${episodes[index+1].number}`)
+        }
+    }
+
     render() {
         // this.readFile();
         return (
@@ -271,9 +284,9 @@ class VideoFilm extends React.Component {
                                         +
                                     </div>
                                 </div>
-                                <div className="video-film__control-item video-film__control-item--next-episode">
+                                <button  onClick={this.onClickNext} className="video-film__control-item video-film__control-item--next-episode">
                                     Tập tiếp theo &nbsp; <i className="fa fa-angle-right fa-2x"></i>
-                                </div>
+                                </button>
                             </div>
                         </div>
                         {

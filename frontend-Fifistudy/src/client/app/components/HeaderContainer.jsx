@@ -15,6 +15,7 @@ import {getLogout} from '../actions/api'
 import {connect} from 'react-redux';
 import {withCookies} from 'react-cookie'
 import {serverDomain} from '../config/server'
+import {defaultAvatar} from '../config/const'
 
 class Header extends React.Component {
     constructor(props) {
@@ -64,7 +65,7 @@ class Header extends React.Component {
                     >
                         <div className="header__profile">
                             <div className="header__wrap-avatar"
-                                 style={{backgroundImage: userInfo.avatar ? `url(${serverDomain+userInfo.avatar})` : `url(http://placehold.it/50x50)`}}>
+                                 style={{backgroundImage:`url(${userInfo.avatar?serverDomain+userInfo.avatar: defaultAvatar})` }}>
                                 {/*<ReactImageFallback*/}
                                 {/*src={`http://localhost:8000${userInfo.avatar}`}*/}
                                 {/*fallbackImage="http://placehold.it/50x50"*/}
@@ -75,7 +76,7 @@ class Header extends React.Component {
                             </div>
                             <div className="header__name">
                                 {
-                                    (userInfo.first_name && userInfo.last_name) ? `${userInfo.first_name} ${userInfo.last_name}` : userInfo.username
+                                    (userInfo.first_name && userInfo.last_name) ? `${userInfo.first_name||""} ${userInfo.last_name||""}` : userInfo.username
                                 }
                             </div>
                         </div>

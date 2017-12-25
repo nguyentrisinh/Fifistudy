@@ -16,7 +16,7 @@ import App from './App'
 import {
     BrowserRouter as Router,
     Route,
-    Link
+    Link, Redirect
 } from 'react-router-dom'
 
 import ModalLogin from './components/ModalLogin'
@@ -77,6 +77,15 @@ class AppContainer extends React.Component {
     //         show: !show
     //     }))
     // }
+    renderUserpage = () => {
+        const {cookies} = this.props;
+        if (cookies.get("token")) {
+            return (
+                <Userpage/>
+            )
+        }
+        return <Redirect to="/"/>
+    }
 
     render() {
         // const { show } = this.state;
@@ -92,7 +101,7 @@ class AppContainer extends React.Component {
                             <Route exact path="/film/:slug/:episodeId" component={DetailPageContainer}/>
                             <Route exact path="/film/:slug" component={FilmIntroContainer}/>
                             <Route exact path="/signup" component={SignUp}/>
-                            <Route exact path="/user" component={Userpage}/>
+                            <Route exact path="/user" render={this.renderUserpage}/>
                             <Route exact path="/:slugList" component={ListPage}/>
                         </Switch>
                     </TransitionGroup>

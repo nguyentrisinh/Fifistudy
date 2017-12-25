@@ -93,7 +93,7 @@ class SectionUserInfo extends React.Component {
                         </div>
                     </div>
                     <div className="section-user-info__row">
-                        <Input1 name="email" onChange={this.onTextInputChange} value={state.email} label="EMAIL"/>
+                        <Input1 disabled name="email" onChange={this.onTextInputChange} value={state.email} label="EMAIL"/>
                     </div>
                     <div className="section-user-info__row">
                         <Input1 name="password" onChange={this.onTextInputChange} label="MẬT KHẨU"/>

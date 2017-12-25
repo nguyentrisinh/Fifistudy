@@ -8,6 +8,8 @@ import Input from '../components/Input';
 import update from 'react-addons-update';
 import {instanceOf} from 'prop-types';
 import validator from 'validator';
+import {connect} from 'react-redux';
+import {getUserInfo,doLogin} from '../actions/app'
 
 import 'react-datepicker/dist/react-datepicker.css';
 import FadeTransition from '../components/FadeTransition'
@@ -412,6 +414,14 @@ class SignUp extends React.Component {
         );
     }
 
+    onClickDone = () =>{
+        const {cookies} = this.props;
+        if (cookies.get("token")) {
+            this.props.getUserInfo(cookies.get("token"));
+            this.props.doLogin(true);
+        }
+    }
+
     render() {
         return (
             <FadeTransition>
@@ -562,7 +572,7 @@ class SignUp extends React.Component {
                         </fieldset>
                         <fieldset>
                             <h2 className="fs-title">Hoàn thành</h2>
-                            <Link to="/" className="next action-button "
+                            <Link onClick={this.onClickDone} to="/" className="next action-button "
                             >
                                 OK
                             </Link>
@@ -574,4 +584,4 @@ class SignUp extends React.Component {
     }
 }
 
-export default withCookies(SignUp)
+export default withCookies(connect(null,{getUserInfo,doLogin})(SignUp))
