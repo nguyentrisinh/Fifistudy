@@ -49,7 +49,7 @@ class SectionUserInfo extends React.Component {
                 }
                 else {
                     // Thanh cong
-                    alert('Cập nhật thành công')
+                    // alert('Cập nhật thành công')
                     this.setState({
                         // disableNextThree: false,
                         serverErrors: [],

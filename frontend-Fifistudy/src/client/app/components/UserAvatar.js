@@ -40,7 +40,7 @@ class UserAvatar extends React.Component {
                 }
                 else {
                     // Thanh cong
-                    alert('Upload Thành công');
+                    // alert('Upload Thành công');
                     this.props.getUserInfo(token);
                     // this.setState({
                     //     disableNextFour: false,

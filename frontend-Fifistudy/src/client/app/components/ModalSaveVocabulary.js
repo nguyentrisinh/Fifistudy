@@ -33,7 +33,7 @@ class ModalSaveVocabulary extends React.Component {
             postSaveVocabulary(this.state, token).then(
                 response => {
                     if (response.data.errors === null) {
-                        alert("Lưu thành công");
+                        // alert("Lưu thành công");
                         this.props.onClickOutside();
                     }
                     else {
