@@ -145,7 +145,6 @@ class ScreenHome extends Component {
 
 }
 
-
 export default connect(null, {getPromotes, getLastest, getMostView})(ScreenHome)
 
 
