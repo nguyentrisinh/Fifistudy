@@ -25,7 +25,7 @@ SECRET_KEY = 'qwa7ua(vn3_et%#xqaj1@!ec(wmao@t8yvhp30j)%k9%ox!8+m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['128.199.159.54', 'localhost']
 
 
 # Application definition
@@ -58,7 +58,9 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:8001',
-    'localhost:8000'
+    'localhost:8000',
+    '128.199.159.54:6100',
+    '128.199.159.54'
 )
 
 ROOT_URLCONF = 'Fifistudy.urls'
