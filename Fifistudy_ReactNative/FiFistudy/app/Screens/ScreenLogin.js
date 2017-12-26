@@ -8,7 +8,8 @@ import {
     TouchableOpacity,
     ActivityIndicator,
     Alert,
-    ToastAndroid
+    ToastAndroid,
+    AsyncStorage
 } from 'react-native';
 import Res from '../Resources/index.js';
 import Styles from "../Styles/ScreenLogin.js";
@@ -34,7 +35,7 @@ class ScreenLogin extends Component {
         return Res.images.login_background[index];
     }
 
-    onClickLogin() {
+    async onClickLogin() {
         console.log('ScreenLogin: Username is: ' + this.state.username + " - Password is: " + this.state.password)
 
         if (this.state.username == '' || this.state.password == '')
@@ -44,45 +45,60 @@ class ScreenLogin extends Component {
         this.setState({
             isAuthorizing: true
         })
-
-        return fetch(url_login, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username: this.state.username,
-                password: this.state.password
-            })
-        })
-            .then((response) => response.json())
-            .then((responseJson) => {
-                console.log("Login - response json is" + responseJson);
-
-                //need to send token into redux? (don't know how) then navigate to next screen
-                let data = responseJson.data;
-
-                //If data return null, then show short toast - case wrong username or password
-                if (data == null)
-                    return (
-                        this.setState({
-                            isAuthorizing: false
-                        }),
-                        ToastAndroid.show('Bạn nhập sai tài khoản hoặc mật khẩu', ToastAndroid.SHORT)
-                    )
-
-                this.setState({
-                    token: data.token,
+        try {
+            let response = await fetch(url_login, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: this.state.username,
+                    password: this.state.password
                 })
-                this.props.navigation.navigate('ScreenHome');
             })
-            .catch((err) => {
-                this.setState({
-                    isAuthorizing: false
-                }),
-                ToastAndroid.show('Mong bạn kiểm tra lại đường truyền mạng', ToastAndroid.SHORT)
+
+
+            let responseJson = await response.json();
+            console.log("Login - response json is" + responseJson);
+
+            //Save username and password in storage - which never be deleted except uninstalling app
+            //To automatically login when open app
+            try {
+                await AsyncStorage.setItem('username', this.state.username);
+                await AsyncStorage.setItem('password', this.state.password);
+            }
+            catch (err) {
+                console.error(err)
+            }
+            //need to send token into redux? (don't know how) then navigate to next screen
+            let data = responseJson.data;
+
+            //If data return null, then show short toast - case wrong username or password
+            if (data == null)
+                return (
+                    this.setState({
+                        isAuthorizing: false
+                    }),
+                    ToastAndroid.show('Bạn nhập sai tài khoản hoặc mật khẩu', ToastAndroid.SHORT)
+                )
+
+            this.setState({
+                token: data.token,
             })
+
+            //Now, send token into AsyncStorage
+            await AsyncStorage.setItem('token', this.state.token);
+            this.props.navigation.navigate('ScreenHome');
+        }
+
+        //Catch error no/slow internet connection
+        catch (err) {
+            this.setState({
+                isAuthorizing: false
+            })
+            ToastAndroid.show('Mong bạn kiểm tra lại đường truyền mạng', ToastAndroid.SHORT)
+        }
     }
 
     renderButtonLoginOrIndicator() {
@@ -92,6 +108,26 @@ class ScreenLogin extends Component {
             return <Text style={Styles.btnContent}>Đăng nhập</Text>
 
     }
+
+    async automaticallyLogin() {
+        //should render something that for automatically login, like indicator
+        try {
+            let username = await AsyncStorage.getItem('username')
+            let password = await AsyncStorage.getItem('password')
+            console.log("ScreenLogin - AsyncStorage - username is: " + username + " password is: " + password)
+            if (username != null && password != null) {
+                this.props.navigation.navigate('ScreenHome')
+            }
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
+    componentDidMount() {
+        this.automaticallyLogin();
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -114,10 +150,11 @@ class ScreenLogin extends Component {
                         <View style={Styles.box}>
                             <Image style={Styles.icon} source={Res.icons.profile} />
                             <TextInput style={Styles.textInput}
+                                value={this.state.username}
                                 placeholderTextColor='rgba(255,255,255, 0.6)'
                                 underlineColorAndroid='rgba(255,255,255, 0.6)'
                                 placeholder='Tài khoản'
-                                onChangeText={(text) => { this.setState({ username: text }) }}
+                                onChangeText={(username) => this.setState({ username })}
                             />
                         </View>
                         {/* Password box */}
@@ -125,10 +162,11 @@ class ScreenLogin extends Component {
                             <Image style={Styles.icon} source={Res.icons.password} />
                             <TextInput style={Styles.textInput}
                                 secureTextEntry={true}
+                                //value={this.state.password}
                                 placeholderTextColor='rgba(255,255,255, 0.6)'
                                 underlineColorAndroid='rgba(255,255,255, 0.6)'
                                 placeholder='Mật khẩu'
-                                onChangeText={(text) => { this.setState({ password: text }) }}
+                                onChangeText={(password) => this.setState({ password })}
                             />
                         </View>
 
