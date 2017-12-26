@@ -27,6 +27,25 @@ class FilmDetailSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ListUserSaveFilm(serializers.ModelSerializer):
+    film_detail = BaseFilmSerializer(many=False)
+
+    class Meta:
+        model = UserSaveFilm
+        exclude = ('created_at', 'updated_at')
+
+
+class SearchListFilmSerializer(serializers.ModelSerializer):
+    films = HomepageListFilmSerializer(many=True)
+    has_more = serializers.BooleanField()
+    page = serializers.IntegerField(allow_null=True)
+    page_size = serializers.IntegerField(allow_null=True)
+    record_number = serializers.IntegerField(allow_null=True)
+
+    class Meta:
+        model = Film
+        fields = ('films', 'has_more', 'page', 'page_size', 'record_number')
+
 
 
 

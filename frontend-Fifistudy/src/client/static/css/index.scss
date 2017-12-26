@@ -1,19 +1,11 @@
-$ColorBlue: #337ab7;
-$ColorDarkBlue: #286090;
-$ColorGreen: #5cb85c;
-$ColorDarkGreen: #449d44;
-$ColorYellow: #f0ad4e;
-$ColorDarkYellow: #ec971f;
-$ColorRed: #d9534f;
-$ColorDarkRed: #c9302c;
-$ColorWave: #5bc0de;
-$ColorDarkWave: #31b0d5;
-$ColorBorder: #0e151d;
-$ColorBackgroundDark: #060b11;
-$ColorLightGray: #ececec;
-$ColorDarkGray: #626b74;
-$ColorTextGray: #d5d5d5;
-$MenuHeight: 65px;
+@import './colors';
+ul{
+  padding-left: 0;
+}
+a {
+  text-decoration: none;
+
+}
 
 html {
   font-family: 'Roboto', sans-serif !important;
@@ -34,15 +26,8 @@ body {
   padding-top: calc(1170px * 0.5625);
   width: 1170px;
   margin: auto;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,000000+45,000000+55,ffffff+100 */
-  background: rgb(255, 255, 255); /* Old browsers */
-  background: -moz-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 1) 55%, rgba(255, 255, 255, 1) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 1) 55%, rgba(255, 255, 255, 1) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(0, 0, 0, 1) 45%, rgba(0, 0, 0, 1) 55%, rgba(255, 255, 255, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', GradientType=1); /* IE6-9 */
 
   position: relative;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,000000+45,000000+55,ffffff+100 */
   &__container {
     position: absolute;
     width: 1170px;
@@ -90,6 +75,7 @@ body {
 
 .banner-item {
   position: absolute;
+  width: 100%;
   &__img {
     width: 100%;
     z-index: -1;
@@ -125,6 +111,9 @@ body {
       font-weight: 500;
     }
   }
+  &__level {
+    margin-top: 15px;
+  }
 }
 
 .level {
@@ -154,6 +143,14 @@ body {
   position: fixed;
   z-index: 99999999;
   width: 100%;
+  top:0;
+  &__signup{
+    color: white;
+    &:hover,&:focus,&:active{
+      color: $ColorRed;
+    }
+  }
+
 
   &__container {
     box-sizing: border-box;
@@ -165,10 +162,15 @@ body {
   }
   &__item {
     padding-left: 20px;
+    cursor:pointer;
     padding-right: 20px;
     color: #fffafa;
     font-size: 20px;
     transition: background-color 0.5s;
+    &--account{
+      font-size: 18px;
+      font-weight: 400;
+    }
     &--search {
       flex-grow: 1;
       font-size: 18px;
@@ -224,19 +226,26 @@ body {
     color: #fffafa;
   }
   &__wrap-avatar {
-    position: relative;
-    padding-top: 45px;
+    //position: relative;
+    //padding-top: 45px;
     width: 45px;
+    height:45px;
     overflow: hidden;
     margin-right: 10px;
-  }
-  &__avatar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
     border-radius: 50%;
   }
+  //&__avatar {
+  //  object-fit: cover;
+  //  position: absolute;
+  //  top: 0;
+  //  left: 0;
+  //  bottom:0;
+  //  right:0;
+  //  width: 100%;
+  //  border-radius: 50%;
+  //}
 
 }
 
@@ -354,6 +363,7 @@ body {
 
 .film {
   border-left: solid 0.5px $ColorBorder;
+  display: block;
   border-right: solid 0.5px $ColorBorder;
   &__score {
     text-align: center;
@@ -373,6 +383,8 @@ body {
   }
 
   &__eng-name {
+    padding-left: 15px;
+    padding-right: 15px;
     font-size: 20px;
     font-weight: 400;
     text-align: center;
@@ -380,6 +392,8 @@ body {
     margin-bottom: 5px;
   }
   &__vi-name {
+    padding-left: 15px;
+    padding-right: 15px;
     font-size: 18px;
     font-weight: 400;
     text-align: center;
@@ -391,10 +405,19 @@ body {
     padding-bottom: 30px;
   }
   &__bookmark {
+    cursor: pointer;
     color: #ffff00;
     position: absolute;
-    left: 10px;
+    left: 15px;
     top: -5;
+    font-size: 25px;
+    .fa {
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+    }
   }
   &__overlay {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.65+0,0+100 */
@@ -413,11 +436,15 @@ body {
     color: white;
     font-size: 20px;
     border-radius: 50%;
+    height: 25px;
+    width: 25px;
     padding: 10px;
     position: absolute;
     right: 10px;
     top: 10px;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -808,6 +835,9 @@ body {
     &:hover {
       background-color: $ColorWave;
     }
+    &--current {
+      background-color: $ColorDarkWave;
+    }
   }
 }
 
@@ -985,6 +1015,22 @@ body {
 }
 
 .banner {
+  &__overlay-btn {
+    transition: all 0.3s;
+    opacity: 0;
+    visibility: hidden;
+    &--open {
+      transition: all 0.3s;
+      opacity: 1;
+      visibility: visible;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background-color: rgba(#000, 0.4);
+    }
+  }
   &__wrap {
     width: 100%;
     padding-top: 56.25%;
@@ -1058,7 +1104,7 @@ body {
     color: $ColorLightGray;
   }
   &__pieces {
-    flex-grow: 1;
+    flex-grow: 0;
     flex-shrink: 0;
     padding-right: 50px;
   }
@@ -1076,6 +1122,8 @@ body {
 
     background: rgba(#fff, 0.1);
     padding: 15px;
+    flex-grow: 1;
+    flex-shrink: 1;
   }
   &__description {
     box-sizing: border-box;
@@ -1097,6 +1145,14 @@ body {
 }
 
 .list-actor {
+  &__info{
+    color: $ColorDarkGray;
+    font-style: italic;
+    padding-left: 20px;
+    background-color: $ColorBackgroundDark;
+padding-top: 20px;
+    padding-bottom: 40px;
+  }
   &__wrap {
     background-color: $ColorBackgroundDark;
   }
@@ -1112,13 +1168,25 @@ body {
     z-index: 1;
     width: 50px;
     height: 50px;
+    position: absolute;
+    top:50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease-in-out;
+    &:hover{
+      background-color: rgba(#000,0.7);
+    }
     &--next {
       right: 0;
-      transform: translateX(calc(100% + 10px));
+      transform: translateX(100%);
     }
     &--prev {
       left: 0;
-      transform: translateX(calc(-100% - 10px));
+      transform: translateX(-100%);
     }
     &:before {
       font-size: 50px;
@@ -1159,5 +1227,117 @@ body {
 
   padding-top: $MenuHeight;
   &__wrap {
+  }
+}
+
+.fade-enter {
+
+  opacity: 0.01
+}
+
+.fade-enter.fade-enter-active {
+
+  opacity: 1;
+  transition: opacity 500ms ease-in
+}
+
+.fade-exit {
+
+  opacity: 1
+}
+
+.fade-exit.fade-exit-active {
+
+  opacity: 0.01;
+  transition: opacity 300ms ease-in
+}
+
+.sign-up-page{
+  padding-top: 80px;
+  background-image: url(https://www.edgehill.ac.uk/courses/files/2015/01/Further-Education-and-Training-2.jpg);
+  position: relative;
+  height:calc(100vh - 80px);
+  background-size: cover;
+
+  &__overlay{
+position: absolute;
+    top:0
+  ;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: rgba($ColorBackgroundDark,0.7);
+  }
+  &__error{
+    font-size: 14px;
+    margin-top: 19px;
+    margin-bottom: -5px;
+    color:$ColorDarkRed;
+  }
+}
+
+.input-com{
+  &__error{
+    text-align: left;
+    color: $ColorDarkRed;
+    font-size: 12px;
+    padding-bottom: 15px;
+    margin-top: -3px;
+  }
+  &__input{
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #2C3E50;
+    &--error{
+      border:solid 1px $ColorDarkRed;
+    }
+  }
+}
+
+.modal-title{
+  margin-bottom: 20px;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  text-align: center;
+}
+
+.modal{
+  text-align: center;
+}
+
+
+/*buttons*/
+.action-button {
+  text-align: center;
+  background: #27AE60;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+  min-width: 100px;
+  &[disabled]{
+    background: $ColorDarkGray;
+  }
+  &__cancel{
+    background: $ColorLightGray;
+  }
+  &:hover, &:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+    outline:none;
+    &[disabled]{
+      box-shadow: none;
+      outline:none;
+      cursor: initial;
+    }
   }
 }

@@ -25,7 +25,7 @@ SECRET_KEY = 'qwa7ua(vn3_et%#xqaj1@!ec(wmao@t8yvhp30j)%k9%ox!8+m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['128.199.159.54', 'localhost']
 
 
 # Application definition
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'rest_framework.authtoken',
     'corsheaders',
+
+    'fifistudy_web',
     'fifistudy_api'
 ]
 
@@ -58,7 +60,9 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:8001',
-    'localhost:8000'
+    'localhost:8000',
+    '128.199.159.54:6100',
+    '128.199.159.54'
 )
 
 ROOT_URLCONF = 'Fifistudy.urls'
@@ -96,7 +100,7 @@ DATABASES = {
         'USER': 'postgres',
 
         # Password of Username
-        'PASSWORD': '123456',
+        'PASSWORD': 'sinh1996',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -164,6 +168,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # swagger login logout
 LOGIN_URL = 'rest_framework:login'
@@ -174,4 +179,4 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # email backend
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

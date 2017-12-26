@@ -113,3 +113,5 @@ frontend-Fifistudy/node_modules/
 frontend-Fifistudy/src/client/static/media/video\.mp4
 
 *.mp4
+
+frontend-Fifistudy/src/client/static/css/bourbon/

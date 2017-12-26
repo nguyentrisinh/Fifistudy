@@ -21,11 +21,11 @@ class EpisodeViewSet(ModelViewSet, ApiBase):
     @classmethod
     def get_router(cls):
         urlpatterns = [
-            url(r'detail/(?P<film_slug>\w+)/(?P<episode_id>[0-9]+)/$', cls.as_view({
-                'get': 'get_by_id'
+            url(r'detail/$', cls.as_view({
+                'get': 'get_by_episode_number'
             })),
-            url(r'detail_with_auth/(?P<film_slug>\w+)/(?P<episode_id>[0-9]+)/$', cls.as_view({
-                'get': 'get_by_id_with_auth'
+            url(r'detail_with_auth/$', cls.as_view({
+                'get': 'get_by_episode_number_with_auth'
             })),
             url(r'save_current_time/$', cls.as_view({
                 'post': 'save_current_time'
@@ -40,21 +40,20 @@ class EpisodeViewSet(ModelViewSet, ApiBase):
 
         return BaseEpisodeSerializer
 
-    def get_by_id(self, request, *args, **kwargs):
-        episode_id = kwargs['episode_id']
-        slug = kwargs['film_slug']
+    def get_by_episode_number(self, request, *args, **kwargs):
+        slug = request.GET.get('film_slug')
+        episode_number = request.GET.get('episode_number')
 
-        result = self.episode_services.get_by_id(episode_id, slug)
-
+        result = self.episode_services.get_by_episode_number(episode_number, slug)
         return self.as_success(result)
 
-    def get_by_id_with_auth(self, request, *args, **kwargs):
+    def get_by_episode_number_with_auth(self, request, *args, **kwargs):
         user = self.check_anonymous(request)
 
-        episode_id = kwargs['episode_id']
-        slug = kwargs['film_slug']
+        episode_number = request.GET.get('episode_number')
+        slug = request.GET.get('film_slug')
 
-        result = self.episode_services.get_by_id(episode_id, slug, user)
+        result = self.episode_services.get_by_episode_number(episode_number, slug, user)
 
         return self.as_success(result)
 

@@ -25,7 +25,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('fifistudy_api.urls', namespace='src')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^swagger/', schema_view)
+    url(r'^swagger/', schema_view),
+    url(r'^', include('fifistudy_web.urls', namespace='fifistudy_web'))
 ]
 
 if settings.DEBUG:

@@ -9,12 +9,14 @@ class Episode(models.Model):
     objects = models.Manager()
 
     number = models.CharField(max_length=10, blank=False, null=False)
-    name = models.CharField(max_length=150, blank=False, null=False)
-    description = models.TextField(blank=True, null=True)
-    # video = models.CharField(max_length=255, blank=False, null=False)
-    video = models.FileField(upload_to='episode/video/')
+    name = models.CharField(max_length=150, blank=True, null=True)
+    # description = models.TextField(blank=True, null=True)
+    video = models.FileField(upload_to='episode/video/', null=True, blank=True)
+    link_video = models.CharField(max_length=255, null=True, blank=True)
     sub = models.FileField(upload_to='episode/sub/')
-    thumbnail = models.ImageField(upload_to='episode/thumbnail/')
+    eng_sub = models.FileField(blank=True, null=True, upload_to='episode/eng_sub/')
+    vie_sub = models.FileField(blank=True, null=True, upload_to='episode/vie_sub/')
+    # thumbnail = models.ImageField(upload_to='episode/thumbnail/')
 
     film_id = models.ForeignKey(Film, on_delete=models.CASCADE)
 
