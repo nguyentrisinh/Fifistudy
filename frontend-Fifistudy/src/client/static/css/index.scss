@@ -10,7 +10,17 @@ a {
 }
 
 html {
+  font-size: 18px;
   font-family: 'Open Sans', sans-serif !important;
+  @media screen and (max-width: 1169px) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: 991px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+  }
 }
 
 body {
@@ -29,6 +39,17 @@ body {
 .container {
   width: 1170px;
   margin: auto;
+  @media screen and (max-width: 1169px) {
+
+    width: 992px;
+  }
+  @media screen and (max-width: 991px) {
+
+    width: 768px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 }
 
 .slider-banner {
@@ -37,13 +58,26 @@ body {
   margin: auto;
 
   position: relative;
+  @media screen and (max-width: 1169px) {
+    padding-top: calc(992px * 0.5625);
+    width: 992px;
+  }
+  @media screen and (max-width: 991px) {
+    padding-top: calc(768px * 0.5625);
+    width: 768px;
+  }
+  @media screen and (max-width: 767px) {
+    padding-top: 56.25%;
+    width: 100%;
+  }
   &__container {
     position: absolute;
-    width: 1170px;
+    width: 100%;
     margin: auto;
     top: 0;
     left: 0;
     right: 0;
+
   }
   &__slide {
 
@@ -91,32 +125,38 @@ body {
   }
   &__info {
     position: absolute;
-    max-width: 600px;
+    max-width: 50%;
     bottom: 15%;
     left: 8%;
-    padding: 20px 30px;
+    padding: 1.1em 1.7em;
     background-color: rgba(#000, 0.75);
+    @media screen and (max-width: 767px){
+      max-width: 100%;
+      width: 100%;
+      left:0;
+      bottom:0;
+    }
   }
   &__eng-title {
     font-weight: 500;
     color: #fe4242;
-    font-size: 40px;
+    font-size: 2.2em;
   }
   &__vi-title {
     font-weight: 300;
     color: #b1b1b1;
-    font-size: 26px;
-    margin-top: 5px;
+    font-size: 1.4em;
+    margin-top: 0.27em;
   }
   &__quote {
-    font-size: 20px;
+    font-size: 1.1em;
     color: white;
     font-style: italic;
-    margin-top: 15px;
+    margin-top: 0.83em;
     font-weight: 300;
-    margin-left: 35px;
+    margin-left: 1.94em;
     &::first-letter {
-      font-size: 3rem;
+      font-size: 3em;
       font-weight: 500;
     }
   }
@@ -128,8 +168,8 @@ body {
 .level {
   &__item {
     background-color: #cbcbcb;
-    width: 15px;
-    height: 15px;
+    width: 0.8em;
+    height: 0.8em;
     color: black;
     display: inline-block;
     margin-right: 5px;
@@ -173,7 +213,7 @@ body {
     cursor: pointer;
     padding-right: 20px;
     color: #fffafa;
-    font-size: 20px;
+    font-size: 1.11em;
     transition: background-color 0.5s;
     &--account {
       font-size: 18px;
@@ -261,7 +301,7 @@ body {
 }
 
 .logo {
-  font-size: 20px;
+  font-size: 1.11em;
   color: white;
   font-weight: 500;
   background-color: #cc3333;
@@ -275,7 +315,7 @@ body {
   position: absolute;
   bottom: 0;
   transform: translateY(100%);
-  font-size: 18px;
+  font-size: 1em;
   font-weight: 400;
   background-color: #cc3333;
   transition: all 0.5s;
@@ -304,9 +344,9 @@ body {
     color: #cc3333;
   }
   &__slogan {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    font-size: 25px;
+    padding-top: 1.66em;
+    padding-bottom: 1.66em;
+    font-size: 1.38em;
     font-style: italic;
 
     border-right: solid 1px $ColorBorder;
@@ -319,12 +359,12 @@ body {
     flex-direction: row;
   }
   &__item {
-    padding: 15px 25px;
+    padding: 0.83em 1.38em;
     flex-grow: 1;
     background-color: rgba(255, 255, 255, 0.1);
     border-right: solid 1px $ColorBorder;
     .material-icons {
-      font-size: 23px;
+      font-size: 1.27em;
     }
   }
   &__icon {
@@ -332,15 +372,15 @@ body {
     padding: 5px;
     display: inline-block;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 1.11em;
   }
   &__title {
-    font-size: 22px;
+    font-size: 1.22em;
     font-weight: 400;
-    margin-bottom: 15px;
+    margin-bottom: 0.83em;
   }
   &__description {
-    font-size: 17px;
+    font-size: 0.94em;
     font-weight: 400;
     line-height: calc(26 / 17);
     color: #d8d8d8;
@@ -358,10 +398,10 @@ body {
   &__title {
     border-left: solid 1px $ColorBorder;
     border-right: solid 1px $ColorBorder;
-    padding-top: 45px;
-    padding-bottom: 20px;
+    padding-top: 2.5em;
+    padding-bottom: 1.11em;
     color: #fdfdfd;
-    font-size: 25px;
+    font-size: 1.38em;
     text-align: center;
   }
   &__body {
@@ -376,6 +416,9 @@ body {
     border-right: solid 0.5px #0e151d;
     width: 25%;
     border-bottom: solid 0.5px #0e151d;
+    @media screen and (max-width: 767px) {
+      width: 50%;
+    }
     //flex-grow: 1;
   }
 }
@@ -390,7 +433,7 @@ body {
   &__thumnail {
     position: relative;
     padding-top: 56.25%;
-    margin-bottom: 25px;
+    margin-bottom: 1.38em;
   }
   &__image {
     position: absolute;
@@ -399,26 +442,26 @@ body {
   }
 
   &__eng-name {
-    padding-left: 15px;
-    padding-right: 15px;
-    font-size: 20px;
+    padding-left: 0.83em;
+    padding-right: 0.83em;
+    font-size: 1.11em;
     font-weight: 400;
     text-align: center;
     color: #ececec;
     margin-bottom: 5px;
   }
   &__vi-name {
-    padding-left: 15px;
-    padding-right: 15px;
-    font-size: 18px;
+    padding-left: 0.83em;
+    padding-right: 0.83em;
+    font-size: 1em;
     font-weight: 400;
     text-align: center;
     color: #626b74;
-    margin-bottom: 15px;
+    margin-bottom: 0.83em;
   }
   &__level {
     text-align: center;
-    padding-bottom: 30px;
+    padding-bottom: 1.66em;
   }
   &__bookmark {
     cursor: pointer;
@@ -466,7 +509,7 @@ body {
 
 .score {
   color: #ffff4e;
-  margin-bottom: 15px;
+  margin-bottom: 0.83em;
   .fa {
     margin-right: 4px;
   }
@@ -491,8 +534,8 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding-top: 35px;
-    padding-bottom: 40px;
+    padding-top: 1.94em;
+    padding-bottom: 2.22em;
   }
 
   &__blog {
@@ -502,9 +545,9 @@ body {
   }
   &__title {
     height: 52px;
-    margin-bottom: 20px;
+    margin-bottom: 1.11em;
     color: #ff8d8d;
-    font-size: 21px;
+    font-size:1.16em;
     line-height: calc(26 / 21);
     text-align: center;
   }
@@ -512,32 +555,32 @@ body {
     color: #d5d5d5;
     text-align: center;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1em;
     line-height: calc(26 / 18);
   }
 }
 
 .footer {
-  padding-top: 70px;
-  padding-bottom: 30px;
+  padding-top: 3.88em;
+  padding-bottom: 1.66em;
   text-align: center;
   &__intro {
     color: #fdfdfd;
-    font-size: 20px;
+    font-size: 1.11em;
     font-weight: 400;
     line-height: calc(30 / 22);
   }
   &__contact {
-    font-size: 20px;
+    font-size: 1.11em;
     font-weight: 500;
     color: white;
-    margin-top: 20px;
+    margin-top: 1.11em;
 
   }
   &__lisence {
     color: #c1c1c1;
-    font-size: 20px;
-    margin-top: 40px;
+    font-size: 1.11em;
+    margin-top: 2.22em;
     font-weight: 400;
   }
 }
@@ -573,7 +616,7 @@ body {
   margin-bottom: 30px;
   &__en-name {
     color: #ececec;
-    font-size: 50px;
+    font-size: 2.77em;
     text-align: center;
     font-weight: 500;
     letter-spacing: 5px;
@@ -581,7 +624,7 @@ body {
   &__vi-name {
     color: #626b74;
     margin-top: 10px;
-    font-size: 40px;
+    font-size: 2.22em;
     font-weight: 400;
     font-style: italic;
     letter-spacing: 1px;
@@ -604,7 +647,7 @@ body {
     display: flex;
   }
   &__bookmark {
-    font-size: 20px;
+    font-size: 1.11em;
     padding-right: 10px;
     padding-left: 20px;
     color: $ColorYellow;
@@ -638,13 +681,13 @@ body {
   }
   &__eng {
     color: $ColorLightGray;
-    font-size: 18px;
+    font-size: 1em;
     line-height: 1.4;
     margin-bottom: 7px;
   }
   &__vi {
     color: $ColorDarkGray;
-    font-size: 16px;
+    font-size:0.88em;
     line-height: 1.4;
   }
   &__wrap-sub {
@@ -766,7 +809,7 @@ body {
   &__back {
     cursor: pointer;
     color: white;
-    font-size: 14px;
+    font-size: 0.77em;
     padding-left: 7px;
     padding-right: 7px;
     background-color: $ColorBlue;
@@ -791,7 +834,7 @@ body {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     color: white;
-    font-size: 14px;
+    font-size: 0.77em;
     background-color: rgba(#8c8c8c, 0.1);
     height: 32px;
     display: flex;
@@ -829,7 +872,7 @@ body {
   }
   &__title {
     color: white;
-    font-size: 18px;
+    font-size: 1em;
     margin-bottom: 10px;
   }
   &__content {
@@ -868,7 +911,7 @@ body {
   &__title {
     padding: 35px 0 25px 0px;
     color: white;
-    font-size: 20px;
+    font-size: 1.1em;
     text-align: center;
   }
 }
@@ -905,7 +948,7 @@ body {
     border-radius: 50%;
   }
   &__name {
-    font-size: 17px;
+    font-size: 0.94em;
     color: $ColorLightGray;
     margin-bottom: 10px;
   }
@@ -954,7 +997,7 @@ body {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-size: 20px;
+    font-size: 1.11em;
     color: #ececec;
     margin-bottom: 5px;
   }
@@ -964,7 +1007,7 @@ body {
     white-space: nowrap;
     text-overflow: ellipsis;
     color: $ColorDarkGray;
-    font-size: 18px;
+    font-size: 1em;
     font-style: italic;
   }
 }
@@ -1001,7 +1044,7 @@ body {
 
   }
   &__name {
-    font-size: 17px;
+    font-size: 0.94em;
     color: $ColorLightGray;
     margin-bottom: 10px;
   }
@@ -1012,11 +1055,11 @@ body {
     font-weight: 300;
     color: $ColorDarkGray;
     font-style: italic;
-    font-size: 15px;
+    font-size: 0.83em;
   }
   &__content {
     color: $ColorDarkGray;
-    font-size: 16px;
+    font-size: 0.88em;
   }
   &__section-like {
     display: flex;
@@ -1108,7 +1151,7 @@ body {
   }
   &__eng-name {
     color: white;
-    font-size: 50px;
+    font-size: 2.88em;
     margin-bottom: 5px;
   }
   &__bookmark {
@@ -1118,7 +1161,7 @@ body {
   &__vi-name {
     color: $ColorLightGray;
     font-style: italic;
-    font-size: 40px;
+    font-size: 2.22em;
     margin-bottom: 30px;
   }
   &__detail {
@@ -1127,7 +1170,7 @@ body {
   }
   &__title {
     padding-top: 5px;
-    font-size: 20px;
+    font-size: 1.11em;
     white-space: nowrap;
     color: $ColorRed;
     &:first-of-type {
@@ -1164,7 +1207,7 @@ body {
   }
   &__description {
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: 1.11em;
     color: $ColorTextGray;
     line-height: calc(28 / 20);
     height: calc(20px * 6 * 28 / 20);
@@ -1208,7 +1251,7 @@ body {
   &__title {
     color: $ColorTextGray;
     text-align: center;
-    font-size: 25px;
+    font-size: 1.38em;
     padding-top: 35px;
     padding-bottom: 25px;
   }
@@ -1238,7 +1281,7 @@ body {
       transform: translateX(-100%);
     }
     &:before {
-      font-size: 50px;
+      font-size: 2.77em;
       color: rgba(#fff, 0.5);
     }
   }
@@ -1254,14 +1297,14 @@ body {
     padding-right: 15px;
     padding-top: 20px;
     color: $ColorLightGray;
-    font-size: 20px;
+    font-size: 1.11em;
     font-weight: 300;
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
   &__as-name {
-    font-size: 18px;
+    font-size: 1em;
     color: $ColorDarkGray;
     padding-top: 5px;
     padding-bottom: 20px;
@@ -1317,7 +1360,7 @@ body {
     background-color: rgba($ColorBackgroundDark, 0.7);
   }
   &__error {
-    font-size: 14px;
+    font-size: 0.77em;
     margin-top: 19px;
     margin-bottom: -5px;
     color: $ColorDarkRed;
@@ -1328,7 +1371,7 @@ body {
   &__error {
     text-align: left;
     color: $ColorDarkRed;
-    font-size: 12px;
+    font-size: 0.66em;
     padding-bottom: 15px;
     margin-top: -3px;
   }
@@ -1339,7 +1382,7 @@ body {
     margin-bottom: 10px;
     width: 100%;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 0.77em;
     color: #2C3E50;
     &--error {
       border: solid 1px $ColorDarkRed;
@@ -1349,7 +1392,7 @@ body {
 
 .modal-title {
   margin-bottom: 20px;
-  font-size: 15px;
+  font-size: 0.83em;
   text-transform: uppercase;
   color: #2C3E50;
   text-align: center;
@@ -1450,7 +1493,7 @@ body {
   }
   &__edit {
     cursor: pointer;
-    font-size: 24px;
+    font-size: 0.86em;
     background-color: rgba(#000, 0.5);
     color: white;
     position: absolute;
@@ -1468,7 +1511,7 @@ body {
   &__name {
     padding-top: 30px;
     color: white;
-    font-size: 25px;
+    font-size: 0.89em;
   }
 }
 
@@ -1489,7 +1532,7 @@ body {
     padding-bottom: 15px;
     text-align: center;
     color: $ColorGray1;
-    font-size: 20px;
+    font-size: 1.11em;
     cursor: pointer;
     &:focus, &:active {
       outline: none !important;
@@ -1523,7 +1566,7 @@ body {
   &__title {
     text-align: center;
     color: white;
-    font-size: 25px;
+    font-size: 0.89em;
     padding-bottom: 20px;
     padding-top: 20px;
   }
@@ -1577,7 +1620,7 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc000000', endColorstr='#00000000', GradientType=0); /* IE6-9 */
   }
   &__en-name {
-    font-size: 16px;
+    font-size: 0.88em;
     color: #fdfdfd;
     font-weight: 700;
     line-height: 1.3;
@@ -1595,7 +1638,7 @@ body {
     line-height: 1.4;
     font-weight: 500;
 
-    font-size: 14px;
+    font-size: 0.77em;
     color: #ececec;
 
   }
@@ -1616,7 +1659,7 @@ body {
   &__icon {
     color: white;
     padding: 5px 5px;
-    font-size: 20px;
+    font-size: 1.11em;
     font-weight: 100;
     cursor: pointer;
     &:hover {
@@ -1686,7 +1729,7 @@ body {
   display: flex;
   flex-direction: row;
   height: 50px;
-  font-size: 18px;
+  font-size: 1em;
   align-items: center;
   width: 100%;
   &__label {
