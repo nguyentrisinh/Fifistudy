@@ -138,26 +138,29 @@ export default class ImageSlider extends Component {
                         const imageObject = typeof image.film_detail.thumbnail === 'string' ? {uri: baseUrl+ image.film_detail.thumbnail} : image.film_detail.thumbnail;
                         console.log('imO',image);
                         const textComponent = (
-                            <View style={styles.layoutText}>
-                                {image.film_detail.english_name === undefined ? null : <Text style={styles.textTitle}>{image.film_detail.english_name}</Text>}
-                                {image.film_detail.vietnamese_name === undefined? null : <Text style={styles.textCaption}>{image.film_detail.vietnamese_name}</Text>}
-                            </View>
+                            // <View style={styles.layoutText}>
+                            //     {image.film_detail.english_name === undefined ? null : <Text style={styles.textTitle}>{image.film_detail.english_name}</Text>}
+                            //     {image.film_detail.vietnamese_name === undefined? null : <Text style={styles.textCaption}>{image.film_detail.vietnamese_name}</Text>}
+                            // </View>
+                            <View />
                         );
                         const imageComponent = (
-                            <View key={index}>
-                                <Image source={imageObject}
-                                        style={{height, width}}/>
-                                {textComponent}
-                            </View>
+                            // <View key={index}>
+                            //     <Image source={imageObject}
+                            //             style={{height, width}}/>
+                            //     {textComponent}
+                            // </View>
+                            <View />
                         );
                         const imageComponentWithOverlay = (
-                            <View key={index} style={styles.containerImage}>
-                                <View style={styles.overlay}>
-                                    <Image source={imageObject}
-                                            style={{height, width}}/>
-                                </View>
-                                {textComponent}
-                            </View>
+                            // <View key={index} style={styles.containerImage}>
+                            //     <View style={styles.overlay}>
+                            //         <Image source={imageObject}
+                            //                 style={{height, width}}/>
+                            //     </View>
+                            //     {textComponent}
+                            // </View>
+                            <View />
                         );
                         if (this.props.onPress) {
                             return (

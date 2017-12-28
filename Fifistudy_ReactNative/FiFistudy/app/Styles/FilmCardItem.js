@@ -31,6 +31,12 @@ const styles = StyleSheet.create({
         width: (groupWidth - 6),
         height: (groupWidth - 6) * res.ratio,
         resizeMode: 'cover',
+        //backgroundColor: 'black'
+    },
+    blackImage: { 
+        //just for now to reduce LAG
+        height: (groupWidth - 6) * res.ratio,
+        backgroundColor: 'black'
     },
     groupFilmImgLevel: {
         width: (groupWidth - 6),

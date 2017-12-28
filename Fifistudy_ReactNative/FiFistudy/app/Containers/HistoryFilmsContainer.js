@@ -19,7 +19,8 @@ class HistoryFilmsContainer extends Component {
     renderItem(item) {
         return (
             <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('ScreenMovies')}>
-                <Image source={{uri: item.url}} style={styles.historyFilmImg}/>
+                {/* <Image source={{uri: item.url}} style={styles.historyFilmImg}/> */}
+                <View />
             </TouchableWithoutFeedback>
         );
     }

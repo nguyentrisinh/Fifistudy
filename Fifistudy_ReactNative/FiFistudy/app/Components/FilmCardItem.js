@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {baseUrl} from '../Server/config'
+import React, { Component } from 'react';
+import { baseUrl } from '../Server/config'
 import {
     StyleSheet,
     Image,
@@ -17,7 +17,7 @@ export default class FilmCard extends Component {
         if (film.isBookmark)
             return (
                 <View style={[Styles.bookmark, {}]}>
-                    <ImageButton source={Res.icons.bookmarkFull} tintColor={Res.colors.yellow}/>
+                    <ImageButton source={Res.icons.bookmarkFull} tintColor={Res.colors.yellow} />
                 </View>
             );
     }
@@ -38,22 +38,32 @@ export default class FilmCard extends Component {
     }
 
     render() {
-        const {data} = this.props;
+        const { data } = this.props;
+
+        // return (
+        //     <TouchableOpacity
+        //         onPress={() => this.props.navigation.navigate('ScreenMovies', { filmSlug: data.slug })}>
+        //         <View style={Styles.container}>
+        //         </View>
+        //     </TouchableOpacity>
+        // )
+
         return (
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenMovies',{filmSlug:data.slug})}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenMovies', { filmSlug: data.slug })}>
                 <View style={Styles.container}>
                     {this.setBookmark(data)}
                     {/* Episode Group */}
                     <View style={Styles.episodeGroup}>
-                        <EpisodeCircleView episodeNumber={data.episode_count} elevation={6}/>
+                        <EpisodeCircleView episodeNumber={data.episode_count} elevation={6} />
                     </View>
 
                     {/* Film's image */}
                     <View style={Styles.groupFilmImgLevel}>
-                        <Image source={{uri:baseUrl+ data.thumbnail}}
-                               style={Styles.filmImg}/>
+                        {/* <Image source={{ uri: baseUrl + data.thumbnail }}
+                            style={Styles.filmImg} /> */}
                         {/* Level line */}
-                        <View style={[Styles.levelLine, {backgroundColor: this.getLevelColor(data)}]}/>
+                        <View style={Styles.blackImage}/>
+                        <View style={[Styles.levelLine, { backgroundColor: this.getLevelColor(data) }]} />
                     </View>
 
                     {/* Title group */}
