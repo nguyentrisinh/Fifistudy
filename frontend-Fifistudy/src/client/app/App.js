@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './components/HeaderContainer';
-import {push as Menu} from 'react-burger-menu';
+import {slide as Menu} from 'react-burger-menu';
 import DetailPageContainer from './pages/DetailContainer'
 import Index from './pages/Index.jsx';
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
@@ -14,7 +14,10 @@ import {connect} from 'react-redux';
 import SignUp from './pages/SignUp';
 import Userpage from './pages/UserPage';
 import ListPage from './pages/ListPageContainer';
-import {serverDomain} from './config/server'
+import {serverDomain} from './config/server';
+import {getLogout} from './actions/api';
+import {defaultAvatar} from './config/const'
+
 
 import UserAvatar from './components/UserAvatar';
 import {Scrollbars} from 'react-custom-scrollbars';
@@ -115,7 +118,7 @@ class AppContainer extends React.Component {
     renderUserInfo = () => {
         if (_.has(this.props.userInfo, "data.errors")) {
             if (this.props.userInfo.data.errors == null) {
-                return  <div className="user-avatar">
+                return  <div className="user-avatar user-avatar--menu">
                     <Link to="/user" className="user-avatar__wrap" style={{backgroundImage: `url(${this.props.userInfo.data.data.avatar?serverDomain + this.props.userInfo.data.data.avatar:defaultAvatar})`}}>
 
                     </Link>
@@ -127,6 +130,29 @@ class AppContainer extends React.Component {
             }
         }
         return null
+    }
+
+    onClickLogout = () => {
+        let {cookies} = this.props;
+
+        if (cookies.get("token")) {
+            let token = cookies.get("token");
+
+            getLogout(token).then(res => {
+                if (res.data.errors == null) {
+                    cookies.remove("token", {path: "/"});
+                    window.location.reload();
+                }
+            })
+
+        }
+    }
+
+    onClickLogin = () => {
+        // this.setState({
+        //     isModalOpen: true
+        // })
+        this.props.toggleModalLogin();
     }
 
     render() {
@@ -147,16 +173,32 @@ class AppContainer extends React.Component {
 
 
                         <Header/>
-                        <Menu menuClassName={ "left-bar" } width={280} pageWrapId="page-wrap" outerContainerId="app"
+                        <Menu menuClassName={ "left-bar" } width={200} pageWrapId="page-wrap" outerContainerId="app"
                               isOpen={ this.state.isOpenMenuMobile }>
 
                                 {this.renderUserInfo()}
                                 <div className="user-menu">
-                                    <div className="user-menu__ul">
+                                    <div className="user-menu__ul user-menu__ul--menu">
 
+                                        {
+                                            !this.props.isLogin? <div onClick={this.onClickLogin}  className="user-menu__li">
+                                                <i className="fa fa-sign-in user-menu__icon"></i>
+                                                <span className="user-menu__text">
+                                            Đăng nhập
+                                        </span>
+                                            </div>:null
+                                        }
+                                        {
+                                            !this.props.isLogin? <Link to="/signup" className="user-menu__li">
+                                                <i className="fa fa-edit user-menu__icon"></i>
+                                                <span className="user-menu__text">
+                                            Đăng kí
+                                        </span>
+                                            </Link>:null
+                                        }
 
                                     <Link to="/"  className="user-menu__li">
-                                        <i className="fa fa-user-o user-menu__icon"></i>
+                                        <i className="fa fa-home user-menu__icon"></i>
                                         <span className="user-menu__text">
                                             Trang chủ
                                         </span>
@@ -167,31 +209,42 @@ class AppContainer extends React.Component {
                                            Phim mới
                                         </span></Link>
                                     <Link to="/much-interest"  className="user-menu__li">
-                                        <i className="fa fa-pencil-square-o user-menu__icon"></i>
+                                        <i className="fa fa-film user-menu__icon"></i>
                                         <span className="user-menu__text">
                                            Phim hay
                                         </span></Link>
                                     <Link to="high-rating" className="user-menu__li">
-                                        <i className="fa fa-sticky-note-o user-menu__icon"></i>
+                                        <i className="fa fa-film user-menu__icon"></i>
                                         <span className="user-menu__text">
                                           Phim hot
                                         </span></Link>
-                                        <Link to="/user"  className="user-menu__li">
-                                            <i className="fa fa-sticky-note-o user-menu__icon"></i>
-                                            <span className="user-menu__text">
+                                        {
+                                            this.props.isLogin? <Link to="/user"  className="user-menu__li">
+                                                <i className="fa fa-user-o user-menu__icon"></i>
+                                                <span className="user-menu__text">
                                           Quản lý tài khoản
-                                        </span></Link>
+                                        </span></Link>:null
+                                        }
+
+                                        {this.props.isLogin?  <div onClick={this.onClickLogout} className="user-menu__li">
+                                            <i className="fa fa-sign-out user-menu__icon"></i>
+                                            <span className="user-menu__text">
+                                          Đăng xuất
+                                        </span></div>:null}
+
+
+
                                     </div>
                                 </div>
 
                         </Menu>
 
                         <div id="page-wrap">
-                            <MenuMobile onClickBurgerButton={this.onClickBurgerButton}>
+                            <MenuMobile userInfo={this.props.userInfo} onClickBurgerButton={this.onClickBurgerButton}>
 
                             </MenuMobile>
 
-                            <div style={{paddingTop: this.state.marginTop}}  className="page-content">
+                            <div style={{paddingTop: this.state.marginTop,height:`calc(100vh - ${ this.state.marginTop})`}}  className="page-content">
                                 <TransitionGroup>
                                     <Switch>
                                         <Route exact path="/" component={Index}/>
@@ -217,6 +270,7 @@ class AppContainer extends React.Component {
 
 const mapStateToProps = state => {
     return {
+        isLogin:state.app.isLogin,
         isOpenModalLogin: state.app.isOpenModalLogin,
         userInfo:state.app.userInfo
     }

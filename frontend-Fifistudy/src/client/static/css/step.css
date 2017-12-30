@@ -5,6 +5,11 @@
   margin: 50px auto;
   text-align: center;
   position: relative; }
+  @media screen and (max-width: 767px) {
+    #msform {
+      padding-top: 20px;
+      margin: 0;
+      width: 100%; } }
 
 #msform fieldset {
   background: white;
@@ -17,6 +22,14 @@
   margin: 0 25%;
   /*stacking fieldsets above each other*/
   position: relative; }
+  @media screen and (max-width: 767px) {
+    #msform fieldset {
+      width: 80%;
+      margin: 0 10%; } }
+  @media screen and (max-width: 400px) {
+    #msform fieldset {
+      width: 90%;
+      margin: 0 5%; } }
 
 /*Hide all except first fieldset*/
 #msform fieldset:not(:first-of-type) {
@@ -67,6 +80,9 @@
   overflow: hidden;
   /*CSS counters to number the steps*/
   counter-reset: step; }
+  @media screen and (max-width: 767px) {
+    #progressbar {
+      display: none; } }
 
 #progressbar li {
   list-style-type: none;

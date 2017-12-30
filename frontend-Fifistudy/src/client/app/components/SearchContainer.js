@@ -71,13 +71,16 @@ class SearchContainer extends React.Component {
 
     render() {
         return (
-            <div className="header__item header__item--search">
-                <input onClick={this.openSearchContainer} name="searchValue" onChange={this.onTextSearchChange}
-                       className="header__search" type="text"
-                       placeholder="search"/>
-                {
-                    this.renderSearchResult()
-                }
+            <div className={"header__item header__item--search "+this.props.classNameContainer}>
+                <div style={{position:"relative"}}>
+                    <input className={"header__search "+this.props.classNameInput} onClick={this.openSearchContainer} name="searchValue" onChange={this.onTextSearchChange}
+                           type="text"
+                           placeholder="search"/>
+                    {
+                        this.renderSearchResult()
+                    }
+                </div>
+
             </div>
         )
     }
@@ -88,6 +91,11 @@ const mapStateToProps = state => {
         searchResult: state.app.searchResult,
         isLogin: state.app.isLogin
     }
+}
+
+SearchContainer.defaultProps = {
+    classNameContainer:"header__item header__item--search",
+    classNameInput:"header__search"
 }
 
 export default connect(mapStateToProps, {getSearch, resetSearch, loadingSearch})(SearchContainer)

@@ -100,9 +100,11 @@ class CommentContainer extends React.Component {
 
 
     render() {
+        console.log(this.props);
         let userInfo = null;
         if (_.has(this.props.userInfo, "data.errors")) {
             if (this.props.userInfo.data.errors == null) {
+                // debugger
                 userInfo = this.props.userInfo.data.data
             }
         }
@@ -116,7 +118,8 @@ class CommentContainer extends React.Component {
                     <div className="comments__comment">
                         <div className="comments__name">
                             {
-                                userInfo ? userInfo.first_name + " " + userInfo.last_name : "Nhập bình luận tại đây"
+                                userInfo ?  ((userInfo.first_name && userInfo.last_name) ? `${userInfo.first_name||""} ${userInfo.last_name}`:userInfo.username)
+                                    : "Nhập bình luận tại đây"
                             }
                         </div>
                         <textarea onClick={this.onTextareaFocus} onKeyPress={this.onTextareaKeyPress}

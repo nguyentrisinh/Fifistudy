@@ -54,7 +54,7 @@ class UserAvatar extends React.Component {
     render() {
         let {data} = this.props
         return (
-            <div className="user-avatar">
+            <div className="user-avatar user-avatar--user">
                 <div className="user-avatar__wrap" style={{backgroundImage: `url(${data.avatar?serverDomain + data.avatar:defaultAvatar})`}}>
                     {/*<img src={} alt="" className="user-avatar__img"/>*/}
                     <label className="user-avatar__edit" htmlFor="avatar">

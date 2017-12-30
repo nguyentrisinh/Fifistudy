@@ -1,4 +1,4 @@
-import React from 'react';
+    import React from 'react';
 import {serverDomain} from '../config/server'
 import classNames from 'classnames';
 import {postLikeComment} from '../actions/api';
@@ -52,7 +52,7 @@ class Comment extends React.Component {
                 </div>
                 <div className="comment__info">
                     <div className="comment__name">
-                        {data.first_name + " " + data.last_name} <span className="comment__time">
+                        {(data.first_name && data.last_name) ? `${data.first_name||""} ${data.last_name||""}` : data.username} <span className="comment__time">
                         <i className="fa fa-circle fa-lg comment__dot"></i>
                         {/*<span>  3 ngày trước</span>*/}
                         &nbsp;

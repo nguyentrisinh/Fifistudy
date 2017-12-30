@@ -240,7 +240,9 @@ class VideoFilm extends React.Component {
             <div className="video-film">
                 <div className="container">
                     <div className="video-film__wrap">
-                        <div style={{flex: this.state.isPractice ? "0 0 100%" : null}} className="video-film__video">
+                        <div className={classNames("video-film__video",{
+                            "video-film__video--practice":this.state.isPractice
+                        })}>
                             <div className="video-film__player-container">
                                 <div className="video-film__player">
                                     <div id="player">Loading the player...</div>
@@ -285,7 +287,10 @@ class VideoFilm extends React.Component {
                                     </div>
                                 </div>
                                 <button  onClick={this.onClickNext} className="video-film__control-item video-film__control-item--next-episode">
-                                    Tập tiếp theo &nbsp; <i className="fa fa-angle-right fa-2x"></i>
+                                    <span className="video-film__next-text">
+                                        Tập tiếp theo &nbsp;
+                                    </span>
+                                    <i className="fa fa-angle-right fa-2x"></i>
                                 </button>
                             </div>
                         </div>

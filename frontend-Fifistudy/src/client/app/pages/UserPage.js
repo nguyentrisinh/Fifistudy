@@ -36,27 +36,22 @@ class UserPage extends React.Component {
                             <div className="user-page__menu">
                                 {this.renderUserInfo()}
                                 <div className="user-menu">
-                                    <TabList className="user-menu__ul">
-                                        <Tab selectedClassName="user-menu__li--selected" className="user-menu__li">
+                                    <TabList className="user-menu__ul user-menu__ul--user">
+                                        <Tab selectedClassName="user-menu__li--selected" className="user-menu__li user-menu__li--user">
                                             <i className="fa fa-user-o user-menu__icon"></i>
-                                            <span className="user-menu__text">
+                                            <span className="user-menu__text user-menu__text--user">
                                             THÔNG TIN CÁ NHÂN
                                         </span>
                                         </Tab>
-                                        <Tab selectedClassName="user-menu__li--selected" className="user-menu__li">
+                                        <Tab selectedClassName="user-menu__li--selected" className="user-menu__li user-menu__li--user">
                                             <i className="fa fa-film user-menu__icon"></i>
-                                            <span className="user-menu__text">
+                                            <span className="user-menu__text user-menu__text--user">
                                            phim đã lưu
                                         </span></Tab>
-                                        <Tab selectedClassName="user-menu__li--selected" className="user-menu__li">
+                                        <Tab selectedClassName="user-menu__li--selected" className="user-menu__li user-menu__li--user">
                                             <i className="fa fa-pencil-square-o user-menu__icon"></i>
-                                            <span className="user-menu__text">
+                                            <span className="user-menu__text user-menu__text--user">
                                            từ vựng đã lưu
-                                        </span></Tab>
-                                        <Tab selectedClassName="user-menu__li--selected" className="user-menu__li">
-                                            <i className="fa fa-sticky-note-o user-menu__icon"></i>
-                                            <span className="user-menu__text">
-                                           ghi chú của tôi
                                         </span></Tab>
                                     </TabList>
                                 </div>
@@ -75,9 +70,6 @@ class UserPage extends React.Component {
                                         </TabPanel>
                                         <TabPanel>
                                             <SectionVocabularyContainer/>
-                                        </TabPanel>
-                                        <TabPanel>
-                                            GHi chu
                                         </TabPanel>
                                     </div>
                                 </ScrollBar>
