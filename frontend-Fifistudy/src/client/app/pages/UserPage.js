@@ -32,8 +32,6 @@ class UserPage extends React.Component {
             <FadeTransition>
                 <div className="container">
                     <div className="user-page clearfix">
-
-
                         <Tabs>
                             <div className="user-page__menu">
                                 {this.renderUserInfo()}

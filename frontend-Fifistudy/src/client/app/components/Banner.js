@@ -28,7 +28,7 @@ class Banner extends React.Component {
             }
         }
         this.state = {
-            isHiddenBtnPlay: true,
+            isHiddenBtnPlay: window.innerWidth>767,
             haveEpisode
 
         };
@@ -48,12 +48,24 @@ class Banner extends React.Component {
     }
 
     onMouseEnterBanner = () => {
+        if (window.innerWidth <=767){
+            this.setState({
+                isHiddenBtnPlay: false
+            })
+            return;
+        }
         this.setState({
             isHiddenBtnPlay: false
         })
     }
 
     onMouseLeaveBanner = () => {
+        if (window.innerWidth <=767){
+            this.setState({
+                isHiddenBtnPlay: false
+            })
+            return;
+        }
         this.setState({
             isHiddenBtnPlay: true
         })

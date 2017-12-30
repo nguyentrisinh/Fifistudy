@@ -49,6 +49,7 @@ export default class ListActor extends React.Component {
             prevArrow: <PrevArrow/>,
             autoplay: true,
             infinite: true,
+            responsive:[ { breakpoint: 767, settings: { slidesToShow: 5 } },{ breakpoint: 479, settings: { slidesToShow: 3 } } ]
         };
         return (
 

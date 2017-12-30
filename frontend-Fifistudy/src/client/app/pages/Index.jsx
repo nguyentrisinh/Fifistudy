@@ -56,14 +56,14 @@ class Index extends React.Component {
         return (
             <FadeTransition>
                 <div className="index-page">
-                    <Scrollbars
-                        autoHide={true}
-                        renderTrackVertical={props => <div {...props} className="scroll-bar__track-vertical"/>}
-                        renderThumbVertical={props => <div {...props} className="scroll-bar__thumb-vertical"/>}
-                        autoHeight={true}
-                        autoHeightMin="100%"
-                        autoHeightMax="100%"
-                    >
+                    {/*<Scrollbars*/}
+                        {/*autoHide={true}*/}
+                        {/*renderTrackVertical={props => <div {...props} className="scroll-bar__track-vertical"/>}*/}
+                        {/*renderThumbVertical={props => <div {...props} className="scroll-bar__thumb-vertical"/>}*/}
+                        {/*autoHeight={true}*/}
+                        {/*autoHeightMin="100%"*/}
+                        {/*autoHeightMax="100%"*/}
+                    {/*>*/}
 
 
                         <SliderBannerContainer/>
@@ -75,7 +75,7 @@ class Index extends React.Component {
                         {/*</Section>*/}
                         <LatestContainer/>
                         <Footer/>
-                    </Scrollbars>
+                    {/*</Scrollbars>*/}
                 </div>
             </FadeTransition>
         )

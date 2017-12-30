@@ -15,7 +15,7 @@ body {
   cursor: pointer;
   display: inline-block;
   margin: 5px;
-  font-size: 30px;
+  font-size: 1.66em;
   color: whitesmoke;
   position: relative; }
   .star__reviewed {
