@@ -1,22 +1,18 @@
-import React from 'react';
-import Actor from './Actor'
-import Slider from 'react-slick';
-import _ from 'lodash';
-import {connect} from 'react-redux';
-import ListActor from './ListActor'
-import Comment from "./Comment";
-import {serverDomain} from '../config/server'
-import {withRouter} from 'react-router'
+import React from "react";
+import _ from "lodash";
+import {connect} from "react-redux";
+import {serverDomain} from "../config/server";
+import {withRouter} from "react-router";
 
-import {postComment} from '../actions/api';
+import {postComment} from "../actions/api";
 
-import validator from 'validator';
-import {getComment} from '../actions/dataIntropage'
+import validator from "validator";
+import {getComment} from "../actions/dataIntropage";
 
-import{toggleModalLogin} from '../actions/app';
+import {toggleModalLogin} from "../actions/app";
 
-import {withCookies} from 'react-cookie'
-import Comments from './Comments'
+import {withCookies} from "react-cookie";
+import Comments from "./Comments";
 
 class CommentContainer extends React.Component {
     constructor(props) {
@@ -118,7 +114,7 @@ class CommentContainer extends React.Component {
                     <div className="comments__comment">
                         <div className="comments__name">
                             {
-                                userInfo ?  ((userInfo.first_name && userInfo.last_name) ? `${userInfo.first_name||""} ${userInfo.last_name}`:userInfo.username)
+                                userInfo ? ((userInfo.first_name && userInfo.last_name) ? `${userInfo.first_name || ""} ${userInfo.last_name}` : userInfo.username)
                                     : "Nhập bình luận tại đây"
                             }
                         </div>

@@ -21,7 +21,7 @@ body {
   font-size: 1.66em;
   color: whitesmoke;
   position: relative;
-  &__reviewed{
+  &__reviewed {
     font-size: 20px;
     margin: 0;
     margin-bottom: -7px;
@@ -57,8 +57,8 @@ body {
   }
 }
 
-.hihi{
-  &::after{
+.hihi {
+  &::after {
     background-color: red;
     content: "";
   }

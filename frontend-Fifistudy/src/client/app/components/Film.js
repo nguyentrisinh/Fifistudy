@@ -1,23 +1,18 @@
-import React from 'react';
-import Level from './Level.jsx'
-import Star from './Star'
-import {serverDomain} from '../config/server'
-import classNames from 'classnames';
-import {updateSaved, unSavedFilm} from '../actions/app'
-import {postUserSaveFilm} from '../actions/api';
-import {getMostView, getLastest} from '../actions/dataHomepage'
-import {getUserSaveFilm} from '../actions/dataUserpage'
-import {withCookies} from 'react-cookie';
-import {SERVER_ERRORS} from '../constants/serverErrors'
-import {connect} from 'react-redux';
-import {toggleModalLogin} from '../actions/app';
-import {withRouter} from 'react-router';
+import React from "react";
+import Level from "./Level.jsx";
+import Star from "./Star";
+import {serverDomain} from "../config/server";
+import classNames from "classnames";
+import {toggleModalLogin, unSavedFilm, updateSaved} from "../actions/app";
+import {postUserSaveFilm} from "../actions/api";
+import {getLastest, getMostView} from "../actions/dataHomepage";
+import {getUserSaveFilm} from "../actions/dataUserpage";
+import {withCookies} from "react-cookie";
+import {SERVER_ERRORS} from "../constants/serverErrors";
+import {connect} from "react-redux";
+import {withRouter} from "react-router";
 
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom';
+import {Link} from "react-router-dom";
 class Film extends React.Component {
     constructor(props) {
         super(props);

@@ -1,6 +1,6 @@
-import * as Types from '../constants/dataDetailPage';
-import axios from '../config/axios';
-import {API_PATH} from '../constants/apiPath'
+import * as Types from "../constants/dataDetailPage";
+import axios from "../config/axios";
+import {API_PATH} from "../constants/apiPath";
 
 export function getEpisode(filmSlug, episodeId) {
     return function (dispatch) {

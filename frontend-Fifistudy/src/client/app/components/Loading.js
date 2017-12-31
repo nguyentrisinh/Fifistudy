@@ -1,7 +1,5 @@
-import React from 'react';
-import FadeTransition from'../components/FadeTransition';
-import '../../static/css/loading.scss'
-import jQuery from 'jquery';
+import React from "react";
+import FadeTransition from "../components/FadeTransition";
 require('imports-loader?jQuery=jquery!letteringjs');
 // window.$ = window.jQuery = jQuery;
 // import 'letteringjs';

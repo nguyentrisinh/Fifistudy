@@ -1,4 +1,4 @@
-import update from 'react-addons-update'
+import update from "react-addons-update";
 
 export const makeNewDataSaveFilm = (filmId, oldData) => {
     // debugger

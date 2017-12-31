@@ -1,11 +1,8 @@
-import React from 'react';
-import Actor from './Actor'
-import Slider from 'react-slick';
-import {connect} from 'react-redux';
-import ListActor from './ListActor'
-import {getVocabulary} from '../actions/dataUserpage';
-import {withCookies} from 'react-cookie';
-import SectionVocabulary  from './SectionVocabulary'
+import React from "react";
+import {connect} from "react-redux";
+import {getVocabulary} from "../actions/dataUserpage";
+import {withCookies} from "react-cookie";
+import SectionVocabulary from "./SectionVocabulary";
 
 class SectionVocabularyContainer extends React.Component {
     constructor(props) {

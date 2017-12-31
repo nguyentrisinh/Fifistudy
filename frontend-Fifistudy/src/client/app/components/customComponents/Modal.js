@@ -1,7 +1,7 @@
-import React from 'react';
-import InitialModal from 'react-modal';
-import ModalContent from './ModalContent';
-import PropTypes from 'prop-types';
+import React from "react";
+import InitialModal from "react-modal";
+import ModalContent from "./ModalContent";
+import PropTypes from "prop-types";
 
 export default class Modal extends React.Component {
     constructor(props) {

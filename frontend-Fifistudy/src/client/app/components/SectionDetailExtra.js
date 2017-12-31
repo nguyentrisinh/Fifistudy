@@ -1,6 +1,6 @@
-import React from 'react';
-import CommentContainer from './CommentContainer';
-import RelatedFilmContainer from './RelatedFilmContainer'
+import React from "react";
+import CommentContainer from "./CommentContainer";
+import RelatedFilmContainer from "./RelatedFilmContainer";
 
 class SectionDetailExtra extends React.Component {
     constructor(props) {

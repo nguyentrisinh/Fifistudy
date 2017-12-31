@@ -1,5 +1,5 @@
-import {API_PATH, MAX_PAGE, ORDER_BY} from '../constants/apiPath'
-import axios from '../config/axios'
+import {API_PATH, MAX_PAGE} from "../constants/apiPath";
+import axios from "../config/axios";
 const tokenFormat = (token) => `Token ${token}`
 const makeConfig = (token, anotherConfig = null) => {
     let config = {

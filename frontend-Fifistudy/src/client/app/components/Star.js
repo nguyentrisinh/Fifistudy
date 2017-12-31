@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 function roundHalf(num) {
-    return Math.round(num*2)/2;
+    return Math.round(num * 2) / 2;
 }
 export default function ({score}) {
     const renderStar = () => {

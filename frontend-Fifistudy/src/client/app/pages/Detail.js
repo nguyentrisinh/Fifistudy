@@ -1,18 +1,16 @@
-import React from 'react';
-import {withRouter} from 'react-router'
-import {serverDomain} from '../config/server'
+import React from "react";
+import {serverDomain} from "../config/server";
 
-import FadeTransition from '../components/FadeTransition'
-import film1 from '../../static/images/HowIMetUrMother.jpg'
-import FilmTitle from '../components/FilmTitle'
-import VideoFilm from '../components/VideoFilm'
-import Episode from '../components/Episode'
-import SectionDetailExtra from '../components/SectionDetailExtra'
-import Footer from '../components/Footer';
-import {getFilmByDifficult} from '../actions/dataIntropage';
-import {connect} from 'react-redux';
+import FadeTransition from "../components/FadeTransition";
+import FilmTitle from "../components/FilmTitle";
+import VideoFilm from "../components/VideoFilm";
+import Episode from "../components/Episode";
+import SectionDetailExtra from "../components/SectionDetailExtra";
+import Footer from "../components/Footer";
+import {getFilmByDifficult} from "../actions/dataIntropage";
+import {connect} from "react-redux";
 
-import {Scrollbars} from 'react-custom-scrollbars';
+import {Scrollbars} from "react-custom-scrollbars";
 
 class Detail extends React.Component {
     constructor(props) {
@@ -33,7 +31,7 @@ class Detail extends React.Component {
                 <div className="detail-page">
 
                     <div className="detail-page__overlay"
-                         style={{backgroundImage: `url(${serverDomain+filmDetail.thumbnail})`}}>
+                         style={{backgroundImage: `url(${serverDomain + filmDetail.thumbnail})`}}>
                     </div>
                     <Scrollbars
                         autoHide={true}

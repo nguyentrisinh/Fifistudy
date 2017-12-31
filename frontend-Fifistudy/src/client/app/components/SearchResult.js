@@ -1,12 +1,9 @@
-import React from 'react';
-import onClickOutside from 'react-onclickoutside';
-import Spinner from './Spinner'
+import React from "react";
+import onClickOutside from "react-onclickoutside";
+import Spinner from "./Spinner";
 
-import Film1 from '../components/Film1';
-import {connect} from 'react-redux';
-import ScrollBar from './ScrollBar';
-import FlipMove from 'react-flip-move'
-import ReactDOM from 'react-dom';
+import Film1 from "../components/Film1";
+import ScrollBar from "./ScrollBar";
 
 class SearchResult extends React.Component {
     handleClickOutside = () => {
@@ -14,7 +11,9 @@ class SearchResult extends React.Component {
     }
     renderItem = () => {
         return this.props.data.data.map(item => {
-            return <div onClick={()=>{ this.props.closeSearchContainer();}} id={`item${item.id}`} key={item.id} className="search-result__item">
+            return <div onClick={() => {
+                this.props.closeSearchContainer();
+            }} id={`item${item.id}`} key={item.id} className="search-result__item">
                 <Film1 data={item}/>
             </div>
         });

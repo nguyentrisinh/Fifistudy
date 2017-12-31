@@ -1,4 +1,4 @@
-import * as Types from '../constants/dataIntropage'
+import * as Types from "../constants/dataIntropage";
 
 const initialState = {
     film: {

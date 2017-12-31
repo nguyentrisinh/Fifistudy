@@ -1,22 +1,19 @@
-import React from 'react';
-import '../../static/css/step.scss'
+import React from "react";
+import {Cookies, withCookies} from "react-cookie";
+import {postSignUpOne, postSignUpTwo, postUpdateAvatar, postUpdateUserInfo} from "../actions/api";
+import Input from "../components/Input";
+import update from "react-addons-update";
+import {instanceOf} from "prop-types";
+import validator from "validator";
+import {connect} from "react-redux";
+import {doLogin, getUserInfo} from "../actions/app";
+import "react-datepicker/dist/react-datepicker.css";
+import FadeTransition from "../components/FadeTransition";
+import {SERVER_ERRORS} from "../constants/serverErrors";
+import {Link} from "react-router-dom";
+import DatePicker from "react-datepicker";
+import moment from "moment";
 require('imports-loader?$=jquery!../../static/js/jquery.easing.1.3.js');
-import '../../static/css/radio.scss';
-import {withCookies, Cookies} from 'react-cookie';
-import {postSignUpOne, postSignUpTwo, postUpdateUserInfo, postUpdateAvatar} from '../actions/api';
-import Input from '../components/Input';
-import update from 'react-addons-update';
-import {instanceOf} from 'prop-types';
-import validator from 'validator';
-import {connect} from 'react-redux';
-import {getUserInfo,doLogin} from '../actions/app'
-
-import 'react-datepicker/dist/react-datepicker.css';
-import FadeTransition from '../components/FadeTransition'
-import {SERVER_ERRORS} from '../constants/serverErrors';
-import {Link} from 'react-router-dom';
-import DatePicker from 'react-datepicker';
-import moment from 'moment';
 
 
 class SignUp extends React.Component {
@@ -266,7 +263,7 @@ class SignUp extends React.Component {
 
     onClickStepThree = (evt) => {
         let {cookies} = this.props;
-        let birthday = `${this.state.birthday.year()}-${this.state.birthday.month()+1}-${this.state.birthday.date()}`;
+        let birthday = `${this.state.birthday.year()}-${this.state.birthday.month() + 1}-${this.state.birthday.date()}`;
         let data =
             {
                 "first_name": this.state.firstName,
@@ -414,7 +411,7 @@ class SignUp extends React.Component {
         );
     }
 
-    onClickDone = () =>{
+    onClickDone = () => {
         const {cookies} = this.props;
         if (cookies.get("token")) {
             this.props.getUserInfo(cookies.get("token"));
@@ -518,7 +515,7 @@ class SignUp extends React.Component {
                                 dropdownMode="select"
                             />
                             {/*<Input type="text" onChange={this.onChangeTextInput} name="birthday" placeholder="Ngày sinh"*/}
-                                   {/*value={this.state.birthday}/>*/}
+                            {/*value={this.state.birthday}/>*/}
                             <textarea className="input-com__input" onChange={this.onChangeTextInput} type="text"
                                       name="address" placeholder="Địa chỉ"
                                       value={this.state.address}/>
@@ -584,4 +581,4 @@ class SignUp extends React.Component {
     }
 }
 
-export default withCookies(connect(null,{getUserInfo,doLogin})(SignUp))
+export default withCookies(connect(null, {getUserInfo, doLogin})(SignUp))

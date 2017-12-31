@@ -1,11 +1,11 @@
-import Modal from './CustomComponents'
-import React from 'react';
-import PropTypes from 'prop-types';
-import Input from './Input'
-import {putEditVocabulary} from '../actions/api';
-import {withCookies} from 'react-cookie';
-import {connect} from 'react-redux';
-import {getVocabulary} from '../actions/dataUserpage';
+import Modal from "./CustomComponents";
+import React from "react";
+import PropTypes from "prop-types";
+import Input from "./Input";
+import {putEditVocabulary} from "../actions/api";
+import {withCookies} from "react-cookie";
+import {connect} from "react-redux";
+import {getVocabulary} from "../actions/dataUserpage";
 
 class ModalEditVocabulary extends React.Component {
     constructor(props) {

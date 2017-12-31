@@ -1,16 +1,14 @@
-import React from 'react';
-import axios from 'axios';
-import $ from 'jquery';
-import ModalSaveVocabulary from './ModalSaveVocabulary';
-import {Scrollbars} from 'react-custom-scrollbars';
-import classNames from 'classnames';
-import {toggleModalLogin} from '../actions/app'
-import ReactDOM from 'react-dom';
-import {connect} from 'react-redux';
-import {postSaveVocabulary} from '../actions/api'
-import {withCookies} from 'react-cookie';
-import {withRouter} from 'react-router'
-import {serverDomain} from '../config/server'
+import React from "react";
+import axios from "axios";
+import $ from "jquery";
+import ModalSaveVocabulary from "./ModalSaveVocabulary";
+import {Scrollbars} from "react-custom-scrollbars";
+import classNames from "classnames";
+import {toggleModalLogin} from "../actions/app";
+import {connect} from "react-redux";
+import {withCookies} from "react-cookie";
+import {withRouter} from "react-router";
+import {serverDomain} from "../config/server";
 
 
 class VideoFilm extends React.Component {
@@ -81,7 +79,7 @@ class VideoFilm extends React.Component {
     }
     initPlayer = (data) => {
         this.setState({
-            currentLine:""
+            currentLine: ""
         })
         this.refs.scroll.scrollTop();
         this.player = window.jwplayer('player').setup({
@@ -91,14 +89,14 @@ class VideoFilm extends React.Component {
             // file: `http://localhost:8000/media/episode/video/How_i_met_your_mother1_01.mp4`,
 
             tracks: [{
-                file: `${serverDomain+data.sub}`,
+                file: `${serverDomain + data.sub}`,
                 label: "Eng-Vie",
                 kind: "captions",
                 "default": true
             }],
             aspectratio: "16:9"
         })
-        axios.get(`${serverDomain+data.sub}`)
+        axios.get(`${serverDomain + data.sub}`)
             .then(response => {
                 let stringVTT = response.data.split(/\n\s*\n/);
                 stringVTT.shift();
@@ -222,12 +220,12 @@ class VideoFilm extends React.Component {
 
     }
 
-    onClickNext=()=>{
+    onClickNext = () => {
         let {episodes} = this.props.filmDetail;
-        episodes.sort((a,b)=>parseInt(a.number)-parseInt(b.number));
-        let index = episodes.findIndex((a)=>a.number==this.props.data.number);
-        if (episodes[index+1]){
-            this.props.history.push(`/film/${this.props.filmDetail.slug}/${episodes[index+1].number}`)
+        episodes.sort((a, b) => parseInt(a.number) - parseInt(b.number));
+        let index = episodes.findIndex((a) => a.number == this.props.data.number);
+        if (episodes[index + 1]) {
+            this.props.history.push(`/film/${this.props.filmDetail.slug}/${episodes[index + 1].number}`)
         }
     }
 
@@ -237,8 +235,8 @@ class VideoFilm extends React.Component {
             <div className="video-film">
                 <div className="container">
                     <div className="video-film__wrap">
-                        <div className={classNames("video-film__video",{
-                            "video-film__video--practice":this.state.isPractice
+                        <div className={classNames("video-film__video", {
+                            "video-film__video--practice": this.state.isPractice
                         })}>
                             <div className="video-film__player-container">
                                 <div className="video-film__player">
@@ -283,7 +281,8 @@ class VideoFilm extends React.Component {
                                         +
                                     </div>
                                 </div>
-                                <button  onClick={this.onClickNext} className="video-film__control-item video-film__control-item--next-episode">
+                                <button onClick={this.onClickNext}
+                                        className="video-film__control-item video-film__control-item--next-episode">
                                     <span className="video-film__next-text">
                                         Tập tiếp theo &nbsp;
                                     </span>

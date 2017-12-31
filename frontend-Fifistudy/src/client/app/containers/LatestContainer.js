@@ -1,8 +1,8 @@
-import SectionFilm from '../components/SectionFilm';
-import React from 'react';
-import Film from '../components/Film'
+import SectionFilm from "../components/SectionFilm";
+import React from "react";
+import Film from "../components/Film";
 
-import {connect} from 'react-redux';
+import {connect} from "react-redux";
 
 
 class LatestContainer extends React.Component {

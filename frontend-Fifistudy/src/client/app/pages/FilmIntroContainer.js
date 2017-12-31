@@ -1,10 +1,9 @@
-import React from 'react';
-import {getFilm, getActorIntro, getComment, getFilmByDifficult, getReviewFilm} from '../actions/dataIntropage'
-import {connect} from 'react-redux';
-import Loading from '../components/Loading';
-import FilmIntro from './FilmIntro';
-import {withCookies} from 'react-cookie';
-import _ from 'lodash';
+import React from "react";
+import {getActorIntro, getComment, getFilm, getFilmByDifficult, getReviewFilm} from "../actions/dataIntropage";
+import {connect} from "react-redux";
+import Loading from "../components/Loading";
+import FilmIntro from "./FilmIntro";
+import {withCookies} from "react-cookie";
 
 class FilmIntroContainer extends React.Component {
     constructor(props) {

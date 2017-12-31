@@ -1,7 +1,6 @@
-import * as Types from '../constants/dataListPage';
-import axios from '../config/axios';
-import {API_PATH, ORDER_BY, MAX_PAGE_LIST} from '../constants/apiPath';
-import * as Api from '../actions/api'
+import * as Types from "../constants/dataListPage";
+import {MAX_PAGE_LIST} from "../constants/apiPath";
+import * as Api from "../actions/api";
 
 export const getListPage = (orderBy, pageNumber, pageSize = MAX_PAGE_LIST, token = null) => {
     // debugger

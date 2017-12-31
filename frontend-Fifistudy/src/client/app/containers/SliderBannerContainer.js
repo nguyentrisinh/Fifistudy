@@ -1,7 +1,7 @@
-import SliderBanner from '../components/SliderBanner.jsx';
-import React from 'react';
+import SliderBanner from "../components/SliderBanner.jsx";
+import React from "react";
 
-import {connect} from 'react-redux';
+import {connect} from "react-redux";
 
 
 class SliderBannerContainer extends React.Component {

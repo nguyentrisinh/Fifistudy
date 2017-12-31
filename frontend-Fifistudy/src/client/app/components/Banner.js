@@ -1,21 +1,14 @@
-import React from 'react';
-import film from '../../static/images/HowIMetUrMother.jpg'
-import StarRatingContainer from './StarRatingContainer'
-import Level from './Level.jsx';
-import classNames from 'classnames';
-import {serverDomain} from '../config/server'
-import Star from '../components/Star'
-import {withRouter} from 'react-router';
-import {postUserSaveFilm} from '../actions/api'
-import {updateFilm} from '../actions/dataIntropage'
-import {connect} from 'react-redux';
-import {withCookies} from 'react-cookie';
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom'
-import {toggleModalLogin} from '../actions/app'
+import React from "react";
+import StarRatingContainer from "./StarRatingContainer";
+import Level from "./Level.jsx";
+import classNames from "classnames";
+import {serverDomain} from "../config/server";
+import {withRouter} from "react-router";
+import {postUserSaveFilm} from "../actions/api";
+import {updateFilm} from "../actions/dataIntropage";
+import {connect} from "react-redux";
+import {withCookies} from "react-cookie";
+import {toggleModalLogin} from "../actions/app";
 class Banner extends React.Component {
     constructor(props) {
 
@@ -28,12 +21,11 @@ class Banner extends React.Component {
             }
         }
         this.state = {
-            isHiddenBtnPlay: window.innerWidth>767,
+            isHiddenBtnPlay: window.innerWidth > 767,
             haveEpisode
 
         };
     }
-
 
 
     onClickBanner = (evt) => {
@@ -48,7 +40,7 @@ class Banner extends React.Component {
     }
 
     onMouseEnterBanner = () => {
-        if (window.innerWidth <=767){
+        if (window.innerWidth <= 767) {
             this.setState({
                 isHiddenBtnPlay: false
             })
@@ -60,7 +52,7 @@ class Banner extends React.Component {
     }
 
     onMouseLeaveBanner = () => {
-        if (window.innerWidth <=767){
+        if (window.innerWidth <= 767) {
             this.setState({
                 isHiddenBtnPlay: false
             })
@@ -126,7 +118,7 @@ class Banner extends React.Component {
                     <div
                         className="banner__wrap" onMouseEnter={this.onMouseEnterBanner}
                         onMouseLeave={this.onMouseLeaveBanner}>
-                        <img src={`${serverDomain+data.thumbnail}`} alt="" className="banner__image"/>
+                        <img src={`${serverDomain + data.thumbnail}`} alt="" className="banner__image"/>
                         <div className="banner__overlay">
                         </div>
                         <div className="banner__info">

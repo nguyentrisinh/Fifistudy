@@ -1,10 +1,7 @@
-import React from 'react';
-import Vocabulary from './Vocabulary'
-import {connect} from 'react-redux';
-import FlipMove from 'react-flip-move';
-import SectionUserInfo from './SectionUserInfo';
-import Input1 from './Input1';
-import _ from 'lodash';
+import React from "react";
+import {connect} from "react-redux";
+import SectionUserInfo from "./SectionUserInfo";
+import _ from "lodash";
 
 class SectionUserInfoContainer extends React.Component {
     constructor(props) {

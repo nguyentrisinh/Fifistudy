@@ -1,7 +1,7 @@
-import Level from './Level.jsx';
-import React from 'react';
-import {Link} from 'react-router-dom';
-import {serverDomain} from '../config/server'
+import Level from "./Level.jsx";
+import React from "react";
+import {Link} from "react-router-dom";
+import {serverDomain} from "../config/server";
 
 function BannerItem({data}) {
     let filmDetail = data.film_detail
