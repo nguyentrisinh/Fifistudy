@@ -1,4 +1,4 @@
-import SliderBanner from '../components/SliderBanner';
+import SliderBanner from '../components/SliderBanner.jsx';
 import React from 'react';
 
 import {connect} from 'react-redux';

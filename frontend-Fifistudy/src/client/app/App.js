@@ -1,5 +1,6 @@
 import React from 'react';
-import Header from './components/HeaderContainer';
+import Header from './components/HeaderContainer.jsx';
+import '../static/css/normalize.css';
 import {slide as Menu} from 'react-burger-menu';
 import DetailPageContainer from './pages/DetailContainer'
 import Index from './pages/Index.jsx';

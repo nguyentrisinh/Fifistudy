@@ -1,4 +1,4 @@
-import Level from './Level';
+import Level from './Level.jsx';
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {serverDomain} from '../config/server'
