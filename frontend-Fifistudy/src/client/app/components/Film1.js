@@ -1,5 +1,9 @@
-import React from 'react';
-import Level from './Level'
+import React from "react";
+import Level from "./Level.jsx";
+import {serverDomain} from "../config/server";
+import Star from "../components/Star";
+import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
 class Film1 extends React.Component {
     constructor(props) {
@@ -8,25 +12,39 @@ class Film1 extends React.Component {
     }
 
     render() {
+        let {data} = this.props;
         return (
-            <div className="related-film">
+            <Link to={`/film/${data.slug}`} className="related-film">
                 <div className="related-film__wrap-image">
-                    <img src="http://placehold.it/320x180" alt="" className="related-film__image"/>
+                    <img src={serverDomain + data.thumbnail} alt="" className="related-film__image"/>
                 </div>
                 <div className="related-film__info">
-                    <div className="related-film__eng-name">
-                        Portal Combat
+                    <div className="related-film__eng-name" title={data.english_name}>
+                        {data.english_name}
                     </div>
-                    <div className="related-film__vi-name">
-                        Chiến môn
+                    <div className="related-film__vi-name" title={data.vietnamese_name}>
+                        {data.vietnamese_name}
                     </div>
                     <div className="related-film__level">
-                        <Level level={2}/>
+                        <Level level={data.difficult_level}/>
                     </div>
+                    <div className="related-film__level">
+                        <Star score={data.average_score}/>
+                    </div>
+
+
                 </div>
-            </div>
+            </Link>
         )
     }
+}
+
+Film1.propTypes = {
+    isLevel: PropTypes.bool
+}
+
+Film1.defaultProps = {
+    isLevel: false
 }
 
 export default Film1

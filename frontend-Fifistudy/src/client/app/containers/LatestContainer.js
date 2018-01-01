@@ -1,8 +1,8 @@
-import SectionFilm from '../components/SectionFilm';
-import React from 'react';
-import Film from '../components/Film'
+import SectionFilm from "../components/SectionFilm";
+import React from "react";
+import Film from "../components/Film";
 
-import {connect} from 'react-redux';
+import {connect} from "react-redux";
 
 
 class LatestContainer extends React.Component {
@@ -14,7 +14,7 @@ class LatestContainer extends React.Component {
     renderFilm = (data) => {
         return data.map(item => {
             return (
-                <div className="section__item">
+                <div key={item.id} className="section__item">
                     <Film data={item}/>
                 </div>
             )
@@ -39,7 +39,7 @@ class LatestContainer extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        mostLatest: state.dataHomepage.mostLatest
+        mostLatest: state.dataHomepage.mostLastest
     }
 }
 

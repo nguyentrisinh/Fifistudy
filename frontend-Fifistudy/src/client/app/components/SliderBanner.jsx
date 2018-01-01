@@ -1,9 +1,6 @@
-import React from 'react';
-import Swiper from 'react-id-swiper';
-import film1 from '../../static/images/film1.jpg';
-import film2 from '../../static/images/film2.jpeg';
-import film3 from '../../static/images/film3.jpg';
-import BannerItem from './BannerItem.jsx';
+import React from "react";
+import Swiper from "react-id-swiper";
+import BannerItem from "./BannerItem.jsx";
 
 class SliderBanner extends React.Component {
     constructor(props) {

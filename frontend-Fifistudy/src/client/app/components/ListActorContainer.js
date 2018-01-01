@@ -1,8 +1,7 @@
-import React from 'react';
-import Actor from './Actor'
-import Slider from 'react-slick';
-import {connect} from 'react-redux';
-import ListActor from './ListActor'
+import React from "react";
+import {connect} from "react-redux";
+import ListActor from "./ListActor";
+import Spinner from "./Spinner";
 
 class ListActorContainer extends React.Component {
     constructor(props) {
@@ -15,7 +14,9 @@ class ListActorContainer extends React.Component {
         let {actor} = this.props;
         if (actor.isLoading) {
             return (
-                <div className="list-actor__info"> Đang tải ... </div>
+                <div className="list-actor__actors  list-actor__info--loading">
+                    <Spinner/>
+                </div>
             )
         }
         else {
@@ -27,7 +28,9 @@ class ListActorContainer extends React.Component {
                 }
                 else {
                     return (
-                        <div className="list-actor__info">Chưa cập nhật diễn viên</div>
+                        <div className="list-actor__actors list-actor__no-data">
+                            Chưa cập nhật diễn viên
+                        </div>
                     )
                 }
             }
@@ -36,14 +39,33 @@ class ListActorContainer extends React.Component {
 
 
     render() {
+        // return (
+        //     <div className="list-actor">
+        //         <div className="container">
+        //             {
+        //                 this.renderContent()
+        //             }
+        //
+        //             <div className="divider"></div>
+        //         </div>
+        //     </div>
+        // )
         return (
             <div className="list-actor">
                 <div className="container">
-                    {
-                        this.renderContent()
-                    }
+                    <div className="list-actor__info">
+                        <div className="list-actor__wrap">
+                            <div className="list-actor__title">
+                                DIỄN VIÊN
+                            </div>
+                            <div className="divider"></div>
+                            {
+                                this.renderContent()
+                            }
+                            <div className="divider"></div>
 
-                    <div className="divider"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

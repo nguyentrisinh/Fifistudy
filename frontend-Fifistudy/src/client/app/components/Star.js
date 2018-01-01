@@ -1,9 +1,11 @@
-import React from 'react';
-
+import React from "react";
+function roundHalf(num) {
+    return Math.round(num * 2) / 2;
+}
 export default function ({score}) {
     const renderStar = () => {
         let arr = [];
-        let halfStar = score / 0.5;
+        let halfStar = parseFloat(roundHalf(score)) / 0.5;
         let quotient = Math.floor(halfStar / 2);
         let remainder = halfStar % 2;
         for (let i = 0; i < 5; i++) {

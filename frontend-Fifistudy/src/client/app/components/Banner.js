@@ -1,16 +1,14 @@
-import React from 'react';
-import film from '../../static/images/HowIMetUrMother.jpg'
-import Level from '../components/Level';
-import classNames from 'classnames';
-import Star from '../components/Star'
-import {withRouter} from 'react-router'
-
-import {connect} from 'react-redux';
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom'
+import React from "react";
+import StarRatingContainer from "./StarRatingContainer";
+import Level from "./Level.jsx";
+import classNames from "classnames";
+import {serverDomain} from "../config/server";
+import {withRouter} from "react-router";
+import {postUserSaveFilm} from "../actions/api";
+import {updateFilm} from "../actions/dataIntropage";
+import {connect} from "react-redux";
+import {withCookies} from "react-cookie";
+import {toggleModalLogin} from "../actions/app";
 class Banner extends React.Component {
     constructor(props) {
 
@@ -23,12 +21,12 @@ class Banner extends React.Component {
             }
         }
         this.state = {
-            isHiddenBtnPlay: true,
+            isHiddenBtnPlay: window.innerWidth > 767,
             haveEpisode
 
         };
-
     }
+
 
     onClickBanner = (evt) => {
         let data = this.props.data;
@@ -42,15 +40,71 @@ class Banner extends React.Component {
     }
 
     onMouseEnterBanner = () => {
+        if (window.innerWidth <= 767) {
+            this.setState({
+                isHiddenBtnPlay: false
+            })
+            return;
+        }
         this.setState({
             isHiddenBtnPlay: false
         })
     }
 
     onMouseLeaveBanner = () => {
+        if (window.innerWidth <= 767) {
+            this.setState({
+                isHiddenBtnPlay: false
+            })
+            return;
+        }
         this.setState({
             isHiddenBtnPlay: true
         })
+    }
+
+    updateData = () => {
+        let {cookies} = this.props;
+        let token = cookies.get("token");
+        // alert(token)
+
+        // Token cho nay
+        this.props.updateFilm(this.props.data.slug, token);
+    }
+
+    onClickBookMark = () => {
+        event.stopPropagation();
+        event.preventDefault();
+
+        // console.log(this.props.updateSaved,"Function")
+        if (this.props.isLogin) {
+            let {cookies, data} = this.props;
+            // console.log(this.props.data)
+            let sendData = {
+                film_id: data.id
+            }
+            let config = {
+                headers: {
+                    "Authorization": `Token ${cookies.get("token")}`
+                }
+            }
+            postUserSaveFilm(sendData, config).then((response) => {
+                if (response.data.errors == null) {
+                    // this.updateNewDataFromServer(this.props.data.id);
+                    this.updateData()
+                    // alert('Thanh cong');
+                }
+                else {
+                    alert(SERVER_ERRORS[response.data.errors[0].errorCode])
+                }
+            })
+                .catch((err) => {
+                    console.log(err)
+                })
+        }
+        else {
+            this.props.toggleModalLogin()
+        }
     }
 
     render() {
@@ -61,15 +115,18 @@ class Banner extends React.Component {
                 className="banner">
 
                 <div className="container">
-                    <div style={{cursor: this.state.haveEpisode ? "pointer" : "auto"}} onClick={this.onClickBanner}
-                         className="banner__wrap" onMouseEnter={this.onMouseEnterBanner}
-                         onMouseLeave={this.onMouseLeaveBanner}>
-                        <img src={`http://localhost:8000${data.thumbnail}`} alt="" className="banner__image"/>
+                    <div
+                        className="banner__wrap" onMouseEnter={this.onMouseEnterBanner}
+                        onMouseLeave={this.onMouseLeaveBanner}>
+                        <img src={`${serverDomain + data.thumbnail}`} alt="" className="banner__image"/>
                         <div className="banner__overlay">
                         </div>
                         <div className="banner__info">
                             <div className="banner__eng-name">
-                                <i className="fa fa-bookmark-o banner__bookmark"></i>
+                                <i className={classNames("fa banner__bookmark", {
+                                    "fa-bookmark": this.props.data.is_saved,
+                                    "fa-bookmark-o": !this.props.data.is_saved
+                                })} onClick={this.onClickBookMark}/>
                                 &nbsp;
                                 {
                                     data.english_name
@@ -93,7 +150,8 @@ class Banner extends React.Component {
                                         className="banner__content">{data.duration} phút/tập</span>
                                     </div>
                                     <div className="banner__star">
-                                        <Star score={data.average_score}></Star>
+                                        <StarRatingContainer data={this.props.data}/>
+                                        {/*<Star score={data.average_score}></Star>*/}
                                     </div>
                                 </div>
                                 <div className="banner__wrap-des">
@@ -104,10 +162,11 @@ class Banner extends React.Component {
 
                             </div>
                         </div>
-                        <div
-                            className={classNames("banner__overlay-btn", {"banner__overlay-btn--open": !this.state.isHiddenBtnPlay && this.state.haveEpisode})}></div>
+                        {/*<div*/}
+                        {/*className={classNames("banner__overlay-btn", {"banner__overlay-btn--open": !this.state.isHiddenBtnPlay && this.state.haveEpisode})}></div>*/}
                         {
-                            this.state.haveEpisode ? <div className="playBtn">
+                            this.state.haveEpisode ? <div style={{cursor: this.state.haveEpisode ? "pointer" : "auto"}}
+                                                          onClick={this.onClickBanner} className="playBtn">
                                 <svg xmlns="http://www.w3.org/2000/svg" id="play"
                                      className={classNames({"goDown": this.state.isHiddenBtnPlay})} width="119.91"
                                      height="119.91">
@@ -129,11 +188,11 @@ class Banner extends React.Component {
 }
 //
 //
-// const mapStateToProps = state => {
-//     return {
-//         film: state.dataIntropage.film.data.data
-//     }
-// }
+const mapStateToProps = state => {
+    return {
+        isLogin: state.app.isLogin
+    }
+}
 //
 //
-export default withRouter(Banner)
+export default connect(mapStateToProps, {toggleModalLogin, updateFilm})(withRouter(withCookies(Banner)))
