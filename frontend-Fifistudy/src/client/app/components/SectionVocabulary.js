@@ -1,8 +1,7 @@
-import React from 'react';
-import Vocabulary from './Vocabulary'
-import {connect} from 'react-redux';
-import FlipMove from 'react-flip-move';
-import ModalEditVocabulary from './ModalEditVocabulary'
+import React from "react";
+import Vocabulary from "./Vocabulary";
+import FlipMove from "react-flip-move";
+import ModalEditVocabulary from "./ModalEditVocabulary";
 
 class SectionVocabulary extends React.Component {
     constructor(props) {

@@ -1,12 +1,8 @@
-import React from 'react';
-import Actor from './Actor'
-import Slider from 'react-slick';
-import {connect} from 'react-redux';
-import ListActor from './ListActor'
-import {getVocabulary, getUserSaveFilm} from '../actions/dataUserpage';
-import {withCookies} from 'react-cookie';
-import SectionVocabulary  from './SectionVocabulary'
-import SectionSavedFilm from '../components/SectionSavedFilm'
+import React from "react";
+import {connect} from "react-redux";
+import {getUserSaveFilm} from "../actions/dataUserpage";
+import {withCookies} from "react-cookie";
+import SectionSavedFilm from "../components/SectionSavedFilm";
 class SectionVocabularyContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -25,7 +21,7 @@ class SectionVocabularyContainer extends React.Component {
         let {savedFilm} = this.props;
         if (savedFilm.isLoading) {
             return (
-                <div className="list-actor__info"> Đang tải ... </div>
+                <div className="list-actor__no-data"> Đang tải ... </div>
             )
         }
         else {
@@ -39,7 +35,7 @@ class SectionVocabularyContainer extends React.Component {
                 }
                 else {
                     return (
-                        <div className="list-actor__info">Chưa có từ vựng</div>
+                        <div className="list-actor__no-data">Chưa có từ vựng</div>
                     )
                 }
             }

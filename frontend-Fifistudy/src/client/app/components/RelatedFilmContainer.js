@@ -1,23 +1,21 @@
-import React from 'react';
-import Actor from './Actor'
-import Slider from 'react-slick';
-import {withCookies} from 'react-cookie';
-import {connect} from 'react-redux';
-import ListActor from './ListActor'
-import SectionRelatedFilm from './SectionRelatedFilm';
-import {getFilmByDifficult} from '../actions/dataIntropage'
+import React from "react";
+import {withCookies} from "react-cookie";
+import {connect} from "react-redux";
+import SectionRelatedFilm from "./SectionRelatedFilm";
+import {getFilmByDifficult} from "../actions/dataIntropage";
 
 class RelatedFilmContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
     }
+
     componentWillMount = () => {
         this.props.getFilmByDifficult(this.props.data.difficult_level);
     }
 
-    componentWillReceiveProps = (nextProps) =>{
-        if (nextProps.data.difficult_level!==this.props.data.difficult_level){
+    componentWillReceiveProps = (nextProps) => {
+        if (nextProps.data.difficult_level !== this.props.data.difficult_level) {
             this.props.getFilmByDifficult(nextProps.data.difficult_level);
         }
     }
@@ -26,7 +24,7 @@ class RelatedFilmContainer extends React.Component {
         let {filmEqualDifficult} = this.props;
         if (filmEqualDifficult.isLoading) {
             return (
-                <div className="list-actor__info"> Đang tải ... </div>
+                <div className="list-actor__no-data"> Đang tải ... </div>
             )
         }
         else {
@@ -38,7 +36,7 @@ class RelatedFilmContainer extends React.Component {
                 }
                 else {
                     return (
-                        <div className="list-actor__info">Ko có phim cùng cấp độ</div>
+                        <div className="list-actor__no-data">Ko có phim cùng cấp độ</div>
                     )
                 }
             }
@@ -64,4 +62,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps,{getFilmByDifficult})(withCookies(RelatedFilmContainer))
+export default connect(mapStateToProps, {getFilmByDifficult})(withCookies(RelatedFilmContainer))

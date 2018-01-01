@@ -1,7 +1,7 @@
-import * as Types from '../constants/dataHomepage';
-import * as TypesApp from '../constants/app'
-import update from 'react-addons-update';
-import {makeNewDataSaveFilm} from '../actions/help'
+import * as Types from "../constants/dataHomepage";
+import * as TypesApp from "../constants/app";
+import update from "react-addons-update";
+import {makeNewDataSaveFilm} from "../actions/help";
 
 const initialState = {
     promotes: null,

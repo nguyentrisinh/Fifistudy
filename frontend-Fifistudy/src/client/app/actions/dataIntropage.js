@@ -1,7 +1,7 @@
-import * as Types from '../constants/dataIntropage';
-import axios from '../config/axios';
-import {API_PATH} from '../constants/apiPath';
-import * as Api from '../actions/api'
+import * as Types from "../constants/dataIntropage";
+import axios from "../config/axios";
+import {API_PATH} from "../constants/apiPath";
+import * as Api from "../actions/api";
 
 export function getFilm(slug, token) {
     return function (dispatch) {

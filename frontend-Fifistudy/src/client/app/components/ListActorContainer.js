@@ -1,9 +1,7 @@
-import React from 'react';
-import Actor from './Actor'
-import Slider from 'react-slick';
-import {connect} from 'react-redux';
-import ListActor from './ListActor'
-import Spinner from './Spinner'
+import React from "react";
+import {connect} from "react-redux";
+import ListActor from "./ListActor";
+import Spinner from "./Spinner";
 
 class ListActorContainer extends React.Component {
     constructor(props) {
@@ -30,7 +28,7 @@ class ListActorContainer extends React.Component {
                 }
                 else {
                     return (
-                        <div className="list-actor__actors list-actor__info">
+                        <div className="list-actor__actors list-actor__no-data">
                             Chưa cập nhật diễn viên
                         </div>
                     )

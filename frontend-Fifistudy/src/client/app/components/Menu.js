@@ -1,7 +1,7 @@
-import React from 'react';
-import classNames from 'classnames'
-import onClickOutside from 'react-onclickoutside';
-import {Link} from 'react-router-dom'
+import React from "react";
+import classNames from "classnames";
+import onClickOutside from "react-onclickoutside";
+import {Link} from "react-router-dom";
 
 class Logo extends React.Component {
     handleClickOutside = evt => {

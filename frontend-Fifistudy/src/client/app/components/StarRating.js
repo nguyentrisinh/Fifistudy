@@ -1,13 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import {postReviewFilm} from '../actions/api'
-import {withCookies} from 'react-cookie';
-import {connect} from 'react-redux';
-import {updateFilm,getReviewFilm} from '../actions/dataIntropage'
+import React from "react";
+import PropTypes from "prop-types";
+import {withCookies} from "react-cookie";
+import {connect} from "react-redux";
+import {getReviewFilm, updateFilm} from "../actions/dataIntropage";
 
 function roundHalf(num) {
-    return Math.round(num*2)/2;
+    return Math.round(num * 2) / 2;
 }
 
 class StarRating extends React.Component {
@@ -93,14 +91,14 @@ class StarRating extends React.Component {
             }
 
         }
-        if (nextProps.initialValue!==this.initialValue){
+        if (nextProps.initialValue !== this.initialValue) {
             this.initStar(nextProps.initialValue)
         }
     }
 
 
     initStar = (value) => {
-        let roundValue= parseFloat(roundHalf(value));
+        let roundValue = parseFloat(roundHalf(value));
         // alert(roundValue)
         if ((roundValue / 0.5) % 2 === 0) {
             this.setFullStarState($(`.full[data-value=${roundValue}]`));
@@ -287,4 +285,4 @@ StarRating.propTypes = {
     initialValue: PropTypes.bool.isRequired
 }
 
-export default connect(null, {updateFilm,getReviewFilm})(withCookies(StarRating))
+export default connect(null, {updateFilm, getReviewFilm})(withCookies(StarRating))

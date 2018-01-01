@@ -1,5 +1,4 @@
-import React from 'react';
-import Film from '../components/SavedFilm';
+import React from "react";
 
 class SavedFilm extends React.Component {
     constructor(props) {

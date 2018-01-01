@@ -1,6 +1,5 @@
-import React from 'react';
-import validator from 'validator';
-import classNames from 'classnames';
+import React from "react";
+import classNames from "classnames";
 
 export default function ({placeholder, type, label, name, value, err, onBlur, onChange}) {
     return (

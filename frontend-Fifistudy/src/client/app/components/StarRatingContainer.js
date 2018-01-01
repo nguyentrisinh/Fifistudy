@@ -1,9 +1,9 @@
-import React from 'react';
-import StarRating from './StarRating'
-import {connect} from 'react-redux';
-import Spinner from './Spinner'
-import {withCookies} from 'react-cookie';
-import {getReviewFilm} from '../actions/dataIntropage'
+import React from "react";
+import StarRating from "./StarRating";
+import {connect} from "react-redux";
+import Spinner from "./Spinner";
+import {withCookies} from "react-cookie";
+import {getReviewFilm} from "../actions/dataIntropage";
 
 class StarRatingContainer extends React.Component {
     constructor(props) {
@@ -17,9 +17,9 @@ class StarRatingContainer extends React.Component {
         let {cookies} = this.props;
         let token = cookies.get("token");
         if (nextProps.isLogin !== this.props.isLogin) {
-           if (nextProps.isLogin){
-               this.props.getReviewFilm(this.props.data.id, token);
-           }
+            if (nextProps.isLogin) {
+                this.props.getReviewFilm(this.props.data.id, token);
+            }
 
         }
 

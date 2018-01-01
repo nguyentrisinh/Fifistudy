@@ -29,7 +29,7 @@ export default class ScreenSearchFilm extends Component {
             <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenMovies')}>
                 <View style={Styles.container}>
                     <Image
-                        source={{uri: data.thumbnail}}
+                        source={{uri: data.thumbnail240}}
                         style={Styles.image}
                     />
                     <View style={Styles.textContainer}>

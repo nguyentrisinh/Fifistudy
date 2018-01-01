@@ -1,22 +1,18 @@
-import React from 'react';
-import Actor from './Actor'
-import Slider from 'react-slick';
-import _ from 'lodash';
-import {connect} from 'react-redux';
-import ListActor from './ListActor'
-import Comment from "./Comment";
-import {serverDomain} from '../config/server'
-import {withRouter} from 'react-router'
+import React from "react";
+import _ from "lodash";
+import {connect} from "react-redux";
+import {serverDomain} from "../config/server";
+import {withRouter} from "react-router";
 
-import {postComment} from '../actions/api';
+import {postComment} from "../actions/api";
 
-import validator from 'validator';
-import {getComment} from '../actions/dataIntropage'
+import validator from "validator";
+import {getComment} from "../actions/dataIntropage";
 
-import{toggleModalLogin} from '../actions/app';
+import {toggleModalLogin} from "../actions/app";
 
-import {withCookies} from 'react-cookie'
-import Comments from './Comments'
+import {withCookies} from "react-cookie";
+import Comments from "./Comments";
 
 class CommentContainer extends React.Component {
     constructor(props) {
@@ -53,13 +49,13 @@ class CommentContainer extends React.Component {
 
                     }
                     else {
-                        alert('Comment that bai')
+                        alert('Bình luận thất bại')
                     }
                 });
 
             }
             else {
-                alert('Vui lòng nhạp nội dung')
+                alert('Vui lòng nhập nội dung')
             }
 
         }
@@ -79,7 +75,7 @@ class CommentContainer extends React.Component {
         let {comment} = this.props;
         if (comment.isLoading) {
             return (
-                <div className="list-actor__info"> Đang tải ... </div>
+                <div className="list-actor__no-data"> Đang tải ... </div>
             )
         }
         else {
@@ -91,7 +87,7 @@ class CommentContainer extends React.Component {
                 }
                 else {
                     return (
-                        <div className="list-actor__info">Chưa có bình luận nào</div>
+                        <div className="list-actor__no-data">Chưa có bình luận nào</div>
                     )
                 }
             }
@@ -100,9 +96,11 @@ class CommentContainer extends React.Component {
 
 
     render() {
+        console.log(this.props);
         let userInfo = null;
         if (_.has(this.props.userInfo, "data.errors")) {
             if (this.props.userInfo.data.errors == null) {
+                // debugger
                 userInfo = this.props.userInfo.data.data
             }
         }
@@ -116,7 +114,8 @@ class CommentContainer extends React.Component {
                     <div className="comments__comment">
                         <div className="comments__name">
                             {
-                                userInfo ? userInfo.first_name + " " + userInfo.last_name : "Nhập bình luận tại đây"
+                                userInfo ? ((userInfo.first_name && userInfo.last_name) ? `${userInfo.first_name || ""} ${userInfo.last_name}` : userInfo.username)
+                                    : "Nhập bình luận tại đây"
                             }
                         </div>
                         <textarea onClick={this.onTextareaFocus} onKeyPress={this.onTextareaKeyPress}

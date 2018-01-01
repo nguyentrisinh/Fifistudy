@@ -103,7 +103,7 @@ class ScreenMovies extends Component {
                     </View>    
                 
                     <Image
-                        source={{uri: baseUrl+ this.props.data.thumbnail}}
+                        source={{uri: baseUrl+ this.props.data.thumbnail240}}
                         style={styles.image}>
                         <LinearGradient
                             colors={['rgba(0, 0, 0, 0.5)', 'transparent']}

@@ -1,14 +1,14 @@
-import React from 'react'
-import Footer from '../components/Footer'
-import FadeTransition from '../components/FadeTransition'
-import Section from '../components/SectionFilm'
-import {withCookies} from 'react-cookie'
-import {connect} from 'react-redux';
-import {getListPage, resetListFilm, deleteListFilm} from '../actions/dataListPage';
-import Film from '../components/Film';
-import {ORDER_BY, MAX_PAGE_LIST} from '../constants/apiPath'
+import React from "react";
+import Footer from "../components/Footer";
+import FadeTransition from "../components/FadeTransition";
+import Section from "../components/SectionFilm";
+import {withCookies} from "react-cookie";
+import {connect} from "react-redux";
+import {deleteListFilm, getListPage, resetListFilm} from "../actions/dataListPage";
+import Film from "../components/Film";
+import {MAX_PAGE_LIST, ORDER_BY} from "../constants/apiPath";
 
-import {Scrollbars} from 'react-custom-scrollbars';
+import {Scrollbars} from "react-custom-scrollbars";
 
 const MAP_ROUTE_TO_ORDER_BY = {
     "lastest": ORDER_BY.createdAtReduce,

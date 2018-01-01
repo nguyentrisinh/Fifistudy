@@ -1,10 +1,10 @@
-import React from 'react';
-import {serverDomain} from '../config/server';
-import {deleteVocabulary} from '../actions/api';
-import {getVocabulary} from '../actions/dataUserpage';
-import {connect} from 'react-redux';
-import {withCookies} from 'react-cookie';
-import {Link} from 'react-router-dom';
+import React from "react";
+import {serverDomain} from "../config/server";
+import {deleteVocabulary} from "../actions/api";
+import {getVocabulary} from "../actions/dataUserpage";
+import {connect} from "react-redux";
+import {withCookies} from "react-cookie";
+import {Link} from "react-router-dom";
 
 
 class Vocabulary extends React.Component {

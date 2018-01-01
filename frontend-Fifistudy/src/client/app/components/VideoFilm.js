@@ -1,18 +1,14 @@
-import React from 'react';
-import fs from 'fs';
-import parser from 'subtitles-parser';
-import axios from 'axios';
-const vttToJson = require("vtt-json");
-import $ from 'jquery';
-import ModalSaveVocabulary from './ModalSaveVocabulary';
-import {Scrollbars} from 'react-custom-scrollbars';
-import classNames from 'classnames';
-import {toggleModalLogin} from '../actions/app'
-import ReactDOM from 'react-dom';
-import {connect} from 'react-redux';
-import {postSaveVocabulary} from '../actions/api'
-import {withCookies} from 'react-cookie';
-import {withRouter} from 'react-router'
+import React from "react";
+import axios from "axios";
+import $ from "jquery";
+import ModalSaveVocabulary from "./ModalSaveVocabulary";
+import {Scrollbars} from "react-custom-scrollbars";
+import classNames from "classnames";
+import {toggleModalLogin} from "../actions/app";
+import {connect} from "react-redux";
+import {withCookies} from "react-cookie";
+import {withRouter} from "react-router";
+import {serverDomain} from "../config/server";
 
 
 class VideoFilm extends React.Component {
@@ -82,21 +78,25 @@ class VideoFilm extends React.Component {
         }
     }
     initPlayer = (data) => {
+        this.setState({
+            currentLine: ""
+        })
+        this.refs.scroll.scrollTop();
         this.player = window.jwplayer('player').setup({
             // file: '../static/media/video.mp4',
-            file: 'http://media.studyphim.vn/VIPN5/Extra/01_Extra_English_-_Hectors_arrival.mp4',
-            // file: `http://localhost:8000${data.video}`,
+            // file: 'http://media.studyphim.vn/VIPN5/Extra/01_Extra_English_-_Hectors_arrival.mp4',
+            file: `${data.link_video}`,
             // file: `http://localhost:8000/media/episode/video/How_i_met_your_mother1_01.mp4`,
 
             tracks: [{
-                file: `http://localhost:8000${data.sub}`,
+                file: `${serverDomain + data.sub}`,
                 label: "Eng-Vie",
                 kind: "captions",
                 "default": true
             }],
             aspectratio: "16:9"
         })
-        axios.get(`http://localhost:8000${data.sub}`)
+        axios.get(`${serverDomain + data.sub}`)
             .then(response => {
                 let stringVTT = response.data.split(/\n\s*\n/);
                 stringVTT.shift();
@@ -123,7 +123,7 @@ class VideoFilm extends React.Component {
                             currentLine: currentLine
                             // .replace(/<\/?[^>]+(>|$)/g, "") bo tag
                         });
-                        $(this.refs.scroll.view).animate({scrollTop: this.refs[currentLine.number].offsetTop - 150}, 500, 'linear');
+                        $(this.refs.scroll.view).animate({scrollTop: this.refs[currentLine.number].offsetTop - 150}, 300, 'linear');
                     }
                 }
             }
@@ -220,13 +220,24 @@ class VideoFilm extends React.Component {
 
     }
 
+    onClickNext = () => {
+        let {episodes} = this.props.filmDetail;
+        episodes.sort((a, b) => parseInt(a.number) - parseInt(b.number));
+        let index = episodes.findIndex((a) => a.number == this.props.data.number);
+        if (episodes[index + 1]) {
+            this.props.history.push(`/film/${this.props.filmDetail.slug}/${episodes[index + 1].number}`)
+        }
+    }
+
     render() {
         // this.readFile();
         return (
             <div className="video-film">
                 <div className="container">
                     <div className="video-film__wrap">
-                        <div style={{flex: this.state.isPractice ? "0 0 100%" : null}} className="video-film__video">
+                        <div className={classNames("video-film__video", {
+                            "video-film__video--practice": this.state.isPractice
+                        })}>
                             <div className="video-film__player-container">
                                 <div className="video-film__player">
                                     <div id="player">Loading the player...</div>
@@ -270,9 +281,13 @@ class VideoFilm extends React.Component {
                                         +
                                     </div>
                                 </div>
-                                <div className="video-film__control-item video-film__control-item--next-episode">
-                                    Tập tiếp theo &nbsp; <i className="fa fa-angle-right fa-2x"></i>
-                                </div>
+                                <button onClick={this.onClickNext}
+                                        className="video-film__control-item video-film__control-item--next-episode">
+                                    <span className="video-film__next-text">
+                                        Tập tiếp theo &nbsp;
+                                    </span>
+                                    <i className="fa fa-angle-right fa-2x"></i>
+                                </button>
                             </div>
                         </div>
                         {

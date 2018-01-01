@@ -1,6 +1,6 @@
-import {Scrollbars} from 'react-custom-scrollbars';
+import {Scrollbars} from "react-custom-scrollbars";
 
-import React from 'react';
+import React from "react";
 
 class ScrollBar extends React.Component {
     constructor(props) {

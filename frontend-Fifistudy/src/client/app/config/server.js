@@ -1,1 +1,1 @@
-export const serverDomain = "http://localhost:8000"
+export const serverDomain = "http://128.199.159.54:6100"

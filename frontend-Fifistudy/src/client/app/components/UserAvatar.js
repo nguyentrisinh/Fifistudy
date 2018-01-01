@@ -1,9 +1,10 @@
-import React from 'react';
-import {serverDomain} from '../config/server';
-import {withCookies} from 'react-cookie';
-import {postUpdateAvatar} from '../actions/api';
-import {getUserInfo} from '../actions/app';
-import {connect} from 'react-redux';
+import React from "react";
+import {serverDomain} from "../config/server";
+import {defaultAvatar} from "../config/const";
+import {withCookies} from "react-cookie";
+import {postUpdateAvatar} from "../actions/api";
+import {getUserInfo} from "../actions/app";
+import {connect} from "react-redux";
 
 class UserAvatar extends React.Component {
     constructor(props) {
@@ -39,7 +40,7 @@ class UserAvatar extends React.Component {
                 }
                 else {
                     // Thanh cong
-                    alert('Upload Thành công');
+                    // alert('Upload Thành công');
                     this.props.getUserInfo(token);
                     // this.setState({
                     //     disableNextFour: false,
@@ -53,8 +54,9 @@ class UserAvatar extends React.Component {
     render() {
         let {data} = this.props
         return (
-            <div className="user-avatar">
-                <div className="user-avatar__wrap" style={{backgroundImage: `url(${serverDomain + data.avatar})`}}>
+            <div className="user-avatar user-avatar--user">
+                <div className="user-avatar__wrap"
+                     style={{backgroundImage: `url(${data.avatar ? serverDomain + data.avatar : defaultAvatar})`}}>
                     {/*<img src={} alt="" className="user-avatar__img"/>*/}
                     <label className="user-avatar__edit" htmlFor="avatar">
                         <i className="fa fa-plus-circle user-avatar__icon"></i>
@@ -63,7 +65,8 @@ class UserAvatar extends React.Component {
 
                 </div>
                 <div className="user-avatar__name">
-                    {data.first_name + " " + data.last_name}
+                    {(data.first_name && data.last_name) ? `${data.first_name || ""} ${data.last_name || ""}` : data.username}
+                    {/*{data.first_name && data.lastname + " " + data.last_name}*/}
                 </div>
             </div>
         )

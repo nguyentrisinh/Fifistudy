@@ -1,6 +1,6 @@
-import React from 'react';
-import Film1 from './Film1'
-import {withRouter} from 'react-router'
+import React from "react";
+import Film1 from "./Film1";
+import {withRouter} from "react-router";
 
 class SectionRelatedFilm extends React.Component {
     constructor(props) {

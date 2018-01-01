@@ -1,6 +1,6 @@
-import * as Types from '../constants/dataHomepage';
-import axios from '../config/axios';
-import {API_PATH} from '../constants/apiPath'
+import * as Types from "../constants/dataHomepage";
+import axios from "../config/axios";
+import {API_PATH} from "../constants/apiPath";
 
 export function getPromotes() {
     return function (dispatch) {

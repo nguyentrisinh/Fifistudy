@@ -1,6 +1,7 @@
-import * as Types from '../constants/dataListPage'
-import * as TypesApp from '../constants/app'
-import update from 'react-addons-update'
+import * as Types from "../constants/dataListPage";
+import * as TypesApp from "../constants/app";
+import update from "react-addons-update";
+import {makeNewDataSaveFilm} from "../actions/help";
 const initialState = {
     dataListPage: {
         hasMore: false,
@@ -9,7 +10,6 @@ const initialState = {
         isLoading: false
     }
 }
-import {makeNewDataSaveFilm} from '../actions/help'
 
 export default function index(state = initialState, action) {
 

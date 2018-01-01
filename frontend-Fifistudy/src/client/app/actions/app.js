@@ -1,7 +1,6 @@
-import * as Types from '../constants/app';
-import axios from '../config/axios';
-import * as Api from '../actions/api';
-import {MAX_PAGE} from '../constants/apiPath'
+import * as Types from "../constants/app";
+import * as Api from "../actions/api";
+import {MAX_PAGE} from "../constants/apiPath";
 
 
 export const getUserInfo = (token) => {

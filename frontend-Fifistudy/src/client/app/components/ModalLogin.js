@@ -1,15 +1,14 @@
-import React from 'react';
-import Input from '../components/Input';
-import {withCookies} from 'react-cookie';
-import {connect} from 'react-redux';
+import React from "react";
+import Input from "../components/Input";
+import {withCookies} from "react-cookie";
+import {connect} from "react-redux";
 /**
  *
  * Created by liemn on 11/13/2017.
  */
-import {postLogin} from '../actions/api';
-import {getUserInfo} from '../actions/app'
-import Modal from './customComponents/Modal';
-import {doLogin} from '../actions/app'
+import {postLogin} from "../actions/api";
+import {doLogin, getUserInfo} from "../actions/app";
+import Modal from "./customComponents/Modal";
 
 class ModalLogin extends React.Component {
     constructor(props) {

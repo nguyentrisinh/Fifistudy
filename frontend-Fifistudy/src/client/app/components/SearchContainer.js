@@ -1,10 +1,9 @@
-import React from 'react';
-import {getSearch} from '../actions/app';
-import {connect} from 'react-redux';
-import {ORDER_BY} from '../constants/apiPath';
-import SearchResult from './SearchResult';
-import {resetSearch, loadingSearch} from '../actions/app'
-let timeout=null;
+import React from "react";
+import {getSearch, loadingSearch, resetSearch} from "../actions/app";
+import {connect} from "react-redux";
+import {ORDER_BY} from "../constants/apiPath";
+import SearchResult from "./SearchResult";
+let timeout = null;
 class SearchContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -53,13 +52,13 @@ class SearchContainer extends React.Component {
             [e.target.name]: e.target.value
         })
 
-        if (timeout){
+        if (timeout) {
             clearTimeout(timeout);
         }
-        let value=e.target.value;
-        timeout = setTimeout(()=>{
+        let value = e.target.value;
+        timeout = setTimeout(() => {
             this.props.getSearch(value, ORDER_BY.createdAtIncrease, 1, 5)
-        },500)
+        }, 500)
 
     }
 
@@ -71,13 +70,17 @@ class SearchContainer extends React.Component {
 
     render() {
         return (
-            <div className="header__item header__item--search">
-                <input onClick={this.openSearchContainer} name="searchValue" onChange={this.onTextSearchChange}
-                       className="header__search" type="text"
-                       placeholder="search"/>
-                {
-                    this.renderSearchResult()
-                }
+            <div className={"header__item header__item--search " + this.props.classNameContainer}>
+                <div style={{position: "relative"}}>
+                    <input className={"header__search " + this.props.classNameInput} onClick={this.openSearchContainer}
+                           name="searchValue" onChange={this.onTextSearchChange}
+                           type="text"
+                           placeholder="search"/>
+                    {
+                        this.renderSearchResult()
+                    }
+                </div>
+
             </div>
         )
     }
@@ -88,6 +91,11 @@ const mapStateToProps = state => {
         searchResult: state.app.searchResult,
         isLogin: state.app.isLogin
     }
+}
+
+SearchContainer.defaultProps = {
+    classNameContainer: "header__item header__item--search",
+    classNameInput: "header__search"
 }
 
 export default connect(mapStateToProps, {getSearch, resetSearch, loadingSearch})(SearchContainer)

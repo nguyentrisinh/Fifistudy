@@ -1,5 +1,5 @@
-import * as Types from '../constants/app'
-import update from 'react-addons-update'
+import * as Types from "../constants/app";
+import update from "react-addons-update";
 // update(state, {$merge: {userInfo: res}})
 const initialState = {
     userInfo: null,

@@ -1,7 +1,7 @@
-import React from 'react';
-import InitialModal from 'react-modal';
-import ModalContent from './ModalContent';
-import PropTypes from 'prop-types';
+import React from "react";
+import InitialModal from "react-modal";
+import ModalContent from "./ModalContent";
+import PropTypes from "prop-types";
 
 export default class Modal extends React.Component {
     constructor(props) {
@@ -32,7 +32,7 @@ export default class Modal extends React.Component {
                         left: '0',
                         right: '0',
                         margin: "auto",
-                        width: "400px",
+                        maxWidth: "400px",
                         boxShadow: "0 0 15px 1px rgba(0, 0, 0, 0.4)",
                         borderRadius: "3px",
                         bottom: 'auto',

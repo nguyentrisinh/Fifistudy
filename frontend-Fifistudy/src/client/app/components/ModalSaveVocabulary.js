@@ -1,12 +1,12 @@
-import Modal from './CustomComponents'
-import React from 'react';
-import PropTypes from 'prop-types';
-import Input from './Input'
-import {postSaveVocabulary} from '../actions/api';
-import {withCookies} from 'react-cookie';
-import {connect} from 'react-redux';
-import {toggleModalLogin} from '../actions/app'
-import {getVocabulary} from '../actions/dataUserpage';
+import Modal from "./CustomComponents";
+import React from "react";
+import PropTypes from "prop-types";
+import Input from "./Input";
+import {postSaveVocabulary} from "../actions/api";
+import {withCookies} from "react-cookie";
+import {connect} from "react-redux";
+import {toggleModalLogin} from "../actions/app";
+import {getVocabulary} from "../actions/dataUserpage";
 // import {post} from '../actions/api'
 
 class ModalSaveVocabulary extends React.Component {
@@ -33,11 +33,11 @@ class ModalSaveVocabulary extends React.Component {
             postSaveVocabulary(this.state, token).then(
                 response => {
                     if (response.data.errors === null) {
-                        alert("Save thanh cong");
+                        // alert("Lưu thành công");
                         this.props.onClickOutside();
                     }
                     else {
-                        alert('Save that bai')
+                        alert('Lưu thất bại')
                     }
                 }
             )

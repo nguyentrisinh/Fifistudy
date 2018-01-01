@@ -1,7 +1,6 @@
-import React from 'react';
-import Film from './Film';
+import React from "react";
 
-import FlipMove from 'react-flip-move'
+import FlipMove from "react-flip-move";
 class SectionFilm extends React.Component {
     constructor(props) {
         super(props);

@@ -1,17 +1,10 @@
-import React from 'react'
-import film1 from '../../static/images/HowIMetUrMother.jpg'
-import FilmTitle from '../components/FilmTitle'
-import VideoFilm from '../components/VideoFilm'
-import Episode from '../components/Episode'
-import SectionDetailExtra from '../components/SectionDetailExtra'
-import Footer from '../components/Footer'
-import Loading from '../components/Loading'
-import Detail from './Detail'
-import {connect} from 'react-redux';
-import {Scrollbars} from 'react-custom-scrollbars';
-import {getComment} from '../actions/dataIntropage'
-import {getEpisode, getFilmDetail, getDataDetailPage} from '../actions/dataDetailpage';
-import {withCookies} from 'react-cookie'
+import React from "react";
+import Loading from "../components/Loading";
+import Detail from "./Detail";
+import {connect} from "react-redux";
+import {getComment} from "../actions/dataIntropage";
+import {getDataDetailPage, getEpisode, getFilmDetail} from "../actions/dataDetailpage";
+import {withCookies} from "react-cookie";
 
 class DetailContainer extends React.Component {
     constructor(props) {

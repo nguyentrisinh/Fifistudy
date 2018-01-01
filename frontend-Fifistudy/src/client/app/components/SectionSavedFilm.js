@@ -1,8 +1,6 @@
-import React from 'react';
-import Vocabulary from './Vocabulary'
-import {connect} from 'react-redux';
-import FlipMove from 'react-flip-move';
-import Film from '../components/Film'
+import React from "react";
+import FlipMove from "react-flip-move";
+import Film from "../components/Film";
 
 class SectionSavedFilm extends React.Component {
     constructor(props) {

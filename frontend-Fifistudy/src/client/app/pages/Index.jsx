@@ -1,20 +1,15 @@
-import React from 'react';
-import SliderBannerContainer from '../containers/SliderBannerContainer';
-import Intro from '../components/Intro';
-import Section from '../components/SectionFilm'
-import FadeTransition from '../components/FadeTransition';
-import $ from 'jquery';
-import SectionBlog from '../components/SectionBlog'
-import Footer from '../components/Footer';
-import Film from '../components/Film'
-import MostViewContainer from '../containers/MostViewContainer'
-import LatestContainer from '../containers/LatestContainer'
-import {connect} from 'react-redux';
-import {getPromotes, getLastest, getMostView} from '../actions/dataHomepage';
-import {withCookies} from 'react-cookie';
-import StarRating from '../components/StarRating'
-
-import {Scrollbars} from 'react-custom-scrollbars';
+import React from "react";
+import SliderBannerContainer from "../containers/SliderBannerContainer";
+import Intro from "../components/Intro";
+import FadeTransition from "../components/FadeTransition";
+import SectionBlog from "../components/SectionBlog";
+import Footer from "../components/Footer";
+import Film from "../components/Film";
+import MostViewContainer from "../containers/MostViewContainer";
+import LatestContainer from "../containers/LatestContainer";
+import {connect} from "react-redux";
+import {getLastest, getMostView, getPromotes} from "../actions/dataHomepage";
+import {withCookies} from "react-cookie";
 
 class Index extends React.Component {
     componentWillMount = () => {
@@ -56,26 +51,26 @@ class Index extends React.Component {
         return (
             <FadeTransition>
                 <div className="index-page">
-                    <Scrollbars
-                        autoHide={true}
-                        renderTrackVertical={props => <div {...props} className="scroll-bar__track-vertical"/>}
-                        renderThumbVertical={props => <div {...props} className="scroll-bar__thumb-vertical"/>}
-                        autoHeight={true}
-                        autoHeightMin="100%"
-                        autoHeightMax="100%"
-                    >
+                    {/*<Scrollbars*/}
+                    {/*autoHide={true}*/}
+                    {/*renderTrackVertical={props => <div {...props} className="scroll-bar__track-vertical"/>}*/}
+                    {/*renderThumbVertical={props => <div {...props} className="scroll-bar__thumb-vertical"/>}*/}
+                    {/*autoHeight={true}*/}
+                    {/*autoHeightMin="100%"*/}
+                    {/*autoHeightMax="100%"*/}
+                    {/*>*/}
 
 
-                        <SliderBannerContainer/>
-                        <Intro/>
-                        <MostViewContainer/>
-                        <SectionBlog/>
-                        {/*<Section title="PHIM ĐƯỢC QUAN TÂM NHIỀU NHẤT">*/}
-                        {/*{this.renderFilm()}*/}
-                        {/*</Section>*/}
-                        <LatestContainer/>
-                        <Footer/>
-                    </Scrollbars>
+                    <SliderBannerContainer/>
+                    <Intro/>
+                    <MostViewContainer/>
+                    <SectionBlog/>
+                    {/*<Section title="PHIM ĐƯỢC QUAN TÂM NHIỀU NHẤT">*/}
+                    {/*{this.renderFilm()}*/}
+                    {/*</Section>*/}
+                    <LatestContainer/>
+                    <Footer/>
+                    {/*</Scrollbars>*/}
                 </div>
             </FadeTransition>
         )

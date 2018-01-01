@@ -1,7 +1,6 @@
-import * as Types from '../constants/dataUserpage'
-import * as TypesApp from '../constants/app';
-import {makeNewDataSaveFilm} from '../actions/help';
-import update from 'react-addons-update';
+import * as Types from "../constants/dataUserpage";
+import * as TypesApp from "../constants/app";
+import update from "react-addons-update";
 
 const initialState = {
     vocabulary: {

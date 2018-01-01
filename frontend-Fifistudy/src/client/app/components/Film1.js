@@ -1,9 +1,9 @@
-import React from 'react';
-import Level from './Level'
-import {serverDomain} from '../config/server';
-import Star from '../components/Star';
-import {Link} from 'react-router-dom'
-import PropTypes from 'prop-types';
+import React from "react";
+import Level from "./Level.jsx";
+import {serverDomain} from "../config/server";
+import Star from "../components/Star";
+import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
 class Film1 extends React.Component {
     constructor(props) {
