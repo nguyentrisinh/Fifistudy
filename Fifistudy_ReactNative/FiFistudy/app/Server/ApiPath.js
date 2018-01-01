@@ -14,6 +14,7 @@ export const API_PATH = {
         return `/api/episodes/detail/?film_slug=${filmSlug}&episode_number=${episodeId}`
     },
     getActor: (slug) => `/api/actor/film/?film_slug=${slug}`,
+    getSearch: (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE) => `/api/films/search_film_by_key/?search_key=${searchKey}&order_by=${orderBy}&page_size=${pageSize}&page=${pageNumber}`,
     postSignUpOne: `/api/signup/signup_step_one/`,
     postSignUpTwo: `/api/signup/active_user/`,
     postUpdateUserInfo: `/api/signup/signup_step_two/`,

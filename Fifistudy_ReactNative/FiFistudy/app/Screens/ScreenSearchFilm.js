@@ -7,11 +7,13 @@ import {
 import {
     ImageButton,
 } from '../Components/index.js';
+import {getSearch} from '../Redux/actions/screenList'
+import {connect} from 'react-redux';
 import {FilmListContainer} from '../Containers/index.js';
 import styles from '../Styles/ScreenSearchFilm.js';
 import Res from '../Resources/index.js';
 
-export default class ScreenSearchFilm extends Component {
+class ScreenSearchFilm extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -58,6 +60,48 @@ export default class ScreenSearchFilm extends Component {
         });
     }
 
+    onSubmitEditing = () =>{
+        this.props.getSearch(this.state.searchString,"created_at",1,10)
+    }
+
+    renderFilmList = () =>{
+        console.log(this.props.search,"ahihi")
+        if (this.props.search.isLoading) {
+            return (
+                <View>
+                    <Text>
+                        Loading
+                    </Text>
+                </View>
+            )
+        }
+        if (this.props.search.data === null) {
+            return (
+                <View>
+                    <Text>
+                        Lỗi
+                    </Text>
+                </View>
+            )
+        }
+
+        if (this.props.search.data.error) {
+            return (
+                <View>
+                    <Text>
+                        Lỗi
+                    </Text>
+                </View>
+            )
+        }
+
+        if (this.props.search.data.data)
+            return (
+                <FilmListContainer data={this.props.search.data.data.films}/>
+            )
+
+    }
+
     render() {
         const {navigation} = this.props;
         return (
@@ -73,12 +117,24 @@ export default class ScreenSearchFilm extends Component {
                         underlineColorAndroid='transparent'
                         placeholder='Nhập tên phim cần tìm...'
                         onChangeText={(text) => this.onChangeSearchText(text)}
+                        onSubmitEditing={this.onSubmitEditing}
                     />
                 </View>
                 <View style={styles.line}/>
+                {
+                    this.renderFilmList()
+                }
 
-                <FilmListContainer navigation={navigation} searchString={this.state.searchString}/>                
+                {/*<FilmListContainer navigation={navigation} data={this.} searchString={this.state.searchString}/>                */}
             </View>
         )
     }
 }
+
+const mapStateToProps = state =>    {
+    return {
+        search:state.screenList.search
+    }
+}
+
+export default connect(mapStateToProps,{getSearch})(ScreenSearchFilm)

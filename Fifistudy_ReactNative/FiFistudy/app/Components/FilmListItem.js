@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {baseUrl} from '../Server/config'
 import {
     Image,
     TouchableOpacity,
@@ -7,9 +8,10 @@ import {
     Dimensions
 } from 'react-native';
 import Res from '../Resources/index.js';
-import Styles from '../Styles/FilmListItem.js'
+import Styles from '../Styles/FilmListItem.js';
+import {withNavigation} from 'react-navigation';
 
-export default class ScreenSearchFilm extends Component {
+class ScreenSearchFilm extends Component {
     getLevel(data){
         let level = {name: 'Dễ', color: Res.colors.levelEasy}
         if (data.difficult_level === 2)
@@ -26,10 +28,10 @@ export default class ScreenSearchFilm extends Component {
         const level = this.getLevel(data);
 
         return(
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenMovies')}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenMovies',{filmSlug:data.slug})}>
                 <View style={Styles.container}>
                     <Image
-                        source={{uri: data.thumbnail240}}
+                        source={{uri:baseUrl+ data.thumbnail240}}
                         style={Styles.image}
                     />
                     <View style={Styles.textContainer}>
@@ -60,3 +62,5 @@ export default class ScreenSearchFilm extends Component {
         );
     }
 }
+
+export default withNavigation(ScreenSearchFilm)
