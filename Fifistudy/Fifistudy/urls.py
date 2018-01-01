@@ -24,9 +24,9 @@ schema_view = get_swagger_view(title='Kawan Cicil APIs')
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('fifistudy_api.urls', namespace='src')),
+    url(r'^home/', include('fifistudy_web.urls', namespace='fifistudy_web')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^swagger/', schema_view),
-    # url(r'^', include('fifistudy_web.urls', namespace='fifistudy_web')),
 ]
 
 if settings.DEBUG:

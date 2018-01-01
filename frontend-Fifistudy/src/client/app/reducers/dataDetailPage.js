@@ -1,4 +1,4 @@
-import * as Types from '../constants/dataDetailPage'
+import * as Types from "../constants/dataDetailPage";
 
 const initialState = {
     // episode: null,

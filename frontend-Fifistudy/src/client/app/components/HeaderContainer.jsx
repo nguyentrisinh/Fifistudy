@@ -1,37 +1,28 @@
-import React from 'react';
-import Logo from './Logo.jsx';
-import Menu from './Menu'
+import React from "react";
+import Logo from "./Logo.jsx";
+import Menu from "./Menu";
 // import {Link} from 'react-router';
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom';
-import ReactImageFallback from "react-image-fallback";
-import classNames from 'classnames';
-import {getLogout} from '../actions/api'
-import ModalLogin from './ModalLogin'
-import {connect} from 'react-redux';
-import {withCookies} from 'react-cookie'
+import {Link} from "react-router-dom";
+import SearchContainer from "./SearchContainer";
+import {toggleModalLogin} from "../actions/app";
+import classNames from "classnames";
+import {getLogout} from "../actions/api";
+import {connect} from "react-redux";
+import {withCookies} from "react-cookie";
+import {serverDomain} from "../config/server";
+import {defaultAvatar} from "../config/const";
 
 class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             open: null,
-            isModalOpen: false,
         };
-    }
-
-    onClickOutside = () => {
-        this.setState({
-            isModalOpen: false
-        })
     }
 
     onClickMenu = (menu) => {
         this.setState({
-            open: menu
+            open: menu === this.state.open ? null : menu
         })
     }
 
@@ -41,7 +32,7 @@ class Header extends React.Component {
         })
     }
 
-    onClickAccountSection = () => {
+    onClickLogout = () => {
         let {cookies} = this.props;
 
         if (cookies.get("token")) {
@@ -49,7 +40,7 @@ class Header extends React.Component {
 
             getLogout(token).then(res => {
                 if (res.data.errors == null) {
-                    cookies.remove("token");
+                    cookies.remove("token", {path: "/"});
                     window.location.reload();
                 }
             })
@@ -63,10 +54,13 @@ class Header extends React.Component {
             if (this.props.userInfo.data.errors == null) {
                 let userInfo = this.props.userInfo.data.data;
                 return (
-                    <div className="header__item" onClick={this.onClickAccountSection}>
+                    <div
+                        onClick={this.onClickMenu.bind(this, "account")}
+                        className={classNames("header__item header__item--has-children", {"header__item--open": this.state.open === "account"})}
+                    >
                         <div className="header__profile">
                             <div className="header__wrap-avatar"
-                                 style={{backgroundImage: userInfo.avatar ? `url(http://localhost:8000${userInfo.avatar})` : `url(http://placehold.it/50x50)`}}>
+                                 style={{backgroundImage: `url(${userInfo.avatar ? serverDomain + userInfo.avatar : defaultAvatar})`}}>
                                 {/*<ReactImageFallback*/}
                                 {/*src={`http://localhost:8000${userInfo.avatar}`}*/}
                                 {/*fallbackImage="http://placehold.it/50x50"*/}
@@ -77,10 +71,21 @@ class Header extends React.Component {
                             </div>
                             <div className="header__name">
                                 {
-                                    (userInfo.first_name && userInfo.last_name) ? `${userInfo.first_name} ${userInfo.last_name}` : userInfo.username
+                                    (userInfo.first_name && userInfo.last_name) ? `${userInfo.first_name || ""} ${userInfo.last_name || ""}` : userInfo.username
                                 }
                             </div>
                         </div>
+                        <Menu data={[{
+                            name: "Vào trang cá nhân",
+                            link: "/user", onClick: null
+                        },
+                            {
+                                name: "Đăng xuất",
+                                link: null
+                                , onClick: this.onClickLogout
+                            }
+                        ]} closeMenu={this.closeMenu} outsideClickIgnoreClass="header__item--has-children"
+                              isOpen={this.state.open === "account"}/>
                     </div>
                 )
 
@@ -94,15 +99,16 @@ class Header extends React.Component {
     }
 
     onClickLogin = () => {
-        this.setState({
-            isModalOpen: true
-        })
+        // this.setState({
+        //     isModalOpen: true
+        // })
+        this.props.toggleModalLogin();
     }
 
     render() {
         return (
             <div className="header">
-                <div className="container header__container">
+                <div className=" container header__container">
                     <Link to="/" className="header__item">
                         <Logo/>
                     </Link>
@@ -111,24 +117,55 @@ class Header extends React.Component {
                         className={classNames("header__item header__item--has-children", {"header__item--open": this.state.open === "phim"})}
                     >
                         Phim
-                        <Menu closeMenu={this.closeMenu} outsideClickIgnoreClass="header__item--has-children"
+                        <Menu data={[
+                            {
+                                name: "Phim mới nhất",
+                                link: "/lastest",
+                                onClick: null,
+                            },
+                            {
+                                name: "Phim mới được quan tâm nhiều",
+                                link: "/much-interest",
+                                onClick: null,
+                            },
+                            {
+                                name: "Phim được xem nhiều",
+                                link: "/high-rating",
+                                onClick: null,
+                            }
+                        ]} closeMenu={this.closeMenu}
+                              outsideClickIgnoreClass="header__item--has-children"
                               isOpen={this.state.open === "phim"}/>
                     </div>
-                    <div
-                        onClick={this.onClickMenu.bind(this, "blog")}
-                        className={classNames("header__item header__item--has-children", {"header__item--open": this.state.open === "blog"})}
-                    >
-                        Blog
-                        <Menu closeMenu={this.closeMenu} outsideClickIgnoreClass="header__item--has-children"
-                              isOpen={this.state.open === "blog"}/>
-                    </div>
-                    <div className="header__item header__item--search">
-                        <input className="header__search" type="text" placeholder="search"/>
+                    {/*<div*/}
+                        {/*onClick={this.onClickMenu.bind(this, "blog")}*/}
+                        {/*className={classNames("header__item header__item--has-children", {"header__item--open": this.state.open === "blog"})}*/}
+                    {/*>*/}
+                        {/*Blog*/}
+                        {/*<Menu data={[*/}
+                            {/*{*/}
+                                {/*name: "Kinh nghiệm học tiếng Anh",*/}
+                                {/*link: "/",*/}
+                                {/*onClick: null,*/}
+                            {/*},*/}
+                            {/*{*/}
+                                {/*name: "Tài liệu",*/}
+                                {/*link: "/",*/}
+                                {/*onClick: null,*/}
+                            {/*},*/}
+                            {/*{*/}
+                                {/*name: "Khác",*/}
+                                {/*link: "/",*/}
+                                {/*onClick: null,*/}
+                            {/*}*/}
+                        {/*]} closeMenu={this.closeMenu}*/}
+                              {/*outsideClickIgnoreClass="header__item--has-children"*/}
+                              {/*isOpen={this.state.open === "blog"}/>*/}
+                    {/*</div>*/}
+                    <SearchContainer/>
 
-                    </div>
                     {this.renderAccountSection()}
                 </div>
-                <ModalLogin onClickOutside={this.onClickOutside} isOpen={this.state.isModalOpen}/>
             </div>
         )
     }
@@ -139,4 +176,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(withCookies(Header));
+export default connect(mapStateToProps, {toggleModalLogin})(withCookies(Header));

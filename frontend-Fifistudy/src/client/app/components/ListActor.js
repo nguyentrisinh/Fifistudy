@@ -1,6 +1,6 @@
-import React from 'react';
-import Actor from './Actor'
-import Slider from 'react-slick';
+import React from "react";
+import Actor from "./Actor";
+import Slider from "react-slick";
 
 function NextArrow(props) {
     const {className, style, onClick} = props
@@ -49,23 +49,19 @@ export default class ListActor extends React.Component {
             prevArrow: <PrevArrow/>,
             autoplay: true,
             infinite: true,
+            responsive: [{breakpoint: 767, settings: {slidesToShow: 5}}, {breakpoint: 479, settings: {slidesToShow: 3}}]
         };
         return (
 
-            <div className="list-actor__wrap">
-                <div className="list-actor__title">
-                    DIỄN VIÊN
-                </div>
-                <div className="divider"></div>
-                <div className="list-actor__actors">
 
-                    <Slider {...settings}>
-                        {
-                            this.renderActor()
-                        }
-                    </Slider>
+            <div className="list-actor__actors">
 
-                </div>
+                <Slider {...settings}>
+                    {
+                        this.renderActor()
+                    }
+                </Slider>
+
             </div>
         )
     }
