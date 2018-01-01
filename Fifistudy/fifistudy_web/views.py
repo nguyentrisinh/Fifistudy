@@ -26,9 +26,9 @@ from django.shortcuts import render
 class FrontendAppView(View):
     def get(self, request):
         try:
-            # with open(os.path.join(settings.BASE_DIR, 'employer_site', 'templates', 'index.html')) as f:
-            #     return HttpResponse(f.read())
-            return render(request, 'index.html')
+            with open(os.path.join(settings.BASE_DIR, 'fifistudy_web', 'templates', 'index.html')) as f:
+                return HttpResponse(f.read())
+            # return render(request, 'index.html')
         except Exception:
             print 'test'
             logging.exception('test')
