@@ -29,7 +29,9 @@ class ScreenMovies extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ds: lsEpisodes
+            ds: lsEpisodes,
+            isLiked: false,
+            isBookmarked: false,
         }
         this.animatedValue = new Animated.Value(0.6);
     }
@@ -84,6 +86,16 @@ class ScreenMovies extends Component {
         )
     }
 
+    onFavoriteButtonPress(){
+        let isLiked = this.state.isLiked;
+        this.setState({isLiked: !isLiked});
+    }
+
+    onBookmarkButtonPress(){
+        let isBookmarked = this.state.isBookmarked;
+        this.setState({isBookmarked: !isBookmarked});
+    }
+
     render() {
         return (
             <View style={{flex: 1}}>
@@ -97,13 +109,17 @@ class ScreenMovies extends Component {
                                 onPress={() => this.props.navigation.navigate('ScreenHome')} />
                         <View style={{flexDirection: 'row'}}>
                             <ImageButton source={res.icons.rating} tintColor='white'/>
-                            <ImageButton source={res.icons.bookmark} tintColor='white'/>
-                            <ImageButton source={res.icons.favorite} tintColor='white'/>
+                            <ImageButton source={this.state.isBookmarked ? res.icons.bookmarkFull : res.icons.bookmark}
+                                tintColor='white'
+                                onPress={() => this.onBookmarkButtonPress()}/>
+                            <ImageButton source={this.state.isLiked ? res.icons.favoriteFull : res.icons.favorite}
+                                tintColor='white'
+                                onPress={() => this.onFavoriteButtonPress()}/>
                         </View>
                     </View>    
                 
                     <Image
-                        source={{uri: baseUrl+ this.props.data.thumbnail240}}
+                        source={{uri: baseUrl+ this.props.data.thumbnail}}
                         style={styles.image}>
                         <LinearGradient
                             colors={['rgba(0, 0, 0, 0.5)', 'transparent']}
