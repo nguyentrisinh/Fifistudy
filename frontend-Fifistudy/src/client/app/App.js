@@ -153,7 +153,7 @@ class AppContainer extends React.Component {
 
 
         return (
-            <Router>
+            <Router basename={"/home"}>
                 <Scrollbars
                     autoHide={true}
                     renderTrackVertical={props => <div {...props} className="scroll-bar__track-vertical"/>}
