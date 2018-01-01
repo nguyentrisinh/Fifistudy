@@ -116,7 +116,7 @@ class VideoFilm extends React.Component {
             .catch(err => console.log(err));
         this.player.on('time', (data) => {
             if (this.state.sub) {
-                let currentLine = this.state.sub.find(o => (o.start <= data.position && o.end >= data.position));
+                let currentLine = this.state.sub.find(o => (o.end >= data.position));
                 if (currentLine) {
                     if (currentLine.number != this.state.currentLine.number) {
                         this.setState({
