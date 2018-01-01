@@ -1,4 +1,4 @@
-@import 'colors';
+@import './colors';
 
 ul {
   padding-left: 0;
@@ -209,7 +209,7 @@ body {
   @media screen and (max-width: 768px) {
     display: none;
   }
-  &__signup {
+  &__signup,&__login {
     color: white;
     &:hover, &:focus, &:active {
       color: $ColorRed;
