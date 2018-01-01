@@ -137,31 +137,31 @@ class Header extends React.Component {
                               outsideClickIgnoreClass="header__item--has-children"
                               isOpen={this.state.open === "phim"}/>
                     </div>
-                    <div
-                        onClick={this.onClickMenu.bind(this, "blog")}
-                        className={classNames("header__item header__item--has-children", {"header__item--open": this.state.open === "blog"})}
-                    >
-                        Blog
-                        <Menu data={[
-                            {
-                                name: "Kinh nghiệm học tiếng Anh",
-                                link: "/",
-                                onClick: null,
-                            },
-                            {
-                                name: "Tài liệu",
-                                link: "/",
-                                onClick: null,
-                            },
-                            {
-                                name: "Khác",
-                                link: "/",
-                                onClick: null,
-                            }
-                        ]} closeMenu={this.closeMenu}
-                              outsideClickIgnoreClass="header__item--has-children"
-                              isOpen={this.state.open === "blog"}/>
-                    </div>
+                    {/*<div*/}
+                        {/*onClick={this.onClickMenu.bind(this, "blog")}*/}
+                        {/*className={classNames("header__item header__item--has-children", {"header__item--open": this.state.open === "blog"})}*/}
+                    {/*>*/}
+                        {/*Blog*/}
+                        {/*<Menu data={[*/}
+                            {/*{*/}
+                                {/*name: "Kinh nghiệm học tiếng Anh",*/}
+                                {/*link: "/",*/}
+                                {/*onClick: null,*/}
+                            {/*},*/}
+                            {/*{*/}
+                                {/*name: "Tài liệu",*/}
+                                {/*link: "/",*/}
+                                {/*onClick: null,*/}
+                            {/*},*/}
+                            {/*{*/}
+                                {/*name: "Khác",*/}
+                                {/*link: "/",*/}
+                                {/*onClick: null,*/}
+                            {/*}*/}
+                        {/*]} closeMenu={this.closeMenu}*/}
+                              {/*outsideClickIgnoreClass="header__item--has-children"*/}
+                              {/*isOpen={this.state.open === "blog"}/>*/}
+                    {/*</div>*/}
                     <SearchContainer/>
 
                     {this.renderAccountSection()}
