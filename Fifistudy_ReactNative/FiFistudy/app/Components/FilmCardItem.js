@@ -50,7 +50,7 @@ export default class FilmCard extends Component {
 
                     {/* Film's image */}
                     <View style={Styles.groupFilmImgLevel}>
-                        <Image source={{uri:baseUrl+ data.thumbnail}}
+                        <Image source={{uri:baseUrl+ data.thumbnail240}}
                                style={Styles.filmImg}/>
                         {/* Level line */}
                         <View style={[Styles.levelLine, {backgroundColor: this.getLevelColor(data)}]}/>

@@ -135,7 +135,7 @@ export default class ImageSlider extends Component {
                             { height: height, }
                     ]}>
                     {this.props.dataSource.map((image, index) => {
-                        const imageObject = typeof image.film_detail.thumbnail === 'string' ? {uri: baseUrl+ image.film_detail.thumbnail} : image.film_detail.thumbnail;
+                        const imageObject = typeof image.film_detail.thumbnail240 === 'string' ? {uri: baseUrl+ image.film_detail.thumbnail240} : image.film_detail.thumbnail240;
                         console.log('imO',image);
                         const textComponent = (
                             <View style={styles.layoutText}>
