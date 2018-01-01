@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import $ from "jquery";
 import ModalSaveVocabulary from "./ModalSaveVocabulary";
-import {Scrollbars} from "react-custom-scrollbars";
+import Scrollbars from '../components/ScrollBar';
 import classNames from "classnames";
 import {toggleModalLogin} from "../actions/app";
 import {connect} from "react-redux";
@@ -81,7 +81,7 @@ class VideoFilm extends React.Component {
         this.setState({
             currentLine: ""
         })
-        this.refs.scroll.scrollTop();
+        this.refs.scroll.refs.scrollBar.scrollTop();
         this.player = window.jwplayer('player').setup({
             // file: '../static/media/video.mp4',
             // file: 'http://media.studyphim.vn/VIPN5/Extra/01_Extra_English_-_Hectors_arrival.mp4',
@@ -123,7 +123,7 @@ class VideoFilm extends React.Component {
                             currentLine: currentLine
                             // .replace(/<\/?[^>]+(>|$)/g, "") bo tag
                         });
-                        $(this.refs.scroll.view).animate({scrollTop: this.refs[currentLine.number].offsetTop - 150}, 300, 'linear');
+                        $(this.refs.scroll.refs.scrollBar.view).animate({scrollTop: this.refs[currentLine.number].offsetTop - 80}, 300, 'linear');
                     }
                 }
             }
@@ -140,6 +140,14 @@ class VideoFilm extends React.Component {
     componentDidMount = () => {
         let {data} = this.props;
         this.initPlayer(data);
+    }
+    componentDidUpdate = (prevProps) =>{
+        if (prevProps.data !== this.props.data) {
+            console.log(this.props.scrollBar,'ahihi');
+            // $(this.props.scrollBar.refs.scrollBar.view).animate({scrollTop: 0}, 300, 'linear');
+            this.props.scrollBar.refs.scrollBar.scrollTop();
+        }
+
     }
 
     componentWillUnmount = () => {

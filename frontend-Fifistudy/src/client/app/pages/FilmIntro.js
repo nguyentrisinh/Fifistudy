@@ -3,7 +3,7 @@ import Banner from "../components/Banner";
 
 import FadeTransition from "../components/FadeTransition";
 
-import {Scrollbars} from "react-custom-scrollbars";
+import Scrollbars from '../components/ScrollBar';
 import ListActorContainer from "../components/ListActorContainer";
 
 import SectionDetailExtra from "../components/SectionDetailExtra";
@@ -23,14 +23,7 @@ export default class FilmIntro extends React.Component {
                     <div className="detail-page__overlay"
                          style={{backgroundImage: `url(${serverDomain + this.props.data.thumbnail})`}}>
                     </div>
-                    <Scrollbars
-                        autoHide={true}
-                        renderTrackVertical={props => <div {...props} className="scroll-bar__track-vertical"/>}
-                        renderThumbVertical={props => <div {...props} className="scroll-bar__thumb-vertical"/>}
-                        autoHeight={true}
-                        autoHeightMin="100%"
-                        autoHeightMax="100%"
-                    >
+                    <Scrollbars>
                         <Banner data={this.props.data}/>
                         <ListActorContainer/>
                         <SectionDetailExtra data={this.props.data}/>
