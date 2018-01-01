@@ -58,8 +58,8 @@ export default class FilmCard extends Component {
 
                     {/* Title group */}
                     <View style={Styles.titleGroup}>
-                        <Text style={Styles.titleEnglish}>{data.english_name}</Text>
-                        <Text style={Styles.titleVietnamese}>{data.vietnamese_name}</Text>
+                        <Text style={Styles.titleEnglish} numberOfLines={1}>{data.english_name}</Text>
+                        <Text style={Styles.titleVietnamese} numberOfLines={1}>{data.vietnamese_name}</Text>
                     </View>
                 </View>
             </TouchableOpacity>

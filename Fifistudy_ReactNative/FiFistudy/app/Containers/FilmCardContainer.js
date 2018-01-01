@@ -11,8 +11,8 @@ class FilmCardContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            //dataSource: Obj.newestFilms.splice(0, 4),
-            dataSource: Obj.newestFilms,
+            //dataSource: this.props.data.splice(0, 4),
+            //dataSource: Obj.newestFilms,
         }
     }
 
@@ -29,7 +29,7 @@ class FilmCardContainer extends Component {
                 numColumns={2}
                 scrollEnabled={false}
                 showsVerticalScrollIndicator={false}
-                data={this.props.data}
+                data={this.props.data.splice(0, 4)}
                 keyExtractor={ID => ID}
                 renderItem={({item}) => this.renderItem(item)}/>
         );

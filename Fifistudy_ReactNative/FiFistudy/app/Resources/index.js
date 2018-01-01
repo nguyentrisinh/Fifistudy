@@ -51,11 +51,22 @@ const res = {
         openSubPanel: require('./Icons/ic_sub_panel_close.png'),
         circle: require('./Icons/ic_circle.png'),
         circleFull: require('./Icons/ic_circle_full.png'),
+        profile: require('./Icons/ic_profile.png'),
+        password: require('./Icons/ic_password.png'),
+        add: require('./Icons/ic_add.png'),
+        camera: require('./Icons/ic_camera.png'),
     },
     images: {
         default: require('./Images/img_default.png'),
         avatar: require('./Images/img_avatar.png'),
         notFound: require('./Images/img_not_found.png'),
+        logo_full: require('./Images/logo_full.png'),
+        success: require('./Images/img_success.png'),
+        congrats: require('./Images/img_congrats.png'),
+        login_background: [
+            require('./Images/login_1.png'),
+            require('./Images/login_2.png'),
+        ]
     },
     colors: {
         background: '#fafafa',
@@ -69,6 +80,7 @@ const res = {
         red: '#f44336',
         line: '#E0E0E0',
         gray: '#9E9E9E',
+        lightgray: '#E0E0E0',
         filmSubBackground: '#424242',
 
         //level's colors
@@ -87,6 +99,9 @@ const res = {
     fonts: {
         common: 'sans-serif',
         light: 'sans-serif-light',
+    },
+    animations: {
+        check: require('./Animations/check.gif'),
     },
 
     ratio: 9 / 16,
