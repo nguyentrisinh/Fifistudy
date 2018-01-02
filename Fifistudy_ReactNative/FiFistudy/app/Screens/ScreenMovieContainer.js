@@ -23,7 +23,6 @@ class ScreenMovieContainer extends React.Component {
     }
 
     render() {
-        console.log('test film', this.props.film);
         if (this.props.film.isLoading) {
             return (
                 <View>

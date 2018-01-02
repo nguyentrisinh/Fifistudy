@@ -8,7 +8,7 @@ import {deleteListFilm, getListPage, resetListFilm} from "../actions/dataListPag
 import Film from "../components/Film";
 import {MAX_PAGE_LIST, ORDER_BY} from "../constants/apiPath";
 
-import {Scrollbars} from "react-custom-scrollbars";
+import Scrollbars from '../components/ScrollBar';
 
 const MAP_ROUTE_TO_ORDER_BY = {
     "lastest": ORDER_BY.createdAtReduce,
@@ -98,14 +98,7 @@ class ListPageContainer extends React.Component {
 
             <FadeTransition>
                 <div className="list-page">
-                    <Scrollbars
-                        autoHide={true}
-                        renderTrackVertical={props => <div {...props} className="scroll-bar__track-vertical"/>}
-                        renderThumbVertical={props => <div {...props} className="scroll-bar__thumb-vertical"/>}
-                        autoHeight={true}
-                        autoHeightMin="100%"
-                        autoHeightMax="100%"
-                    >
+                    <Scrollbars>
 
                         <Section title={MAP_ROUTE_TO_TITLE[this.props.match.params.slugList]}>
 
