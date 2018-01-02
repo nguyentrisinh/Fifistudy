@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {withCookies} from "react-cookie";
 import {connect} from "react-redux";
 import {getReviewFilm, updateFilm} from "../actions/dataIntropage";
+import {postReviewFilm} from '../actions/api'
 
 function roundHalf(num) {
     return Math.round(num * 2) / 2;
@@ -52,12 +53,13 @@ class StarRating extends React.Component {
 
 
     postReviewFilm = (score) => {
+        // debugger
         let {data, cookies} = this.props;
         postReviewFilm({
             "score": parseFloat(score),
             "film_id": data.id
         }, cookies.get("token")).then(response => {
-            console.log('resssssss', response);
+            // console.log('resssssss', response);
             if (response.errors == null) {
                 this.updateData();
                 // alert('Thanh cong')
@@ -179,7 +181,7 @@ class StarRating extends React.Component {
             instance.postReviewFilm($(this).data('value'));
             $(this).closest('.rating').data('vote', $(this).data('value'));
             instance.calculateAverage()
-            console.log(parseInt($(this).data('value')));
+            // console.log(parseInt($(this).data('value')));
 
         })
 
@@ -196,7 +198,7 @@ class StarRating extends React.Component {
             $(this).closest('.rating').data('vote', $(this).data('value'));
             instance.calculateAverage()
 
-            console.log(parseInt($(this).data('value')));
+            // console.log(parseInt($(this).data('value')));
         })
 
         $('.half').hover(function () {
@@ -208,7 +210,7 @@ class StarRating extends React.Component {
 
         $('.full').hover(function () {
             if (starClicked == false) {
-                console.log(this, "Thisssssss")
+                // console.log(this, "Thisssssss")
                 instance.setFullStarState(this)
             }
         })

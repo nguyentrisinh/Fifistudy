@@ -198,7 +198,8 @@ body {
   }
 }
 
-.app{  width: 100%;
+.app {
+  width: 100%;
   overflow: hidden;
 }
 
@@ -213,7 +214,7 @@ body {
   @media screen and (max-width: 768px) {
     display: none;
   }
-  &__signup,&__login {
+  &__signup, &__login {
     color: white;
     &:hover, &:focus, &:active {
       color: $ColorRed;
@@ -233,7 +234,7 @@ body {
     cursor: pointer;
     padding-right: 20px;
     color: #fffafa;
-    font-size: 1.11em;
+    font-size: 18px;
     transition: background-color 0.5s;
     &--account {
       font-size: 18px;
@@ -1381,6 +1382,10 @@ body {
     cursor: pointer;
     color: white;
     transition: all 0.3s ease-in-out;
+    background-color: rgba(#000, 0.7);
+    @media screen and (max-width: 868px) {
+      transform: none !important;
+    }
     &:hover {
       background-color: rgba(#000, 0.7);
     }
@@ -1507,7 +1512,7 @@ body {
     margin-bottom: 10px;
     width: 100%;
     box-sizing: border-box;
-    font-size: 0.77em;
+    font-size: 1em;
     color: #2C3E50;
     &--error {
       border: solid 1px $ColorDarkRed;

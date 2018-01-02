@@ -13,7 +13,7 @@ class SliderBannerContainer extends React.Component {
     render() {
         if (this.props.promotes) {
             if (this.props.promotes.errors === null) {
-                console.log(this.props.promotes.data)
+                // console.log(this.props.promotes.data)
                 return <SliderBanner data={this.props.promotes.data}/>
             }
 

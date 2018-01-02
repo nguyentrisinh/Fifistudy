@@ -23,7 +23,7 @@ class SearchResult extends React.Component {
         let height = 0;
         let domItem = document.querySelectorAll(".search-result__item");
         if (domItem.length > 0) {
-            console.log(domItem)
+            // console.log(domItem)
             Array.from(domItem).map(item =>
                 height += item.clientHeight
             )
