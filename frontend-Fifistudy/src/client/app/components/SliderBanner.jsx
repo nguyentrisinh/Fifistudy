@@ -5,7 +5,7 @@ import BannerItem from "./BannerItem.jsx";
 class SliderBanner extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this.props);
+        // console.log(this.props);
         // this.renderSlides = this.renderSlides.bind(this);
     }
 

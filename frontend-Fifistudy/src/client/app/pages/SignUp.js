@@ -107,7 +107,7 @@ class SignUp extends React.Component {
                 let value = evt.target.value;
                 if (evt.target.name == "confirmPass") {
                     if (!validator.equals(this.state.password, value)) {
-                        console.log(value)
+                        // console.log(value)
                         let errors = update(this.state.errors, {$merge: {confirmPass: "Xác nhận mật khẩu không khớp"}});
                         this.setState({
                             errors

@@ -48,7 +48,7 @@ class FilmIntroContainer extends React.Component {
     }
 
     render() {
-        console.log('dataa', this.props.film)
+        // console.log('dataa', this.props.film)
         if (this.props.film.isLoading) {
             return <Loading/>
         }
