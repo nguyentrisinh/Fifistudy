@@ -1,4 +1,4 @@
-@import 'colors';
+@import './colors';
 
 ul {
   padding-left: 0;
@@ -198,6 +198,10 @@ body {
   }
 }
 
+.app{  width: 100%;
+  overflow: hidden;
+}
+
 .header {
   display: flex;
   background-color: rgba(0, 0, 0, 0.65);
@@ -209,7 +213,7 @@ body {
   @media screen and (max-width: 768px) {
     display: none;
   }
-  &__signup {
+  &__signup,&__login {
     color: white;
     &:hover, &:focus, &:active {
       color: $ColorRed;

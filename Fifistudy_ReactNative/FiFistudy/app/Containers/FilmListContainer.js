@@ -8,12 +8,13 @@ import {FilmListItem} from '../Components/index.js'
 import styles from '../Styles/ScreenSearchFilm.js';
 import lsFilm from '../Objects/ObjFilms.js';
 import Res from '../Resources/index.js';
+import {withNavigation} from 'react-navigation';
 
-export default class FilmListContainer extends Component {
+class FilmListContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataSource: lsFilm
+            dataSource: this.props.data
         }
     }
 
@@ -31,8 +32,11 @@ export default class FilmListContainer extends Component {
                 }}
                 data={this.state.dataSource}
                 keyExtractor={item => item.id}
-                renderItem={({item}) => <FilmListItem data={item} navigation={navigation}/>}>
+                renderItem={({item}) => <FilmListItem data={item}/>}>
             </FlatList>
         );
     }
 }
+
+export default withNavigation(FilmListContainer)
+

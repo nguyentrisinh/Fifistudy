@@ -2,7 +2,7 @@ import React from "react";
 import FadeTransition from "../components/FadeTransition";
 require('imports-loader?jQuery=jquery!letteringjs');
 // window.$ = window.jQuery = jQuery;
-// import 'letteringjs';
+import 'letteringjs';
 
 
 class Loading extends React.Component {

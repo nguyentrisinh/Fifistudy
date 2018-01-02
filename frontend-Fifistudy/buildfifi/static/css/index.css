@@ -168,6 +168,10 @@ body {
   .level__item--3 {
     background-color: #d10000; }
 
+.app {
+  width: 100%;
+  overflow: hidden; }
+
 .header {
   display: flex;
   background-color: rgba(0, 0, 0, 0.65);
@@ -179,9 +183,9 @@ body {
   @media screen and (max-width: 768px) {
     .header {
       display: none; } }
-  .header__signup {
+  .header__signup, .header__login {
     color: white; }
-    .header__signup:hover, .header__signup:focus, .header__signup:active {
+    .header__signup:hover, .header__signup:focus, .header__signup:active, .header__login:hover, .header__login:focus, .header__login:active {
       color: #d9534f; }
   .header__container {
     box-sizing: border-box;

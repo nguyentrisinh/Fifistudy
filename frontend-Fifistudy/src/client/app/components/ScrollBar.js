@@ -1,4 +1,4 @@
-import {Scrollbars} from "react-custom-scrollbars";
+import Scrollbars from 'react-custom-scrollbars';
 
 import React from "react";
 
@@ -11,6 +11,7 @@ class ScrollBar extends React.Component {
     render() {
         return (
             <Scrollbars
+                ref="scrollBar"
                 autoHide={true}
                 renderTrackVertical={props => <div {...props} className="scroll-bar__track-vertical"/>}
                 renderThumbVertical={props => <div {...props} className="scroll-bar__thumb-vertical"/>}
