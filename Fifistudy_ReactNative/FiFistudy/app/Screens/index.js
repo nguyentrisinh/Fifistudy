@@ -21,8 +21,10 @@ import ScreenRegister_Step1 from './ScreenRegister_Step1.js';
 import ScreenRegister_Step2 from './ScreenRegister_Step2.js';
 import ScreenRegister_Step3 from './ScreenRegister_Step3.js';
 import ScreenRegister_Step4 from './ScreenRegister_Step4.js';
+import ScreenListFilmContainer from './ScreenListFilmContainer';
 
 export {
+    ScreenListFilmContainer,
     ScreenWatchMovieContainer,
     ScreenMovieContainer,
     ScreenNotes,

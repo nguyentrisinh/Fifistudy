@@ -32,7 +32,7 @@ export default class ScreenLevels extends Component {
                         transform: [{ rotate: '-30deg'}],
                         }]}>
                         <TouchableOpacity
-                            onPress={() => navigate('ScreenListFilm', {title: 'Độ khó: Khó'})}>
+                            onPress={() => navigate('ScreenListFilm', {title: 'Độ khó: Khó',difficultLevel:3})}>
                             <Text style={styles.label}>Khó</Text>
                         </TouchableOpacity>
                     </View>
@@ -42,7 +42,7 @@ export default class ScreenLevels extends Component {
                         marginTop: -118
                         }]}>
                         <TouchableOpacity
-                            onPress={() => navigate('ScreenListFilm', {title: 'Độ khó: Trung bình'})}>
+                            onPress={() => navigate('ScreenListFilm', {title: 'Độ khó: Trung bình',difficultLevel:2})}>
                             <Text style={styles.label}>Trung bình</Text>
                         </TouchableOpacity>
                     </View>
@@ -52,7 +52,7 @@ export default class ScreenLevels extends Component {
                         marginTop: -120,
                         }]}>
                         <TouchableOpacity
-                            onPress={() => navigate('ScreenListFilm', {title: 'Độ khó: Dễ'})}>
+                            onPress={() => navigate('ScreenListFilm', {title: 'Độ khó: Dễ',difficultLevel:1})}>
                             <Text style={styles.label}>Dễ</Text>
                         </TouchableOpacity>
                     </View>

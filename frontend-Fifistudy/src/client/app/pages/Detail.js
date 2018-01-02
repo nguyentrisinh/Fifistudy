@@ -10,7 +10,7 @@ import Footer from "../components/Footer";
 import {getFilmByDifficult} from "../actions/dataIntropage";
 import {connect} from "react-redux";
 
-import {Scrollbars} from "react-custom-scrollbars";
+import Scrollbars from '../components/ScrollBar';
 
 class Detail extends React.Component {
     constructor(props) {
@@ -33,18 +33,9 @@ class Detail extends React.Component {
                     <div className="detail-page__overlay"
                          style={{backgroundImage: `url(${serverDomain + filmDetail.thumbnail})`}}>
                     </div>
-                    <Scrollbars
-                        autoHide={true}
-                        renderTrackVertical={props => <div {...props} className="scroll-bar__track-vertical"/>}
-                        renderThumbVertical={props => <div {...props} className="scroll-bar__thumb-vertical"/>}
-                        autoHeight={true}
-                        autoHeightMin="100%"
-                        autoHeightMax="100%"
-                    >
-
-
+                    <Scrollbars ref="scrollBar">
                         <FilmTitle enName={filmDetail.english_name} viName={filmDetail.vietnamese_name}/>
-                        <VideoFilm filmDetail={filmDetail} data={episode}/>
+                        <VideoFilm scrollBar={this.refs.scrollBar} filmDetail={filmDetail} data={episode}/>
                         <Episode data={filmDetail}/>
                         <SectionDetailExtra data={filmDetail}/>
 

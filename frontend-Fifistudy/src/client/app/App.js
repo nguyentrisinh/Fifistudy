@@ -17,7 +17,7 @@ import ListPage from "./pages/ListPageContainer";
 import {serverDomain} from "./config/server";
 import {getLogout} from "./actions/api";
 import {defaultAvatar} from "./config/const";
-import {Scrollbars} from "react-custom-scrollbars";
+import Scrollbars from './components/ScrollBar';
 import {BrowserRouter as Router, Link, Redirect, Route} from "react-router-dom";
 
 import ModalLogin from "./components/ModalLogin";
@@ -101,9 +101,9 @@ class AppContainer extends React.Component {
     }
 
     componentDidMount = () => {
-        window.onresize = () => {
-            this.calcMarginTop();
-        }
+        // window.onresize = () => {
+        //     this.calcMarginTop();
+        // }
         this.calcMarginTop();
     }
 
