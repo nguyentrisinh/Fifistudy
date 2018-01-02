@@ -11,6 +11,7 @@ var APP_DIR = path.resolve(__dirname, 'src/client/app');
 module.exports = {
     entry: [APP_DIR + '/index.jsx'],
     plugins: [
+        new webpack.optimize.ModuleConcatenationPlugin(),
         new CleanWebpackPlugin(['dist']),
         // new HtmlWebpackPlugin({
         //    template:"/src/client/index.html "

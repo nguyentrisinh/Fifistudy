@@ -38,7 +38,7 @@ class Film extends React.Component {
         let token = cookies.get("token");
         this.props.updateSaved(filmId);
         // debugger
-        console.log(match)
+        // console.log(match)
         if (match.path == "/user") {
             // alert('route')
             this.props.unSavedFilm(filmId)
