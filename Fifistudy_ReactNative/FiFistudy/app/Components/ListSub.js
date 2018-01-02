@@ -7,22 +7,15 @@ import {
 } from 'react-native';
 import { SubItem } from '../Components/index.js';
 export default class ListSub extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {};
-    //     // const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    //     // this.state = {
-    //     //     dataSource: ds.cloneWithRows(this.props.data),
-    //     // };
-    // }
-
     renderRow(item){
         // Chua render styles moi duoc do render row chi chay lan dau,khi state thay doi thi no ko chay lai ham nay
         let isActive = false;
         if (this.props.currentItem){
-            // console.log(`currentItem: ${this.props.currentItem.number} | item.number: ${item.number}`);
+            //console.log(`${item.number} | ${item.sub[0]}`);
             if (this.props.currentItem.number==item.number){
                isActive=true;
+               console.log(`${item.number} | ${item.sub[0]}`);
+               //this.listSub.scrollToItem({animated: true, index: "" + item.number});
             }
         }
         if (item.sub) {
@@ -35,17 +28,14 @@ export default class ListSub extends Component {
     render() {
         const {data} = this.props;
         return (
-            // <ListView
-            //     dataSource={this.state.dataSource}
-            //     renderRow={this.renderRow}
-            // />
             <FlatList
-            horizontal={false}
-            scrollEnabled={false}
-            showsVerticalScrollIndicator={false}
-            data={data}
-            keyExtractor={number => number}
-            renderItem={({item}) => this.renderRow(item)}/>
+                ref={component => this.listSub = component}
+                horizontal={false}
+                scrollEnabled={true}
+                showsVerticalScrollIndicator={false}
+                data={data}
+                keyExtractor={item => item.number}
+                renderItem={({item}) => this.renderRow(item)}/>
         )
     }
 }

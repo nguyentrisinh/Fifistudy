@@ -37,7 +37,6 @@ class ScreenMovies extends Component {
     }
 
     componentWillMount() {
-        console.log('dataaaaa',this.props.data)
         this.animate();
     }
 

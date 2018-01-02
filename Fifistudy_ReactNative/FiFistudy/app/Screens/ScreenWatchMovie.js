@@ -25,9 +25,7 @@ class WatchScreen extends Component {
     }
 
     componentWillMount() {
-
-
-        console.log('screenWatchMoviehihi',this.props.data);
+        //console.log('screenWatchMoviehihi',this.props.data);
         Orientation.lockToPortrait();
     }
 

@@ -1,1 +1,2 @@
-export const GET_EPISODE = "GET_EPISODE"
+export const GET_EPISODE = "GET_EPISODE";
+export const CHANGE_SUB_ITEM_PROP = "CHANGE_SUB_ITEM_PROP";

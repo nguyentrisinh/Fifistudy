@@ -19,6 +19,14 @@ export default screenWatchMovie = (state = initialState, action) => {
                 }
             });
             break;
+
+        case Types.CHANGE_SUB_ITEM_PROP:
+            console.log("reducer: ", action.subItemNumber)
+            return update(state, {
+                subItem:  action.subItemNumber
+            });
+            break;
+                        
         default :
             return state;
     }

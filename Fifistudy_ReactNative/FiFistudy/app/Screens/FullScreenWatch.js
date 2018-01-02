@@ -339,7 +339,8 @@ export default class MediaPlayerWithoutSub extends Component {
 
                         {/* Video section */}
                         <Video style={{ flex: 1, zIndex: 1 }}
-                            source={{ uri: ObjEpisode.link_video }}   // Can be a URL or a local file.
+                            // source={{ uri: ObjEpisode.link_video }}   // Can be a URL or a local file.
+                            source={Res.video.test}
                             ref={(ref) => this.player = ref}
                             rate={0}                              // 0 is paused, 1 is normal.
                             volume={this.state.volume}                            // 0 is muted, 1 is normal.

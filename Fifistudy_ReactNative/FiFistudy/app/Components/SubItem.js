@@ -8,8 +8,11 @@ import {
 import {ImageButton} from '../Components/index.js';
 import Res from '../Resources/index.js';
 import Styles from '../Styles/SubItem.js';
+import {connect} from 'react-redux';
+import {withNavigation} from 'react-navigation';
 
-export default class SubItem extends Component {
+
+class SubItem extends Component {
     getSubEnglish(data) {
         return data.sub[0].replace(/<\/?[^>]+(>|$)/g, "");
     }
@@ -35,3 +38,12 @@ export default class SubItem extends Component {
         );
     }
 }
+
+const mapStateToProps = state =>    {
+    console.log(state.screenWatchMovie.subItem)
+    return {
+        //subItem:state.subItemNumber
+    }
+}
+
+export default connect(mapStateToProps)(SubItem)
