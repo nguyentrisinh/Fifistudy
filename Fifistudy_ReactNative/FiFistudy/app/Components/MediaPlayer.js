@@ -105,10 +105,8 @@ export default class MediaPlayer extends Component {
                     if (currentItem.number != this.state.currentItem.number) {
                         this.setState({
                             currentItem: currentItem,
-                            // .replace(/<\/?[^>]+(>|$)/g, "") bo tag
                         });
-                        changeSubItemProp(currentItem.number)
-                        //console.log(`current item:  + ${currentItem.number} + | + ${currentItem.sub[0]}`);
+                        this.refs.listSubRef.setActive(currentItem.number)
                     }
                 }
             }
@@ -324,7 +322,7 @@ export default class MediaPlayer extends Component {
                     width: width,
                     height: width * Res.ratio,
                 }}>
-                    {!!this.state.sub && <ListSub currentItem={this.state.currentItem} data={this.state.sub}/>}
+                    {!!this.state.sub && <ListSub ref='listSubRef' currentItem={this.state.currentItem} data={this.state.sub}/>}
                 </View>
                 {/* END SUB SECTION */}
             </View>

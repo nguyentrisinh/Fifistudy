@@ -11,12 +11,3 @@ export const getEpisode = (filmSlug,episodeId)=>{
         })
     }
 }
-
-export const changeSubItemProp = (subItemNumber)=>{
-    return (dispatch)=>{
-        dispatch({
-            type:Types.CHANGE_SUB_ITEM_PROP,
-            subItemNumber: subItemNumber
-        });
-    }
-}
