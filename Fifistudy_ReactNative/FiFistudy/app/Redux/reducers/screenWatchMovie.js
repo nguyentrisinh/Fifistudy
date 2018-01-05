@@ -19,6 +19,7 @@ export default screenWatchMovie = (state = initialState, action) => {
                 }
             });
             break;
+                        
         default :
             return state;
     }

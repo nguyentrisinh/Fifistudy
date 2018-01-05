@@ -20,42 +20,27 @@ import {withNavigation} from 'react-navigation';
 
 class WatchScreen extends Component {
     setEpisodeColor(item) {
-        // Cai object item se sua sau
-        return item == ObjEpisode.number ? Resources.colors.violet : Resources.colors.blue;
+        return item.number == this.props.episodeData.number ? Resources.colors.violet : Resources.colors.blue;
     }
 
     componentWillMount() {
-
-
-        console.log('screenWatchMoviehihi',this.props.data);
         Orientation.lockToPortrait();
     }
 
     render() {
-        const width = Dimensions.get('window').width;
-        const {film} = this.props;
+        const {filmData} = this.props;
+        let episodes = filmData.episodes.sort((a,b)=>parseInt(a.number)-parseInt(b.number));
+
         return (
-            <View style={{ flex: 1 }}>
-                <ScrollView style={{ backgroundColor: Resources.colors.background }}
+            <View style={Styles.container}>
+                <ScrollView
                     showsVerticalScrollIndicator={false}>
-                    {/* MEDIA PLAYER SECTION */}
-                    <MediaPlayer data={this.props.data} navigation={this.props.navigation} />
-                    {/* END MEDIA PLAYER SECTION */}
-
-                    {/* SUB SECTION */}
-                    {/* <View style={{
-                    backgroundColor: 'lightgray',
-                    width: width,
-                    height: width * Resources.ratio,
-                    }}>
-                </View> */}
-                    {/* END SUB SECTION */}
-
+                    <MediaPlayer data={this.props.episodeData} navigation={this.props.navigation} />
 
                     {/* TITLE SECTION */}
                     <View style={Styles.titleContainer}>
-                        <Text style={Styles.title}>{film.english_name}</Text>
-                        <Text style={Styles.subtitle}>{film.vietnamese_name}</Text>
+                        <Text style={Styles.title}>{filmData.english_name}</Text>
+                        <Text style={Styles.subtitle}>{filmData.vietnamese_name}</Text>
                     </View>
 
 
@@ -65,9 +50,9 @@ class WatchScreen extends Component {
                         horizontal={false}
                         numColumns={6}
                         showsHorizontalScrollIndicator={false}
-                        data={this.props.film.episodes.sort((a,b)=>parseInt(a.number)-parseInt(b.number))}
-                        keyExtractor={item => item}
-                        renderItem={({ item }) => (
+                        data={episodes}
+                        keyExtractor={item => item.number}
+                        renderItem={({item}) => (
                             <EpisodeCircleView
                                 episodeNumber={item.number}
                                 size={42}

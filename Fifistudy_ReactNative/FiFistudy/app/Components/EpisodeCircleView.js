@@ -37,7 +37,10 @@ EpisodeCircleView.defaultProps = {
 }
 
 EpisodeCircleView.propTypes = {
-    episodeNumber: PropTypes.number.isRequired,
+    episodeNumber: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string,
+    ]).isRequired,
     color: PropTypes.string,
     textColor: PropTypes.string,
     size: PropTypes.number,

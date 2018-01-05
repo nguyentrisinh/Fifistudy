@@ -113,7 +113,6 @@ export default class ImageSlider extends Component {
     }
 
     render(){
-        console.log('dataaaaa',this.props.dataSource);
         const width = this.state.width;
         const height = this.props.height || this.state.height;
         const position = this.getPosition();
@@ -136,7 +135,6 @@ export default class ImageSlider extends Component {
                     ]}>
                     {this.props.dataSource.map((image, index) => {
                         const imageObject = typeof image.film_detail.thumbnail240 === 'string' ? {uri: baseUrl+ image.film_detail.thumbnail240} : image.film_detail.thumbnail240;
-                        console.log('imO',image);
                         const textComponent = (
                             <View style={styles.layoutText}>
                                 {image.film_detail.english_name === undefined ? null : <Text style={styles.textTitle}>{image.film_detail.english_name}</Text>}
