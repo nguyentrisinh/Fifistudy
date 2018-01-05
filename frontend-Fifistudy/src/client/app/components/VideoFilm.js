@@ -131,7 +131,7 @@ class VideoFilm extends React.Component {
         this.player.on('ready', () => {
             if (this.props.location.state) {
                 if (this.props.location.state.currentTime) {
-                    console.log('propsroute', this.props);
+                    // console.log('propsroute', this.props);
                     this.player.seek(this.props.location.state.currentTime);
                 }
             }
@@ -143,7 +143,7 @@ class VideoFilm extends React.Component {
     }
     componentDidUpdate = (prevProps) =>{
         if (prevProps.data !== this.props.data) {
-            console.log(this.props.scrollBar,'ahihi');
+            // console.log(this.props.scrollBar,'ahihi');
             // $(this.props.scrollBar.refs.scrollBar.view).animate({scrollTop: 0}, 300, 'linear');
             this.props.scrollBar.refs.scrollBar.scrollTop();
         }

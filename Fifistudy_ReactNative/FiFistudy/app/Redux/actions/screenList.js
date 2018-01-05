@@ -14,10 +14,16 @@ import * as ApiAction from "../../Server/ApiAction";
 
 export const getFilmByDifficultLevel = (difficultLevel) => {
     return (dispatch) => {
+        dispatch({
+            type: Types.GET_FILM_BY_DIFFICULT_LEVEL,
+            data: null,
+            isLoading:true
+        })
         ApiAction.getFilmByDifficultLevel(difficultLevel).then(response => {
             dispatch({
                 type: Types.GET_FILM_BY_DIFFICULT_LEVEL,
-                data: response
+                data: response,
+                isLoading:false
             })
         })
     }
@@ -32,11 +38,18 @@ export const resetFilmByDifficultLevel = () => {
 }
 
 export const getSearch = (searchKey,orderBy,pageNumber,pageSize) =>{
+
     return (dispatch)=>{
+        dispatch({
+            type:Types.GET_SEARCH,
+            data:null,
+            isLoading:true
+        })
         ApiAction.getSearch(searchKey,orderBy,pageNumber,pageSize).then(response=>{
             dispatch({
                 type:Types.GET_SEARCH,
-                data:response
+                data:response,
+                isLoading:false
             })
         })
     }

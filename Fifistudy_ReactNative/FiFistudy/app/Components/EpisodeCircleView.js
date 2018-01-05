@@ -4,14 +4,22 @@ import {
     Text,
     View,
     ScrollView,
+    TouchableOpacity
 } from 'react-native';
 import PropTypes from 'prop-types';
 import res from '../Resources/index';
 
 export default class EpisodeCircleView extends Component {
+    onPressEpisode = () =>{
+        if (this.props.onClickButton){
+            if (typeof  this.props.onClickButton=='function'){
+                this.props.onClickButton(this.props.episodeNumber)
+            }
+        }
+    }
     render(){
         return (
-            <View style={[styles.cicle, 
+            <TouchableOpacity onPress={this.onPressEpisode} style={[styles.cicle,
                 {
                     backgroundColor: this.props.color,
                     height: this.props.size,
@@ -23,7 +31,7 @@ export default class EpisodeCircleView extends Component {
                 }]}>
                     {this.props.episodeNumber}
                 </Text>
-            </View>
+            </TouchableOpacity>
         );
     }
 }

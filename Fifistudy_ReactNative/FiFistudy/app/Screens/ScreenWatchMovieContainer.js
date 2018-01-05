@@ -24,7 +24,6 @@ class ScreenWatchMovieContainer extends React.Component{
         this.props.getEpisode(this.props.navigation.state.params.filmSlug,this.props.navigation.state.params.episodeId)
         //console.log('screenwatch',this.props.navigation.state.params.filmSlug,this.props.navigation.state.params.episodeId)
     }
-
     render(){
         if (this.props.episode.isLoading){
             return (

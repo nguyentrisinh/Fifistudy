@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     StyleSheet,
     Text,
@@ -10,8 +10,10 @@ import {
     FlatList,
     ListView
 } from 'react-native';
+import {connect} from 'react-redux';
+import {getEpisode} from '../Redux/actions/screenWatchMovie';
 import Orientation from 'react-native-orientation';
-import { EpisodeCircleView, ImageButton, MediaPlayer } from '../Components/index.js';
+import {EpisodeCircleView, ImageButton, MediaPlayer} from '../Components/index.js';
 import Resources from '../Resources/index.js';
 import Styles from '../Styles/ScreenWatchMovie.js';
 import ObjEpisode from '../Objects/ObjEpisode.js';
@@ -27,15 +29,22 @@ class WatchScreen extends Component {
         Orientation.lockToPortrait();
     }
 
+    onClickButtonEpisode = (episodeNumber) => {
+        const {filmData} = this.props;
+        console.log(filmData.slug,episodeNumber)
+        // this.props.navigation.navigate('ScreenWatchMovie',{film:filmData,filmSlug:filmData.slug,episodeId:episode.id});
+        this.props.getEpisode(filmData.slug, episodeNumber);
+    }
+
     render() {
         const {filmData} = this.props;
-        let episodes = filmData.episodes.sort((a,b)=>parseInt(a.number)-parseInt(b.number));
+        let episodes = filmData.episodes.sort((a, b) => parseInt(a.number) - parseInt(b.number));
 
         return (
             <View style={Styles.container}>
                 <ScrollView
                     showsVerticalScrollIndicator={false}>
-                    <MediaPlayer data={this.props.episodeData} navigation={this.props.navigation} />
+                    <MediaPlayer data={this.props.episodeData} navigation={this.props.navigation}/>
 
                     {/* TITLE SECTION */}
                     <View style={Styles.titleContainer}>
@@ -53,10 +62,11 @@ class WatchScreen extends Component {
                         data={episodes}
                         keyExtractor={item => item.number}
                         renderItem={({item}) => (
-                            <EpisodeCircleView
-                                episodeNumber={item.number}
-                                size={42}
-                                color={this.setEpisodeColor(item)}
+                            <EpisodeCircleView onClickButton={this.onClickButtonEpisode}
+                                               episodeNumber={item.number}
+                                               episodeId = {item.id}
+                                               size={42}
+                                               color={this.setEpisodeColor(item)}
                             />
                         )}
                     />
@@ -65,15 +75,15 @@ class WatchScreen extends Component {
                 {/* TOOLBAR SECTION */}
                 <View style={Styles.toolbar}>
                     <ImageButton source={Resources.icons.back} tintColor={Resources.colors.pink}
-                        onPress={() => this.props.navigation.navigate('ScreenMovies')}/>
+                                 onPress={() => this.props.navigation.navigate('ScreenMovies')}/>
                     <ImageButton source={Resources.icons.comment} tintColor={Resources.colors.pink}
-                        onPress={() => this.props.navigation.navigate('ScreenEpisodeComment')} />
+                                 onPress={() => this.props.navigation.navigate('ScreenEpisodeComment')}/>
                     {/* <ImageButton source={Resources.icons.quiz} tintColor={Resources.colors.pink}/> */}
                     <ImageButton source={Resources.icons.volcabulary} tintColor={Resources.colors.pink}
-                        onPress={() => this.props.navigation.navigate('ScreenVocabulary')} />
+                                 onPress={() => this.props.navigation.navigate('ScreenVocabulary')}/>
                 </View>
             </View>
         );
     }
 }
-export default withNavigation(WatchScreen)
+export default connect(null, {getEpisode})(withNavigation(WatchScreen))

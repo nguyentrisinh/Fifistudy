@@ -58,14 +58,10 @@ class ScreenSearchFilm extends Component {
         this.setState({
             searchString: text,
         });
-    }
-
-    onSubmitEditing = () =>{
-        this.props.getSearch(this.state.searchString,"created_at",1,10)
+        this.props.getSearch(text,"created_at",1,10)
     }
 
     renderFilmList = () =>{
-        console.log(this.props.search,"ahihi")
         if (this.props.search.isLoading) {
             return (
                 <View>

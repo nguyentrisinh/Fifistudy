@@ -17,7 +17,7 @@ export default screenList = (state = initialState, action) => {
             return update(state, {
                 filmsByDifficultLevel: {
                     $set: {
-                        isLoading: false,
+                        isLoading: action.isLoading,
                         data: action.data
                     }
                 }
@@ -28,7 +28,7 @@ export default screenList = (state = initialState, action) => {
             return update(state, {
                 search: {
                     $set: {
-                        isLoading: false,
+                        isLoading: action.isLoading,
                         data: action.data
                     }
                 }

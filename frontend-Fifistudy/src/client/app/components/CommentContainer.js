@@ -96,7 +96,7 @@ class CommentContainer extends React.Component {
 
 
     render() {
-        console.log(this.props);
+        // console.log(this.props);
         let userInfo = null;
         if (_.has(this.props.userInfo, "data.errors")) {
             if (this.props.userInfo.data.errors == null) {
