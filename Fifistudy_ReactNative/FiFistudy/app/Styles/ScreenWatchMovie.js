@@ -7,6 +7,10 @@ import Resources from '../Resources/index.js';
 const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: Resources.colors.background
+    },
     listEpisode: {
     },
     titleContainer: {

@@ -53,7 +53,7 @@ const DrawerApp = DrawerNavigator({
 
 }, {
         headerMode: 'none',
-        initialRouteName: 'FullScreenWatch',
+        initialRouteName: 'ScreenLogin',
         contentComponent: DrawerMenu,
     });
 

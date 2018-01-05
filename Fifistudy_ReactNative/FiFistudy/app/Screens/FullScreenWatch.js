@@ -1,6 +1,7 @@
 import Orientation from 'react-native-orientation';
 import styles from '../Styles/FullScreenWatch.js';
 import React, { Component } from 'react';
+import {baseUrl} from '../Server/config'
 import {
     Text,
     View,
@@ -70,7 +71,8 @@ export default class MediaPlayerWithoutSub extends Component {
             onToggleControls: this.toggleControls.bind(this),
         };
 
-        fetch("http://studymovie.net/Cms_Data/Contents/admin/Media/sub-e-v/2ptd-Friends.S01E24.mHD.BluRay.DD5.1.x264-EPiK.Vie_Syned-24-e-v.vtt")
+        fetch(baseUrl + this.props.navigation.state.params.data.sub) 
+        //fetch("http://studymovie.net/Cms_Data/Contents/admin/Media/sub-e-v/2ptd-Friends.S01E24.mHD.BluRay.DD5.1.x264-EPiK.Vie_Syned-24-e-v.vtt")
             .then(response => {
                 return response._bodyText
             })
@@ -327,6 +329,7 @@ export default class MediaPlayerWithoutSub extends Component {
     }
 
     render() {
+        const {data} = this.props.navigation.state.params;
         return (
             <View style={{ flex: 1 }}>
                 {/* MEDIA PLAYER SECTION */}
@@ -334,13 +337,9 @@ export default class MediaPlayerWithoutSub extends Component {
                 style={{flex: 1}}
                     onPress={this.controls.onToggleControls}>
                     <View style={Styles.fullscreenContainer}>
-                        {/* Render su side bar */}
-                        {/* {this.renderSubSideBar()} */}
-
-                        {/* Video section */}
                         <Video style={{ flex: 1, zIndex: 1 }}
-                            // source={{ uri: ObjEpisode.link_video }}   // Can be a URL or a local file.
-                            source={Res.video.test}
+                            source={{ uri: data.link_video }}   // Can be a URL or a local file.
+                            //source={Res.video.test}
                             ref={(ref) => this.player = ref}
                             rate={0}                              // 0 is paused, 1 is normal.
                             volume={this.state.volume}                            // 0 is muted, 1 is normal.

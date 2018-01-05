@@ -212,7 +212,6 @@ export default class MediaPlayer extends Component {
     }
 
     showPlayerControls() {
-        const width = Dimensions.get('window').width;
         return (
             // Control mask
             <View style={Styles.controlMask}>
@@ -257,7 +256,7 @@ export default class MediaPlayer extends Component {
                         step={1}
                     />
                     <ImageButton
-                        onPress={() => this.props.navigation.navigate('FullScreenWatch')}
+                        onPress={() => this.props.navigation.navigate('FullScreenWatch', {data: this.props.data})}
                         source={Res.icons.expand}
                         tintColor='white'/>
                 </View>
@@ -281,8 +280,6 @@ export default class MediaPlayer extends Component {
     }
 
     render() {
-
-        //console.log("link video", this.props.data.link_video)
         const width = Dimensions.get('window').width;
         return (
             <View>

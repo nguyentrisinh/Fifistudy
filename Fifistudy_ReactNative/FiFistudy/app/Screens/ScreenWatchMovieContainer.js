@@ -1,3 +1,4 @@
+import Orientation from 'react-native-orientation';
 import React from 'react';
 import {connect} from 'react-redux';
 import {ScreenWatchMovie} from '../Screens/index';
@@ -53,7 +54,7 @@ class ScreenWatchMovieContainer extends React.Component{
             )
         }
         return (
-            <ScreenWatchMovie film={this.props.navigation.state.params.film} data={this.props.episode.data.data}/>
+            <ScreenWatchMovie filmData={this.props.navigation.state.params.film} episodeData={this.props.episode.data.data}/>
         )
     }
 }
