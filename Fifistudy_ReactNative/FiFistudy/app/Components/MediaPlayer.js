@@ -290,8 +290,8 @@ export default class MediaPlayer extends Component {
                 <TouchableWithoutFeedback onPress={this.controls.onToggleControls}>
                     <View style={Styles.videoContainer}>
                         <Video style={{flex: 1}}
-                            // source={{uri: this.props.data.link_video}}   // Can be a URL or a local file.
-                            source={Res.video.test}
+                            source={{uri: this.props.data.link_video}}   // Can be a URL or a local file.
+                            //source={Res.video.test}
                             ref={(ref) => this.player = ref}
                             rate={0}                              // 0 is paused, 1 is normal.
                             volume={this.state.volume}                            // 0 is muted, 1 is normal.
