@@ -103,9 +103,9 @@ const res = {
     animations: {
         check: require('./Animations/check.gif'),
     },
-    video: {
-        test: require('./Videos/test.mp4'),
-    },
+    // video: {
+    //     test: require('./Videos/test.mp4'),
+    // },
     ratio: 9 / 16,
 }
 export default res;
