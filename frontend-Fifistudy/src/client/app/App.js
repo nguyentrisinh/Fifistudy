@@ -10,6 +10,8 @@ import {withCookies} from "react-cookie";
 import {instanceOf} from "prop-types";
 import {doLogin, getUserInfo, toggleModalLogin} from "./actions/app";
 import FilmIntroContainer from "./pages/FilmIntroContainer";
+
+import QuizzPageContainer from './pages/QuizzPageContainer'
 import {connect} from "react-redux";
 import SignUp from "./pages/SignUp";
 import Userpage from "./pages/UserPage";
@@ -244,6 +246,7 @@ class AppContainer extends React.Component {
                                 <TransitionGroup>
                                     <Switch>
                                         <Route exact path="/" component={Index}/>
+                                        <Route exact path="/quizz/:episodeId" component={QuizzPageContainer}/>
                                         <Route exact path="/film/:slug/:episodeId" component={DetailPageContainer}/>
                                         <Route exact path="/film/:slug" component={FilmIntroContainer}/>
                                         <Route exact path="/signup" component={SignUp}/>
