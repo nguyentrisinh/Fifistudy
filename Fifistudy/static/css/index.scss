@@ -2150,3 +2150,164 @@ body {
   clear: both;
   float: left;
 }
+
+.quizz-page {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-top: 65px;
+  @media screen and (max-width: 768px) {
+    padding-top: 0;
+  }
+  &__title {
+    padding-top: 1em;
+    text-align: center;
+    color: white;
+    font-size: 2em;
+    margin-bottom: 5px;
+  }
+  &__sub-title {
+    text-align: center;
+    color: $ColorLightGray;
+    font-style: italic;
+    font-size: 1.4em;
+    margin-bottom: 30px;
+  }
+  &__overlay {
+    z-index: -1;
+    top: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    filter: blur(10px);
+    &:after {
+      top: 0;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(6, 11, 17, 0.8);
+      content: "";
+    }
+  }
+  &__wrap {
+    padding: 3em 4em;
+    flex-wrap: wrap;
+    display: flex;
+    background-color: $ColorBackgroundDark;
+    @media screen and (max-width: 768px) {
+      padding: 2em 1em;
+    }
+  }
+  &__wrap-item {
+    flex: 0 0 50%;
+    @media screen and (max-width: 768px) {
+      flex: 0 0 100%;
+    }
+  }
+  &__result {
+    text-align: center;
+    width: 100%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+  &__percent {
+    padding-top: 1em;
+  }
+  &__noti {
+    padding-bottom: 0.5em;
+    text-align: center;
+    color: white;
+  }
+}
+
+.quizz {
+  color: white;
+  &__number {
+    background-color: $ColorDarkRed;
+    display: inline-block;
+    padding: 5px 10px;
+    color: white;
+    margin-right: 0.5em;
+    max-height: 30px;
+  }
+  &__question {    display: flex;
+  }
+  &__answers {
+
+    padding-left: 3em;
+    padding-top: 0.6em;
+    padding-bottom: 1.2em;
+  }
+  &__title {
+    display: inline-block;
+    color: $ColorRed;
+    margin-right: 0.5em;
+    &:after {
+      content: ':';
+    }
+  }
+  &__answer {
+    padding-bottom: 0.4em;
+    cursor: pointer;
+    &:before {
+      content: '\f1db';
+      font-family: FontAwesome;
+      margin-right: 0.4em;
+    }
+    &:hover {
+      color: $ColorLightGray;
+    }
+    &--selected {
+      &:before {
+        color: $ColorLightGray;
+        content: '\f192';
+        font-family: FontAwesome;
+      }
+    }
+    &--showed {
+      cursor: auto;
+      &:hover {
+        color: white;
+      }
+    }
+    &--selected-right {
+      color: $ColorGreen;
+      &:before {
+        color: $ColorDarkGreen;
+        content: '\f058';
+        font-family: FontAwesome;
+      }
+      &:hover {
+        color: $ColorGreen;
+      }
+    }
+    &--selected-wrong {
+      color: $ColorRed;
+      &:before {
+        color: $ColorDarkRed;
+        content: '\f057';
+        font-family: FontAwesome;
+      }
+      &:hover {
+        color: $ColorRed;
+      }
+    }
+    &--right {
+      color: $ColorGreen;
+      &:before {
+        color: $ColorDarkGreen;
+      }
+      &:hover {
+        color: $ColorGreen;
+      }
+    }
+  }
+  &__question-content {
+    display: inline-block;
+  }
+
+}
