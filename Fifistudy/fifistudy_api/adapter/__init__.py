@@ -10,3 +10,5 @@ from .signup_adapter import SignupAdapter
 from .review_adapter import ReviewAdapter
 from .episode_adapter import EpisodeAdapter
 from .vocabulary_adapter import VocabularyAdapter
+from .quizz_adapter import QuizzAdapter
+
