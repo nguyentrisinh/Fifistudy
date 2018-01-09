@@ -42,13 +42,20 @@ class VideoFilm extends React.Component {
     }
 
     onClickSave = (evt, item) => {
-        evt.preventDefault();
-        evt.stopPropagation();
-        // debugger
-        this.setState({
-            currentClickSave: {...item, ...{episode_id: this.props.data.id}}
-        })
+        if (this.props.isLogin) {
+            evt.preventDefault();
+            evt.stopPropagation();
+            // debugger
+            this.setState({
+                currentClickSave: {...item, ...{episode_id: this.props.data.id}}
+            })
+        }
+        else {
+            this.props.toggleModalLogin()
+        }
     }
+
+
 
     renderSub = () => {
         if (this.state.sub) {
@@ -77,6 +84,7 @@ class VideoFilm extends React.Component {
             })
         }
     }
+
     initPlayer = (data) => {
         this.setState({
             currentLine: ""
@@ -162,19 +170,18 @@ class VideoFilm extends React.Component {
         }
     }
     renderModalSave = () => {
-        let {currentClickSave} = this.state
-        if (this.state.currentClickSave) return (
+            let {currentClickSave} = this.state
+            if (this.state.currentClickSave) return (
 
-            <div> hihi
-                <ModalSaveVocabulary data={currentClickSave} isOpen={true}
-                                     onClickOutside={this.onClickOutside}/>
+                <div>
+                    <ModalSaveVocabulary data={currentClickSave} isOpen={true}
+                                         onClickOutside={this.onClickOutside}/>
 
-            </div>
-        )
+                </div>
+            )
+        }
 
-        return null
 
-    }
     onClickBtnSwipe = () => {
         this.setState({
             isPractice: !this.state.isPractice
