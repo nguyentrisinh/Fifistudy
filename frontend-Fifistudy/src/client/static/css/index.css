@@ -1864,6 +1864,7 @@ body {
       .quizz__answer--right:hover {
         color: #5cb85c; }
   .quizz__question-content {
-    display: inline-block; }
+    display: inline-block;
+    line-height: 1.8; }
 
 /*# sourceMappingURL=index.css.map */
