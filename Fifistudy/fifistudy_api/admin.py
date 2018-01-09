@@ -5,7 +5,7 @@ from django.contrib import admin
 
 from .models import Actor, Answer, AuthUser, Blog, Category, Comment, CommentBlog, Episode, FifiUser, Film, FilmBelongToType,\
     FilmHasActor, Note, Promote, Quizz, Review, Type, UserLikeComment, UserSaveFilm, UserSaveVocabulary, \
-    UserWatchEpisode, Vocabulary
+    UserWatchEpisode, Vocabulary, Result
 
 # Register your models here.
 admin.site.register(Actor)
@@ -30,3 +30,4 @@ admin.site.register(UserSaveFilm)
 admin.site.register(UserSaveVocabulary)
 admin.site.register(UserWatchEpisode)
 admin.site.register(Vocabulary)
+admin.site.register(Result)

@@ -8,3 +8,5 @@ from .signup_services import SignupServices
 from .review_services import ReviewServices
 from .episode_services import EpisodeServices
 from .vocabulary_services import VocabularyServices
+from .quizz_services import QuizzServices
+from .result_services import ResultServices
