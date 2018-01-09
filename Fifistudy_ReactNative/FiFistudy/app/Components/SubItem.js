@@ -9,7 +9,15 @@ import {ImageButton} from '../Components/index.js';
 import Res from '../Resources/index.js';
 import Styles from '../Styles/SubItem.js';
 
+
 export default class SubItem extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            isActive: false,
+        }
+    }
+
     getSubEnglish(data) {
         return data.sub[0].replace(/<\/?[^>]+(>|$)/g, "");
     }
@@ -18,12 +26,16 @@ export default class SubItem extends Component {
         return data.sub[1].replace(/<\/?[^>]+(>|$)/g, "");
     }
 
+    setActive(isActive) {
+        this.setState({
+            isActive: isActive,
+        })
+    }
 
     render(){
         const {data} = this.props;
-        const {isActive} = this.props;
         return (
-                <View style={isActive ? Styles.containerActive : Styles.container}>
+                <View style={this.state.isActive ? Styles.containerActive : Styles.container}>
                     <TouchableWithoutFeedback>
                         <View style={Styles.subContainer}>
                         { data.sub[0] ? <Text style={Styles.subEnglish}>{this.getSubEnglish(data)}</Text> : null}

@@ -7,45 +7,48 @@ import {
 } from 'react-native';
 import { SubItem } from '../Components/index.js';
 export default class ListSub extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {};
-    //     // const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    //     // this.state = {
-    //     //     dataSource: ds.cloneWithRows(this.props.data),
-    //     // };
-    // }
+    constructor(props){
+        super(props);
+        this.rows = [];
+    }
 
     renderRow(item){
-        // Chua render styles moi duoc do render row chi chay lan dau,khi state thay doi thi no ko chay lai ham nay
-        let isActive = false;
-        if (this.props.currentItem){
-            // console.log(`currentItem: ${this.props.currentItem.number} | item.number: ${item.number}`);
-            if (this.props.currentItem.number==item.number){
-               isActive=true;
-            }
-        }
+        //this.listSub.scrollToItem({animated: true, index: "" + item.number});
         if (item.sub) {
             return (
-                <SubItem data={item} isActive={isActive}/>
+                <SubItem 
+                    ref={(ref) => this.rows.push(ref)}
+                    data={item}/>
             );
         }
         return null;
     }
+    setActive(nextActiveSubNumber) {
+        //console.log(`active! ${nextActiveSubNumber}`);
+        if (nextActiveSubNumber >= this.rows.length)
+            return;
+        //console.log(this.rows[nextActiveSubNumber - 1]);
+
+        nextActiveSubNumber--; // this.rows begin from 0 while sub number begin from 1
+        this.rows[nextActiveSubNumber].setActive(true);
+        if (nextActiveSubNumber !== 1) {
+            this.rows[nextActiveSubNumber - 1].setActive(false); // current sub
+        }
+        if (nextActiveSubNumber >= 1)
+            this.refs.flatListRef.scrollToIndex({animated: true, index: nextActiveSubNumber - 1})
+    }
     render() {
         const {data} = this.props;
         return (
-            // <ListView
-            //     dataSource={this.state.dataSource}
-            //     renderRow={this.renderRow}
-            // />
             <FlatList
-            horizontal={false}
-            scrollEnabled={false}
-            showsVerticalScrollIndicator={false}
-            data={data}
-            keyExtractor={number => number}
-            renderItem={({item}) => this.renderRow(item)}/>
+                ref='flatListRef'
+                horizontal={false}
+                scrollEnabled={true}
+                showsVerticalScrollIndicator={false}
+                data={data}
+                initialNumToRender={100}
+                keyExtractor={item => item.number}
+                renderItem={({item}) => this.renderRow(item)}/>
         )
     }
 }

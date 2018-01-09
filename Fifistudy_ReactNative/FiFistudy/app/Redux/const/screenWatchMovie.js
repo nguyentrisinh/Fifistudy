@@ -1,1 +1,1 @@
-export const GET_EPISODE = "GET_EPISODE"
+export const GET_EPISODE = "GET_EPISODE";

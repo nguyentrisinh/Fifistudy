@@ -62,7 +62,6 @@ class ScreenHome extends Component {
     }
 
     render() {
-        console.log('dataaaaaa',)
         return (
             <ScrollView
                 contentContainerStyle={Styles.container}

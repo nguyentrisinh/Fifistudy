@@ -58,7 +58,8 @@ export const API_PATH = {
     getSearch: (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE) => `/api/films/search_film_by_key/?search_key=${searchKey}&order_by=${orderBy}&page_size=${pageSize}&page=${pageNumber}`,
     getSearchWithAuth: (searchKey, orderBy, pageNumber, pageSize = MAX_PAGE) => `/api/films/search_film_by_key_with_auth/?search_key=${searchKey}&order_by=${orderBy}&page_size=${pageSize}&page=${pageNumber}`,
     postReviewFilm: `/api/reviews/save/`,
-    getReviewFilm: (filmId) => `/api/reviews/film/${filmId}/`
+    getReviewFilm: (filmId) => `/api/reviews/film/${filmId}/`,
+    getQuizz:(episodeId)=>`/api/episodes/quizz/${episodeId}/`
 
 }
 
