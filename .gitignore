@@ -114,7 +114,7 @@ frontend-Fifistudy/src/client/static/media/video\.mp4
 *.mp4
 
 //media from local
-//Fifistudy/media/
+Fifistudy/media/
 
 
 frontend-Fifistudy/src/client/static/css/bourbon/
