@@ -17,6 +17,6 @@ class QuizzAdapter:
                 answer = Answer.objects.filter(quizz_id=quizz)
                 quizz.answer_list = answer
 
-            return quizzs
+            return quizzs, episode
         except Episode.DoesNotExist:
             raise ApiCustomException(ErrorDefine.EPISODE_NOT_FOUND)
