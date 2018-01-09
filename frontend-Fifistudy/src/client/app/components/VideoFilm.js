@@ -229,12 +229,13 @@ class VideoFilm extends React.Component {
     }
 
     onClickNext = () => {
-        let {episodes} = this.props.filmDetail;
-        episodes.sort((a, b) => parseInt(a.number) - parseInt(b.number));
-        let index = episodes.findIndex((a) => a.number == this.props.data.number);
-        if (episodes[index + 1]) {
-            this.props.history.push(`/film/${this.props.filmDetail.slug}/${episodes[index + 1].number}`)
-        }
+        // let {episodes} = this.props.filmDetail;
+        // episodes.sort((a, b) => parseInt(a.number) - parseInt(b.number));
+        // let index = episodes.findIndex((a) => a.number == this.props.data.number);
+        // if (episodes[index + 1]) {
+        //     this.props.history.push(`/film/${this.props.filmDetail.slug}/${episodes[index + 1].number}`)
+        // }
+        this.props.history.push(`/quizz/${this.props.data.id}`)
     }
 
     render() {
@@ -292,7 +293,7 @@ class VideoFilm extends React.Component {
                                 <button onClick={this.onClickNext}
                                         className="video-film__control-item video-film__control-item--next-episode">
                                     <span className="video-film__next-text">
-                                        Tập tiếp theo &nbsp;
+                                        Làm bài test &nbsp;
                                     </span>
                                     <i className="fa fa-angle-right fa-2x"></i>
                                 </button>

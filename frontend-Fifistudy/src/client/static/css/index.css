@@ -1810,7 +1810,10 @@ body {
     display: inline-block;
     padding: 5px 10px;
     color: white;
-    margin-right: 0.5em; }
+    margin-right: 0.5em;
+    max-height: 30px; }
+  .quizz__question {
+    display: flex; }
   .quizz__answers {
     padding-left: 3em;
     padding-top: 0.6em;

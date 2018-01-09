@@ -2232,9 +2232,9 @@ body {
     padding: 5px 10px;
     color: white;
     margin-right: 0.5em;
+    max-height: 30px;
   }
-  &__question {
-
+  &__question {    display: flex;
   }
   &__answers {
 

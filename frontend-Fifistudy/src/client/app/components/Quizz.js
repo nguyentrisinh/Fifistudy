@@ -19,16 +19,18 @@ export default class Quizz extends React.Component {
         return (
             <div className="quizz">
                 <div className="quizz__question">
-                    <div className="quizz__number">
-                        {
-                            this.props.number
-                        }
-                    </div>
-                        <div className="quizz__title">
 
-                            {this.props.data.title}
+ <div className="quizz__number">
+                            {
+                                this.props.number
+                            }
                         </div>
                     <div className="quizz__question-content">
+
+                        <span className="quizz__title">
+
+                            {this.props.data.title}
+                        </span>
                         {
                             this.props.data.content
                         }
