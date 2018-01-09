@@ -17,7 +17,7 @@ from .episode_serializer import BaseEpisodeSerializer, BaseUserWatchEpisodeSeria
     SaveUserWatchEpisodeSerializer
 from .vocabulary_serializer import BaseVocabularySerializer, BaseUserSaveVocabularySerializer, \
     ListUserSaveVocabularySerializer, SaveVocabularySerializer, UpdateVocabularySerializer
-from .quizz_serializer import BaseQuizzSerializer, QuizzSerializer
+from .quizz_serializer import BaseQuizzSerializer, QuizzSerializer, QuizzCombineSerializer
 from .result_serializer import SaveResult, ResultList
 
 
