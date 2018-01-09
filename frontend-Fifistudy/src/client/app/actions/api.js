@@ -345,3 +345,13 @@ export const getFilm = (slug, token = null) => {
     }
 }
 
+export const getQuizz = (episodeId) => {
+    return axios.get(API_PATH.getQuizz(episodeId))
+        .then(response => {
+            return response.data
+        })
+        .catch(err => {
+            return err.response
+        })
+}
+

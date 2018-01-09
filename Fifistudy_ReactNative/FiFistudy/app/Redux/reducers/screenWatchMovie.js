@@ -13,12 +13,13 @@ export default screenWatchMovie = (state = initialState, action) => {
             return update(state, {
                 episode: {
                     $merge: {
-                        isLoading: false,
+                        isLoading: action.isLoading,
                         data: action.data
                     }
                 }
             });
             break;
+                        
         default :
             return state;
     }

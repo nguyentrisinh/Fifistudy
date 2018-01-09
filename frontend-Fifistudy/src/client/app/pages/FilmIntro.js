@@ -19,7 +19,6 @@ export default class FilmIntro extends React.Component {
         return (
             <FadeTransition>
                 <div className="film-intro-page">
-
                     <div className="detail-page__overlay"
                          style={{backgroundImage: `url(${serverDomain + this.props.data.thumbnail})`}}>
                     </div>

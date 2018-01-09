@@ -17,6 +17,7 @@ import ObjEpisode from '../Objects/ObjEpisode.js';
 import {ImageButton, ListSub} from '../Components/index.js';
 import Res from '../Resources/index.js';
 import Styles from '../Styles/MediaPlayer.js';
+import {changeSubItemProp} from '../Redux/actions/screenWatchMovie';
 
 
 export default class MediaPlayer extends Component {
@@ -104,8 +105,8 @@ export default class MediaPlayer extends Component {
                     if (currentItem.number != this.state.currentItem.number) {
                         this.setState({
                             currentItem: currentItem,
-                            // .replace(/<\/?[^>]+(>|$)/g, "") bo tag
                         });
+                        this.refs.listSubRef.setActive(currentItem.number)
                     }
                 }
             }
@@ -211,7 +212,6 @@ export default class MediaPlayer extends Component {
     }
 
     showPlayerControls() {
-        const width = Dimensions.get('window').width;
         return (
             // Control mask
             <View style={Styles.controlMask}>
@@ -256,7 +256,7 @@ export default class MediaPlayer extends Component {
                         step={1}
                     />
                     <ImageButton
-                        onPress={() => this.props.navigation.navigate('FullScreenWatch')}
+                        onPress={() => this.props.navigation.navigate('FullScreenWatch', {data: this.props.data})}
                         source={Res.icons.expand}
                         tintColor='white'/>
                 </View>
@@ -280,8 +280,6 @@ export default class MediaPlayer extends Component {
     }
 
     render() {
-
-        console.log("link video", this.props.data.link_video)
         const width = Dimensions.get('window').width;
         return (
             <View>
@@ -290,6 +288,7 @@ export default class MediaPlayer extends Component {
                     <View style={Styles.videoContainer}>
                         <Video style={{flex: 1}}
                             source={{uri: this.props.data.link_video}}   // Can be a URL or a local file.
+                            //source={Res.video.test}
                             ref={(ref) => this.player = ref}
                             rate={0}                              // 0 is paused, 1 is normal.
                             volume={this.state.volume}                            // 0 is muted, 1 is normal.
@@ -303,10 +302,10 @@ export default class MediaPlayer extends Component {
                             onLoad={this.events.onLoad}
                             onError={this.events.onError}
                             onEnd={this.events.onEnd}
+                            playInBackground={true}
                             onBuffer={this.events.onBuffer}
                             onTimedMetadata={this.events.onBuffer}
                         />
-                        {/* <Image source={Res.banner_film} /> */}
                         {this.state.showControl && this.showPlayerControls()}
                     </View>
                 </TouchableWithoutFeedback>
@@ -320,7 +319,7 @@ export default class MediaPlayer extends Component {
                     width: width,
                     height: width * Res.ratio,
                 }}>
-                    {!!this.state.sub && <ListSub currentItem={this.state.currentItem} data={this.state.sub}/>}
+                    {!!this.state.sub && <ListSub ref='listSubRef' currentItem={this.state.currentItem} data={this.state.sub}/>}
                 </View>
                 {/* END SUB SECTION */}
             </View>
