@@ -6,6 +6,7 @@ class Actor(models.Model):
 
     name = models.CharField(max_length=254, blank=False, null=False)
     profile_image = models.ImageField(upload_to='actor/profile_image')
+    profile_image_240 = models.ImageField(upload_to='actor/profile_image_240/', blank=True, null=True, default=None)
     birthday = models.DateField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
 
