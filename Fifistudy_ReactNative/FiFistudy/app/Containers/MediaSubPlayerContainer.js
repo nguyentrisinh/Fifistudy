@@ -5,8 +5,6 @@ import {
     View,
     Dimensions,
 } from 'react-native';
-import ObjFilm from '../Objects/ObjFilm.js';
-import ObjEpisode from '../Objects/ObjEpisode.js';
 import Res from '../Resources/index.js';
 
 

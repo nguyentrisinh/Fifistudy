@@ -116,6 +116,7 @@ export default class ImageSlider extends Component {
         const width = this.state.width;
         const height = this.props.height || this.state.height;
         const position = this.getPosition();
+        const {dataSource} = this.props;
 
         return (
             <View style={[
@@ -133,12 +134,12 @@ export default class ImageSlider extends Component {
                     style={[styles.container, 
                             { height: height, }
                     ]}>
-                    {this.props.dataSource.map((image, index) => {
-                        const imageObject = typeof image.film_detail.thumbnail240 === 'string' ? {uri: baseUrl+ image.film_detail.thumbnail240} : image.film_detail.thumbnail240;
+                    {dataSource.map((element, index) => {
+                        const imageObject = typeof element.thumbnail === 'string' ? element : element.thumbnail;
                         const textComponent = (
                             <View style={styles.layoutText}>
-                                {image.film_detail.english_name === undefined ? null : <Text style={styles.textTitle}>{image.film_detail.english_name}</Text>}
-                                {image.film_detail.vietnamese_name === undefined? null : <Text style={styles.textCaption}>{image.film_detail.vietnamese_name}</Text>}
+                                {element.english_name === undefined ? null : <Text style={styles.textTitle}>{element.english_name}</Text>}
+                                {element.vietnamese_name === undefined? null : <Text style={styles.textCaption}>{element.vietnamese_name}</Text>}
                             </View>
                         );
                         const imageComponent = (
@@ -163,7 +164,7 @@ export default class ImageSlider extends Component {
                                 key={index}
                                 style={{height, width}}
                                 delayPressIn={200}
-                                onPress={() => this.props.onPress({image, index})}>
+                                onPress={() => this.props.onPress({element, index})}>
                                     {this.props.overlay ? imageComponentWithOverlay : imageComponent}
                                 </TouchableOpacity>
                             );
@@ -175,7 +176,7 @@ export default class ImageSlider extends Component {
 
                 {/* SECTION INDICATOR  */}
                 <View style={styles.layoutIndicator}>
-                    {this.props.dataSource.map((image, index) => {
+                    {this.props.dataSource.map((element, index) => {
                         return (
                             <TouchableOpacity
                                 key={index}

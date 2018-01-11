@@ -16,8 +16,6 @@ import {
 import TimerMixin from 'react-timer-mixin';
 import Video from 'react-native-video';
 import Slider from "react-native-slider";
-import ObjFilm from '../Objects/ObjFilm.js';
-import ObjEpisode from '../Objects/ObjEpisode.js';
 import { ImageButton, ListSub } from '../Components/index.js';
 import Res from '../Resources/index.js';
 import Styles from '../Styles/MediaPlayer.js';
@@ -308,7 +306,7 @@ export default class MediaPlayerWithoutSub extends Component {
                     fontFamily: Res.fonts.common,
                     color: 'white',
                     fontSize: 17,
-                }}>{ObjEpisode.number}. {ObjEpisode.name}</Text>
+                }}>ObjEpisode.number}. ObjEpisode.name}</Text>
                 <View style={{
                     height: 1,
                     marginLeft: 8,

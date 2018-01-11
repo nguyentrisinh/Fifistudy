@@ -17,28 +17,28 @@ import {
     ScreenCategories,
     ScreenLogin,
     ScreenRegister,
-    ScreenMovieContainer,
-    ScreenWatchMovieContainer,
+    //ScreenMovieContainer,
+    //ScreenWatchMovieContainer,
     ScreenRegister_Step2,
     ScreenRegister_Step3,
     ScreenRegister_Step4,
-    ScreenListFilmContainer
+    //ScreenListFilmContainer
 } from '../Screens/index.js';
-import PopupListEpisode from '../Components/PopupListEpisode.js';
+//import PopupListEpisode from '../Components/PopupListEpisode.js';
 import ScreenRegister_Step1 from '../Screens/ScreenRegister_Step1';
 
 const DrawerApp = DrawerNavigator({
     ScreenNotes: { screen: ScreenNotes },
     ScreenHome: { screen: ScreenHome },
     ScreenLevels: { screen: ScreenLevels },
-    ScreenWatchMovie: { screen: ScreenWatchMovieContainer },
+    ScreenWatchMovie: { screen: ScreenWatchMovie },
     ScreenEpisodeComment: { screen: ScreenEpisodeComment },
     ScreenMovieComment: { screen: ScreenMovieComment },
     ScreenVocabulary: { screen: ScreenVocabulary },
-    PopupListEmpisode: { screen: PopupListEpisode },
-    ScreenMovies: { screen: ScreenMovieContainer },
+    //PopupListEmpisode: { screen: PopupListEpisode },
+    ScreenMovies: { screen: ScreenMovies },
     ScreenSearchFilm: { screen: ScreenSearchFilm },
-    ScreenListFilm: { screen: ScreenListFilmContainer },
+    ScreenListFilm: { screen: ScreenListFilm },
     ScreenTips: { screen: ScreenTips },
     FullScreenWatch: { screen: FullScreenWatch },
     ScreenCategories: { screen: ScreenCategories },

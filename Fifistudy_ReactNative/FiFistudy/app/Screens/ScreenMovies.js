@@ -5,34 +5,25 @@ import {
     Image,
     FlatList,
     Animated,
-    TouchableOpacity
+    TouchableOpacity,
+    Dimensions
 } from 'react-native';
-import {withNavigation} from 'react-navigation'
-import {baseUrl} from '../Server/config'
 import LinearGradient from 'react-native-linear-gradient';
 import PopupDialog, {SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 import styles from '../Styles/ScreenMovies.js';
 import res from '../Resources/index.js';
 import TabMovies from '../Navigators/TabMovies.js';
 import {ImageButton} from '../Components/index.js';
-import {ToolbarContainer} from '../Containers/index.js';
-import ObjFilm from '../Objects/ObjFilm.js';
 import stylesPopup from '../Styles/PopupListEpisode.js';
-import windows from '../Themes/Window.js';
-import lsEpisodes from '../Objects/ObjListEpisodes.js';
+import {episodes} from '../Objects/ObjEpisodes.js'
 
 const slideAnimation = new SlideAnimation({
     slideFrom: 'bottom',
 });
 
-class ScreenMovies extends Component {
+export default class ScreenMovies extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            ds: lsEpisodes,
-            isLiked: false,
-            isBookmarked: false,
-        }
         this.animatedValue = new Animated.Value(0.6);
     }
 
@@ -51,56 +42,63 @@ class ScreenMovies extends Component {
         ).start(() => this.animate());
     }
 
-    renderItemEpisode(item) {
+    renderItemEpisode(ep) {
         return (
             <TouchableOpacity style={stylesPopup.itemEpisode}
-                onPress={() => this.props.navigation.navigate('ScreenWatchMovie',{film:this.props.data,filmSlug:this.props.data.slug,episodeId:item.number})}>
-                {/* onPress={() => this.props.navigation.dispatch(NavigationActions.back())}> */}
+                onPress={() => this.props.navigation.navigate('ScreenWatchMovie', {film: film, epData: ep})}>
                 <Text style={stylesPopup.textEpisode}>
-                    {item.number}
+                    {ep.number}
                 </Text>
-                <View style={stylesPopup.blackLine}>
+                <View style={stylesPopup.blackLine}> 
                 </View>
             </TouchableOpacity>
         )
     }
 
-    renderPopup() {
-        return (
-            <PopupDialog
-                width={windows.width * (2 / 3)}
-                dialogTitle={<DialogTitle title="Danh sách các tập"/>}
-                ref={(popupDialog) => {
-                    this.popupDialog = popupDialog
-                }}
-                dialogAnimation={slideAnimation}
-                overlayOpacity={0.5}>
-                {/* --- Component popup show --- */}
-                <FlatList
-                    data={this.state.ds}
-                    renderItem={({item}) => this.renderItemEpisode(item)}
-                >
-                </FlatList>
-            </PopupDialog>
-        )
+    getEpisodes(film) {
+        let listEpisode = [];
+        episodes.forEach(e => {
+            if (e.film_id === film.id)
+            listEpisode.push(e);
+        });
+        return listEpisode.sort((a, b) => parseInt(a.number) - parseInt(b.number));
     }
 
-    onFavoriteButtonPress(){
-        let isLiked = this.state.isLiked;
-        this.setState({isLiked: !isLiked});
+    // renderPopup(film) {
+    //     return (
+    //         <PopupDialog
+    //             // width={Dimensions.get('window').width * (2 / 3)}
+    //             width='63%'
+    //             dialogTitle={<DialogTitle title="Danh sách các tập"/>}
+    //             ref={(popupDialog) => {
+    //                 this.popupDialog = popupDialog
+    //             }}
+    //             dialogAnimation={slideAnimation}
+    //             overlayOpacity={0.5}>
+    //             {/* --- Component popup show --- */}
+    //             <FlatList
+    //                 data={}
+    //                 renderItem={({item}) => this.renderItemEpisode(item)}
+    //             >
+    //             </FlatList>
+    //         </PopupDialog>
+    //     )
+    // }
+
+    onFavoriteButtonPress(item){
+        item.is_liked = !item.is_liked;
     }
 
-    onBookmarkButtonPress(){
-        let isBookmarked = this.state.isBookmarked;
-        this.setState({isBookmarked: !isBookmarked});
+    onBookmarkButtonPress(item){
+        item.is_saved = !item.is_saved;
     }
 
     render() {
+        const {film} = this.props.navigation.state.params;
         return (
             <View style={{flex: 1}}>
                 <View style={styles.container}>
                     {/* Toolbar */}
-                    {/* <ToolbarContainer/> */}
                     <View style={styles.toolbar}>
                         <ImageButton
                                 source={res.icons.back}
@@ -108,17 +106,17 @@ class ScreenMovies extends Component {
                                 onPress={() => this.props.navigation.navigate('ScreenHome')} />
                         <View style={{flexDirection: 'row'}}>
                             <ImageButton source={res.icons.rating} tintColor='white'/>
-                            <ImageButton source={this.state.isBookmarked ? res.icons.bookmarkFull : res.icons.bookmark}
+                            <ImageButton source={film.is_saved ? res.icons.bookmarkFull : res.icons.bookmark}
                                 tintColor='white'
-                                onPress={() => this.onBookmarkButtonPress()}/>
-                            <ImageButton source={this.state.isLiked ? res.icons.favoriteFull : res.icons.favorite}
+                                onPress={() => this.onBookmarkButtonPress(item)}/>
+                            <ImageButton source={film.is_liked ? res.icons.favoriteFull : res.icons.favorite}
                                 tintColor='white'
-                                onPress={() => this.onFavoriteButtonPress()}/>
+                                onPress={() => this.onFavoriteButtonPress(item)}/>
                         </View>
                     </View>    
                 
                     <Image
-                        source={{uri: baseUrl+ this.props.data.thumbnail}}
+                        source={film.thumbnail}
                         style={styles.image}>
                         <LinearGradient
                             colors={['rgba(0, 0, 0, 0.5)', 'transparent']}
@@ -133,7 +131,7 @@ class ScreenMovies extends Component {
                     </Image>
                     
                     <View style={styles.tabContainer}>
-                        <TabMovies screenProps={this.props.data} />
+                        <TabMovies/>
                     </View>
                 </View>
 
@@ -146,23 +144,19 @@ class ScreenMovies extends Component {
                 </TouchableOpacity>
                 
                  <PopupDialog 
-                    width={windows.width * (2 / 3)}
+                    width='63%'
                     dialogTitle={<DialogTitle title="Danh sách các tập" />}
                     ref={(popupDialog) => { this.popupDialog = popupDialog }}
                     dialogAnimation={slideAnimation}
                     overlayOpacity={0.5}>
                      {/* --- Component popup show --- */}
                      <FlatList
-                         data={this.props.data.episodes.sort((a,b)=>parseInt(a.number)-parseInt(b.number))}
-                         renderItem={({ item }) => this.renderItemEpisode(item)}
+                         data={this.getEpisodes(film)}
+                         renderItem={(ep) => this.renderItemEpisode(film, ep)}
                      >
                      </FlatList>
                  </PopupDialog>
             </View>
-
-
         )
     }
 }
-
-export default withNavigation(ScreenMovies);

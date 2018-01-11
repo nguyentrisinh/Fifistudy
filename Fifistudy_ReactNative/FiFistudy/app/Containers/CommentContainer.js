@@ -6,13 +6,12 @@ import {
 } from 'react-native';
 import { CommentItem } from '../Components/index.js';
 import styles from '../Styles/CommentContainer.js';
-import ObjComment from '../Objects/ObjComment.js';
 
 class CommentContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataSource: ObjComment,
+            dataSource: [],
         }
     }
 

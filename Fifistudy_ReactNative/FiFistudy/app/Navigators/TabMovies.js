@@ -1,12 +1,5 @@
 import { TabNavigator } from 'react-navigation';
 import Res from '../Resources/index.js';
-
-//Below import lines not working!!
-// import {
-//     ScreenMovieDetail,
-//     ScreenMovieComment
-// } from '../Screens/index.js';
-
 import ScreenMovieDetail from '../Screens/ScreenMovieDetail.js';
 import ScreenMovieComment from '../Screens/ScreenMovieComment.js';
 

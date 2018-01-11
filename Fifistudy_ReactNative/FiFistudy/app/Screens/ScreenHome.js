@@ -1,59 +1,36 @@
 import React, {Component} from 'react';
-import {getPromotes, getLastest, getMostView} from '../Redux/actions/screenHome'
 import {
     Text,
     Image,
     View,
     ScrollView,
-    TextInput,
     TouchableOpacity,
-    StatusBar
 } from 'react-native';
-import Orientation from 'react-native-orientation';
-import {bindAc} from 'redux';
-import {connect} from 'react-redux';
 import Styles from '../Styles/ScreenHome';
 import res from '../Resources/index';
-import {ImageButton, ImageSlider, Banner, FilmCategory} from '../Components/index.js';
+import {ImageButton, ImageSlider} from '../Components/index.js';
 import {
-    BannerContainer,
     HistoryFilmsContainer,
-    FilmCardContainer,
     TipContainer,
-    NewFilmsContainer,
-    MostViewContainer
+    FilmCardContainer
 } from '../Containers/index.js';
-import {NavigationActions} from 'react-navigation';
-import Obj from '../Objects/ObjTemp.js';
-import {SearchFilm} from '../Components/index.js';
+import {newestFilms, mostViewedFilm, promotes, historyFilms} from '../Objects/ObjFilms.js';
 
-class ScreenHome extends Component {
+export default class ScreenHome extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            // position: 1,
             interval: null,
         };
     }
-
-    navigateToScreen(route) {
-        this.setState({route: route});
-        let navigationAction = NavigationActions.navigate({routeName: route});
-        this.props.navigation.dispatch(navigationAction);
-    }
-
+    
     componentWillMount() {
-        this.props.getPromotes();
-        this.props.getLastest();
-        this.props.getMostView();
-        // Orientation.lockToPortrait();
         this.setState({
             interval: setInterval(() => {
                 this.setState({
-                    position: this.state.position === Obj.sliderSource.length ? 0 : this.state.position + 1
+                    position: this.state.position === promotes.length ? 0 : this.state.position + 1
                 });
-            }, 2000) // (postion, time to change image)
+            }, 3000) // (postion, time to change image)
         });
     }
 
@@ -62,34 +39,31 @@ class ScreenHome extends Component {
     }
 
     render() {
+        const {navigate} = this.props.navigation;
         return (
             <ScrollView
                 contentContainerStyle={Styles.container}
                 showsVerticalScrollIndicator={false}>
-                {/* <StatusBar hidden /> */}
                 {/* TOOLBAR SECCTION */}
-                {/* <SearchFilm navigation={this.props.navigation} /> */}
                 <View style={Styles.toolbar}>
                     <ImageButton
-                        onPress={() => this.navigateToScreen('DrawerToggle')}
+                        onPress={() => navigate('DrawerToggle')}
                         source={res.icons.menu}
                         tintColor='white'/>
                     <View style={Styles.searchContainer}>
                         <ImageButton
-                            onPress={() => this.navigateToScreen('ScreenSearchFilm')}
+                            onPress={() => navigate('ScreenSearchFilm')}
                             source={res.icons.search}
                             tintColor='white'/>
                     </View>
                 </View>
                 {/* SECTION BANNER SLIDER */}
-                <View
-                    style={Styles.bannerSlider}>
-                    {/*<ImageSlider*/}
-                    {/*navigation={this.props.navigation}*/}
-                    {/*dataSource={Obj.sliderSource}*/}
-                    {/*position={this.state.position}*/}
-                    {/*onPostionChange={position => this.setState({ position })} />*/}
-                    <BannerContainer/>
+                <View style={Styles.bannerSlider}>
+                    <ImageSlider
+                        navigation={this.props.navigation}
+                        dataSource={promotes}
+                        position={this.state.position}
+                        onPostionChange={position => this.setState({ position })} />
                 </View>
 
                 {/* SECTION HISTORY SLIDER */}
@@ -97,13 +71,10 @@ class ScreenHome extends Component {
                 <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>
                         Phim đã xem
-                        {
-                            this.props.name
-                        }
                     </Text>
                     <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue}/>
                 </View>
-                <HistoryFilmsContainer navigation={this.props.navigation}/>
+                <HistoryFilmsContainer navigation={this.props.navigation} data={historyFilms}/>
 
                 {/* NEWEST FILMS */}
                 {/* Title */}
@@ -111,24 +82,24 @@ class ScreenHome extends Component {
                     <Text style={Styles.subtitle}>Phim mới</Text>
                     <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue}/>
                 </View>
-                {/*<FilmCardContainer navigation={this.props.navigation} />*/}
-                <NewFilmsContainer/>
+                <FilmCardContainer navigation={this.props.navigation} data={newestFilms}/>
+
                 {/* MOST VIEWED FILMS */}
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>Xem nhiều</Text>
                     <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue}/>
                 </View>
-                {/*<FilmCardContainer navigation={this.props.navigation} />*/}
-                <MostViewContainer/>
+                <FilmCardContainer navigation={this.props.navigation} data={mostViewedFilm}/>
+
                 {/* TIPS */}
                 {/* Title */}
-                <View style={Styles.subtitleGroup}>
+                {/* <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>Tips</Text>
                     <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue}
-                                 onPress={() => this.navigateToScreen('ScreenTips')}/>
+                                 onPress={() => navigate('ScreenTips')}/>
                 </View>
-                <TipContainer navigation={this.props.navigation} numRender={4}/>
+                <TipContainer navigation={this.props.navigation} data={tips} numRender={4}/> */}
 
 
                 {/* FOOTER */}
@@ -143,8 +114,5 @@ class ScreenHome extends Component {
     }
 
 }
-
-
-export default connect(null, {getPromotes, getLastest, getMostView})(ScreenHome)
 
 

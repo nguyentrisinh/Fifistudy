@@ -5,15 +5,10 @@ import {
     Image,
     ScrollView
 } from 'react-native';
-
-import {withNavigation} from 'react-navigation';
-
 import styles from '../Styles/ScreenMovieDetail.js';
 import res from '../Resources/index.js';
-import ObjFilm from '../Objects/ObjFilm.js';
 
-class ScreenMovieDetail extends Component {
-
+export default class ScreenMovieDetail extends Component {
     getDificultLevel(film){
         let level = 'Dễ';
         if (film.difficult_level === 2) level = 'Trung bình';
@@ -23,7 +18,7 @@ class ScreenMovieDetail extends Component {
     }
 
     render() {
-        const data=this.props.screenProps;
+        const data = this.props.data;
         return (
             <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
                 <Text style={styles.txtHeader}>
@@ -100,5 +95,3 @@ class ScreenMovieDetail extends Component {
         )
     }
 }
-
-export default withNavigation(ScreenMovieDetail);

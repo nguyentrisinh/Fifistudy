@@ -3,19 +3,10 @@ import {
   FlatList
 } from 'react-native';
 import FilmCard from '../Components/FilmCardItem.js';
-import Obj from '../Objects/ObjTemp.js';
 import {withNavigation} from 'react-navigation';
 
 
-class FilmCardContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            //dataSource: this.props.data.splice(0, 4),
-            //dataSource: Obj.newestFilms,
-        }
-    }
-
+export default class FilmCardContainer extends Component {
     renderItem(item) {
         return (
             <FilmCard data={item} navigation={this.props.navigation}/>
@@ -23,18 +14,17 @@ class FilmCardContainer extends Component {
     }
 
     render(){
+        const {data} = this.props;
         return(
             <FlatList
                 horizontal={false}
                 numColumns={2}
                 scrollEnabled={false}
                 showsVerticalScrollIndicator={false}
-                data={this.props.data.splice(0, 4)}
-                keyExtractor={ID => ID}
+                data={data.splice(0, 4)}
+                keyExtractor={id => id}
                 renderItem={({item}) => this.renderItem(item)}/>
         );
     }
 }
-
-export default withNavigation(FilmCardContainer)
 

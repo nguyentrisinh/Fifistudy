@@ -14,7 +14,7 @@ import EpisodeCircleView from '../Components/EpisodeCircleView';
 
 export default class FilmCard extends Component {
     setBookmark(film) {
-        if (film.isBookmark)
+        if (film.is_saved)
             return (
                 <View style={[Styles.bookmark, {}]}>
                     <ImageButton source={Res.icons.bookmarkFull} tintColor={Res.colors.yellow}/>
@@ -40,7 +40,7 @@ export default class FilmCard extends Component {
     render() {
         const {data} = this.props;
         return (
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenMovies',{filmSlug:data.slug})}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenMovies', {film: data})}>
                 <View style={Styles.container}>
                     {this.setBookmark(data)}
                     {/* Episode Group */}
@@ -50,7 +50,7 @@ export default class FilmCard extends Component {
 
                     {/* Film's image */}
                     <View style={Styles.groupFilmImgLevel}>
-                        <Image source={{uri:baseUrl+ data.thumbnail240}}
+                        <Image source={data.thumbnail}
                                style={Styles.filmImg}/>
                         {/* Level line */}
                         <View style={[Styles.levelLine, {backgroundColor: this.getLevelColor(data)}]}/>

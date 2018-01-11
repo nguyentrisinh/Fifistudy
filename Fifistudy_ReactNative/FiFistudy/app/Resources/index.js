@@ -1,17 +1,4 @@
 const res = {
-    // ic_more: require('./Icons/ic_more.png'),
-    // green_star: require('./Icons/green-star.png'),
-    // purple_chart: require('./Icons/purple-chart.png'),
-    // ic_like: require('./Icons/ic_like.png'),
-    // ic_like_blue: require('./Icons/ic_like_blue.png'),
-    // banner_film: require('./Images/ghost_in_shell.png'),
-    // //avatars
-    // ava1: require('./Avatars/ava1.png'),
-    // ava2: require('./Avatars/ava2.png'),
-    // ava3: require('./Avatars/ava3.png'),
-
-
-
     icons: {
         search: require('./Icons/ic_search.png'),
         menu: require('./Icons/ic_menu.png'),
@@ -85,16 +72,16 @@ const res = {
 
         //level's colors
         levelEasy: '#009688',
-        levelMedium: '#AB47BC',
+        levelMedium: '#FFC107',
         levelHard: '#E91E63',
 
-        volcabularyColors: [
-            '#64B5F6',
-            '#E91E63',
-            '#AB47BC',
-            '#FFC107',
-            '#9E9E9E'
-        ]
+        // volcabularyColors: [
+        //     '#64B5F6',
+        //     '#E91E63',
+        //     '#AB47BC',
+        //     '#FFC107',
+        //     '#9E9E9E'
+        // ]
     },
     fonts: {
         common: 'sans-serif',
@@ -103,9 +90,23 @@ const res = {
     animations: {
         check: require('./Animations/check.gif'),
     },
-    // video: {
-    //     test: require('./Videos/test.mp4'),
-    // },
+    video: {
+        test: require('./Videos/test.mp4'),
+        //sub: require('./Videos/sub.vtt'),
+        theFlash: require('./Videos/flash.mp4'),
+        flashSub: 'http://128.199.159.54:6100/media/episode/sub/1_xw1gkGC.vtt',        
+    },
     ratio: 9 / 16,
+    filmImage: {
+        theFlash: require('./FilmImages/flash.jpg'),
+        bigBang: require('./FilmImages/big.jpg'),
+        rise: require('./FilmImages/rise.jpg'),
+        rio: require('./FilmImages/rio.jpg'),
+        mom: require('./FilmImages/mom.jpg'),
+        hannah: require('./FilmImages/hannah.jpg'),
+        friend: require('./FilmImages/friend.jpg'),
+        extra: require('./FilmImages/extra.jpg'),
+        mother: require('./FilmImages/mother.jpg'),
+    }
 }
 export default res;
