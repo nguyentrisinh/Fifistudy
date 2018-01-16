@@ -28,9 +28,6 @@ export default class ScreenComment extends Component {
                         Bình luận</Text>
                 </View>
 
-
-
-
                 {/* Enter comment section */}
                 <View style={Styles.enterCommentContainer}>
                     <TextInput style={Styles.textInput}

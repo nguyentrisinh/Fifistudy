@@ -1,1 +1,0 @@
-// Tat ca acton creators o day

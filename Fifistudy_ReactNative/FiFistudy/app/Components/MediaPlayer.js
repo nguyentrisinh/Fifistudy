@@ -8,29 +8,27 @@ import {
     Image,
     TouchableWithoutFeedback
 } from 'react-native';
-import {baseUrl} from '../Server/config'
 import TimerMixin from 'react-timer-mixin';
 import Video from 'react-native-video';
 import Slider from "react-native-slider";
 import {ImageButton, ListSub} from '../Components/index.js';
 import Res from '../Resources/index.js';
 import Styles from '../Styles/MediaPlayer.js';
-import {changeSubItemProp} from '../Redux/actions/screenWatchMovie';
 
 
 export default class MediaPlayer extends Component {
-    timeString2s = (a, b) => {// time(HH:MM:SS.mss) // optimized
-        // Chuyen dinh dang thoi gian cua sub thanh ms
-        return a = a.split('.'), // optimized
-            b = a[1] * 1 || 0, // optimized
-            a = a[0].split(':'),
-        b + (a[2] ? a[0] * 3600 + a[1] * 60 + a[2] * 1 : a[1] ? a[0] * 60 + a[1] * 1 : a[0] * 1) * 1e3 // optimized
-    }
+    timeString2s(a, b) {// time(HH:MM:SS.mss) // optimized
+       // Chuyen dinh dang thoi gian cua sub thanh ms
+       return a = a.split('.'), // optimized
+           b = a[1] * 1 || 0, // optimized
+           a = a[0].split(':'),
+       b + (a[2] ? a[0] * 3600 + a[1] * 60 + a[2] * 1 : a[1] ? a[0] * 60 + a[1] * 1 : a[0] * 1) * 1e3 // optimized
+   }
 
     constructor(props){
         super(props);
         this.state = {
-            sub: null,
+            sub: '',
             isPlay: true,
             text: 10,
             currentTime: 0, 
@@ -62,7 +60,7 @@ export default class MediaPlayer extends Component {
             onToggleControls: this.toggleControls.bind(this),
         };
 
-        fetch(baseUrl+this.props.data.sub)
+        fetch(this.props.data.sub)
         .then(response => {
             return response._bodyText
         })
@@ -285,8 +283,8 @@ export default class MediaPlayer extends Component {
                 <TouchableWithoutFeedback onPress={this.controls.onToggleControls}>
                     <View style={Styles.videoContainer}>
                         <Video style={{flex: 1}}
-                            source={{uri: this.props.data.link_video}}   // Can be a URL or a local file.
-                            //source={Res.video.test}
+                            //source={{uri: this.props.data.link_video}}   // Can be a URL or a local file.
+                            source={this.props.data.link_video}
                             ref={(ref) => this.player = ref}
                             rate={0}                              // 0 is paused, 1 is normal.
                             volume={this.state.volume}                            // 0 is muted, 1 is normal.
@@ -307,7 +305,6 @@ export default class MediaPlayer extends Component {
                         {this.state.showControl && this.showPlayerControls()}
                     </View>
                 </TouchableWithoutFeedback>
-                {/* <Text>{this.state.testText}</Text> */}
                 {/* END MEDIA PLAYER SECTION */}
                     
 

@@ -12,7 +12,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import PopupDialog, {SlideAnimation, DialogTitle} from 'react-native-popup-dialog';
 import styles from '../Styles/ScreenMovies.js';
 import res from '../Resources/index.js';
-import TabMovies from '../Navigators/TabMovies.js';
+import Tabs from '../Navigators/TabMovies.js';
 import {ImageButton} from '../Components/index.js';
 import stylesPopup from '../Styles/PopupListEpisode.js';
 import {episodes} from '../Objects/ObjEpisodes.js'
@@ -42,12 +42,12 @@ export default class ScreenMovies extends Component {
         ).start(() => this.animate());
     }
 
-    renderItemEpisode(ep) {
+    renderItemEpisode(film, item) {
         return (
             <TouchableOpacity style={stylesPopup.itemEpisode}
-                onPress={() => this.props.navigation.navigate('ScreenWatchMovie', {film: film, epData: ep})}>
+                onPress={() => this.props.navigation.navigate('ScreenWatchMovie', {film: film, epData: item})}>
                 <Text style={stylesPopup.textEpisode}>
-                    {ep.number}
+                    {item.number}
                 </Text>
                 <View style={stylesPopup.blackLine}> 
                 </View>
@@ -63,27 +63,6 @@ export default class ScreenMovies extends Component {
         });
         return listEpisode.sort((a, b) => parseInt(a.number) - parseInt(b.number));
     }
-
-    // renderPopup(film) {
-    //     return (
-    //         <PopupDialog
-    //             // width={Dimensions.get('window').width * (2 / 3)}
-    //             width='63%'
-    //             dialogTitle={<DialogTitle title="Danh sách các tập"/>}
-    //             ref={(popupDialog) => {
-    //                 this.popupDialog = popupDialog
-    //             }}
-    //             dialogAnimation={slideAnimation}
-    //             overlayOpacity={0.5}>
-    //             {/* --- Component popup show --- */}
-    //             <FlatList
-    //                 data={}
-    //                 renderItem={({item}) => this.renderItemEpisode(item)}
-    //             >
-    //             </FlatList>
-    //         </PopupDialog>
-    //     )
-    // }
 
     onFavoriteButtonPress(item){
         item.is_liked = !item.is_liked;
@@ -131,7 +110,7 @@ export default class ScreenMovies extends Component {
                     </Image>
                     
                     <View style={styles.tabContainer}>
-                        {/* <TabMovies film={film}/> */}
+                        <Tabs screenProps={{film: film}}/>
                     </View>
                 </View>
 
@@ -144,17 +123,17 @@ export default class ScreenMovies extends Component {
                 </TouchableOpacity>
                 
                  <PopupDialog 
-                    width='63%'
+                    width={Dimensions.get('window').width*0.63}
                     dialogTitle={<DialogTitle title="Danh sách các tập" />}
                     ref={(popupDialog) => { this.popupDialog = popupDialog }}
                     dialogAnimation={slideAnimation}
                     overlayOpacity={0.5}>
                      {/* --- Component popup show --- */}
-                     <FlatList
+                    <FlatList
                          data={this.getEpisodes(film)}
-                         renderItem={(ep) => this.renderItemEpisode(film, ep)}
-                     >
-                     </FlatList>
+                         renderItem={({item}) => this.renderItemEpisode(film, item)}
+                    >
+                    </FlatList>
                  </PopupDialog>
             </View>
         )

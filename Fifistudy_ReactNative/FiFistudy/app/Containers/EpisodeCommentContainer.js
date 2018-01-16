@@ -3,9 +3,7 @@ import{
     FlatList,
 } from 'react-native';
 import {episodeComments} from '../Objects/ObjComments.js';
-import {
-    EpisodeCommentItem
-} from '../Components/index.js';
+import {EpisodeCommentItem} from '../Components/index.js';
 
 export default class EpisodeCommentContainer extends Component {
     renderCommentItem(item) {

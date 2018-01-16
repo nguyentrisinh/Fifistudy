@@ -7,13 +7,11 @@ import {
 import {
     ImageButton,
 } from '../Components/index.js';
-import {getSearch} from '../Redux/actions/screenList'
-import {connect} from 'react-redux';
 import {FilmListContainer} from '../Containers/index.js';
 import styles from '../Styles/ScreenSearchFilm.js';
 import Res from '../Resources/index.js';
 
-class ScreenSearchFilm extends Component {
+export default class ScreenSearchFilm extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -126,11 +124,3 @@ class ScreenSearchFilm extends Component {
         )
     }
 }
-
-const mapStateToProps = state =>    {
-    return {
-        search:state.screenList.search
-    }
-}
-
-export default connect(mapStateToProps,{getSearch})(ScreenSearchFilm)

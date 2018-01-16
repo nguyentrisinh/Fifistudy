@@ -9,19 +9,19 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 20,
         paddingTop: 8,
         paddingBottom: 8,
-        paddingLeft: 16,
-        paddingRight: 8,
+        paddingLeft: 4,
+        paddingRight: 4,
         elevation: 6,
         marginTop: 8,
         marginBottom: 8,
-        // backgroundColor: Res.colors.violet
+        backgroundColor: Res.colors.lightgray
     },
     contentContainer: {
         flex: 1,
         alignItems: 'center',
-        marginLeft: 8
     },
     vocabulary: {
+        fontSize: 14,
         fontWeight: 'bold',
         marginBottom: 4,
         textAlign: 'center'

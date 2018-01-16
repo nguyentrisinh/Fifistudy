@@ -8,29 +8,29 @@ const mapNavigationStateParamsToProps = (SomeComponent) => {
     return class extends Component {
         static navigationOptions = SomeComponent.navigationOptions; // better use hoist-non-react-statics
         render() {
-            const {navigation: {state: {params}}} = this.props
-            return <SomeComponent {...params} {...this.props} />
+            console.log(this.props);
+            return <SomeComponent film={this.props.film} />
         }
     }
 }
 
 const TabMovies = TabNavigator({
-    'Thông tin': { screen: mapNavigationStateParamsToProps(ScreenMovieDetail) },
-    'Bình luận': { screen: mapNavigationStateParamsToProps(ScreenMovieComment)}
+    'Thông tin': { screen: ScreenMovieDetail},
+    'Bình luận': { screen: ScreenMovieComment}
 }, {
-        tabBarPosition: 'bottom',
-        tabBarOptions: {
-            activeTintColor: Res.colors.blue,
-            inactiveTintColor: 'white',
-            labelStyle: {
-                color: Res.colors.blue,
-                fontSize: 14,
-                fontWeight: 'bold',
-            },
-            style: {
-                backgroundColor: Res.colors.background,
-            }
-        }
-    });
+    tabBarPosition: 'bottom',
+    tabBarOptions: {
+        activeTintColor: Res.colors.blue,
+        inactiveTintColor: 'white',
+        labelStyle: {
+            color: Res.colors.blue,
+            fontSize: 14,
+            fontWeight: 'bold',
+        },
+        style: {
+            backgroundColor: Res.colors.background,
+        },
+    },
+});
 
 export default TabMovies;

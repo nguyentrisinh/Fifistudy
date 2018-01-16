@@ -42,6 +42,7 @@ const res = {
         password: require('./Icons/ic_password.png'),
         add: require('./Icons/ic_add.png'),
         camera: require('./Icons/ic_camera.png'),
+        garbage: require('./Icons/ic_garbage.png'),
     },
     images: {
         default: require('./Images/img_default.png'),
@@ -94,6 +95,7 @@ const res = {
         test: require('./Videos/test.mp4'),
         //sub: require('./Videos/sub.vtt'),
         theFlash: require('./Videos/flash.mp4'),
+        //flashSub: require('./Videos/sub.txt'),
         flashSub: 'http://128.199.159.54:6100/media/episode/sub/1_xw1gkGC.vtt',        
     },
     ratio: 9 / 16,

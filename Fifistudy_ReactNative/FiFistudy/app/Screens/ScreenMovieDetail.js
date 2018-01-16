@@ -18,7 +18,7 @@ export default class ScreenMovieDetail extends Component {
     }
 
     render() {
-        const {film} = this.props;
+        const {film} = this.props.screenProps;
         return (
             <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
                 <Text style={styles.txtHeader}>

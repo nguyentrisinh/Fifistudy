@@ -5,13 +5,14 @@ import {
     FlatList
 } from 'react-native';
 import { CommentItem } from '../Components/index.js';
+import {filmDetailComments} from '../Objects/ObjComments.js';
 import styles from '../Styles/CommentContainer.js';
 
 class CommentContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataSource: [],
+            dataSource: filmDetailComments,
         }
     }
 

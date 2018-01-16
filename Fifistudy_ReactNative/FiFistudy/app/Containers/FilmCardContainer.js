@@ -21,7 +21,7 @@ export default class FilmCardContainer extends Component {
                 numColumns={2}
                 scrollEnabled={false}
                 showsVerticalScrollIndicator={false}
-                data={data.splice(0, 4)}
+                data={data.slice(0, 4)}
                 keyExtractor={item => item.id}
                 renderItem={({item}) => this.renderItem(item)}/>
         );

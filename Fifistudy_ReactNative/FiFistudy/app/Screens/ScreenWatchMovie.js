@@ -18,18 +18,19 @@ import {episodes} from '../Objects/ObjEpisodes.js';
 
 export default class WatchScreen extends Component {
     setEpisodeColor(item) {
-        return item.number == this.props.episodeData.number ? Resources.colors.violet : Resources.colors.blue;
+        const {epData} = this.props.navigation.state.params;
+        return item.number == epData.number ? Resources.colors.violet : Resources.colors.blue;
     }
 
     componentWillMount() {
         Orientation.lockToPortrait();
     }
 
-    onClickButtonEpisode = (episodeNumber) => {
-        const {filmData} = this.props;
-        console.log(filmData.slug,episodeNumber)
+    onClickButtonEpisode(episodeNumber){
+        //const {filmData} = this.props;
+        //console.log(filmData.slug,episodeNumber)
         // this.props.navigation.navigate('ScreenWatchMovie',{film:filmData,filmSlug:filmData.slug,episodeId:episode.id});
-        this.props.getEpisode(filmData.slug, episodeNumber);
+        //this.props.getEpisode(filmData.slug, episodeNumber);
     }
 
     getEpisodes(film) {
@@ -66,9 +67,9 @@ export default class WatchScreen extends Component {
                         numColumns={6}
                         showsHorizontalScrollIndicator={false}
                         data={listEpisode}
-                        keyExtractor={item => item.number}
+                        key={item => item.id}
                         renderItem={({item}) => (
-                            <EpisodeCircleView onClickButton={this.onClickButtonEpisode}
+                            <EpisodeCircleView onClickButton={this.onClickButtonEpisode(item.number)}
                                                episodeNumber={item.number}
                                                episodeId = {item.id}
                                                size={42}

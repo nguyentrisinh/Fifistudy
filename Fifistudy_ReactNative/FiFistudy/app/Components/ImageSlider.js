@@ -131,7 +131,6 @@ export default class ImageSlider extends Component {
                     ]}>
                     {dataSource.map((film, index) => {
                         const imageObject = typeof film.thumbnail === 'string' ? {uri: film.thumbnail} : film.thumbnail;
-                        console.log(film);
                         return (
                             <TouchableOpacity
                                 key={index}
