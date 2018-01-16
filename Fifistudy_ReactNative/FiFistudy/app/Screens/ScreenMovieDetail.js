@@ -18,14 +18,14 @@ export default class ScreenMovieDetail extends Component {
     }
 
     render() {
-        const data = this.props.data;
+        const {film} = this.props;
         return (
             <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
                 <Text style={styles.txtHeader}>
-                    {data.english_name}
+                    {film.english_name}
                 </Text>
                 <Text style={styles.txtFilm}>
-                    {data.vietnamese_name}
+                    {film.vietnamese_name}
                 </Text>
 
                 <View style={styles.rateContainer}>
@@ -36,7 +36,7 @@ export default class ScreenMovieDetail extends Component {
                             style={styles.icon}
                         />
                         <Text style={styles.greentxt}>
-                            {data.average_score}
+                            {film.average_score}
                         </Text>
                     </View>
                     <View style={styles.iconWithText}>
@@ -46,7 +46,7 @@ export default class ScreenMovieDetail extends Component {
                             style={styles.icon}
                         />
                         <Text style={styles.purpletxt}>
-                            {this.getDificultLevel(data)}
+                            {this.getDificultLevel(film)}
                         </Text>
                     </View>
                 </View>
@@ -58,7 +58,7 @@ export default class ScreenMovieDetail extends Component {
                         Số tập
                     </Text>
                     <Text style={styles.spacetxt}>
-                        {data.episode_number}
+                        {film.episode_number}
                     </Text>
                 </View>
                 <View style={styles.horiContainer}>
@@ -88,7 +88,7 @@ export default class ScreenMovieDetail extends Component {
                     showsVerticalScrollIndicator={false}
                     scrollEnabled={false}>
                     <Text>
-                        {data.description}
+                        {film.description}
                     </Text>
                 </ScrollView>
             </ScrollView>

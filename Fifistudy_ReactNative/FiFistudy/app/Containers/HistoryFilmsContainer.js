@@ -24,7 +24,7 @@ class HistoryFilmsContainer extends Component {
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     data={data}
-                    keyExtractor={id => id}
+                    keyExtractor={item => item.id}
                     renderItem={({item}) => this.renderItem(item)}/>
             </View>
         );

@@ -131,7 +131,7 @@ export default class ScreenMovies extends Component {
                     </Image>
                     
                     <View style={styles.tabContainer}>
-                        <TabMovies/>
+                        {/* <TabMovies film={film}/> */}
                     </View>
                 </View>
 

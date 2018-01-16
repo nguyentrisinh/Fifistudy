@@ -20,6 +20,7 @@ export default class ScreenHome extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            position: 1,
             interval: null,
         };
     }
@@ -30,7 +31,7 @@ export default class ScreenHome extends Component {
                 this.setState({
                     position: this.state.position === promotes.length ? 0 : this.state.position + 1
                 });
-            }, 3000) // (postion, time to change image)
+            }, 2000) // (postion, time to change image)
         });
     }
 

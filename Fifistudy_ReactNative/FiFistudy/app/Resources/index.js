@@ -98,15 +98,15 @@ const res = {
     },
     ratio: 9 / 16,
     filmImage: {
-        theFlash: require('./FilmImages/flash.jpg'),
-        bigBang: require('./FilmImages/big.jpg'),
-        rise: require('./FilmImages/rise.jpg'),
-        rio: require('./FilmImages/rio.jpg'),
-        mom: require('./FilmImages/mom.jpg'),
-        hannah: require('./FilmImages/hannah.jpg'),
-        friend: require('./FilmImages/friend.jpg'),
-        extra: require('./FilmImages/extra.jpg'),
-        mother: require('./FilmImages/mother.jpg'),
+        theFlash: require('./FilmImages/flash.png'),
+        bigBang: require('./FilmImages/big.png'),
+        rise: require('./FilmImages/rise.png'),
+        rio: require('./FilmImages/rio.png'),
+        mom: require('./FilmImages/mom.png'),
+        hannah: require('./FilmImages/hannah.png'),
+        friend: require('./FilmImages/friends.png'),
+        extra: require('./FilmImages/extra.png'),
+        mother: require('./FilmImages/mother.png'),
     }
 }
 export default res;

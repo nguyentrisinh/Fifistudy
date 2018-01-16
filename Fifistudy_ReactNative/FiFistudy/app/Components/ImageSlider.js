@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {baseUrl} from '../Server/config'
 import {
     View,
     Text,
@@ -12,6 +11,7 @@ import {
     TouchableOpacity,
     Dimensions,
 } from 'react-native';
+import Res from '../Resources/index';
 import PropTypes from 'prop-types';
 
 const reactNativePackage = require('react-native/package.json');
@@ -53,11 +53,6 @@ export default class ImageSlider extends Component {
     }
 
     getPosition() {
-        // console.log('props: ', this.props.position);
-         //console.log('state: ', this.state.position)
-        // if (typeof this.props.position === 'number') {
-        //     return this.props.position;
-        // }
         return this.state.position;
     }
 
@@ -134,49 +129,30 @@ export default class ImageSlider extends Component {
                     style={[styles.container, 
                             { height: height, }
                     ]}>
-                    {dataSource.map((element, index) => {
-                        const imageObject = typeof element.thumbnail === 'string' ? element : element.thumbnail;
-                        const textComponent = (
-                            <View style={styles.layoutText}>
-                                {element.english_name === undefined ? null : <Text style={styles.textTitle}>{element.english_name}</Text>}
-                                {element.vietnamese_name === undefined? null : <Text style={styles.textCaption}>{element.vietnamese_name}</Text>}
-                            </View>
-                        );
-                        const imageComponent = (
-                            <View key={index}>
-                                <Image source={imageObject}
-                                        style={{height, width}}/>
-                                {textComponent}
-                            </View>
-                        );
-                        const imageComponentWithOverlay = (
-                            <View key={index} style={styles.containerImage}>
-                                <View style={styles.overlay}>
-                                    <Image source={imageObject}
-                                            style={{height, width}}/>
-                                </View>
-                                {textComponent}
-                            </View>
-                        );
-                        if (this.props.onPress) {
-                            return (
-                                <TouchableOpacity
+                    {dataSource.map((film, index) => {
+                        const imageObject = typeof film.thumbnail === 'string' ? {uri: film.thumbnail} : film.thumbnail;
+                        console.log(film);
+                        return (
+                            <TouchableOpacity
                                 key={index}
-                                style={{height, width}}
-                                delayPressIn={200}
-                                onPress={() => this.props.onPress({element, index})}>
-                                    {this.props.overlay ? imageComponentWithOverlay : imageComponent}
-                                </TouchableOpacity>
-                            );
-                        } else {
-                            return this.props.overlay ? imageComponentWithOverlay : imageComponent;
-                        }
+                                style={{height, width}}>
+                                <View style={{height, width}}>
+                                    <Image source={imageObject}
+                                        style={{height, width}}/>
+                                    <View style={styles.overlay}/>
+                                    <View style={styles.layoutText}>
+                                        {film.english_name === undefined ? null : <Text style={styles.textTitle}>{film.english_name}</Text>}
+                                        {film.vietnamese_name === undefined? null : <Text style={styles.textCaption}>{film.vietnamese_name}</Text>}
+                                    </View>
+                                </View>
+                            </TouchableOpacity>
+                        )
                     })}
                 </ScrollView>
 
                 {/* SECTION INDICATOR  */}
                 <View style={styles.layoutIndicator}>
-                    {this.props.dataSource.map((element, index) => {
+                    {this.props.dataSource.map((film, index) => {
                         return (
                             <TouchableOpacity
                                 key={index}
@@ -264,13 +240,12 @@ const styles = StyleSheet.create({
     indicatorSelected: {
         opacity: 1,
     },
-    containerImage : {
-        flex: 1,
-        width: Dimensions.get('window').width,
-    },
     overlay: {
-        opacity: 0.5,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').width * Res.ratio, 
+        opacity: 0.32,
         backgroundColor: 'black',
+        position: 'absolute'
     },
     layoutText: {
         position: 'absolute',

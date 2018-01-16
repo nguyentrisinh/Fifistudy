@@ -104,7 +104,7 @@ export const films = [
         vietnamese_name: "Những người bạn - Mùa 1",
         difficult_level: 2,
         description: "Phim Friends là bộ phim hài rất nổi tiếng ở Mỹ gồm 10 seasons được dùng trong hầu hết các trung tâm dạy tiếng anh ở nước Mỹ như là một công cụ trong việc nâng cao về việc luyện nghe nói, phản xạ trong việc học tiếng anh dành cho sinh viên nước ngoài. Một điều quan trọng chính là bộ phim friends phụ đề tiếng anh đã mang lại cho khán giả các nước khác một cái nhìn cực kì chính xác, chân thật về xã hội Mỹ, về phong cách sống, cách xử sự của người Mỹ",
-        thumbnail: res.filmImage,
+        thumbnail: res.filmImage.friend,
         average_score: 0.0,
         review_number: 0,
         duration: "25 phút",
@@ -146,7 +146,7 @@ export const films = [
     },
 ];
 
-export const newestFilms = films.slice(0, 6);
-export const mostViewedFilm = [films[0], films[3], films[4], films[8], films[6]];
-export const promotes = [films[1], films[3], films[5]];
+export const newestFilms = [films[0], films[8], films[4], films[3], films[6]];
+export const mostViewedFilm = [films[0], films[1], films[2], films[3], films[4], films[5],];
+export const promotes = [films[8], films[2], films[6], films[0]];
 export const historyFilms = [films[0], films[2], films[3], films[4], films[8]];
