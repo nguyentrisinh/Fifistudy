@@ -45,13 +45,14 @@ export default class WatchScreen extends Component {
     render() {
         const {film} = this.props.navigation.state.params;
         const {epData} = this.props.navigation.state.params;
+        const timeStart = this.props.navigation.state.params.timeStart;
         let listEpisode = this.getEpisodes(film);
 
         return (
             <View style={Styles.container}>
                 <ScrollView
                     showsVerticalScrollIndicator={false}>
-                    <MediaPlayer data={epData} navigation={this.props.navigation}/>
+                    <MediaPlayer film={film} data={epData} navigation={this.props.navigation}/>
 
                     {/* TITLE SECTION */}
                     <View style={Styles.titleContainer}>

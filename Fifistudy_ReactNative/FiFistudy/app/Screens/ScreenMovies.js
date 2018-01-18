@@ -64,12 +64,12 @@ export default class ScreenMovies extends Component {
         return listEpisode.sort((a, b) => parseInt(a.number) - parseInt(b.number));
     }
 
-    onFavoriteButtonPress(item){
-        item.is_liked = !item.is_liked;
+    onFavoriteButtonPress(film){
+        film.is_liked = !film.is_liked;
     }
 
-    onBookmarkButtonPress(item){
-        item.is_saved = !item.is_saved;
+    onBookmarkButtonPress(film){
+        film.is_saved = !film.is_saved;
     }
 
     render() {
@@ -87,10 +87,10 @@ export default class ScreenMovies extends Component {
                             <ImageButton source={res.icons.rating} tintColor='white'/>
                             <ImageButton source={film.is_saved ? res.icons.bookmarkFull : res.icons.bookmark}
                                 tintColor='white'
-                                onPress={() => this.onBookmarkButtonPress(item)}/>
+                                onPress={() => this.onBookmarkButtonPress(film)}/>
                             <ImageButton source={film.is_liked ? res.icons.favoriteFull : res.icons.favorite}
                                 tintColor='white'
-                                onPress={() => this.onFavoriteButtonPress(item)}/>
+                                onPress={() => this.onFavoriteButtonPress(film)}/>
                         </View>
                     </View>    
                 

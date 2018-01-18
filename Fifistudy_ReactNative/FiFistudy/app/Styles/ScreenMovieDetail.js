@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     },
     icon: {
         width: 15,
-        height: 15
+        height: 15,
+        tintColor: Res.colors.levelEasy
     },
     purpletxt: {
         textAlign: 'center',
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     },
     greentxt: {
         textAlign: 'center',
-        color: 'green',
+        color: Res.colors.levelEasy,
         marginLeft: 10,
     },
     italictxt: {

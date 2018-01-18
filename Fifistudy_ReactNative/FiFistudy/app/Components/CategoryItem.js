@@ -41,7 +41,7 @@ export default class EpisodeCommentItem extends Component {
 
 
                     <TouchableOpacity style={Styles.content}
-                        onPress={() => this.props.navigation.navigate('ScreenListFilm', {title: data.name})}>
+                        onPress={() => this.props.navigation.navigate('ScreenListFilm', {title: `Thể loại: ${data.name}`, category: 'all'})}>
                         <Text style={Styles.title}>{data.name}</Text>
                         {this.state.isShowDescription && <Text style={Styles.description}>{data.description}</Text>}
                     </TouchableOpacity>

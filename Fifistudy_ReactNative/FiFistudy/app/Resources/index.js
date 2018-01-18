@@ -23,6 +23,7 @@ const res = {
         backSec: require('./Icons/ic_back_10_sec.png'),
         forwardSec: require('./Icons/ic_forward_10_sec.png'),
         volume: require('./Icons/ic_volume.png'),
+        volumeMute: require('./Icons/ic_volume_mute.png'),
         expand: require('./Icons/ic_expand.png'),
         collapse: require('./Icons/ic_collapse.png'),
         filmType: require('./Icons/ic_box.png'),
@@ -43,6 +44,8 @@ const res = {
         add: require('./Icons/ic_add.png'),
         camera: require('./Icons/ic_camera.png'),
         garbage: require('./Icons/ic_garbage.png'),
+        home: require('./Icons/ic_home.png'),
+        logout: require('./Icons/ic_logout.png'),
     },
     images: {
         default: require('./Images/img_default.png'),
@@ -54,6 +57,14 @@ const res = {
         login_background: [
             require('./Images/login_1.png'),
             require('./Images/login_2.png'),
+        ],
+        commentAvatars: [
+            require('./Avatars/ava1.png'),
+            require('./Avatars/ava2.png'),
+            require('./Avatars/ava3.png'),
+            require('./Avatars/ava4.png'),
+            require('./Avatars/ava5.png'),
+            require('./Avatars/ava6.png'),
         ]
     },
     colors: {
@@ -65,7 +76,8 @@ const res = {
         pink: '#E91E63',
         violet: '#AB47BC',
         yellow: '#FFC107',
-        red: '#f44336',
+        green: '#009688',
+        red: '#E91E63',
         line: '#E0E0E0',
         gray: '#9E9E9E',
         lightgray: '#E0E0E0',

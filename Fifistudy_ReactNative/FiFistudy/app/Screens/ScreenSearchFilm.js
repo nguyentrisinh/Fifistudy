@@ -10,97 +10,38 @@ import {
 import {FilmListContainer} from '../Containers/index.js';
 import styles from '../Styles/ScreenSearchFilm.js';
 import Res from '../Resources/index.js';
+import {films} from '../Objects/ObjFilms.js';
 
 export default class ScreenSearchFilm extends Component {
     constructor(props){
         super(props);
         this.state = {
-            searchString: '',
+            searchResult: [],
+
         }
     }
-
-    // renderItemFilm(item) {
-    //     return (
-    //         <View style={{ flexDirection: 'column' }}>
-    //             <TouchableOpacity
-    //                 onPress={() => this.clickItemFilm()}
-    //                 style={styles.itemContainer}>
-    //                 <Image
-    //                     source={item.banner}
-    //                     style={styles.bannerFilm}
-    //                     resizeMod='stretch'
-    //                 />
-    //                 <View style={styles.textContainer}>
-    //                     <Text
-    //                         numberOfLines={2}
-    //                         ellipsizeMode='tail'
-    //                         style={styles.titleEng}>
-    //                         {item.title_english}
-    //                     </Text>
-    //                     <Text
-    //                         numberOfLines={2}
-    //                         ellipsizeMode='tail'
-    //                         style={styles.titleVn}>
-    //                         {item.title_vn}
-    //                     </Text>
-    //                     <View style={{ marginTop: 10, marginLeft: 4, height: 2, width: 200, backgroundColor: item.color, }}>
-    //                     </View>
-    //                 </View>
-    //             </TouchableOpacity>
-    //             <View style={styles.lineColor}>
-    //             </View>
-    //         </View>
-    //     )
-    // }
     onChangeSearchText(text){
         this.setState({
-            searchString: text,
+            searchResult: this.getSearchResult(text),
         });
-        this.props.getSearch(text,"created_at",1,10)
     }
 
-    renderFilmList = () =>{
-        if (this.props.search.isLoading) {
-            return (
-                <View>
-                    <Text>
-                        Loading
-                    </Text>
-                </View>
-            )
+    getSearchResult(searchString) {
+        let result = [];
+        if (searchString || searchString.trim()){
+            searchString = searchString.toLowerCase();
+            films.forEach(f => {
+                if (f.english_name.toLowerCase().includes(searchString) || f.vietnamese_name.toLowerCase().includes(searchString))
+                    result.push(f);
+            });
         }
-        if (this.props.search.data === null) {
-            return (
-                <View>
-                    <Text>
-                        Lỗi
-                    </Text>
-                </View>
-            )
-        }
-
-        if (this.props.search.data.error) {
-            return (
-                <View>
-                    <Text>
-                        Lỗi
-                    </Text>
-                </View>
-            )
-        }
-
-        if (this.props.search.data.data)
-            return (
-                <FilmListContainer data={this.props.search.data.data.films}/>
-            )
-
+        return result;
     }
 
     render() {
         const {navigation} = this.props;
         return (
             <View style={styles.container}>
-                {/* {this.renderSearchBar()} */}
                 {/* Search bar */}
                 <View style={styles.searchBarContainer}>
                     <ImageButton source={Res.icons.back} tintColor={Res.colors.blue}
@@ -115,11 +56,7 @@ export default class ScreenSearchFilm extends Component {
                     />
                 </View>
                 <View style={styles.line}/>
-                {
-                    this.renderFilmList()
-                }
-
-                {/*<FilmListContainer navigation={navigation} data={this.} searchString={this.state.searchString}/>                */}
+                <FilmListContainer navigation={navigation} data={this.state.searchResult}/>               
             </View>
         )
     }

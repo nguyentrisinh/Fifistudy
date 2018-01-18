@@ -17,6 +17,17 @@ export default class ScreenMovieDetail extends Component {
         return level;
     }
 
+    getLevelColor(film) {
+        let color = res.colors.levelEasy;
+
+        if (film.difficult_level === 2)
+            color = res.colors.levelMedium;
+        if (film.difficult_level === 3)
+            color = res.colors.levelHard;
+
+        return color;
+    }
+
     render() {
         const {film} = this.props.screenProps;
         return (
@@ -31,7 +42,7 @@ export default class ScreenMovieDetail extends Component {
                 <View style={styles.rateContainer}>
                     <View style={styles.iconWithText}>
                         <Image
-                            source={res.green_star}
+                            source={res.icons.ratingFull}
                             resizeMode='stretch'
                             style={styles.icon}
                         />
@@ -41,11 +52,11 @@ export default class ScreenMovieDetail extends Component {
                     </View>
                     <View style={styles.iconWithText}>
                         <Image
-                            source={res.purple_chart}
+                            source={res.icons.level}
                             resizeMode='stretch'
-                            style={styles.icon}
+                            style={[styles.icon, {tintColor: this.getLevelColor(film)}]}
                         />
-                        <Text style={styles.purpletxt}>
+                        <Text style={[styles.purpletxt, {color: this.getLevelColor(film)}]}>
                             {this.getDificultLevel(film)}
                         </Text>
                     </View>

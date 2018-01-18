@@ -16,7 +16,6 @@ import DrawerMenuItem from './DrawerMenuItem.js';
 import LevelCard from './LevelCard.js';
 import SubItem from './SubItem.js';
 import VocabularyItem from './VocabularyItem.js';
-import MediaPlayerWithoutSub from './MediaPlayerWithoutSub.js';
 import FilmListItem from './FilmListItem.js';
 import CategoryItem from './CategoryItem.js';
 import FilmCategory from './FilmCategory';
@@ -42,7 +41,6 @@ export {
     LevelCard,
     SubItem,
     VocabularyItem,
-    MediaPlayerWithoutSub,
     FilmListItem,
     CategoryItem,
     StepLine,

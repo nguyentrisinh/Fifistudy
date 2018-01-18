@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 import {ImageButton} from '../Components/index.js';
 import Res from '../Resources/index.js';
@@ -16,14 +16,14 @@ export default class DrawerMenuItem extends Component {
 
     render() {
         return(
-            <TouchableHighlight onPress={this.props.onPress}>
+            <TouchableOpacity onPress={this.props.onPress}>
                 <View style={Styles.container}>
                     {/* ICON */}
                     <ImageButton source={this.props.image} tintColor={Res.colors.gray}/>
                     {/* LABLE */}
                     <Text style={Styles.label}>{this.props.lable}</Text>
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
         );
     }
 }

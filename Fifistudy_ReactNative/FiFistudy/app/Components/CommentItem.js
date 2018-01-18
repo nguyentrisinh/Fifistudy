@@ -15,7 +15,7 @@ import Styles from '../Styles/CommentItem.js';
 
 export default class CommentItem extends Component {
     getColor(comment){
-        return comment.is_liked === true ? Resources.colors.yellow : Resources.colors.blue;
+        return comment.is_liked === true ? Resources.colors.blue : Resources.colors.lightgray;
     }
 
     render(){

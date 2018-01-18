@@ -8,7 +8,7 @@ import { VocabularyItem } from '../Components/index.js';
 export default class VocabulariesContainer extends Component {
     renderCommentItem(item) {
         return (
-            <VocabularyItem data={item}/>
+            <VocabularyItem data={item} navigation={this.props.navigation}/>
         )
     }
 

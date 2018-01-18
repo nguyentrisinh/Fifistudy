@@ -15,7 +15,7 @@ import Styles from '../Styles/EpisodeCommentItem.js';
 
 export default class EpisodeCommentItem extends Component {
     getColor(comment){
-        return comment.is_liked === true ? Resources.colors.yellow : Resources.colors.blue;
+        return comment.is_liked === true ? Resources.colors.blue : Resources.colors.lightgray;
     }
 
     render(){

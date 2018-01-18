@@ -32,26 +32,33 @@ export default class DrawerMenu extends Component {
                 </View>
 
                 {/* SECTION MENU'S ITEM */}
-                <View>
-                    {/*<DrawerMenuItem image={Res.icons.filmType} lable='Thể loại'*/}
-                        {/*onPress={() => navigate('ScreenCategories')}/>*/}
+                <View style={{flex: 1}}>
+                    <DrawerMenuItem image={Res.icons.home} lable='Trang chủ'
+                        onPress={() => navigate('ScreenHome')}/>
+                    <DrawerMenuItem image={Res.icons.filmType} lable='Thể loại'
+                        onPress={() => navigate('ScreenCategories')}/>
                     <DrawerMenuItem image={Res.icons.level} lable='Độ khó'
                         onPress={() => navigate('ScreenLevels')}/>
-                    <DrawerMenuItem image={Res.icons.tip} lable='Tip'
-                        onPress={() => navigate('ScreenTips')}/>
+                    {/* <DrawerMenuItem image={Res.icons.tip} lable='Tip'
+                        onPress={() => navigate('ScreenTips')}/> */}
                     <DrawerMenuItem image={Res.icons.search} lable='Tìm kiếm'
                         onPress={() => navigate('ScreenSearchFilm')}/>
 
                     {/* LINE */}
                     <View style={Styles.line}/>
-                    
                     <Text style={Styles.lable}>Cá nhân</Text>
                     <DrawerMenuItem image={Res.icons.history} lable='Lịch sử'
                         onPress={() => navigate('ScreenListFilm', {title: 'Lịch sử'})}/>
                     <DrawerMenuItem image={Res.icons.bookmarks} lable='Đánh dấu'
                         onPress={() => navigate('ScreenListFilm', {title: 'Đánh dấu'})}/>
-                    {/* <DrawerMenuItem image={Res.icons.note} lable='Sổ tay'
-                        /> */}
+                    <DrawerMenuItem image={Res.icons.volcabulary} lable='Từ vựng'
+                        onPress={() => navigate('ScreenVocabulary')}/>
+                </View>
+
+                <View>
+                    <View style={Styles.line}/>
+                    <DrawerMenuItem image={Res.icons.logout} lable='Đăng xuất'
+                        onPress={() => navigate('ScreenLogin')}/>
                 </View>
             </ScrollView>
         );

@@ -17,14 +17,10 @@ import {
     ScreenCategories,
     ScreenLogin,
     ScreenRegister,
-    //ScreenMovieContainer,
-    //ScreenWatchMovieContainer,
     ScreenRegister_Step2,
     ScreenRegister_Step3,
     ScreenRegister_Step4,
-    //ScreenListFilmContainer
 } from '../Screens/index.js';
-//import PopupListEpisode from '../Components/PopupListEpisode.js';
 import ScreenRegister_Step1 from '../Screens/ScreenRegister_Step1';
 
 const DrawerApp = DrawerNavigator({
@@ -35,7 +31,6 @@ const DrawerApp = DrawerNavigator({
     ScreenEpisodeComment: { screen: ScreenEpisodeComment },
     ScreenMovieComment: { screen: ScreenMovieComment },
     ScreenVocabulary: { screen: ScreenVocabulary },
-    //PopupListEmpisode: { screen: PopupListEpisode },
     ScreenMovies: { screen: ScreenMovies },
     ScreenSearchFilm: { screen: ScreenSearchFilm },
     ScreenListFilm: { screen: ScreenListFilm },

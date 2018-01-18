@@ -252,7 +252,7 @@ export default class MediaPlayer extends Component {
                         step={1}
                     />
                     <ImageButton
-                        onPress={() => this.props.navigation.navigate('FullScreenWatch', {data: this.props.data})}
+                        onPress={() => this.props.navigation.navigate('FullScreenWatch', {film: this.props.film, data: this.props.data})}
                         source={Res.icons.expand}
                         tintColor='white'/>
                 </View>

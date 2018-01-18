@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     subtitle: {
         fontFamily: Res.fonts.common,
         fontWeight: 'bold',
-        color: Res.colors.blue,
+        color: Res.colors.body,
         fontSize: 17,
     },
     line: {

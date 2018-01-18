@@ -73,7 +73,8 @@ export default class ScreenHome extends Component {
                     <Text style={Styles.subtitle}>
                         Phim đã xem
                     </Text>
-                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue}/>
+                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.body}
+                        onPress={() => navigate('ScreenListFilm', {title: 'Lịch sử'})}/>
                 </View>
                 <HistoryFilmsContainer navigation={this.props.navigation} data={historyFilms}/>
 
@@ -81,7 +82,8 @@ export default class ScreenHome extends Component {
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>Phim mới</Text>
-                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue}/>
+                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.body}
+                        onPress={() => navigate('ScreenListFilm', {title: 'Phim mới'})}/>
                 </View>
                 <FilmCardContainer navigation={this.props.navigation} data={newestFilms}/>
 
@@ -89,7 +91,8 @@ export default class ScreenHome extends Component {
                 {/* Title */}
                 <View style={Styles.subtitleGroup}>
                     <Text style={Styles.subtitle}>Xem nhiều</Text>
-                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.blue}/>
+                    <ImageButton source={res.icons.moreArrow} tintColor={res.colors.body}
+                        onPress={() => navigate('ScreenListFilm', {title: 'Xem nhiều'})}/>
                 </View>
                 <FilmCardContainer navigation={this.props.navigation} data={mostViewedFilm}/>
 

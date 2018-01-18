@@ -22,7 +22,7 @@ export default class ScreenVolcabulary extends Component {
                 </View>
                 <View style={Styles.line}/>
                 
-                <VocabulariesContainer/>
+                <VocabulariesContainer navigation={this.props.navigation}/>
             </View>
         )
     }

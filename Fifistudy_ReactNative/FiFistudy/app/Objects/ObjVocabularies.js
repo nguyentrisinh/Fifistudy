@@ -1,40 +1,44 @@
 export const vocabularies = [
+    // {
+    //     id: 1,
+    //     vocabulary: [
+    //     {
+    //         id: -1,
+    //         content: "You see that red "
+    //     },{
+    //         id: 1,
+    //         content: "blur"
+    //     },{
+    //         id: -1,
+    //         content: "?"
+    //     }],
+    //     meaning: "Các bạn nhìn thấy vệt đỏ đó chứ?",
+    //     episode_id: 1,
+    //     time: "00:00:11.846",
+    // },
     {
         id: 1,
-        vocabulary: 'He was well advanced in years before starting his new experiments',
-        meaning: 'Ông ấy đã già mất rồi trước khi bắt đầu cho những trải nghiệm mới',
-        difficult_level: 1,
-        episode_id: 1,
-        time: 0,
+        vocabulary: 'I am the fastest man alive',
+        meaning: 'Tôi là người có tốc độ nhanh nhất trên hành tinh này'
     },
     {
         id: 2,
-        vocabulary: 'In the air',
-        meaning: 'Không chắc chắn',
-        difficult_level: 2,
+        vocabulary: 'Usually from bullies',
+        meaning: 'Thường là chạy khỏi mấy đứa bắt nạt',
     },
     {
         id: 3,
-        vocabulary: 'I am feeling rather blues today',
-        meaning: 'Tôi cảm thấy hôm nay đuối quá',
-        difficult_level: 1,
+        vocabulary: 'Sometimes I escaped',
+        meaning: 'Đôi khi tôi chạy thoát',
     },
     {
         id: 4,
-        vocabulary: "I won't believe it unless I see it in black and white",
-        meaning: 'Tôi không tin nếu tôi không thấy nó trên giấy trắng mực đen',
-        difficult_level: 3,
+        vocabulary: "It wasn't right - I know",
+        meaning: 'Như thế là không đúng đắn. - Mẹ biết',
     },
     {
-        id: 5,
-        vocabulary: "Give me a hand with this bookcase. It's too heavy for me to move it alone",
-        meaning: 'Hãy giúp tớ một tay với giá sách này. Nó quá nặng, tớ không di chuyển một mình được',
-        difficult_level: 3,
-    },
-    {
-        id: 6,
-        vocabulary: 'She still keeps in touch with me until now',
-        meaning: 'Cô ấy vẫn giữ liên lạc với tôi cho tới bây giờ',
-        difficult_level: 2,
+        id: 3,
+        vocabulary: "I guess I wasn't fast enough - No",
+        meaning: 'Con đoán là con đã chạy không đủ nhanh. - Không',
     },
 ];

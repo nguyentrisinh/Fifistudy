@@ -1,7 +1,6 @@
 import Orientation from 'react-native-orientation';
 import styles from '../Styles/FullScreenWatch.js';
 import React, { Component } from 'react';
-import {baseUrl} from '../Server/config'
 import {
     Text,
     View,
@@ -20,7 +19,7 @@ import { ImageButton, ListSub } from '../Components/index.js';
 import Res from '../Resources/index.js';
 import Styles from '../Styles/MediaPlayer.js';
 
-export default class MediaPlayerWithoutSub extends Component {
+export default class FullScreenWatch extends Component {
     timeString2s = (a, b) => {// time(HH:MM:SS.mss) // optimized
         // Chuyen dinh dang thoi gian cua sub thanh ms
         return a = a.split('.'), // optimized
@@ -31,13 +30,19 @@ export default class MediaPlayerWithoutSub extends Component {
 
     componentWillMount() {
         Orientation.lockToLandscape();
+
+        setTimeout(() => {
+            this.setState({
+                isPlay: true,
+            })
+        }, 10000);
     }
 
     constructor(props) {
         super(props);
         this.state = {
             sub: null,
-            isPlay: true,
+            isPlay: false,
             text: 10,
             currentTime: 0,
             duration: 0,
@@ -46,7 +51,7 @@ export default class MediaPlayerWithoutSub extends Component {
             isDragging: false, // xác định người dùng có đang kéo thanh tua video k,
             currentItem: null, // dòng sub hiện tại đang chạy.
             showControl: false, // xác định có hiển thị control mark hay không
-            isShowSub: false
+            isShowSub: true
         };
 
         this.events = {
@@ -69,8 +74,7 @@ export default class MediaPlayerWithoutSub extends Component {
             onToggleControls: this.toggleControls.bind(this),
         };
 
-        fetch(baseUrl + this.props.navigation.state.params.data.sub) 
-        //fetch("http://studymovie.net/Cms_Data/Contents/admin/Media/sub-e-v/2ptd-Friends.S01E24.mHD.BluRay.DD5.1.x264-EPiK.Vie_Syned-24-e-v.vtt")
+        fetch(this.props.navigation.state.params.data.sub) 
             .then(response => {
                 return response._bodyText
             })
@@ -110,8 +114,9 @@ export default class MediaPlayerWithoutSub extends Component {
                     if (currentItem.number != this.state.currentItem.number) {
                         this.setState({
                             currentItem: currentItem,
-                            // .replace(/<\/?[^>]+(>|$)/g, "") bo tag
                         });
+                        if (this.refs.lSubRef !== undefined)
+                            this.refs.lSubRef.setActive(currentItem.number);
                     }
                 }
             }
@@ -286,14 +291,18 @@ export default class MediaPlayerWithoutSub extends Component {
         })
     }
 
-    renderListSub() {
+    renderListSub(isShowSub) {
+        const {film} = this.props.navigation.state.params;
+        const {data} = this.props.navigation.state.params;
         return (
             <View style={{
                 position: 'absolute',
                 right: 0,
                 top: 0,
-                width: '36%',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)'
+                width: isShowSub ? '36%' : 0,
+                height: '100%',
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                elevation: 1,
             }}> 
                 {/* Title */}
                 <Text style={{
@@ -306,7 +315,7 @@ export default class MediaPlayerWithoutSub extends Component {
                     fontFamily: Res.fonts.common,
                     color: 'white',
                     fontSize: 17,
-                }}>ObjEpisode.number}. ObjEpisode.name}</Text>
+                }}>{data.number}. {film.english_name}</Text>
                 <View style={{
                     height: 1,
                     marginLeft: 8,
@@ -315,7 +324,7 @@ export default class MediaPlayerWithoutSub extends Component {
                 }}/>
 
                 {/* List sub */}
-                {!!this.state.sub && <ListSub currentItem={this.state.currentItem} data={this.state.sub} />}
+                {!!this.state.sub && <ListSub ref='lSubRef' currentItem={this.state.currentItem} data={this.state.sub} />}
             </View>
         )
     }
@@ -336,8 +345,8 @@ export default class MediaPlayerWithoutSub extends Component {
                     onPress={this.controls.onToggleControls}>
                     <View style={Styles.fullscreenContainer}>
                         <Video style={{ flex: 1, zIndex: 1 }}
-                            source={{ uri: data.link_video }}   // Can be a URL or a local file.
-                            //source={Res.video.test}
+                            //source={{ uri: data.link_video }}   // Can be a URL or a local file.
+                            source={data.link_video}
                             ref={(ref) => this.player = ref}
                             rate={0}                              // 0 is paused, 1 is normal.
                             volume={this.state.volume}                            // 0 is muted, 1 is normal.
@@ -354,13 +363,12 @@ export default class MediaPlayerWithoutSub extends Component {
                             onBuffer={this.events.onBuffer}
                             onTimedMetadata={this.events.onBuffer}
                         />
-                        {/* <Image source={Res.banner_film} style={{flex: 1, zIndex: 1, resizeMode: 'cover'}}/> */}
                         {this.state.showControl && this.showPlayerControls()}
                     </View>
                 </TouchableWithoutFeedback>
 
                 {/* SUB PANEL SECTION */}
-                {this.state.isShowSub && this.renderListSub()}
+                {this.renderListSub(this.state.isShowSub)}
                 <View style={{
                     marginTop: 8,
                     marginRight: 16,
