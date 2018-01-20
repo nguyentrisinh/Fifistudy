@@ -19,7 +19,7 @@ import {episodes} from '../Objects/ObjEpisodes.js';
 export default class WatchScreen extends Component {
     setEpisodeColor(item) {
         const {epData} = this.props.navigation.state.params;
-        return item.number == epData.number ? Resources.colors.violet : Resources.colors.blue;
+        return item.number == epData.number ? Resources.colors.green : Resources.colors.blue;
     }
 
     componentWillMount() {

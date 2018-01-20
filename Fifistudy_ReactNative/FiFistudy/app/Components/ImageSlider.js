@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
     overlay: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').width * Res.ratio, 
-        opacity: 0.32,
+        opacity: 0.2,
         backgroundColor: 'black',
         position: 'absolute'
     },

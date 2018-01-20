@@ -104,7 +104,7 @@ const res = {
         check: require('./Animations/check.gif'),
     },
     video: {
-        test: require('./Videos/test.mp4'),
+        //test: require('./Videos/test.mp4'),
         //sub: require('./Videos/sub.vtt'),
         theFlash: require('./Videos/flash.mp4'),
         //flashSub: require('./Videos/sub.txt'),
