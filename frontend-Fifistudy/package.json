@@ -23,7 +23,7 @@
     "jquery-ui-dist": "^1.12.1",
     "letteringjs": "^0.7.0",
     "lodash": "^4.17.4",
-    "moment": "^2.20.1",
+    "moment": "^2.29.2",
     "perfect-scrollbar": "^1.1.0",
     "rc-progress": "^2.2.5",
     "react": "^16.0.0",
